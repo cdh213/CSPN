@@ -12,7 +12,6 @@ namespace CSPN.Model
     public class SystemLogInfo
     {
         private string _happen_Time;//发生时间
-        private string _save_Day;//保存日志时间
         private string _terminal_ID;//人井ID
         private string _well_State;//人井状态信息
         private string _temperature;//温度
@@ -78,14 +77,6 @@ namespace CSPN.Model
         {
             get { return _terminal_ID; }
             set { _terminal_ID = value; }
-        }
-        /// <summary>
-        /// 保存日志时间
-        /// </summary>
-        public string Save_Day
-        {
-            get { return _save_Day; }
-            set { _save_Day = value; }
         }
         /// <summary>
         /// 发生时间

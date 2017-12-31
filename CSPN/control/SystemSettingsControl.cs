@@ -42,6 +42,8 @@ namespace CSPN.control
         {
             if (isOpen)
             {
+                tbSysLogTime.Text = ReadWriteConfig.ReadConfig("SysLogTime");
+                tbUserLogTime.Text = ReadWriteConfig.ReadConfig("UserLogTime");
                 tbNotReportTimes.Text = ReadWriteConfig.ReadConfig("NotReportTimes");
                 DeviceLoad();
                 DataLoade(false, null);
@@ -61,8 +63,10 @@ namespace CSPN.control
         #region 系统设置
         private void btnSysSet_Click(object sender, EventArgs e)
         {
-            if ((Regex.IsMatch(tbNotReportTimes.Text.Trim(), "^[1-9]*[1-9][0-9]*$")))
+            if (isNumber(tbSysLogTime.Text.Trim()) && isNumber(tbUserLogTime.Text.Trim()) && isNumber(tbNotReportTimes.Text.Trim()))
             {
+                ReadWriteConfig.WriteConfig("SysLogTime", tbSysLogTime.Text.Trim());
+                ReadWriteConfig.WriteConfig("UserLogTime", tbUserLogTime.Text.Trim());
                 ReadWriteConfig.WriteConfig("NotReportTimes", tbNotReportTimes.Text.Trim());
                 MessageBox.Show("设置成功。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -70,6 +74,13 @@ namespace CSPN.control
             {
                 MessageBox.Show("输入的值错误。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private bool isNumber(string str)
+        {
+            if ((Regex.IsMatch(str, "^[1-9]*[1-9][0-9]*$")))
+                return true;
+            else
+                return false;
         }
         #endregion
 

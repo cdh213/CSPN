@@ -38,10 +38,13 @@
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tbSysLogTime = new CSPN.assistcontrol.WaterTextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tbUserLogTime = new CSPN.assistcontrol.WaterTextBox();
             this.tbNotReportTimes = new CSPN.assistcontrol.WaterTextBox();
             this.btnSysSet = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.SMSSettings = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.myGroupBox1 = new System.Windows.Forms.GroupBox();
@@ -158,15 +161,14 @@
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel7.Controls.Add(this.groupBox2, 1, 1);
-            this.tableLayoutPanel7.Controls.Add(this.groupBox3, 1, 2);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 4;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel7.RowCount = 3;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.545455F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.90909F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.545455F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel7.Size = new System.Drawing.Size(1151, 520);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
@@ -175,24 +177,32 @@
             this.tableLayoutPanel7.SetColumnSpan(this.groupBox2, 2);
             this.groupBox2.Controls.Add(this.tableLayoutPanel8);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(125, 36);
+            this.groupBox2.Location = new System.Drawing.Point(125, 33);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(10);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(900, 214);
+            this.groupBox2.Size = new System.Drawing.Size(900, 452);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "人井设置";
+            this.groupBox2.Text = "系统设置";
             // 
             // tableLayoutPanel8
             // 
             this.tableLayoutPanel8.AutoScroll = true;
-            this.tableLayoutPanel8.ColumnCount = 3;
+            this.tableLayoutPanel8.ColumnCount = 7;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Controls.Add(this.label5, 0, 0);
-            this.tableLayoutPanel8.Controls.Add(this.tbNotReportTimes, 1, 0);
-            this.tableLayoutPanel8.Controls.Add(this.btnSysSet, 2, 0);
+            this.tableLayoutPanel8.Controls.Add(this.label9, 1, 0);
+            this.tableLayoutPanel8.Controls.Add(this.tbSysLogTime, 2, 0);
+            this.tableLayoutPanel8.Controls.Add(this.label5, 1, 1);
+            this.tableLayoutPanel8.Controls.Add(this.label10, 4, 0);
+            this.tableLayoutPanel8.Controls.Add(this.tbUserLogTime, 5, 0);
+            this.tableLayoutPanel8.Controls.Add(this.tbNotReportTimes, 2, 1);
+            this.tableLayoutPanel8.Controls.Add(this.btnSysSet, 3, 2);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 22);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
@@ -201,23 +211,63 @@
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(894, 189);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(894, 427);
             this.tableLayoutPanel8.TabIndex = 0;
+            // 
+            // label9
+            // 
+            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label9.Location = new System.Drawing.Point(165, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(144, 106);
+            this.label9.TabIndex = 15;
+            this.label9.Text = "系统日志保存时间";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tbSysLogTime
+            // 
+            this.tbSysLogTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbSysLogTime.Location = new System.Drawing.Point(315, 40);
+            this.tbSysLogTime.Name = "tbSysLogTime";
+            this.tbSysLogTime.Size = new System.Drawing.Size(94, 26);
+            this.tbSysLogTime.TabIndex = 16;
+            this.tbSysLogTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbSysLogTime.WaterText = "";
             // 
             // label5
             // 
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(3, 0);
+            this.label5.Location = new System.Drawing.Point(165, 106);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(341, 47);
+            this.label5.Size = new System.Drawing.Size(144, 106);
             this.label5.TabIndex = 12;
             this.label5.Text = "人井未上报次数";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label10
+            // 
+            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label10.Location = new System.Drawing.Point(485, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(144, 106);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "用户日志保存时间";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tbUserLogTime
+            // 
+            this.tbUserLogTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbUserLogTime.Location = new System.Drawing.Point(635, 40);
+            this.tbUserLogTime.Name = "tbUserLogTime";
+            this.tbUserLogTime.Size = new System.Drawing.Size(94, 26);
+            this.tbUserLogTime.TabIndex = 18;
+            this.tbUserLogTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbUserLogTime.WaterText = "";
             // 
             // tbNotReportTimes
             // 
-            this.tbNotReportTimes.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbNotReportTimes.Location = new System.Drawing.Point(400, 10);
+            this.tbNotReportTimes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbNotReportTimes.Location = new System.Drawing.Point(315, 146);
             this.tbNotReportTimes.Name = "tbNotReportTimes";
             this.tbNotReportTimes.Size = new System.Drawing.Size(94, 26);
             this.tbNotReportTimes.TabIndex = 13;
@@ -226,7 +276,7 @@
             // 
             // btnSysSet
             // 
-            this.btnSysSet.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnSysSet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSysSet.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSysSet.BackgroundImage")));
             this.btnSysSet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSysSet.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -236,25 +286,13 @@
             this.btnSysSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSysSet.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnSysSet.ForeColor = System.Drawing.Color.White;
-            this.btnSysSet.Location = new System.Drawing.Point(550, 10);
+            this.btnSysSet.Location = new System.Drawing.Point(415, 252);
             this.btnSysSet.Name = "btnSysSet";
-            this.btnSysSet.Size = new System.Drawing.Size(69, 26);
+            this.btnSysSet.Size = new System.Drawing.Size(64, 26);
             this.btnSysSet.TabIndex = 14;
             this.btnSysSet.Text = "设置";
             this.btnSysSet.UseVisualStyleBackColor = true;
             this.btnSysSet.Click += new System.EventHandler(this.btnSysSet_Click);
-            // 
-            // groupBox3
-            // 
-            this.tableLayoutPanel7.SetColumnSpan(this.groupBox3, 2);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(125, 270);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(10);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(900, 214);
-            this.groupBox3.TabIndex = 1;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "其他设置";
             // 
             // SMSSettings
             // 
@@ -1165,11 +1203,14 @@
         private System.Windows.Forms.TabPage SysSetTab;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.Label label5;
         private assistcontrol.WaterTextBox tbNotReportTimes;
         private System.Windows.Forms.Button btnSysSet;
+        private assistcontrol.WaterTextBox tbSysLogTime;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private assistcontrol.WaterTextBox tbUserLogTime;
 
     }
 }

@@ -26,7 +26,7 @@ namespace CSPN.IDAL
         /// <summary>
         /// 删除用户日志信息
         /// </summary>
-        int DeleteUserLogInfo(UserLogInfo userLog);
+        int DeleteUserLogInfo(string nowTime, int save_Day);
         /// <summary>
         /// 更新用户日志信息
         /// </summary>

@@ -12,7 +12,6 @@ namespace CSPN.Model
     public class UserLogInfo
     {
         private string _happen_Time;//发生时间
-        private int _save_Day;//保存日志时间
         private string _operation_Content;//操作内容
         private string _the_Operator;//操作者
         private string _notice_time;//通知时间
@@ -30,14 +29,6 @@ namespace CSPN.Model
         {
             get { return _happen_Time; }
             set { _happen_Time = value; }
-        }
-        /// <summary>
-        /// 保存日志时间
-        /// </summary>
-        public int Save_Day
-        {
-            get { return _save_Day; }
-            set { _save_Day = value; }
         }
         /// <summary>
         /// 操作者

@@ -26,7 +26,7 @@ namespace CSPN.IBLL
         /// <summary>
         /// 删除用户日志信息
         /// </summary>
-        int DeleteUserLogInfo(UserLogInfo userLog);
+        int DeleteUserLogInfo(string nowTime, int save_Day);
         /// <summary>
         /// 更新用户日志信息
         /// </summary>
@@ -50,7 +50,7 @@ namespace CSPN.IBLL
         /// </summary>
         /// <param name="UserLog">日志信息</param>
         /// <returns></returns>
-        int DeleteSystemLogInfo(SystemLogInfo sysLog);
+        int DeleteSystemLogInfo(string nowTime, int save_Day);
         #endregion
     }
 }

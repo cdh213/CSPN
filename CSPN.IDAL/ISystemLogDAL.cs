@@ -13,6 +13,6 @@ namespace CSPN.IDAL
     {
         DataTable GetSystemLogInfo();
         int InsertSystemLogInfo(SystemLogInfo sysLog);
-        int DeleteSystemLogInfo(SystemLogInfo sysLog);
+        int DeleteSystemLogInfo(string nowTime, int save_Day);
     }
 }

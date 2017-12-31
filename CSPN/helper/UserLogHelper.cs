@@ -21,7 +21,6 @@ namespace CSPN.helper
         public void InsertUserLog(params string[] info)
         {
             userLogInfo.Happen_Time = info[0];
-            userLogInfo.Save_Day = 6;
             userLogInfo.Operation_Content = info[1];
             userLogInfo.The_Operator = info[2];
             userLogInfo.Notice_time = info[3];

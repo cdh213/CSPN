@@ -1,6 +1,7 @@
 ﻿using CefSharp;
 using CefSharp.WinForms;
 using CSPN.BLL;
+using CSPN.helper;
 using CSPN.IBLL;
 using CSPN.Model;
 using CSPN.Properties;
@@ -36,14 +37,6 @@ namespace CSPN.webbrower
             settings.CachePath = "cache";
             settings.BrowserSubprocessPath = "webbrowerlib\\CefSharp.BrowserSubprocess.exe";
 
-            Cef.OnContextInitialized = delegate
-            {
-                using (var context = Cef.GetGlobalRequestContext())
-                {
-                    string errorMessage;
-                    context.SetPreference("webkit.webprefs.plugins_enabled", true, out errorMessage);
-                }
-            };
             if (!Cef.IsInitialized)
             {
                 Cef.Initialize(settings, shutdownOnProcessExit: true, performDependencyCheck: !DebuggingSubProcess);
@@ -57,7 +50,7 @@ namespace CSPN.webbrower
 
             BrowserSettings browserSettings = new BrowserSettings();
             browserSettings.DefaultEncoding = "UTF-8";
-            browserSettings.WebGl = CefState.Disabled;
+            browserSettings.WebGl = CefState.Enabled;
             webBrower.BrowserSettings = browserSettings;
 
             //禁用右击菜单

@@ -26,8 +26,8 @@ namespace CSPN.DAL
         #endregion
         private const string SELECT_UserLog_WellInfo = "select * from CSPN_User_Log_Info where Notice_time is not null";
         private const string SELECT_UserLog_GeneralInfo = "select * from CSPN_User_Log_Info where Notice_time is null";
-        private const string INSERT_UserLog = "insert into CSPN_User_Log_Info(Happen_Time,Save_Day,Operation_Content,The_Operator,Notice_time,Receive_People,Current_State) values (@Happen_Time,@Save_Day,@Operation_Content,@The_Operator,@Notice_time,@Receive_People,@Current_State)";
-        private const string DELETE_UserLog = "delete from CSPN_User_Log_Info where Save_Day =6";
+        private const string INSERT_UserLog = "insert into CSPN_User_Log_Info(Happen_Time,Operation_Content,The_Operator,Notice_time,Receive_People,Current_State) values (@Happen_Time,@Operation_Content,@The_Operator,@Notice_time,@Receive_People,@Current_State)";
+        private const string DELETE_UserLog = "delete from CSPN_User_Log_Info where DateDiff('d',format(Happen_Time,'yyyy/mm/dd'),@NowTime)=@Save_Day";
         private const string UPDATE_UserLog = "update CSPN_User_Log_Info set Processor=@Processor,Process_Content=@Process_Content,Process_Time=@Process_Time,Current_State=@Current_State where Happen_Time=@Happen_Time";
 
        /// <summary>
@@ -61,7 +61,6 @@ namespace CSPN.DAL
         {
             DynamicParameters param = new DynamicParameters();
             param.Add("@Happen_Time", userLog.Happen_Time);
-            param.Add("@Save_Day", userLog.Save_Day);
             param.Add("@Operation_Content", userLog.Operation_Content);
             param.Add("@The_Operator", userLog.The_Operator);
             param.Add("@Notice_time", userLog.Notice_time);
@@ -75,11 +74,11 @@ namespace CSPN.DAL
         /// <summary>
         /// 删除用户日志信息
         /// </summary>
-        public int DeleteUserLogInfo(UserLogInfo userLog)
+        public int DeleteUserLogInfo(string nowTime, int save_Day)
         {
             using (Conn)
             {
-                return Conn.Execute(DELETE_UserLog, userLog);
+                return Conn.Execute(DELETE_UserLog, new { Save_Day = save_Day, NowTime = nowTime });
             }
         }
         /// <summary>

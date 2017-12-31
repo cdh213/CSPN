@@ -51,9 +51,9 @@ namespace CSPN.BLL
         /// </summary>
         /// <param name="UserLog">日志信息</param>
         /// <returns></returns>
-        public int DeleteUserLogInfo(UserLogInfo userLog)
+        public int DeleteUserLogInfo(string nowTime, int save_Day)
         {
-            return userlogdal.DeleteUserLogInfo(userLog);
+            return userlogdal.DeleteUserLogInfo(nowTime, save_Day);
         }
         /// <summary>
         /// 更新用户日志信息
@@ -89,9 +89,9 @@ namespace CSPN.BLL
         /// </summary>
         /// <param name="UserLog">日志信息</param>
         /// <returns></returns>
-        public int DeleteSystemLogInfo(SystemLogInfo sysLog)
+        public int DeleteSystemLogInfo(string nowTime, int save_Day)
         {
-            return syslogdal.DeleteSystemLogInfo(sysLog);
+            return syslogdal.DeleteSystemLogInfo(nowTime, save_Day);
         }
         #endregion
     }
