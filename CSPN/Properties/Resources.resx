@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="mapContent" xml:space="preserve">
+    <value>&lt;style type="text/css"&gt;
+        #container,body,html{width:100%;height:100%;margin:0}p.my-desc{margin:5px 0;line-height:150%}.search{z-index:6201;left:5%;position:absolute}.searchbox{position:relative;z-index:2201;width:225px;height:40px;background:#fff;box-shadow:0 2px 2px rgba(0,0,0,.15);border-radius:3px}.searchbox .iptbox{position:absolute;top:0;width:225px;height:40px;box-sizing:border-box;z-index:2202;border-radius:2px}.searchbox #searchipt{position:absolute;top:10px;box-sizing:border-box;text-indent:2px;z-index:2200;border:none;width:180px;height:20px;line-height:20px;padding:0;letter-spacing:.5px;font-size:14px;left:5px;outline:0;-webkit-tap-highlight-color:transparent}.searchbox #searchbtn{position:absolute;right:0;top:0;z-index:9308;box-sizing:border-box;width:45px;height:40px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAK/SURBVHjaYvz//z8DJQAggFhARElJMQMLCyuDsJCgp7y8QpmgsIgZIyMDy6ePH2+8f/dm2tdvP2bevHmTYdq0aQyenp4Me/fuZfj16xcDyHKAAAIbAGKIi4nk6hhZ9kooqLHKiPAyMDExMjx9+1Xvyf27M17cv2r66dOndKDSv1ZWVgyMQNN37doFdgFAAIEN4OXhdlXVM5/IoWDOyCXEwvAPKAryGBc/OwOvihDDbyb25D/bt90ACvUAAQMbGxsDMzMz2ACAAGICEbJy8jU/BTUZfzCyMLz/wsDwEorffmVg+P6HgeGnoBaDubVjARsrK8/Hjx8ZXr9+zfDz50+wAQABBDaAW0DM+P0/PoaP34GagPg1UOOrrxD2h28MDO//sDAISKlIi4oIqbGjBSJAALFAqP9MrEAXvQNq+PaLgYEd4jqGX38ZGH4AXcDKysDAzASOLfa5QCIFiH9ADQAIILALPr99cVGc7QuDABcDw+9/DAyffkLwLyCbl5OBQYrrL8Pbx7feP33z7p4UUH0XEHNADQAIILAB27Zu7fj99CKDHB8Dg5IIMEwEGBhkgFhRGIL/v7jMsGXjhnnWv3+//A1ULwrEVVADAAIIbMCGTZs3Tp/Q0frxxlEGQcavDNL8QAOAWJjlB8PbaycZvnx+xeBrbagzU5jJDeQRoK8YBKAGAAQQIygNgOIVBLS1NOO8fXzzVNQ1NZiYmVkeP7j3bMf2bQtCRXiVIhvd43nfbfl7NvlC9KPHn1a+A6ovAOoFCCAGLEmZmZ2NVZmTg10LZlEoE4PSjTiW5/9PmP3/fMzv91pZ3vA+aAIECCAGYvOCEgOD4ZUQ9mf/j5v+/3DE5/c8dcEEkF6AAGIgJTPJMjLonw5ie/j/qOn/Nbla90B6AQKIgdTcKMfEYNRmyLZdnYc5AqQXIIAYKc3OAAEGABLI/zfRn+acAAAAAElFTkSuQmCC) no-repeat center}.tipp{background-color:#fff;padding:0 10px;border:1px solid silver;position:absolute;right:0;top:0;border-radius:3px;line-height:33px;height:35px}.tipp .lomsg{top:10px;box-sizing:border-box;z-index:2222;border:none;height:35px;font-size:14px}.tipp .lomsg #current{z-index:3333;padding-right:10px;letter-spacing:.5px}.tipp #down{position:absolute;right:0;top:0;z-index:9999;box-sizing:border-box;width:35px;height:35px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAPElEQVR42mNgGAXUBbLTXvwHYXLl4QqwKcInR1Ah0ZqxaZCZ+uIPSZrRDVGY9pJ0zSiGTH35fzR50RgAACAjSNj9C6kGAAAAAElFTkSuQmCC) no-repeat scroll right center}.tipp #dist{background-color:#fff;width:140px;height:140px;padding:0 10px;border:1px solid silver;right:0;border-radius:3px}.tipp #dist .combobox{width:100px;line-height:1.42857143;color:#555;border:1px solid #ccc;border-radius:4px;-moz-appearance:none;-webkit-appearance:none;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAPElEQVR42mNgGAXUBbLTXvwHYXLl4QqwKcInR1Ah0ZqxaZCZ+uIPSZrRDVGY9pJ0zSiGTH35fzR50RgAACAjSNj9C6kGAAAAAElFTkSuQmCC) no-repeat scroll right center transparent;padding-right:14px;height:25px;position:relative;top:2.5px}.tipp #dist #surebtn{font-size:14px;position:inherit;margin-left:25px}span{top:5px;position:relative;top:2.5px}.location{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Q0Y5MzExQTE1N0I4MTFFNjk5MDM4NUFERENCMDVCQjYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Q0Y5MzExQTI1N0I4MTFFNjk5MDM4NUFERENCMDVCQjYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpDRjkzMTE5RjU3QjgxMUU2OTkwMzg1QUREQ0IwNUJCNiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpDRjkzMTFBMDU3QjgxMUU2OTkwMzg1QUREQ0IwNUJCNiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pgr2vZYAAASXSURBVHjafFVJTyNHGO3NNjY2EAQjDEhILEKANMmwcwiKkOAPsF9HOPfAbQQcAOWSQ66BQXMFsdwRnGAOCGFIJPZVQjBsGmLA4LXdznstt9N2lpKql6rve/Xqq/d9JTY0NAjpTRRFIR6PG7+SqYvoccxreGuw0YT/acp/ABJE0TRNCYVCcjgcljBHW741WZZVq9WqZWRkxPiNcTWecCYOG38VA5Q98S2j219eXiSLxfKmurq6Drt7l52dXQggaywWizw9PV1vbm7+fnR0tBUIBO6dTqcG3yD8YgZBYikmthxQVFXNeH19ddTU1Hw/MDDwvqOjoxagWZi2JELDUESxyPPy8vL29PT0p729vc+ZmZmCoigh4KkGYbmoqEhfBV0m8PPzs6unp+fHycnJnysqKt5KkhQCWPj8/Dx8d3cXxI5COTk5EYzLmP+2t7e3HePRra2tXeyUYdKMEBlhwUtkKOww9kxMTHwgO/QvMzMzzo2NDfvDwwNDIgBAIHhzc3Owv7//C2yyxsfHaS/Mz8//hvAx6K/Ai4uNjY0ct/j9fntVVVX74uLiRy6K/5exsbHcs7Mzm91uFxBXAWwFHLIAEkIwGBRKS0vDo6Ojf2ZlZTl5qJ2dnZ6Dg4MV2AZJTi4sLBTAyAb2boB9KCkpeYvvr3DKOz4+thUUFAhw1hkjpvrb4XDo/eLiQtnf37e1tbX5sPAbt9vtXFpa+oxvMld1/UJqCg6wrrW1tRb/X+fm5lwnJydWLgzJJeVlli3HOQ8C1oWFBRf96A911UO+DLck8RGJRMT6+vp3MHBhF7H19XU7mZElgRgKQ7tmdXGeKoG9g370B853ICvCTmJSSEwWbL0Qk9arqysJh2chuMHYkFb6DthoB3uFfvRnPhgJpySyUUI8rXxjSzwDPb4GW3PmpWWybgcJC0gmvVSgWY1SwbDQUmPm8U0mcIhzgXTgf2uGPOlnxiEvvVZgNZUpjYEI1KHl5uaqyNIUpsZC6QtSlrQvLi4mYAQSvqZSWNzIXMPJx71e7x+Y9IOF3NLSEiR4NBpNApnZU+9snKfekVABZKZMf+IQTyfNh81mU6FX79ra2jYM8rq6uvzl5eXRm5sbASf/D8b8hsIEzpeVlUW7u7v99KP/7u6uF0nHSqnJ2A6ZiDjIyOnp6TNrBf7tTU1Njzs7O9bLy0sWs2R2EvTx8VHw+XwEDg8PDz8g3tR5YHBwcOz+/n4HpViPu56hJIatWCCn69vbWxUZ9wMMFFREH/cHMAkFTaYiyDo/Pz+CuZehoaFH2BHYgkV+WV1dXXS5XFHsTt+uUVvYklWxr6/Pg2L0E8a+YeaRBaqiSNbMTNSUeEJueei+kZGRX2dnZz8iV/yJshtLgpsSJKWeezye9+3t7aznZGczrjmWYEjOv7Kysj01NfUJ58V6HiBw4lYSUpibFki5iSorK+tgU4vMc2OeMuBNdMOb6PDw0Ivd3CMU+k1E2accPi9o8733d23SbyWFRQ0ALBGycRPhcGOJO1RljpBtYkcpikpe0GnXHc8xim1GERIJakje/kZGGz1douby8JcAAwBcys9Cayt50gAAAABJRU5ErkJggg==) 50% 50% no-repeat #fff;width:35px;height:35px;border:1px solid #ccc;border-radius:3px;cursor:pointer;position:absolute;z-index:9999;right:5px;bottom:5px}table,table tr td,table tr th{border:1px solid #0094ff;text-align:justify;border-collapse:collapse;text-align:center}table{height:150px;width:350px}
+    &lt;/style&gt;    
+    &lt;script type="text/javascript"&gt;
+        var locationInfo;
+        function searchbtn() {
+            jsObj.inputvalue = document.getElementById("searchipt").value;
+            jsObj.Search(searchData);
+        }
+        function openmsg() {
+            var dist = document.getElementById("dist");
+            var down = document.getElementById("down");
+            if (dist.style.display == "block") {
+                dist.style.display = "none";
+                down.style.background = "url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAPElEQVR42mNgGAXUBbLTXvwHYXLl4QqwKcInR1Ah0ZqxaZCZ+uIPSZrRDVGY9pJ0zSiGTH35fzR50RgAACAjSNj9C6kGAAAAAElFTkSuQmCC) no-repeat scroll right center";
+            } else {
+                dist.style.display = "block";
+                down.style.background = "url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAABGSURBVDhPY/wPBAwUACYoTTYY7gbITX8JxvgATgOQNeIzBKsB2DTgMgTDAGSFjzLFwRgGsBmCYgC6ZhjAZ8hoShx4AxgYADb5Hcu8RXbyAAAAAElFTkSuQmCC) no-repeat scroll right center";
+            }
+        }
+        GetlocationInfo();
+        function GetlocationInfo() {
+            locationInfo = jsObj.locationInfo;
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id="container"&gt;&lt;/div&gt;
+    &lt;section class="search" id="search"&gt;
+        &lt;header class="searchbox"&gt;
+            &lt;div class="iptbox"&gt;
+                &lt;input id="searchipt" type="text" placeholder="请输入人井信息进行查询" /&gt;
+                &lt;a id="searchbtn" href="javascript:void(0);" onclick="searchbtn();return false;"&gt;&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/header&gt;
+    &lt;/section&gt;
+    &lt;div class="tipp"&gt;
+        &lt;div class="lomsg"&gt;
+            &lt;label id="current"&gt;
+            &lt;/label&gt;&lt;a id="down" href="javascript:void(0);" onclick="openmsg(); return false;"&gt;&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div id="dist" style="display: none;"&gt;
+            &lt;span&gt;省：&lt;/span&gt;&lt;select id="province" class="combobox" onchange="search(this)"&gt;&lt;/select&gt;&lt;br&gt;
+            &lt;span&gt;市：&lt;/span&gt;&lt;select id="city" class="combobox" onchange="search(this)"&gt;&lt;/select&gt;&lt;br&gt;
+            &lt;span&gt;区：&lt;/span&gt;&lt;select id="district" class="combobox" onchange="search(this)"&gt;&lt;/select&gt;&lt;br&gt;
+            &lt;a id="surebtn" href="javascript:void(0);" onclick="surebtn(); return false;"&gt;设置为默认城市&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="location" title="回到原位置" onclick="getPosition();"&gt;&lt;/div&gt;
+    &lt;script type="text/javascript"&gt;
+        var district, polygons = [], citycode, tool, geolocation;
+        var citySelect = document.getElementById('city');
+        var districtSelect = document.getElementById('district');
+        var cluster, markers = [];
+        var marker;
+        //初始化地图对象，加载地图
+        var map = new AMap.Map('container', {
+            mapStyle: 'amap://styles/93f5097ef170fa43d2c81c1abc007542',
+            resizeEnable: true
+        });
+        map.plugin(["AMap.Scale", "AMap.ToolBar", "AMap.Geolocation"], function () {
+            tool = new AMap.ToolBar({
+                offset: new AMap.Pixel(0, 0),
+                noIpLocate: true
+            });
+            geolocation = new AMap.Geolocation({
+                enableHighAccuracy: true,//是否使用高精度定位，默认:true
+                timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+                showButton: false,        //显示定位按钮，默认：true
+                zoomToAccuracy: true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+            });
+            map.addControl(tool);
+            map.addControl(new AMap.Scale());
+            map.addControl(geolocation);
+            getPosition();
+        });
+        function getPosition() {
+            geolocation.getCurrentPosition();
+            AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+        }
+        //解析定位错误信息
+        function onError(data) {
+            alert("定位失败，自动定位到默认位置。");
+            setCityAndZoom();
+        }
+        function setCityAndZoom() {
+            if (locationInfo != "") {
+                map.setCenter([locationInfo.split(";")[2].split(",")[0], locationInfo.split(";")[2].split(",")[1]]);
+                map.setZoom(parseInt(locationInfo.split(";")[1]));
+                current.innerText = "当前位置：" + locationInfo.split(";")[0];
+            } else {
+                alert("默认位置为空，请在右上角进行设置。");
+            }
+        }
+        //实例化信息窗体
+        var infoWindow = new AMap.InfoWindow({ offset: new AMap.Pixel(0, -30), autoMove: true, closeWhenClickMap: true });
+        var contextMenu = new AMap.ContextMenu();  //创建点标记右键菜单
+        var mapMenu = new AMap.ContextMenu();  //创建地图右键菜单
+        //实例化点标记
+        for (var i = 0; i &lt; mapdata.length; i++) {
+            marker = new AMap.Marker({
+                icon: mapdata[i].WellStateInfo.Icon,
+                position: [mapdata[i].Longitude, mapdata[i].Latitude]
+            });
+            marker.setTitle(mapdata[i].Terminal_ID);
+
+            marker.content = markersContent(mapdata, i);
+
+            marker.on('click', markerClick);//单击事件
+            marker.on('dblclick', markerdbClick);//双击事件
+            marker.on('rightclick', markerrightclick);//右击事件
+            markers.push(marker);
+        }
+        infoWindow.close();
+        // 添加点聚合
+        var markers2 = [];
+        function addMarkers() {
+            if (cluster) {//在获取新的可视区之前先清除之前的聚合marker
+                cluster.clearMarkers(markers2);
+            }
+            markers2.splice(0, markers2.length);
+            var bound = map.getBounds();//获取可视区经纬度范围，把可视区内的marker添加到 markers2[] 中
+
+            for (i = 0; i &lt; markers.length; i++) {
+                markers[i].setAnimation('AMAP_ANIMATION_NONE');
+                if (bound.contains([markers[i].getPosition().lng, markers[i].getPosition().lat])) {
+                    markers2.push(markers[i]);
+                }
+                else markers[i].setMap(null);
+            }
+            if (map.getZoom() &gt; 16) {
+                if (cluster) {//清除聚合marker
+                    cluster.clearMarkers();
+                }
+                for (i = 0; i &lt; markers2.length; i++) {  //显示具体marker
+                    markers2[i].setMap(map);
+                }
+            } else {
+                map.plugin(["AMap.MarkerClusterer"], function () {
+                    cluster = new AMap.MarkerClusterer(map, markers2);
+                });
+            }
+        }
+        AMap.event.addListener(map, 'zoomend', addMarkers);
+        AMap.event.addListener(map, 'dragend', addMarkers);
+        AMap.event.addListener(map, 'complete', addMarkers);
+        AMap.event.addListener(map, 'moveend', addMarkers);
+        map.setFitView();
+        //打开信息窗口
+        function markerClick(e) {
+            infoWindow.setContent(e.target.content);
+            infoWindow.open(map, e.target.getPosition());
+        }
+        //双击时打开
+        function markerdbClick(e) {
+            var str = e.target.content.split("&lt;/td&gt;&lt;td&gt;")[1].split("&lt;/td&gt;&lt;td style='display:none;'&gt;")[0];
+            jsObj.terminal_ID = String(str);
+            jsObj.UpdateContent(updateMarker);
+        }
+        //更新点信息
+        function updateMarker(update) {
+            infoWindow.close();
+            var updatemapdata = eval(update);
+            for (var i = 0; i &lt; markers.length; i++) {
+                if (markers[i].getTitle() == updatemapdata[0].Terminal_ID) {
+                    markers[i].setIcon(updatemapdata[0].WellStateInfo.Icon);
+                    markers[i].setPosition([updatemapdata[0].Longitude, updatemapdata[0].Latitude]); //更新点标记位置
+
+                    markers[i].content = markersContent(updatemapdata, 0);
+                }
+            }
+        }
+        //查询
+        function searchData(data) {
+            searchmapdata = eval(data);
+            for (i = 0; i &lt; markers.length; i++) {  //显示具体marker
+                markers[i].setMap(map);
+            }
+            for (var i = 0; i &lt; markers.length; i++) {
+                if (markers[i].getTitle() == searchmapdata[0].Terminal_ID) {
+                    map.setZoomAndCenter(18, [searchmapdata[0].Longitude, searchmapdata[0].Latitude]);
+
+                    markers[i].setAnimation('AMAP_ANIMATION_DROP');
+                }
+            }
+        }
+        //添加点信息
+        function addMaker(date) {
+            var positon = eval(date);
+            marker = new AMap.Marker({
+                icon: positon[0].WellStateInfo.Icon,
+                position: [positon[0].Longitude, positon[0].Latitude],
+                map: map
+            });
+
+            marker.setTitle(positon[0].Terminal_ID);
+            marker.content = markersContent(positon, 0);
+
+            marker.on('click', markerClick);//单击事件
+            marker.on('dblclick', markerdbClick);//双击事件
+            marker.on('rightclick', markerrightclick);//右击事件
+            markers.push(marker);
+        }
+        //删除点信息
+        function deleteMarker(terminal_ID) {
+            for (var i = 0; i &lt; markers.length; i++) {
+                if (markers[i].getTitle() == terminal_ID) {
+                    markers[i].setMap(null);
+                    markers.splice(i, 1);
+                }
+            }
+        }
+        //获取markersContent
+        function markersContent(setmapdata, i) {
+            return "&lt;table&gt;&lt;tr&gt;&lt;td&gt;人井编号:&lt;/td&gt;&lt;td&gt;" + setmapdata[i].Terminal_ID + "&lt;/td&gt;&lt;td style='display:none;'&gt;" + setmapdata[i].WellCurrentStateInfo.Well_State_ID + "&lt;/td&gt;&lt;td&gt;人井名称:&lt;/td&gt;&lt;td&gt;" + setmapdata[i].Name + "&lt;/td&gt;&lt;td&gt;终端手机号:&lt;/td&gt;&lt;td&gt;" + setmapdata[i].Terminal_Phone + "&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;经度:&lt;/td&gt;&lt;td&gt;" + setmapdata[i].Longitude + "&lt;/td&gt;&lt;td&gt;纬度:&lt;/td&gt;&lt;td&gt;" + setmapdata[i].Latitude + "&lt;/td&gt;&lt;td&gt;地点:&lt;/td&gt;&lt;td&gt;" + setmapdata[i].Place + "&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;温度:&lt;/td&gt;&lt;td&gt;" + setmapdata[i].WellCurrentStateInfo.Temperature + "&lt;/td&gt;&lt;td&gt;湿度:&lt;/td&gt;&lt;td&gt;" + setmapdata[i].WellCurrentStateInfo.Humidity + "&lt;/td&gt;&lt;td&gt;信号强度:&lt;/td&gt;&lt;td&gt;" + setmapdata[i].WellCurrentStateInfo.Signal_Strength + "&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;烟感:&lt;/td&gt;&lt;td colspan='2'&gt;" + setmapdata[i].WellCurrentStateInfo.Smoke_Detector + "&lt;/td&gt;&lt;td&gt;烟感电量:&lt;/td&gt;&lt;td colspan='2'&gt;" + setmapdata[i].WellCurrentStateInfo.Smoke_Power + "&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;值班人员工号:&lt;/td&gt;&lt;td&gt;" + setmapdata[i].OperatorInfo.Work_ID + "&lt;/td&gt;&lt;td&gt;值班人员姓名:&lt;/td&gt;&lt;td&gt;" + setmapdata[i].OperatorInfo.RealName.trim() + "&lt;/td&gt;&lt;td&gt;值班人员手机号:&lt;/td&gt;&lt;td&gt;" + setmapdata[i].OperatorInfo.Telephone + "&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;";
+        }
+
+        var deletestr, deletestr1;
+        //点标记绑定鼠标右击事件——弹出右键菜单
+        function markerrightclick(e) {
+            contextMenu.open(map, e.lnglat);
+            deletestr = e.target.content.split("&lt;/td&gt;&lt;td&gt;")[1].split("&lt;/td&gt;&lt;td style='display:none;'&gt;")[0];
+            deletestr1 = e.target.content.split("&lt;/td&gt;&lt;td&gt;")[1].split("&lt;/td&gt;&lt;td style='display:none;'&gt;")[1];
+        }
+        //右键通知处理
+        contextMenu.addItem("通知处理", function () {
+            jsObj.terminal_ID = String(deletestr);
+            jsObj.well_State_ID = Number(deletestr1);
+            jsObj.DisposeAlarmMsg();
+        }, 0);
+        //右键处理完成
+        contextMenu.addItem("处理完成", function () {
+            jsObj.terminal_ID = String(deletestr);
+            jsObj.well_State_ID = Number(deletestr1);
+            jsObj.DisposeMsgFinish();
+        }, 1);
+        //右键删除
+        contextMenu.addItem("删除", function () {
+            jsObj.terminal_ID = String(deletestr);
+            jsObj.DeleteContent();
+        }, 2);
+
+        //地图绑定鼠标右击事件——弹出右键菜单
+        map.on('rightclick', function (e) {
+            mapMenu.open(map, e.lnglat);
+            contextMenuPositon = e.lnglat;
+        });
+        //右键添加
+        mapMenu.addItem("添加人井", function (e) {
+            jsObj.menuPositon = String(contextMenuPositon);
+            jsObj.AddMaker(addMaker);
+        }, 0);
+        //右键刷新
+        mapMenu.addItem("刷新", function (e) {
+            jsObj.Refresh();
+        }, 1);
+
+        //行政区划查询
+        AMap.service('AMap.DistrictSearch', function () {//回调函数
+            //实例化DistrictSearch
+            district = new AMap.DistrictSearch({
+                subdistrict: 1,   //返回下一级行政区
+                showbiz: false  //最后一级返回街道信息
+            });
+            //TODO: 使用districtSearch对象调用行政区查询的功能
+            district.search('中国', function (status, result) {
+                if (status == 'complete') {
+                    getData(result.districtList[0]);
+                }
+            });
+        });
+        function getData(data, level) {
+            var bounds = data.boundaries;
+            if (bounds) {
+                for (var i = 0, l = bounds.length; i &lt; l; i++) {
+                    var polygon = new AMap.Polygon({
+                        map: map,
+                        strokeWeight: 1,
+                        strokeColor: '#CC66CC',
+                        fillColor: '#CCF3FF',
+                        fillOpacity: 0.5,
+                        path: bounds[i]
+                    });
+                    polygons.push(polygon);
+                }
+                map.setFitView();//地图自适应
+                polygon.on('click', function () {
+                    polygon.hide();
+                });
+            };
+            //清空下一级别的下拉列表
+            if (level === 'province') {
+                citySelect.innerHTML = '';
+                districtSelect.innerHTML = '';
+            } else if (level === 'city') {
+                districtSelect.innerHTML = '';
+            }
+            var subList = data.districtList;
+            if (subList) {
+                var contentSub = new Option('--请选择--');
+                var curlevel = subList[0].level;
+                var curList = document.querySelector('#' + curlevel);
+                curList.add(contentSub);
+                for (var i = 0, l = subList.length; i &lt; l; i++) {
+                    var name = subList[i].name;
+                    var levelSub = subList[i].level;
+                    var cityCode = subList[i].citycode;
+                    contentSub = new Option(name);
+                    contentSub.setAttribute("value", levelSub);
+                    contentSub.center = subList[i].center;
+                    contentSub.adcode = subList[i].adcode;
+                    curList.add(contentSub);
+                }
+            }
+        }
+        function search(obj) {
+            //清除地图上所有覆盖物
+            for (var i = 0, l = polygons.length; i &lt; l; i++) {
+                polygons[i].setMap(null);
+            }
+            var option = obj[obj.options.selectedIndex];
+            var keyword = option.text; //关键字
+            var adcode = option.adcode;
+            district.setLevel(option.value); //行政区级别
+            district.setExtensions('all');
+            //行政区查询
+            //按照adcode进行查询可以保证数据返回的唯一性
+            district.search(adcode, function (status, result) {
+                if (status === 'complete') {
+                    getData(result.districtList[0], obj.id);
+                }
+            });
+        }
+        //设置默认地点
+        function surebtn() {
+            var objpro, objcity, objdist, pro, city, dist, current;
+            objpro = document.getElementById("province");
+            objcity = document.getElementById("city");
+            objdist = document.getElementById("district");
+            pro = objpro.options[objpro.selectedIndex].text;
+            city = objcity.options[objcity.selectedIndex].text;
+            dist = objdist.options[objdist.selectedIndex].text;
+            locationInfo = pro + "," + city + "," + dist + ";" + map.getZoom() + ";" + map.getCenter();
+            jsObj.locationInfo = pro + "," + city + "," + dist + ";" + map.getZoom() + ";" + map.getCenter();
+            jsObj.SaveLocationInfo();
+            current = document.getElementById("current");
+            current.innerText = "当前位置：" + pro + "," + city + "," + dist;
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="mapHeader" xml:space="preserve">
+    <value>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge" /&gt;
+    &lt;meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" /&gt;
+    &lt;title&gt;地图&lt;/title&gt;
+    &lt;link rel="stylesheet" href="https://cache.amap.com/lbs/static/main1119.css" /&gt;
+    &lt;script src="https://webapi.amap.com/maps?v=1.3&amp;key=f30294b3e24d47a6986cabdb002d043d"&gt;&lt;/script&gt;
+    &lt;script src="https://webapi.amap.com/ui/1.0/main.js?v=1.0.10"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript"&gt;
+        var mapdata = eval('{0}');
+    &lt;/script&gt;</value>
+  </data>
+</root>

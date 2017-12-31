@@ -1,0 +1,196 @@
+﻿namespace CSPN
+{
+    partial class MainForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnMsgShow = new System.Windows.Forms.ToolStripButton();
+            this.btnPendingMsg = new System.Windows.Forms.ToolStripButton();
+            this.btnMessagelog = new System.Windows.Forms.ToolStripButton();
+            this.btnAppointment = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.btnSystemSettings = new System.Windows.Forms.ToolStripButton();
+            this.lbUserName = new System.Windows.Forms.ToolStripLabel();
+            this.panelMain = new System.Windows.Forms.Panel();
+            this.toolStrip1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.AutoSize = false;
+            this.toolStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(48, 48);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnMsgShow,
+            this.btnPendingMsg,
+            this.btnMessagelog,
+            this.btnAppointment,
+            this.toolStripButton4,
+            this.btnSystemSettings,
+            this.lbUserName});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1084, 73);
+            this.toolStrip1.TabIndex = 0;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnMsgShow
+            // 
+            this.btnMsgShow.Image = ((System.Drawing.Image)(resources.GetObject("btnMsgShow.Image")));
+            this.btnMsgShow.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnMsgShow.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnMsgShow.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnMsgShow.Name = "btnMsgShow";
+            this.btnMsgShow.Size = new System.Drawing.Size(84, 73);
+            this.btnMsgShow.Text = "人井信息显示";
+            this.btnMsgShow.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnMsgShow.Click += new System.EventHandler(this.btnMsgShow_Click);
+            // 
+            // btnPendingMsg
+            // 
+            this.btnPendingMsg.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnPendingMsg.Image = ((System.Drawing.Image)(resources.GetObject("btnPendingMsg.Image")));
+            this.btnPendingMsg.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnPendingMsg.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnPendingMsg.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnPendingMsg.Name = "btnPendingMsg";
+            this.btnPendingMsg.Size = new System.Drawing.Size(78, 73);
+            this.btnPendingMsg.Text = "待处理信息";
+            this.btnPendingMsg.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPendingMsg.Click += new System.EventHandler(this.btnPendingMsg_Click);
+            // 
+            // btnMessagelog
+            // 
+            this.btnMessagelog.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnMessagelog.Image = ((System.Drawing.Image)(resources.GetObject("btnMessagelog.Image")));
+            this.btnMessagelog.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnMessagelog.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnMessagelog.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnMessagelog.Name = "btnMessagelog";
+            this.btnMessagelog.Size = new System.Drawing.Size(91, 73);
+            this.btnMessagelog.Text = "人井消息日志";
+            this.btnMessagelog.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnMessagelog.Click += new System.EventHandler(this.btnMessagelog_Click);
+            // 
+            // btnAppointment
+            // 
+            this.btnAppointment.Enabled = false;
+            this.btnAppointment.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnAppointment.Image = ((System.Drawing.Image)(resources.GetObject("btnAppointment.Image")));
+            this.btnAppointment.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnAppointment.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAppointment.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnAppointment.Name = "btnAppointment";
+            this.btnAppointment.Size = new System.Drawing.Size(65, 73);
+            this.btnAppointment.Text = "预约维护";
+            this.btnAppointment.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAppointment.Click += new System.EventHandler(this.btnAppointment_Click);
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.Enabled = false;
+            this.toolStripButton4.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Margin = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(65, 73);
+            this.toolStripButton4.Text = "报表管理";
+            this.toolStripButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // btnSystemSettings
+            // 
+            this.btnSystemSettings.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnSystemSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnSystemSettings.Image")));
+            this.btnSystemSettings.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnSystemSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSystemSettings.Margin = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.btnSystemSettings.Name = "btnSystemSettings";
+            this.btnSystemSettings.Size = new System.Drawing.Size(65, 73);
+            this.btnSystemSettings.Text = "系统管理";
+            this.btnSystemSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnSystemSettings.Click += new System.EventHandler(this.btnSystemSettings_Click);
+            // 
+            // lbUserName
+            // 
+            this.lbUserName.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.lbUserName.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbUserName.Name = "lbUserName";
+            this.lbUserName.Size = new System.Drawing.Size(79, 70);
+            this.lbUserName.Text = "欢迎回来！";
+            // 
+            // panelMain
+            // 
+            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMain.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.panelMain.Location = new System.Drawing.Point(0, 73);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(1084, 538);
+            this.panelMain.TabIndex = 1;
+            // 
+            // MainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
+            this.ClientSize = new System.Drawing.Size(1084, 611);
+            this.Controls.Add(this.panelMain);
+            this.Controls.Add(this.toolStrip1);
+            this.DoubleBuffered = true;
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "人井监控管理系统";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.Panel panelMain;
+        private System.Windows.Forms.ToolStripButton btnPendingMsg;
+        private System.Windows.Forms.ToolStripButton btnMessagelog;
+        private System.Windows.Forms.ToolStripButton btnAppointment;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ToolStripButton btnSystemSettings;
+        private System.Windows.Forms.ToolStripButton btnMsgShow;
+        private System.Windows.Forms.ToolStripLabel lbUserName;
+
+
+    }
+}
