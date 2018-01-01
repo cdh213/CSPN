@@ -67,7 +67,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="CefSharp.BrowserSubprocess">
-      <HintPath>..\packages\Cefsharp\CefSharp.BrowserSubprocess.exe</HintPath>
+      <HintPath>..\packages\Cefsharp\CefSharp.Common.49.0.1\CefSharp\x86\CefSharp.BrowserSubprocess.exe</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="CefSharp.BrowserSubprocess.Core">

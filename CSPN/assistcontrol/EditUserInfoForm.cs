@@ -110,8 +110,8 @@ namespace CSPN.assistcontrol
                     int a = userService.InsertOperatorInfo(opInfo);
                     if (a > 0)
                     {
-                        MessageBox.Show("数据添加成功！", "人井监控管理系统", MessageBoxButtons.OK);
-                        userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd"), "添加值班人员。", CommonClass.UserName, null, null);
+                        MessageBox.Show("数据添加成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "添加值班人员。", CommonClass.UserName, null, null);
                         this.Close();
                     }
                     else
@@ -127,7 +127,7 @@ namespace CSPN.assistcontrol
                 if (b > 0)
                 {
                     MessageBox.Show("数据修改成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd"), "更新值班人员信息。", CommonClass.UserName, null, null);
+                    userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "更新值班人员信息。", CommonClass.UserName, null, null);
                     this.Close();
                 }
                 else

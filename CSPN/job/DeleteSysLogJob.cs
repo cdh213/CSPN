@@ -17,8 +17,8 @@ namespace CSPN.job
         public void Execute(IJobExecutionContext context)
         {
             int save_Day = int.Parse(ReadWriteConfig.ReadConfig("SysLogTime"));
-            logService.DeleteSystemLogInfo(DateTime.Now.ToString("yyyy/MM/dd"), save_Day);
-            LogHelper.WriteQuartzLog(string.Format("删除超过{0}天的系统日志", save_Day));
+            logService.DeleteSystemLogInfo(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), save_Day);
+            LogHelper.WriteQuartzLog("删除超过" + save_Day + "天的系统日志");
         }
     }
 }

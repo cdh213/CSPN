@@ -94,6 +94,7 @@ namespace CSPN.assistcontrol
                     _grid.Sort(_grid.Columns[0], ListSortDirection.Descending);
                 }
             }
+            table.Clear();
             tmpTable.Dispose();
             table.Dispose();
             DisplayPagingInfo();

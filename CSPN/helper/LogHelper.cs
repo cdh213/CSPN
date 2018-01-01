@@ -9,7 +9,7 @@ namespace CSPN.helper
 {
     public class LogHelper
     {
-        static readonly ILog logerror = LogManager.GetLogger("loggError");
+        static readonly ILog logerror = LogManager.GetLogger("ApplicationLog");
         static readonly ILog quartzLog = LogManager.GetLogger("QuartzLog");
 
         public static void WriteLog(string info)

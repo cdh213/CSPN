@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SystemSettingsControl));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -89,20 +90,21 @@
             this.btnedit = new System.Windows.Forms.Button();
             this.OperatorSet = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.usergrid = new System.Windows.Forms.DataGridView();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnInto = new System.Windows.Forms.Button();
-            this.usergrid = new System.Windows.Forms.DataGridView();
-            this.Work_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.page = new CSPN.assistcontrol.DataGridPage();
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RealName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Telephone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Area = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReceiveMsg = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.page = new CSPN.assistcontrol.DataGridPage();
-            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.tabControl1.SuspendLayout();
             this.SysSetTab.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
@@ -223,6 +225,7 @@
             this.label9.TabIndex = 15;
             this.label9.Text = "系统日志保存时间";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.label9, "设置保存系统日志的天数，超过天数的系统日志会被自动删除。");
             // 
             // tbSysLogTime
             // 
@@ -232,6 +235,7 @@
             this.tbSysLogTime.Size = new System.Drawing.Size(94, 26);
             this.tbSysLogTime.TabIndex = 16;
             this.tbSysLogTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip1.SetToolTip(this.tbSysLogTime, "设置保存系统日志的天数，超过天数的系统日志会被自动删除。");
             this.tbSysLogTime.WaterText = "";
             // 
             // label5
@@ -253,6 +257,7 @@
             this.label10.TabIndex = 17;
             this.label10.Text = "用户日志保存时间";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.label10, "设置保存用户日志的天数，超过天数的用户日志会被自动删除。");
             // 
             // tbUserLogTime
             // 
@@ -262,6 +267,7 @@
             this.tbUserLogTime.Size = new System.Drawing.Size(94, 26);
             this.tbUserLogTime.TabIndex = 18;
             this.tbUserLogTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip1.SetToolTip(this.tbUserLogTime, "设置保存用户日志的天数，超过天数的用户日志会被自动删除。");
             this.tbUserLogTime.WaterText = "";
             // 
             // tbNotReportTimes
@@ -869,11 +875,11 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Controls.Add(this.usergrid, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.btnAdd, 4, 0);
             this.tableLayoutPanel5.Controls.Add(this.btnUpdate, 5, 0);
             this.tableLayoutPanel5.Controls.Add(this.btnDelete, 6, 0);
             this.tableLayoutPanel5.Controls.Add(this.btnInto, 7, 0);
-            this.tableLayoutPanel5.Controls.Add(this.usergrid, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.btnRefresh, 8, 0);
             this.tableLayoutPanel5.Controls.Add(this.page, 0, 2);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -884,8 +890,60 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(1151, 520);
             this.tableLayoutPanel5.TabIndex = 3;
+            // 
+            // usergrid
+            // 
+            this.usergrid.AllowUserToAddRows = false;
+            this.usergrid.AllowUserToDeleteRows = false;
+            this.usergrid.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.usergrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.usergrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.usergrid.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.usergrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.usergrid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.usergrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.usergrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.usergrid.ColumnHeadersHeight = 30;
+            this.usergrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
+            this.RealName,
+            this.Gender,
+            this.Telephone,
+            this.Area,
+            this.ReceiveMsg});
+            this.tableLayoutPanel5.SetColumnSpan(this.usergrid, 10);
+            this.usergrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.usergrid.GridColor = System.Drawing.Color.Blue;
+            this.usergrid.Location = new System.Drawing.Point(3, 43);
+            this.usergrid.MultiSelect = false;
+            this.usergrid.Name = "usergrid";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.usergrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.usergrid.RowHeadersVisible = false;
+            this.usergrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.usergrid.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.usergrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.usergrid.RowTemplate.Height = 35;
+            this.usergrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.usergrid.Size = new System.Drawing.Size(1145, 434);
+            this.usergrid.TabIndex = 14;
             // 
             // btnAdd
             // 
@@ -967,98 +1025,6 @@
             this.btnInto.UseVisualStyleBackColor = true;
             this.btnInto.Click += new System.EventHandler(this.btnInto_Click);
             // 
-            // usergrid
-            // 
-            this.usergrid.AllowUserToAddRows = false;
-            this.usergrid.AllowUserToDeleteRows = false;
-            this.usergrid.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.usergrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.usergrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.usergrid.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.usergrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.usergrid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            this.usergrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.usergrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.usergrid.ColumnHeadersHeight = 30;
-            this.usergrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Work_ID,
-            this.RealName,
-            this.Gender,
-            this.Telephone,
-            this.Area,
-            this.ReceiveMsg});
-            this.tableLayoutPanel5.SetColumnSpan(this.usergrid, 10);
-            this.usergrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.usergrid.GridColor = System.Drawing.Color.Blue;
-            this.usergrid.Location = new System.Drawing.Point(3, 43);
-            this.usergrid.MultiSelect = false;
-            this.usergrid.Name = "usergrid";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.usergrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.usergrid.RowHeadersVisible = false;
-            this.usergrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.usergrid.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.usergrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.usergrid.RowTemplate.Height = 35;
-            this.usergrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.usergrid.Size = new System.Drawing.Size(1145, 434);
-            this.usergrid.TabIndex = 12;
-            // 
-            // Work_ID
-            // 
-            this.Work_ID.DataPropertyName = "Work_ID";
-            this.Work_ID.HeaderText = "工号";
-            this.Work_ID.Name = "Work_ID";
-            this.Work_ID.ReadOnly = true;
-            // 
-            // RealName
-            // 
-            this.RealName.DataPropertyName = "RealName";
-            this.RealName.HeaderText = "姓名";
-            this.RealName.Name = "RealName";
-            this.RealName.ReadOnly = true;
-            // 
-            // Gender
-            // 
-            this.Gender.DataPropertyName = "Gender";
-            this.Gender.HeaderText = "性别";
-            this.Gender.Name = "Gender";
-            this.Gender.ReadOnly = true;
-            // 
-            // Telephone
-            // 
-            this.Telephone.DataPropertyName = "Telephone";
-            this.Telephone.HeaderText = "联系方式";
-            this.Telephone.Name = "Telephone";
-            this.Telephone.ReadOnly = true;
-            // 
-            // Area
-            // 
-            this.Area.DataPropertyName = "Area";
-            this.Area.HeaderText = "区域";
-            this.Area.Name = "Area";
-            // 
-            // ReceiveMsg
-            // 
-            this.ReceiveMsg.DataPropertyName = "ReceiveMsg";
-            this.ReceiveMsg.HeaderText = "自动接收报警消息";
-            this.ReceiveMsg.Name = "ReceiveMsg";
-            this.ReceiveMsg.ReadOnly = true;
-            // 
             // btnRefresh
             // 
             this.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -1100,6 +1066,54 @@
             this.backgroundWorker.WorkerSupportsCancellation = true;
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.AutoPopDelay = 5000;
+            this.toolTip1.InitialDelay = 50;
+            this.toolTip1.ReshowDelay = 100;
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "Work_ID";
+            this.ID.HeaderText = "工号";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // RealName
+            // 
+            this.RealName.DataPropertyName = "RealName";
+            this.RealName.HeaderText = "姓名";
+            this.RealName.Name = "RealName";
+            this.RealName.ReadOnly = true;
+            // 
+            // Gender
+            // 
+            this.Gender.DataPropertyName = "Gender";
+            this.Gender.HeaderText = "性别";
+            this.Gender.Name = "Gender";
+            this.Gender.ReadOnly = true;
+            // 
+            // Telephone
+            // 
+            this.Telephone.DataPropertyName = "Telephone";
+            this.Telephone.HeaderText = "联系方式";
+            this.Telephone.Name = "Telephone";
+            this.Telephone.ReadOnly = true;
+            // 
+            // Area
+            // 
+            this.Area.DataPropertyName = "Area";
+            this.Area.HeaderText = "区域";
+            this.Area.Name = "Area";
+            this.Area.ReadOnly = true;
+            // 
+            // ReceiveMsg
+            // 
+            this.ReceiveMsg.DataPropertyName = "ReceiveMsg";
+            this.ReceiveMsg.HeaderText = "自动接收报警消息";
+            this.ReceiveMsg.Name = "ReceiveMsg";
+            this.ReceiveMsg.ReadOnly = true;
             // 
             // SystemSettingsControl
             // 
@@ -1173,16 +1187,9 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnInto;
-        private System.Windows.Forms.DataGridView usergrid;
         private System.Windows.Forms.Button btnRefresh;
         private System.ComponentModel.BackgroundWorker backgroundWorker;
         private assistcontrol.DataGridPage page;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Work_ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RealName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Gender;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Telephone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Area;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiveMsg;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
@@ -1211,6 +1218,14 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private assistcontrol.WaterTextBox tbUserLogTime;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.DataGridView usergrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RealName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Gender;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Telephone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Area;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiveMsg;
 
     }
 }

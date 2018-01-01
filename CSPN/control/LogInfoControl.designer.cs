@@ -32,21 +32,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogInfoControl));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogInfoControl));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TabPagesys = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.Sysgrid = new System.Windows.Forms.DataGridView();
-            this.Syspage = new CSPN.assistcontrol.DataGridPage();
-            this.btnSysOut = new System.Windows.Forms.Button();
-            this.TabPageuser = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.userpage = new CSPN.assistcontrol.DataGridPage();
-            this.btnUserOut = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.cbType = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.Sys_Happen_Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Terminal_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Terminal_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,6 +48,15 @@
             this.Smoke_Detector = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Smoke_Power = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Signal_Strength = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Syspage = new CSPN.assistcontrol.DataGridPage();
+            this.btnSysOut = new System.Windows.Forms.Button();
+            this.TabPageuser = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.userpage = new CSPN.assistcontrol.DataGridPage();
+            this.btnUserOut = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.cbType = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.TabPagesys.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -161,6 +161,80 @@
             this.Sysgrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Sysgrid.Size = new System.Drawing.Size(947, 340);
             this.Sysgrid.TabIndex = 15;
+            // 
+            // Sys_Happen_Time
+            // 
+            this.Sys_Happen_Time.DataPropertyName = "Happen_Time";
+            dataGridViewCellStyle3.Format = "G";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Sys_Happen_Time.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Sys_Happen_Time.HeaderText = "发生时间";
+            this.Sys_Happen_Time.Name = "Sys_Happen_Time";
+            this.Sys_Happen_Time.ReadOnly = true;
+            // 
+            // Terminal_ID
+            // 
+            this.Terminal_ID.DataPropertyName = "Terminal_ID";
+            this.Terminal_ID.HeaderText = "人井编号";
+            this.Terminal_ID.Name = "Terminal_ID";
+            this.Terminal_ID.ReadOnly = true;
+            // 
+            // Terminal_Name
+            // 
+            this.Terminal_Name.DataPropertyName = "Name";
+            this.Terminal_Name.HeaderText = "人井名称";
+            this.Terminal_Name.Name = "Terminal_Name";
+            this.Terminal_Name.ReadOnly = true;
+            // 
+            // Place
+            // 
+            this.Place.DataPropertyName = "Place";
+            this.Place.HeaderText = "地点";
+            this.Place.Name = "Place";
+            this.Place.ReadOnly = true;
+            // 
+            // Well_State
+            // 
+            this.Well_State.DataPropertyName = "Well_State";
+            this.Well_State.HeaderText = "人井状态";
+            this.Well_State.Name = "Well_State";
+            this.Well_State.ReadOnly = true;
+            // 
+            // Temperature
+            // 
+            this.Temperature.DataPropertyName = "Temperature";
+            this.Temperature.HeaderText = "温度";
+            this.Temperature.Name = "Temperature";
+            this.Temperature.ReadOnly = true;
+            // 
+            // Humidity
+            // 
+            this.Humidity.DataPropertyName = "Humidity";
+            this.Humidity.HeaderText = "湿度";
+            this.Humidity.Name = "Humidity";
+            this.Humidity.ReadOnly = true;
+            // 
+            // Smoke_Detector
+            // 
+            this.Smoke_Detector.DataPropertyName = "Smoke_Detector";
+            this.Smoke_Detector.HeaderText = "烟感";
+            this.Smoke_Detector.Name = "Smoke_Detector";
+            this.Smoke_Detector.ReadOnly = true;
+            // 
+            // Smoke_Power
+            // 
+            this.Smoke_Power.DataPropertyName = "Smoke_Power";
+            this.Smoke_Power.HeaderText = "烟感电量";
+            this.Smoke_Power.Name = "Smoke_Power";
+            this.Smoke_Power.ReadOnly = true;
+            // 
+            // Signal_Strength
+            // 
+            this.Signal_Strength.DataPropertyName = "Signal_Strength";
+            this.Signal_Strength.HeaderText = "信号强度";
+            this.Signal_Strength.Name = "Signal_Strength";
+            this.Signal_Strength.ReadOnly = true;
+            this.Signal_Strength.ToolTipText = "取值从00到31。若为99，表示无信号。";
             // 
             // Syspage
             // 
@@ -282,7 +356,7 @@
             this.cbType.Items.AddRange(new object[] {
             "人井信息日志",
             "一般用户日志"});
-            this.cbType.Location = new System.Drawing.Point(103, 10);
+            this.cbType.Location = new System.Drawing.Point(103, 6);
             this.cbType.Name = "cbType";
             this.cbType.Size = new System.Drawing.Size(167, 28);
             this.cbType.TabIndex = 16;
@@ -297,80 +371,6 @@
             this.label1.TabIndex = 17;
             this.label1.Text = "日志类型";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // Sys_Happen_Time
-            // 
-            this.Sys_Happen_Time.DataPropertyName = "Happen_Time";
-            dataGridViewCellStyle3.Format = "G";
-            dataGridViewCellStyle3.NullValue = null;
-            this.Sys_Happen_Time.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Sys_Happen_Time.HeaderText = "发生时间";
-            this.Sys_Happen_Time.Name = "Sys_Happen_Time";
-            this.Sys_Happen_Time.ReadOnly = true;
-            // 
-            // Terminal_ID
-            // 
-            this.Terminal_ID.DataPropertyName = "Terminal_ID";
-            this.Terminal_ID.HeaderText = "人井编号";
-            this.Terminal_ID.Name = "Terminal_ID";
-            this.Terminal_ID.ReadOnly = true;
-            // 
-            // Terminal_Name
-            // 
-            this.Terminal_Name.DataPropertyName = "Name";
-            this.Terminal_Name.HeaderText = "人井名称";
-            this.Terminal_Name.Name = "Terminal_Name";
-            this.Terminal_Name.ReadOnly = true;
-            // 
-            // Place
-            // 
-            this.Place.DataPropertyName = "Place";
-            this.Place.HeaderText = "地点";
-            this.Place.Name = "Place";
-            this.Place.ReadOnly = true;
-            // 
-            // Well_State
-            // 
-            this.Well_State.DataPropertyName = "Well_State";
-            this.Well_State.HeaderText = "人井状态";
-            this.Well_State.Name = "Well_State";
-            this.Well_State.ReadOnly = true;
-            // 
-            // Temperature
-            // 
-            this.Temperature.DataPropertyName = "Temperature";
-            this.Temperature.HeaderText = "温度";
-            this.Temperature.Name = "Temperature";
-            this.Temperature.ReadOnly = true;
-            // 
-            // Humidity
-            // 
-            this.Humidity.DataPropertyName = "Humidity";
-            this.Humidity.HeaderText = "湿度";
-            this.Humidity.Name = "Humidity";
-            this.Humidity.ReadOnly = true;
-            // 
-            // Smoke_Detector
-            // 
-            this.Smoke_Detector.DataPropertyName = "Smoke_Detector";
-            this.Smoke_Detector.HeaderText = "烟感";
-            this.Smoke_Detector.Name = "Smoke_Detector";
-            this.Smoke_Detector.ReadOnly = true;
-            // 
-            // Smoke_Power
-            // 
-            this.Smoke_Power.DataPropertyName = "Smoke_Power";
-            this.Smoke_Power.HeaderText = "烟感电量";
-            this.Smoke_Power.Name = "Smoke_Power";
-            this.Smoke_Power.ReadOnly = true;
-            // 
-            // Signal_Strength
-            // 
-            this.Signal_Strength.DataPropertyName = "Signal_Strength";
-            this.Signal_Strength.HeaderText = "信号强度";
-            this.Signal_Strength.Name = "Signal_Strength";
-            this.Signal_Strength.ReadOnly = true;
-            this.Signal_Strength.ToolTipText = "取值从00到31。若为99，表示无信号。";
             // 
             // LogInfoControl
             // 

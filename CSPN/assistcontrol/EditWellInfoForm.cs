@@ -121,7 +121,7 @@ namespace CSPN.assistcontrol
                     wellStateService.InsertWellCurrentStateInfo(wellInfo.Terminal_ID, (int)cbState.SelectedValue);
                     wellInfoService.InsertReportNumInfo(wellInfo.Terminal_ID);
 
-                    userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd"), "添加人井。", CommonClass.UserName, null, null);
+                    userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "添加人井。", CommonClass.UserName, null, null);
                 }
                 else
                 {
@@ -134,7 +134,7 @@ namespace CSPN.assistcontrol
                 wellInfoService.UpdateWellInfo(wellInfo);
                 wellStateService.UpdateWellCurrentStateInfo((int)cbState.SelectedValue, wellInfo.Terminal_ID);
 
-                userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd"), "更新人井信息。", CommonClass.UserName, null, null);
+                userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "更新人井信息。", CommonClass.UserName, null, null);
             }
             MessageBox.Show(this.Text + "成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();

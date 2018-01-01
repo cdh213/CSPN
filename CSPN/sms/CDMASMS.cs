@@ -200,7 +200,7 @@ namespace CSPN.sms
         public static string ReadMsgByIndex(int index)
         {
             string msg = SendAT(@"AT^HCMGR=" + index);
-            string sms = string.Empty;
+            string sms = null;
             try
             {
                 if (msg.Trim() != "Invalid index" && msg.Trim() != "ERROR")
@@ -289,17 +289,17 @@ namespace CSPN.sms
         {
             Regex regex = new Regex("^[\x21-\x7e]*$");
             string phone, datetime = null, message;
-            string[] str1, str2;
-            str1 = msg.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-            str2 = str1[1].Remove(0, 7).Split(',');
-            phone = str2[0];
+            string[] str, str1;
+            str = msg.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            str1 = str[1].Remove(0, 7).Split(',');
+            phone = str1[0];
             for (int i = 1; i < 7; i++)
             {
-                datetime += str2[i];
+                datetime += str1[i];
             }
-            message = str1[2].Substring(0, 24);
-            if (regex.Match(message).Success)
+            if (regex.Match(str[2]).Success)
             {
+                message = str[2].Substring(0, 24);
                 return phone + ";" + datetime.TrimEnd(',') + ";" + message;
             }
             else

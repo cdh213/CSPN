@@ -63,6 +63,11 @@ namespace CSPN.control
         #region 系统设置
         private void btnSysSet_Click(object sender, EventArgs e)
         {
+            if (tbSysLogTime.Text.Trim() == "" && tbUserLogTime.Text.Trim() == "" && tbNotReportTimes.Text.Trim() == "")
+            {
+                MessageBox.Show("请输入内容。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (isNumber(tbSysLogTime.Text.Trim()) && isNumber(tbUserLogTime.Text.Trim()) && isNumber(tbNotReportTimes.Text.Trim()))
             {
                 ReadWriteConfig.WriteConfig("SysLogTime", tbSysLogTime.Text.Trim());

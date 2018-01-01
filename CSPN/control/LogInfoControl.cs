@@ -50,22 +50,6 @@ namespace CSPN.control
                 userpage.ShowPages(gridUserLogInfo_GeneralInfo, null, ShowPagesType.UserLogInfo_GeneralInfo);
             }
         }
-
-        //加载日志信息
-        public void DataLoade(bool strWhere, string info)
-        {
-            //系统日志
-            Sysgrid.AutoGenerateColumns = false;
-            Sysgrid.DataSource = null;
-            Syspage.PageSize = 50;
-            Syspage.ShowPages(Sysgrid, info, ShowPagesType.SysLogInfo);
-            //用户日志
-            panel1.Controls.Add(gridUserLogInfo_GeneralInfo);
-            gridUserLogInfo_WellInfo.AutoGenerateColumns = false;
-            gridUserLogInfo_WellInfo.DataSource = null;
-            userpage.PageSize = 50;
-            userpage.ShowPages(gridUserLogInfo_WellInfo, null, ShowPagesType.UserLogInfo_WellInfo);
-        }
         //将系统日志导出数据库
         private void btnSysOut_Click(object sender, EventArgs e)
         {
@@ -89,6 +73,22 @@ namespace CSPN.control
             {
                 e.Value = ImageHelper.ToImage(e.Value.ToString());
             }
+        }
+        //加载日志信息
+        public void DataLoade(bool strWhere, string info)
+        {
+            //系统日志
+            Sysgrid.AutoGenerateColumns = false;
+            Sysgrid.DataSource = null;
+            Syspage.PageSize = 50;
+            Syspage.ShowPages(Sysgrid, info, ShowPagesType.SysLogInfo);
+            //用户日志
+            panel1.Controls.Clear();
+            panel1.Controls.Add(gridUserLogInfo_WellInfo);
+            gridUserLogInfo_WellInfo.AutoGenerateColumns = false;
+            gridUserLogInfo_WellInfo.DataSource = null;
+            userpage.PageSize = 50;
+            userpage.ShowPages(gridUserLogInfo_WellInfo, null, ShowPagesType.UserLogInfo_WellInfo);
         }
     }
 }
