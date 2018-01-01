@@ -211,6 +211,8 @@
     <Compile Include="helper\LogHelper.cs" />
     <Compile Include="helper\QuartzHelper.cs" />
     <Compile Include="helper\UserLogHelper.cs" />
+    <Compile Include="job\DeleteSysLogJob.cs" />
+    <Compile Include="job\DeleteUserLogJob.cs" />
     <Compile Include="job\UpdateNotReportNumJob.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>

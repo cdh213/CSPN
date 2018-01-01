@@ -262,7 +262,7 @@
             this.MinimizeBox = false;
             this.Name = "EditUserInfoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "EditUserInfoForm";
+            this.Text = "人井监控管理系统";
             this.Load += new System.EventHandler(this.EditUserInfoForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

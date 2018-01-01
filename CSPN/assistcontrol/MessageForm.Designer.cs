@@ -91,7 +91,7 @@
             this.Name = "MessageForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "MessageForm";
+            this.Text = "人井监控管理系统";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MessageForm_FormClosing);
             this.Load += new System.EventHandler(this.MessageForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

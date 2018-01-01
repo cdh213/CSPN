@@ -311,7 +311,7 @@
             this.MinimizeBox = false;
             this.Name = "EditWellInfoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "EditInfoForm";
+            this.Text = "人井监控管理系统";
             this.Load += new System.EventHandler(this.EditInfoForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

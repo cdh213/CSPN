@@ -47,7 +47,7 @@ namespace CSPN.sms
                         {
                             string[] str = sms.Split(';');
                             wellInfo = wellInfoService.GetWellInfoByPhone(str[0].Trim());
-                            wellCurrentStateInfo.Report_Time = DateTime.ParseExact(str[1].Trim(), "yyyyMMddHHmmss", CultureInfo.CurrentCulture).ToString();
+                            wellCurrentStateInfo.Report_Time = DateTime.ParseExact(str[1].Trim(), "yyyyMMddHHmmss", CultureInfo.CurrentCulture).ToString("yyyy/MM/dd HH:mm:ss");
                             SMSAnalysis.MsgResult(str[2].Trim());
                             if (SMSAnalysis.isInvalid == true)
                             {

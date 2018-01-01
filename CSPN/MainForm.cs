@@ -33,6 +33,8 @@ namespace CSPN
             InitializeComponent();
             _isOpen = isOpen;
             lbUserName.Text += CommonClass.UserName;
+            quartzHelper.init(typeof(DeleteSysLogJob), 23, 30);
+            quartzHelper.init(typeof(DeleteUserLogJob), 23, 30);
             quartzHelper.init(typeof(UpdateNotReportNumJob), 23, 30);
         }
         private void MainForm_Load(object sender, EventArgs e)

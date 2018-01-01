@@ -90,7 +90,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ErrorForm";
+            this.Text = "人井监控管理系统";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

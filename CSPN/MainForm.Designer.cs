@@ -43,8 +43,8 @@
             // 
             // toolStrip1
             // 
-            this.toolStrip1.AutoSize = false;
             this.toolStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.toolStrip1.CanOverflow = false;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(48, 48);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -57,7 +57,7 @@
             this.lbUserName});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1084, 73);
+            this.toolStrip1.Size = new System.Drawing.Size(1084, 72);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -68,7 +68,7 @@
             this.btnMsgShow.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnMsgShow.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnMsgShow.Name = "btnMsgShow";
-            this.btnMsgShow.Size = new System.Drawing.Size(84, 73);
+            this.btnMsgShow.Size = new System.Drawing.Size(84, 72);
             this.btnMsgShow.Text = "人井信息显示";
             this.btnMsgShow.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnMsgShow.Click += new System.EventHandler(this.btnMsgShow_Click);
@@ -81,7 +81,7 @@
             this.btnPendingMsg.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPendingMsg.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnPendingMsg.Name = "btnPendingMsg";
-            this.btnPendingMsg.Size = new System.Drawing.Size(78, 73);
+            this.btnPendingMsg.Size = new System.Drawing.Size(78, 72);
             this.btnPendingMsg.Text = "待处理信息";
             this.btnPendingMsg.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPendingMsg.Click += new System.EventHandler(this.btnPendingMsg_Click);
@@ -94,7 +94,7 @@
             this.btnMessagelog.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnMessagelog.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnMessagelog.Name = "btnMessagelog";
-            this.btnMessagelog.Size = new System.Drawing.Size(91, 73);
+            this.btnMessagelog.Size = new System.Drawing.Size(91, 72);
             this.btnMessagelog.Text = "人井消息日志";
             this.btnMessagelog.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnMessagelog.Click += new System.EventHandler(this.btnMessagelog_Click);
@@ -108,7 +108,7 @@
             this.btnAppointment.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAppointment.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnAppointment.Name = "btnAppointment";
-            this.btnAppointment.Size = new System.Drawing.Size(65, 73);
+            this.btnAppointment.Size = new System.Drawing.Size(65, 72);
             this.btnAppointment.Text = "预约维护";
             this.btnAppointment.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAppointment.Click += new System.EventHandler(this.btnAppointment_Click);
@@ -122,7 +122,7 @@
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Margin = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(65, 73);
+            this.toolStripButton4.Size = new System.Drawing.Size(65, 72);
             this.toolStripButton4.Text = "报表管理";
             this.toolStripButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -134,7 +134,7 @@
             this.btnSystemSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSystemSettings.Margin = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.btnSystemSettings.Name = "btnSystemSettings";
-            this.btnSystemSettings.Size = new System.Drawing.Size(65, 73);
+            this.btnSystemSettings.Size = new System.Drawing.Size(65, 72);
             this.btnSystemSettings.Text = "系统管理";
             this.btnSystemSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSystemSettings.Click += new System.EventHandler(this.btnSystemSettings_Click);
@@ -144,16 +144,16 @@
             this.lbUserName.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.lbUserName.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbUserName.Name = "lbUserName";
-            this.lbUserName.Size = new System.Drawing.Size(79, 70);
+            this.lbUserName.Size = new System.Drawing.Size(79, 69);
             this.lbUserName.Text = "欢迎回来！";
             // 
             // panelMain
             // 
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.panelMain.Location = new System.Drawing.Point(0, 73);
+            this.panelMain.Location = new System.Drawing.Point(0, 72);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(1084, 538);
+            this.panelMain.Size = new System.Drawing.Size(1084, 539);
             this.panelMain.TabIndex = 1;
             // 
             // MainForm
@@ -176,6 +176,7 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

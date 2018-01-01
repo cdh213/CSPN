@@ -118,7 +118,7 @@ namespace CSPN.control
 
                     CDMASMS.SendCHNSms("报警信息：地点：" + place + "，发生时间：" + time, phone);
 
-                    userLogHelper.InsertUserLog(wellCurrentStateInfo.Report_Time, "处理报警信息", CommonClass.UserName, DateTime.Now.ToString(), wellCurrentStateInfo.OperatorInfo.RealName);
+                    userLogHelper.InsertUserLog(wellCurrentStateInfo.Report_Time, "处理报警信息", CommonClass.UserName, DateTime.Now.ToString("yyyy/MM/dd"), wellCurrentStateInfo.OperatorInfo.RealName);
 
                     wellStateService.UpdateWellCurrentStateInfo(5, terminal_ID);
                     GetSMS.UpdateMap(terminal_ID);
@@ -129,7 +129,7 @@ namespace CSPN.control
             {
                 wellCurrentStateInfo = wellStateService.GetAlarmInfo_StatusInfo(well_State_ID, terminal_ID);
 
-                userLogHelper.UpdateUserLog(wellCurrentStateInfo.Report_Time, wellCurrentStateInfo.OperatorInfo.RealName, "完成报警信息处理。", DateTime.Now.ToString());
+                userLogHelper.UpdateUserLog(wellCurrentStateInfo.Report_Time, wellCurrentStateInfo.OperatorInfo.RealName, "完成报警信息处理。", DateTime.Now.ToString("yyyy/MM/dd"));
 
                 wellStateService.UpdateWellCurrentStateInfo(1, terminal_ID);
                 GetSMS.UpdateMap(terminal_ID);

@@ -1,6 +1,7 @@
 ﻿using CSPN.helper;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
@@ -303,7 +304,7 @@ namespace CSPN.sms
             }
             else
             {
-                LogHelper.WriteLog("非指定信息：" + phone + ";" + datetime.TrimEnd(','));
+                LogHelper.WriteLog("非指定短信，手机号：" + phone + "，时间：" + DateTime.ParseExact(datetime.TrimEnd(','), "yyyyMMddHHmmss", CultureInfo.CurrentCulture).ToString("yyyy/MM/dd HH:mm:ss"));
                 return null;
             }
         }

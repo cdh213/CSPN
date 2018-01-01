@@ -43,7 +43,7 @@ namespace CSPN
                     {
                         MessageBox.Show("登录成功。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         userName = usersInfo.UserName;
-                        userService.UpdateLoginTimeByID(DateTime.Now.ToString(), usersInfo.Work_ID);
+                        userService.UpdateLoginTimeByID(DateTime.Now.ToString("yyyy/MM/dd"), usersInfo.Work_ID);
                         this.Close();
                         this.DialogResult = DialogResult.OK;
                     }
