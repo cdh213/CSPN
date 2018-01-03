@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSPN.common
 {
-    public enum ShowPagesType
+    public enum CSPNType
     {
         /// <summary>
         /// 人井信息

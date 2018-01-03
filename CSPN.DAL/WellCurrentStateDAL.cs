@@ -27,13 +27,13 @@ namespace CSPN.DAL
         }
         #endregion
 
-        private const string UPDATE_Well_Current_State = "update CSPN_Well_Current_State_Info set Well_State_ID=@Well_State_ID,Temperature=@Temperature,Humidity=@Humidity,Smoke_Detector=@Smoke_Detector,Smoke_Power=@Smoke_Power,Signal_Strength=@Signal_Strength,Report_Time=@Report_Time where Terminal_ID=@Terminal_ID";
+        private const string UPDATE_Well_Current_State = "update CSPN_Well_Current_State_Info set Well_State_ID=@Well_State_ID,Electricity=@Electricity,Temperature=@Temperature,Humidity=@Humidity,Smoke_Detector=@Smoke_Detector,Smoke_Power=@Smoke_Power,Signal_Strength=@Signal_Strength,Report_Time=@Report_Time where Terminal_ID=@Terminal_ID";
 
         private const string UPDATE_Well_State_ID = "update CSPN_Well_Current_State_Info set Well_State_ID=@Well_State_ID where Terminal_ID=@Terminal_ID";
 
         private const string SELECT_WELL_INFO = "select Report_Time,Well_State_ID,a.Terminal_ID,Name,Place,Icon,RealName,Telephone from ((CSPN_Well_Info as a inner join CSPN_Well_Current_State_Info as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Dic_Well_State_Info as c on b.Well_State_ID=c.ID) inner join CSPN_Operator_Info as d on a.Operator_ID=d.ID where 1=1";
 
-        private const string SELECT_WELL_INFO_Well_State_ID = "select Report_Time,Well_State_ID,a.Terminal_ID,Name,Place,Icon,Telephone from ((CSPN_Well_Info as a inner join CSPN_Well_Current_State_Info as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Dic_Well_State_Info as c on b.Well_State_ID=c.ID) inner join CSPN_Operator_Info as d on a.Operator_ID=d.ID where b.Well_State_ID=@Well_State_ID";
+        private const string SELECT_WELL_INFO_Well_State_ID = "select Report_Time,Well_State_ID,a.Terminal_ID,Name,Place,Icon,Telephone from ((CSPN_Well_Info as a inner join CSPN_Well_Current_State_Info as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Dic_Well_State_Info as c on b.Well_State_ID=c.ID) inner join CSPN_Operator_Info as d on a.Operator_ID=d.ID where b.Well_State_ID=@Well_State_ID order by Report_Time desc";
         private const string Insert_WellInfo = "insert into CSPN_Well_Current_State_Info(Terminal_ID,Well_State_ID) values(@Terminal_ID,@Well_State_ID)";
         private const string Delete_WellInfo = "delete from CSPN_Well_Current_State_Info where Terminal_ID=@Terminal_ID";
 
@@ -57,6 +57,7 @@ namespace CSPN.DAL
         {
             DynamicParameters parm = new DynamicParameters();
             parm.Add("@Well_State_ID", wellCurrentStateInfo.Well_State_ID);
+            parm.Add("@Electricity", wellCurrentStateInfo.Electricity);
             parm.Add("@Temperature", wellCurrentStateInfo.Temperature);
             parm.Add("@Humidity", wellCurrentStateInfo.Humidity);
             parm.Add("@Smoke_Detector", wellCurrentStateInfo.Smoke_Detector);
@@ -76,7 +77,7 @@ namespace CSPN.DAL
         public IList<WellCurrentStateInfo> GetAlarmInfo_StatusInfo()
         {
             StringBuilder sql = new StringBuilder(SELECT_WELL_INFO);
-            sql.Append(" and b.Well_State_ID=2 or b.Well_State_ID=3");
+            sql.Append(" and b.Well_State_ID=2 or b.Well_State_ID=3 or b.Well_State_ID=4 or b.Well_State_ID=5 order by Report_Time desc");
             using (Conn)
             {
                 return Conn.Query<WellCurrentStateInfo, WellInfo, WellStateInfo, OperatorInfo, WellCurrentStateInfo>(sql.ToString(), (a, b, c, d) => { a.WellInfo = b; a.WellStateInfo = c; a.OperatorInfo = d; return a; }, null, null, true, "Report_Time,Terminal_ID,Icon,RealName").ToList();
@@ -88,7 +89,7 @@ namespace CSPN.DAL
         public WellCurrentStateInfo GetAlarmInfo_StatusInfo(string terminal_ID)
         {
             StringBuilder sql = new StringBuilder(SELECT_WELL_INFO);
-            sql.AppendFormat(" and b.Well_State_ID=2 or b.Well_State_ID=4 and a.Terminal_ID='{0}'", terminal_ID);
+            sql.AppendFormat(" and b.Well_State_ID=2 or b.Well_State_ID=3 or b.Well_State_ID=4 or b.Well_State_ID=5 and a.Terminal_ID='{0}' order by Report_Time desc", terminal_ID);
             using (Conn)
             {
                 return Conn.Query<WellCurrentStateInfo, WellInfo, WellStateInfo, OperatorInfo, WellCurrentStateInfo>(sql.ToString(), (a, b, c, d) => { a.WellInfo = b; a.WellStateInfo = c; a.OperatorInfo = d; return a; }, null, null, true, "Report_Time,Terminal_ID,Icon,RealName").SingleOrDefault();
@@ -100,7 +101,7 @@ namespace CSPN.DAL
         public WellCurrentStateInfo GetAlarmInfo_StatusInfo(int well_State_ID, string terminal_ID)
         {
             StringBuilder sql = new StringBuilder(SELECT_WELL_INFO);
-            sql.AppendFormat(" and b.Well_State_ID={0} and a.Terminal_ID='{1}'", well_State_ID, terminal_ID);
+            sql.AppendFormat(" and b.Well_State_ID={0} and a.Terminal_ID='{1}' order by Report_Time desc", well_State_ID, terminal_ID);
             using (Conn)
             {
                 return Conn.Query<WellCurrentStateInfo, WellInfo, WellStateInfo, OperatorInfo, WellCurrentStateInfo>(sql.ToString(), (a, b, c, d) => { a.WellInfo = b; a.WellStateInfo = c; a.OperatorInfo = d; return a; }, null, null, true, "Report_Time,Terminal_ID,Icon,RealName").SingleOrDefault();

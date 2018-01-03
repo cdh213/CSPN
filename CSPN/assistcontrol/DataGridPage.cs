@@ -22,7 +22,7 @@ namespace CSPN.assistcontrol
         DataTable table = new DataTable();
         DataGridView _grid = new DataGridView();
         string _info = null;
-        ShowPagesType _type;
+        CSPNType _type;
 
         public DataGridPage()
         {
@@ -32,7 +32,7 @@ namespace CSPN.assistcontrol
         /// <summary>
         /// 初始化数据
         /// </summary>
-        public void ShowPages(DataGridView grid, string info, ShowPagesType type)
+        public void ShowPages(DataGridView grid, string info, CSPNType type)
         {
             _grid = grid;
             _info = info;
@@ -47,22 +47,22 @@ namespace CSPN.assistcontrol
         {
             switch (_type)
             {
-                case ShowPagesType.WellInfo:
+                case CSPNType.WellInfo:
                     table = wellInfoService.GetWellInfo_Table(_info);
                     break;
-                case ShowPagesType.OperatorInfo:
+                case CSPNType.OperatorInfo:
                     table = userservice.GetOperator_Table();
                     break;
-                case ShowPagesType.SysLogInfo:
+                case CSPNType.SysLogInfo:
                     table = logservice.GetSystemLogInfo();
                     break;
-                case ShowPagesType.UserLogInfo_WellInfo:
+                case CSPNType.UserLogInfo_WellInfo:
                     table = logservice.GetUserLogInfo_WellInfo();
                     break;
-                case ShowPagesType.UserLogInfo_GeneralInfo:
+                case CSPNType.UserLogInfo_GeneralInfo:
                     table = logservice.GetUserLogInfo_GeneralInfo();
                     break;
-                case ShowPagesType.AppointmentInfo:
+                case CSPNType.AppointmentInfo:
                     table = wellStateService.GetAppointmentInfo();
                     break;
             }
@@ -87,13 +87,6 @@ namespace CSPN.assistcontrol
                     tmpTable.ImportRow(this.table.Rows[i]);
             }
             this._grid.DataSource = tmpTable;
-            if (_grid.Rows.Count != 0)
-            {
-                if (_type == ShowPagesType.SysLogInfo || _type == ShowPagesType.UserLogInfo_WellInfo || _type == ShowPagesType.UserLogInfo_GeneralInfo)
-                {
-                    _grid.Sort(_grid.Columns[0], ListSortDirection.Descending);
-                }
-            }
             table.Clear();
             tmpTable.Dispose();
             table.Dispose();

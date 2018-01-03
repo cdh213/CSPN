@@ -321,7 +321,7 @@ namespace CSPN.control
             usergrid.AutoGenerateColumns = false;
             usergrid.DataSource = null;
             page.PageSize = 50;
-            page.ShowPages(usergrid, info, ShowPagesType.OperatorInfo);
+            page.ShowPages(usergrid, info, CSPNType.OperatorInfo);
         }
         #endregion
     }

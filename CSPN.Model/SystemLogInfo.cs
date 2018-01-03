@@ -14,6 +14,7 @@ namespace CSPN.Model
         private string _happen_Time;//发生时间
         private string _terminal_ID;//人井ID
         private string _well_State;//人井状态信息
+        private string _electricity;//终端电量
         private string _temperature;//温度
         private string _humidity;//湿度
         private string _smoke_Detector;//烟感
@@ -61,6 +62,14 @@ namespace CSPN.Model
         {
             get { return _temperature; }
             set { _temperature = value; }
+        }
+        /// <summary>
+        /// 终端电量
+        /// </summary>
+        public string Electricity
+        {
+            get { return _electricity; }
+            set { _electricity = value; }
         }
         /// <summary>
         /// 人井状态信息ID

@@ -19,9 +19,9 @@ namespace CSPN.sms
         /// </summary>
         public static bool IsOpen { get; set; }
         /// <summary>
-        /// 电量
+        /// 电量是否报警
         /// </summary>
-        public static bool Electric { get; set; }
+        public static bool IsElectricityAlarm { get; set; }
         /// <summary>
         /// 信号强度
         /// </summary>
@@ -35,17 +35,18 @@ namespace CSPN.sms
         /// </summary>
         public static string Humidity { get; set; }
         /// <summary>
+        /// 是否有烟感数据
+        /// </summary>
+        public static bool SmokeMsg { get; set; }
+        /// <summary>
         /// 烟感是否报警
         /// </summary>
-        private static bool IsSmokeAlarm { get; set; }
+        public static bool IsSmokeAlarm { get; set; }
         /// <summary>
-        /// 烟感
+        /// 烟感电量是否报警
         /// </summary>
-        public static string Smoke { get; set; }
-        /// <summary>
-        /// 烟感电量
-        /// </summary>
-        private static string Smoke_Power { get; set; }
+        public static bool IsSmoke_PowerAlarm { get; set; }
+
         /// <summary>
         /// 是否无效
         /// </summary>
@@ -64,6 +65,7 @@ namespace CSPN.sms
             {
                 s[i] = smsMsg.Substring(i, 1);
             }
+            #region 报警信息
             if (s[0] + s[1] == "33")
             {
                 Message = true;
@@ -72,6 +74,9 @@ namespace CSPN.sms
             {
                 Message = false;
             }
+            #endregion
+
+            #region 井盖是否打开
             if (s[2] + s[3] == "01")
             {
                 IsOpen = true;
@@ -80,6 +85,9 @@ namespace CSPN.sms
             {
                 IsOpen = false;
             }
+            #endregion
+
+            #region 是否失效
             if (s[0] + s[1] + s[2] + s[3] == "5AC5")
             {
                 ReadWriteRegistry.WriteRegistry("isInvalid", "true");
@@ -90,15 +98,24 @@ namespace CSPN.sms
                 ReadWriteRegistry.WriteRegistry("isInvalid", "false");
                 isInvalid = false;
             }
-            if (s[4] + s[5]=="00")
+            #endregion
+
+            #region 电量是否报警
+            if (s[4] + s[5] == "00")
             {
-                Electric = true;
+                IsElectricityAlarm = false;
             }
             if (s[4] + s[5] == "01")
             {
-                Electric = false;
+                IsElectricityAlarm = true;
             }
+            #endregion
+
+            #region 信号强度
             Signal_Strength = s[6] + s[7];
+            #endregion
+
+            #region 温度湿度
             if (s[8] + s[9] + s[10] + s[11] + s[12] == "00000")
             {
                 Temperature = "无温度数据";
@@ -115,12 +132,16 @@ namespace CSPN.sms
             {
                 Humidity = s[13] + s[14] + s[15] + s[16] + s[17];
             }
+            #endregion
+
+            #region 烟感
             if (s[18] + s[19] + s[20] + s[21] == "0000")
             {
-                Smoke = "无烟感数据";
+                SmokeMsg = false;
             }
             else
             {
+                SmokeMsg = true;
                 if (s[18] + s[19] == "01")
                 {
                     IsSmokeAlarm = false;
@@ -129,9 +150,16 @@ namespace CSPN.sms
                 {
                     IsSmokeAlarm = true;
                 }
-                Smoke_Power = s[22] + s[23];
-                Smoke = IsSmokeAlarm.ToString() + ";" + Smoke_Power;
+                if (s[20] + s[21] == "00")
+                {
+                    IsSmoke_PowerAlarm = false;
+                }
+                else
+                {
+                    IsSmoke_PowerAlarm = true;
+                }
             }
+            #endregion 
         }
     }
 }

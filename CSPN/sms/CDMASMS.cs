@@ -297,9 +297,9 @@ namespace CSPN.sms
             {
                 datetime += str1[i];
             }
-            if (regex.Match(str[2]).Success)
+            message = str[2].Substring(0, str[2].Length - 1);
+            if (regex.Match(message).Success)
             {
-                message = str[2].Substring(0, 24);
                 return phone + ";" + datetime.TrimEnd(',') + ";" + message;
             }
             else

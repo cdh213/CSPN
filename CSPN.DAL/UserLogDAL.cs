@@ -24,8 +24,8 @@ namespace CSPN.DAL
             }
         }
         #endregion
-        private const string SELECT_UserLog_WellInfo = "select * from CSPN_User_Log_Info where Notice_time is not null";
-        private const string SELECT_UserLog_GeneralInfo = "select * from CSPN_User_Log_Info where Notice_time is null";
+        private const string SELECT_UserLog_WellInfo = "select Happen_Time, The_Operator,Operation_Content,Receive_People,Notice_time,Processor,Process_Content,Process_Time,Current_State from CSPN_User_Log_Info where Notice_time is not null order by Happen_Time desc";
+        private const string SELECT_UserLog_GeneralInfo = "select Happen_Time,The_Operator,Operation_Content from CSPN_User_Log_Info where Notice_time is null order by Happen_Time desc";
         private const string INSERT_UserLog = "insert into CSPN_User_Log_Info(Happen_Time,Operation_Content,The_Operator,Notice_time,Receive_People,Current_State) values (@Happen_Time,@Operation_Content,@The_Operator,@Notice_time,@Receive_People,@Current_State)";
         private const string DELETE_UserLog = "delete from CSPN_User_Log_Info where DateDiff('d',format(Happen_Time,'yyyy/mm/dd'),@NowTime)>=@Save_Day";
         private const string UPDATE_UserLog = "update CSPN_User_Log_Info set Processor=@Processor,Process_Content=@Process_Content,Process_Time=@Process_Time,Current_State=@Current_State where Happen_Time=@Happen_Time";

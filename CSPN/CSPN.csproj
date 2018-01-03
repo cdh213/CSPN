@@ -84,12 +84,20 @@
     </Reference>
     <Reference Include="Common.Logging">
       <HintPath>..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Common.Logging.Core">
       <HintPath>..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Common.Logging.Log4Net1215">
       <HintPath>..\packages\Common.Logging.Log4Net1215.3.4.1\lib\net40\Common.Logging.Log4Net1215.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
@@ -117,6 +125,7 @@
     </Reference>
     <Reference Include="Quartz">
       <HintPath>..\packages\Quartz.2.6.1\lib\net40\Quartz.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -156,6 +165,12 @@
     <Compile Include="assistcontrol\ErrorForm.Designer.cs">
       <DependentUpon>ErrorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="assistcontrol\ExportLogInfoSetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="assistcontrol\ExportLogInfoSetForm.Designer.cs">
+      <DependentUpon>ExportLogInfoSetForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="assistcontrol\MessageForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,7 +193,7 @@
       <DependentUpon>WelcomeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="common\CommonClass.cs" />
-    <Compile Include="common\ShowPagesType.cs" />
+    <Compile Include="common\CSPNType.cs" />
     <Compile Include="control\AppointmentControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -259,6 +274,9 @@
     <EmbeddedResource Include="assistcontrol\ErrorForm.resx">
       <DependentUpon>ErrorForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="assistcontrol\ExportLogInfoSetForm.resx">
+      <DependentUpon>ExportLogInfoSetForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="assistcontrol\MessageForm.resx">
       <DependentUpon>MessageForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -267,6 +285,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="assistcontrol\WelcomeForm.resx">
       <DependentUpon>WelcomeForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="assistcontrol\ImportProgressBarForm.resx">
       <DependentUpon>ImportProgressBarForm.cs</DependentUpon>
@@ -320,9 +339,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="cspn.ico" />
-    <Content Include="resource\css\style.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="resource\images\add.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -339,31 +355,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="resource\images\cspn.ico" />
-    <Content Include="resource\images\down.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resource\images\icon.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resource\images\location.png">
+    <Content Include="resource\images\export.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="resource\images\Login.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resource\images\m0.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resource\images\m1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resource\images\m2.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resource\images\m3.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resource\images\m4.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="resource\images\map_brown.png">
@@ -396,13 +391,7 @@
     <Content Include="resource\images\reportmanage.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="resource\images\searchbox_button.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="resource\images\sysmanage.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resource\images\up.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="resource\images\update.ico">
@@ -415,9 +404,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="resource\images\welcome.png" />
-    <Content Include="resource\Map.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="resource\Map.html" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

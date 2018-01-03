@@ -68,7 +68,7 @@ namespace CSPN.control
             appointmentGrid.AutoGenerateColumns = false;
             appointmentGrid.DataSource = null;
             appointmentPage.PageSize = 50;
-            appointmentPage.ShowPages(appointmentGrid, null, ShowPagesType.AppointmentInfo);
+            appointmentPage.ShowPages(appointmentGrid, null, CSPNType.AppointmentInfo);
         }
     }
 }

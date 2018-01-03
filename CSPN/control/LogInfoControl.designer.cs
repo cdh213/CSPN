@@ -28,39 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogInfoControl));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TabPagesys = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.Sysgrid = new System.Windows.Forms.DataGridView();
-            this.Sys_Happen_Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Terminal_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Terminal_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Place = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Well_State = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Temperature = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Humidity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Smoke_Detector = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Smoke_Power = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Signal_Strength = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Syspage = new CSPN.assistcontrol.DataGridPage();
             this.btnSysOut = new System.Windows.Forms.Button();
             this.TabPageuser = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.userpage = new CSPN.assistcontrol.DataGridPage();
             this.btnUserOut = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelUser = new System.Windows.Forms.Panel();
             this.cbType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.panelSys = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.TabPagesys.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Sysgrid)).BeginInit();
             this.TabPageuser.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -94,9 +78,9 @@
             this.tableLayoutPanel1.AutoScroll = true;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.Sysgrid, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.Syspage, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnSysOut, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panelSys, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -106,135 +90,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(953, 428);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // Sysgrid
-            // 
-            this.Sysgrid.AllowUserToAddRows = false;
-            this.Sysgrid.AllowUserToDeleteRows = false;
-            this.Sysgrid.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Sysgrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.Sysgrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.Sysgrid.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.Sysgrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.Sysgrid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            this.Sysgrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.Sysgrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.Sysgrid.ColumnHeadersHeight = 30;
-            this.Sysgrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Sys_Happen_Time,
-            this.Terminal_ID,
-            this.Terminal_Name,
-            this.Place,
-            this.Well_State,
-            this.Temperature,
-            this.Humidity,
-            this.Smoke_Detector,
-            this.Smoke_Power,
-            this.Signal_Strength});
-            this.Sysgrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Sysgrid.GridColor = System.Drawing.Color.Blue;
-            this.Sysgrid.Location = new System.Drawing.Point(3, 44);
-            this.Sysgrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Sysgrid.MultiSelect = false;
-            this.Sysgrid.Name = "Sysgrid";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Sysgrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.Sysgrid.RowHeadersVisible = false;
-            this.Sysgrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Sysgrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.Sysgrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Sysgrid.RowTemplate.Height = 35;
-            this.Sysgrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Sysgrid.Size = new System.Drawing.Size(947, 340);
-            this.Sysgrid.TabIndex = 15;
-            // 
-            // Sys_Happen_Time
-            // 
-            this.Sys_Happen_Time.DataPropertyName = "Happen_Time";
-            dataGridViewCellStyle3.Format = "G";
-            dataGridViewCellStyle3.NullValue = null;
-            this.Sys_Happen_Time.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Sys_Happen_Time.HeaderText = "发生时间";
-            this.Sys_Happen_Time.Name = "Sys_Happen_Time";
-            this.Sys_Happen_Time.ReadOnly = true;
-            // 
-            // Terminal_ID
-            // 
-            this.Terminal_ID.DataPropertyName = "Terminal_ID";
-            this.Terminal_ID.HeaderText = "人井编号";
-            this.Terminal_ID.Name = "Terminal_ID";
-            this.Terminal_ID.ReadOnly = true;
-            // 
-            // Terminal_Name
-            // 
-            this.Terminal_Name.DataPropertyName = "Name";
-            this.Terminal_Name.HeaderText = "人井名称";
-            this.Terminal_Name.Name = "Terminal_Name";
-            this.Terminal_Name.ReadOnly = true;
-            // 
-            // Place
-            // 
-            this.Place.DataPropertyName = "Place";
-            this.Place.HeaderText = "地点";
-            this.Place.Name = "Place";
-            this.Place.ReadOnly = true;
-            // 
-            // Well_State
-            // 
-            this.Well_State.DataPropertyName = "Well_State";
-            this.Well_State.HeaderText = "人井状态";
-            this.Well_State.Name = "Well_State";
-            this.Well_State.ReadOnly = true;
-            // 
-            // Temperature
-            // 
-            this.Temperature.DataPropertyName = "Temperature";
-            this.Temperature.HeaderText = "温度";
-            this.Temperature.Name = "Temperature";
-            this.Temperature.ReadOnly = true;
-            // 
-            // Humidity
-            // 
-            this.Humidity.DataPropertyName = "Humidity";
-            this.Humidity.HeaderText = "湿度";
-            this.Humidity.Name = "Humidity";
-            this.Humidity.ReadOnly = true;
-            // 
-            // Smoke_Detector
-            // 
-            this.Smoke_Detector.DataPropertyName = "Smoke_Detector";
-            this.Smoke_Detector.HeaderText = "烟感";
-            this.Smoke_Detector.Name = "Smoke_Detector";
-            this.Smoke_Detector.ReadOnly = true;
-            // 
-            // Smoke_Power
-            // 
-            this.Smoke_Power.DataPropertyName = "Smoke_Power";
-            this.Smoke_Power.HeaderText = "烟感电量";
-            this.Smoke_Power.Name = "Smoke_Power";
-            this.Smoke_Power.ReadOnly = true;
-            // 
-            // Signal_Strength
-            // 
-            this.Signal_Strength.DataPropertyName = "Signal_Strength";
-            this.Signal_Strength.HeaderText = "信号强度";
-            this.Signal_Strength.Name = "Signal_Strength";
-            this.Signal_Strength.ReadOnly = true;
-            this.Signal_Strength.ToolTipText = "取值从00到31。若为99，表示无信号。";
             // 
             // Syspage
             // 
@@ -291,7 +146,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.userpage, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.btnUserOut, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.panelUser, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.cbType, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -339,14 +194,14 @@
             this.btnUserOut.UseVisualStyleBackColor = true;
             this.btnUserOut.Click += new System.EventHandler(this.btnUserOut_Click);
             // 
-            // panel1
+            // panelUser
             // 
-            this.tableLayoutPanel2.SetColumnSpan(this.panel1, 3);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 43);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(947, 342);
-            this.panel1.TabIndex = 15;
+            this.tableLayoutPanel2.SetColumnSpan(this.panelUser, 3);
+            this.panelUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelUser.Location = new System.Drawing.Point(3, 43);
+            this.panelUser.Name = "panelUser";
+            this.panelUser.Size = new System.Drawing.Size(947, 342);
+            this.panelUser.TabIndex = 15;
             // 
             // cbType
             // 
@@ -372,6 +227,14 @@
             this.label1.Text = "日志类型";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // panelSys
+            // 
+            this.panelSys.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelSys.Location = new System.Drawing.Point(3, 43);
+            this.panelSys.Name = "panelSys";
+            this.panelSys.Size = new System.Drawing.Size(947, 342);
+            this.panelSys.TabIndex = 15;
+            // 
             // LogInfoControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -386,11 +249,156 @@
             this.tabControl1.ResumeLayout(false);
             this.TabPagesys.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Sysgrid)).EndInit();
             this.TabPageuser.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
+        }
+
+        private void InitializeSysLogInfo()
+        {
+            Sysgrid = new System.Windows.Forms.DataGridView();
+            System.Windows.Forms.DataGridViewTextBoxColumn Sys_Happen_Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            System.Windows.Forms.DataGridViewTextBoxColumn Terminal_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            System.Windows.Forms.DataGridViewTextBoxColumn Terminal_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            System.Windows.Forms.DataGridViewTextBoxColumn Place = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            System.Windows.Forms.DataGridViewTextBoxColumn Well_State = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            System.Windows.Forms.DataGridViewTextBoxColumn Electricity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            System.Windows.Forms.DataGridViewTextBoxColumn Temperature = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            System.Windows.Forms.DataGridViewTextBoxColumn Humidity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            System.Windows.Forms.DataGridViewTextBoxColumn Smoke_Detector = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            System.Windows.Forms.DataGridViewTextBoxColumn Smoke_Power = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            System.Windows.Forms.DataGridViewTextBoxColumn Signal_Strength = new System.Windows.Forms.DataGridViewTextBoxColumn();
+
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+
+            Sysgrid.AllowUserToAddRows = false;
+            Sysgrid.AllowUserToDeleteRows = false;
+            Sysgrid.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            Sysgrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            Sysgrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            Sysgrid.BackgroundColor = System.Drawing.SystemColors.Window;
+            Sysgrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            Sysgrid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            Sysgrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            Sysgrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            Sysgrid.ColumnHeadersHeight = 30;
+            Sysgrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { Sys_Happen_Time, Terminal_ID, Terminal_Name, Place, Well_State, Electricity, Temperature, Humidity, Smoke_Detector, Smoke_Power, Signal_Strength });
+            Sysgrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            Sysgrid.GridColor = System.Drawing.Color.Blue;
+            Sysgrid.Location = new System.Drawing.Point(3, 44);
+            Sysgrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            Sysgrid.MultiSelect = false;
+            Sysgrid.Name = "Sysgrid";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            Sysgrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            Sysgrid.RowHeadersVisible = false;
+            Sysgrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            Sysgrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            Sysgrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            Sysgrid.RowTemplate.Height = 35;
+            Sysgrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            Sysgrid.Size = new System.Drawing.Size(947, 340);
+            Sysgrid.TabIndex = 15;
+            Sysgrid.CellToolTipTextNeeded += new System.Windows.Forms.DataGridViewCellToolTipTextNeededEventHandler(this.Sysgrid_CellToolTipTextNeeded);
+            // 
+            // Sys_Happen_Time
+            // 
+            Sys_Happen_Time.DataPropertyName = "Happen_Time";
+            dataGridViewCellStyle3.Format = "G";
+            dataGridViewCellStyle3.NullValue = null;
+            Sys_Happen_Time.DefaultCellStyle = dataGridViewCellStyle3;
+            Sys_Happen_Time.HeaderText = "发生时间";
+            Sys_Happen_Time.Name = "Sys_Happen_Time";
+            Sys_Happen_Time.ReadOnly = true;
+            // 
+            // Terminal_ID
+            // 
+            Terminal_ID.DataPropertyName = "Terminal_ID";
+            Terminal_ID.HeaderText = "人井编号";
+            Terminal_ID.Name = "Terminal_ID";
+            Terminal_ID.ReadOnly = true;
+            // 
+            // Terminal_Name
+            // 
+            Terminal_Name.DataPropertyName = "Name";
+            Terminal_Name.HeaderText = "人井名称";
+            Terminal_Name.Name = "Terminal_Name";
+            Terminal_Name.ReadOnly = true;
+            // 
+            // Place
+            // 
+            Place.DataPropertyName = "Place";
+            Place.HeaderText = "地点";
+            Place.Name = "Place";
+            Place.ReadOnly = true;
+            // 
+            // Well_State
+            // 
+            Well_State.DataPropertyName = "Well_State";
+            Well_State.HeaderText = "人井状态";
+            Well_State.Name = "Well_State";
+            Well_State.ReadOnly = true;
+            // 
+            // Electricity
+            // 
+            Electricity.DataPropertyName = "Electricity";
+            Electricity.HeaderText = "终端电量";
+            Electricity.Name = "Electricity";
+            // 
+            // Temperature
+            // 
+            Temperature.DataPropertyName = "Temperature";
+            Temperature.HeaderText = "温度";
+            Temperature.Name = "Temperature";
+            Temperature.ReadOnly = true;
+            // 
+            // Humidity
+            // 
+            Humidity.DataPropertyName = "Humidity";
+            Humidity.HeaderText = "湿度";
+            Humidity.Name = "Humidity";
+            Humidity.ReadOnly = true;
+            // 
+            // Smoke_Detector
+            // 
+            Smoke_Detector.DataPropertyName = "Smoke_Detector";
+            Smoke_Detector.HeaderText = "烟感";
+            Smoke_Detector.Name = "Smoke_Detector";
+            Smoke_Detector.ReadOnly = true;
+            // 
+            // Smoke_Power
+            // 
+            Smoke_Power.DataPropertyName = "Smoke_Power";
+            Smoke_Power.HeaderText = "烟感电量";
+            Smoke_Power.Name = "Smoke_Power";
+            Smoke_Power.ReadOnly = true;
+            // 
+            // Signal_Strength
+            // 
+            Signal_Strength.DataPropertyName = "Signal_Strength";
+            Signal_Strength.HeaderText = "信号强度";
+            Signal_Strength.Name = "Signal_Strength";
+            Signal_Strength.ReadOnly = true;
+            Signal_Strength.ToolTipText = "取值从00到31。若为99，表示无信号。";
         }
 
         private void InitializeUserLogInfo_WellInfo()
@@ -612,7 +620,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage TabPagesys;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.DataGridView Sysgrid;
         private assistcontrol.DataGridPage Syspage;
         private System.Windows.Forms.Button btnSysOut;
         private System.Windows.Forms.TabPage TabPageuser;
@@ -620,20 +627,12 @@
         private System.Windows.Forms.Button btnUserOut;
         private assistcontrol.DataGridPage userpage;
 
+        private System.Windows.Forms.DataGridView Sysgrid;
         private System.Windows.Forms.DataGridView gridUserLogInfo_WellInfo;
         private System.Windows.Forms.DataGridView gridUserLogInfo_GeneralInfo;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelUser;
         private System.Windows.Forms.ComboBox cbType;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Sys_Happen_Time;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Terminal_ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Terminal_Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Place;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Well_State;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Temperature;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Humidity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Smoke_Detector;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Smoke_Power;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Signal_Strength;
+        private System.Windows.Forms.Panel panelSys;
     }
 }

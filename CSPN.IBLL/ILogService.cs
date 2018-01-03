@@ -37,19 +37,18 @@ namespace CSPN.IBLL
         /// <summary>
         /// 查询系统日志信息
         /// </summary>
-        /// <returns></returns>
         DataTable GetSystemLogInfo();
+        /// <summary>
+        /// 查询发生时间的最小值
+        /// </summary>
+        DateTime GetMinHappen_Time();
         /// <summary>
         /// 添加系统日志信息
         /// </summary>
-        /// <param name="UserLog">日志信息</param>
-        /// <returns></returns>
         int InsertSystemLogInfo(SystemLogInfo sysLog);
         /// <summary>
         /// 删除系统日志信息
         /// </summary>
-        /// <param name="UserLog">日志信息</param>
-        /// <returns></returns>
         int DeleteSystemLogInfo(string nowTime, int save_Day);
         #endregion
     }

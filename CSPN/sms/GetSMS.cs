@@ -72,19 +72,25 @@ namespace CSPN.sms
                                     {
                                         getSMSHandler(wellCurrentStateInfo.Well_State_ID, wellInfo.Terminal_ID);
                                     }
-                                    new MessageForm("有一条报警信息！").Show();
+                                    new MessageForm("有一条报警信息（人井非正常打开）！").Show();
                                 }
                                 else//人井关闭
                                 {
-                                    //电量正常
-                                    if (SMSAnalysis.Electric)
+                                    //终端低电量报警
+                                    if (SMSAnalysis.IsElectricityAlarm)
                                     {
-                                        wellCurrentStateInfo.Well_State_ID = 1;
+                                        wellCurrentStateInfo.Well_State_ID = 3;
                                         UpdateWellCurrentState();
                                         InsertSystemLogInfo();
                                         UpdateMap(wellInfo.Terminal_ID);
+                                        if (getSMSHandler != null)
+                                        {
+                                            getSMSHandler(wellCurrentStateInfo.Well_State_ID, wellInfo.Terminal_ID);
+                                        }
+                                        new MessageForm("有一条状态信息（终端低电量报警）！").Show();
                                     }
-                                    else//电量不足
+                                    //烟感报警
+                                    if (SMSAnalysis.IsSmokeAlarm)
                                     {
                                         wellCurrentStateInfo.Well_State_ID = 4;
                                         UpdateWellCurrentState();
@@ -94,7 +100,27 @@ namespace CSPN.sms
                                         {
                                             getSMSHandler(wellCurrentStateInfo.Well_State_ID, wellInfo.Terminal_ID);
                                         }
-                                        new MessageForm("有一条状态信息！").Show();
+                                        new MessageForm("有一条状态信息（烟感报警）！").Show();
+                                    }
+                                    //烟感电量报警
+                                    if (SMSAnalysis.IsSmoke_PowerAlarm)
+                                    {
+                                        wellCurrentStateInfo.Well_State_ID = 5;
+                                        UpdateWellCurrentState();
+                                        InsertSystemLogInfo();
+                                        UpdateMap(wellInfo.Terminal_ID);
+                                        if (getSMSHandler != null)
+                                        {
+                                            getSMSHandler(wellCurrentStateInfo.Well_State_ID, wellInfo.Terminal_ID);
+                                        }
+                                        new MessageForm("有一条状态信息（烟感低电量报警）！").Show();
+                                    }
+                                    else
+                                    {
+                                        wellCurrentStateInfo.Well_State_ID = 1;
+                                        UpdateWellCurrentState();
+                                        InsertSystemLogInfo();
+                                        UpdateMap(wellInfo.Terminal_ID);
                                     }
                                 }
                                 UpdateReportNum();
@@ -126,20 +152,20 @@ namespace CSPN.sms
         static void UpdateWellCurrentState()
         {
             wellCurrentStateInfo.Terminal_ID = wellInfo.Terminal_ID;
+            wellCurrentStateInfo.Electricity = SMSAnalysis.IsElectricityAlarm == true ? "终端低电量报警" : "终端电量正常";
+            wellCurrentStateInfo.Signal_Strength = SMSAnalysis.Signal_Strength;
             wellCurrentStateInfo.Temperature = SMSAnalysis.Temperature;
             wellCurrentStateInfo.Humidity = SMSAnalysis.Humidity;
-            if (SMSAnalysis.Smoke == "无烟感数据")
+            if (SMSAnalysis.SmokeMsg)
             {
-                wellCurrentStateInfo.Smoke_Detector = "无烟感数据";
-                wellCurrentStateInfo.Smoke_Power = "无烟感数据";
+                wellCurrentStateInfo.Smoke_Detector = SMSAnalysis.IsSmokeAlarm == true ? "烟感报警" : "烟感无报警";
+                wellCurrentStateInfo.Smoke_Power = SMSAnalysis.IsSmoke_PowerAlarm == true ? "烟感低电量报警" : "烟感电量正常";
             }
             else
             {
-                string[] str2 = SMSAnalysis.Smoke.Split(';');
-                wellCurrentStateInfo.Smoke_Detector = str2[0] == "true" ? "烟感报警" : "烟感无报警";
-                wellCurrentStateInfo.Smoke_Power = str2[1] == "00" ? "烟感电量正常" : "烟感低电量报警";
+                wellCurrentStateInfo.Smoke_Detector = "无烟感数据";
+                wellCurrentStateInfo.Smoke_Power = "无烟感电量数据";
             }
-            wellCurrentStateInfo.Signal_Strength = SMSAnalysis.Signal_Strength;
             wellStateService.UpdateWellCurrentStateInfo(wellCurrentStateInfo);
         }
         /// <summary>
@@ -151,20 +177,20 @@ namespace CSPN.sms
             systemLogInfo.Terminal_ID = wellInfo.Terminal_ID;
             wellStateInfo = wellStateService.GetWellStateInfoByID(wellCurrentStateInfo.Well_State_ID);
             systemLogInfo.Well_State = wellStateInfo.State;
+            systemLogInfo.Electricity = SMSAnalysis.IsElectricityAlarm == true ? "终端低电量报警" : "终端电量正常";
+            systemLogInfo.Signal_Strength = SMSAnalysis.Signal_Strength;
             systemLogInfo.Temperature = SMSAnalysis.Temperature;
             systemLogInfo.Humidity = SMSAnalysis.Humidity;
-            if (SMSAnalysis.Smoke == "无烟感数据")
+            if (SMSAnalysis.SmokeMsg)
             {
-                systemLogInfo.Smoke_Detector = "无烟感数据";
-                systemLogInfo.Smoke_Power = "无烟感数据";
+                systemLogInfo.Smoke_Detector = SMSAnalysis.IsSmokeAlarm == true ? "烟感报警" : "烟感无报警";
+                systemLogInfo.Smoke_Power = SMSAnalysis.IsSmoke_PowerAlarm == true ? "烟感低电量报警" : "烟感电量正常";
             }
             else
             {
-                string[] str2 = SMSAnalysis.Smoke.Split(';');
-                systemLogInfo.Smoke_Detector = str2[0] == "true" ? "烟感报警" : "烟感无报警";
-                systemLogInfo.Smoke_Power = str2[1] == "00" ? "烟感电量正常" : "烟感低电量报警";
+                systemLogInfo.Smoke_Detector = "无烟感数据";
+                systemLogInfo.Smoke_Power = "无烟感电量数据";
             }
-            systemLogInfo.Signal_Strength = SMSAnalysis.Signal_Strength;
             logService.InsertSystemLogInfo(systemLogInfo);
         }
         /// <summary>

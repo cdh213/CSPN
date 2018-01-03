@@ -184,13 +184,20 @@ namespace CSPN.control
                 DataLoade(null);
             }
         }
+        private void grid_CellToolTipTextNeeded(object sender, DataGridViewCellToolTipTextNeededEventArgs e)
+        {
+            if (e.ColumnIndex == 11)
+            {
+                e.ToolTipText = "取值从00到31。若为99，表示无信号。";
+            }
+        }
         //加载
         private void DataLoade(string wellInfo)
         {
             grid.AutoGenerateColumns = false;
             grid.DataSource = null;
             page.PageSize = 50;
-            page.ShowPages(grid, wellInfo, ShowPagesType.WellInfo);
+            page.ShowPages(grid, wellInfo, CSPNType.WellInfo);
         }
         #endregion
     }

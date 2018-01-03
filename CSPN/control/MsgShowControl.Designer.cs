@@ -45,6 +45,7 @@
             this.Latitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Place = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Terminal_Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Electricity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Temperature = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Humidity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Smoke_Detector = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -186,6 +187,7 @@
             this.Latitude,
             this.Place,
             this.Terminal_Phone,
+            this.Electricity,
             this.Temperature,
             this.Humidity,
             this.Smoke_Detector,
@@ -219,6 +221,7 @@
             this.grid.Size = new System.Drawing.Size(1050, 188);
             this.grid.TabIndex = 15;
             this.grid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grid_CellFormatting);
+            this.grid.CellToolTipTextNeeded += new System.Windows.Forms.DataGridViewCellToolTipTextNeededEventHandler(this.grid_CellToolTipTextNeeded);
             // 
             // TerminalID
             // 
@@ -268,6 +271,14 @@
             this.Terminal_Phone.ReadOnly = true;
             this.Terminal_Phone.Width = 104;
             // 
+            // Electricity
+            // 
+            this.Electricity.DataPropertyName = "Electricity";
+            this.Electricity.HeaderText = "终端电量";
+            this.Electricity.Name = "Electricity";
+            this.Electricity.ReadOnly = true;
+            this.Electricity.Width = 90;
+            // 
             // Temperature
             // 
             this.Temperature.DataPropertyName = "Temperature";
@@ -306,6 +317,7 @@
             this.Signal_Strength.HeaderText = "信号强度";
             this.Signal_Strength.Name = "Signal_Strength";
             this.Signal_Strength.ReadOnly = true;
+            this.Signal_Strength.ToolTipText = "取值从00到31。若为99，表示无信号。";
             this.Signal_Strength.Width = 90;
             // 
             // Icon
@@ -552,6 +564,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Latitude;
         private System.Windows.Forms.DataGridViewTextBoxColumn Place;
         private System.Windows.Forms.DataGridViewTextBoxColumn Terminal_Phone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Electricity;
         private System.Windows.Forms.DataGridViewTextBoxColumn Temperature;
         private System.Windows.Forms.DataGridViewTextBoxColumn Humidity;
         private System.Windows.Forms.DataGridViewTextBoxColumn Smoke_Detector;

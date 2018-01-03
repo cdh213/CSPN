@@ -24,7 +24,7 @@ namespace CSPN.DAL
         }
         #endregion
 
-        const string SELECT_ReportNumInfo_ReportTimes = "select a.Terminal_ID,Name,Longitude,Latitude,Place,ReportTimes,Telephone from (CSPN_Well_Info as a inner join CSPN_ReportNumInfo as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Operator_Info as c on a.Operator_ID=c.ID where ReportTimes>=@ReportTimes";
+        const string SELECT_ReportNumInfo_ReportTimes = "select a.Terminal_ID,Name,Longitude,Latitude,Place,Telephone from (CSPN_Well_Info as a inner join CSPN_ReportNumInfo as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Operator_Info as c on a.Operator_ID=c.ID where ReportTimes>=@ReportTimes";
         const string Update_ReportNumInfo_ReportTimes = "update CSPN_ReportNumInfo set ReportTimes=ReportTimes+1 where Terminal_ID=@Terminal_ID";
         const string Update_NotReportNumInfo_ReportTimes = "update CSPN_ReportNumInfo set NotReportTimes=NotReportTimes+1 where ReportTimes=0";
         const string Empty_ReportNumInfo_ReportTimes = "update CSPN_ReportNumInfo set ReportTimes=0 where ReportTimes>0";

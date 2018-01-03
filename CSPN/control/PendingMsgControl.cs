@@ -56,8 +56,7 @@ namespace CSPN.control
                         {
                             wellCurrentStateInfo = wellStateService.GetAlarmInfo_StatusInfo(well_State_ID, terminal_ID);
 
-                            gridAlarm.Rows.Add(wellCurrentStateInfo.WellInfo.Terminal_ID, wellCurrentStateInfo.Well_State_ID, wellCurrentStateInfo.WellInfo.Name, wellCurrentStateInfo.WellInfo.Place, wellCurrentStateInfo.WellStateInfo.Icon, wellCurrentStateInfo.Report_Time, wellCurrentStateInfo.OperatorInfo.Telephone);
-                            gridAlarm.Sort(gridAlarm.Columns[5], ListSortDirection.Descending);
+                            gridAlarm.Rows.Add(wellCurrentStateInfo.Report_Time, wellCurrentStateInfo.WellInfo.Terminal_ID, wellCurrentStateInfo.Well_State_ID, wellCurrentStateInfo.WellInfo.Name, wellCurrentStateInfo.WellInfo.Place, wellCurrentStateInfo.WellStateInfo.Icon, wellCurrentStateInfo.OperatorInfo.Telephone);
                         }
                     }));
                 }
@@ -76,8 +75,8 @@ namespace CSPN.control
                 DataGridViewColumn column = gridAlarm.Columns[e.ColumnIndex];
                 if (column is DataGridViewButtonColumn)
                 {
-                    string terminal_ID = gridAlarm.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    int well_State_ID = int.Parse(gridAlarm.Rows[e.RowIndex].Cells[1].Value.ToString());
+                    string terminal_ID = gridAlarm.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    int well_State_ID = int.Parse(gridAlarm.Rows[e.RowIndex].Cells[2].Value.ToString());
                     DisposeMsg(well_State_ID, terminal_ID, true);
                     gridAlarm.Rows.RemoveAt(e.RowIndex);
                 }
@@ -93,8 +92,8 @@ namespace CSPN.control
                 DataGridViewColumn column = dgvDispose.Columns[e.ColumnIndex];
                 if (column is DataGridViewButtonColumn)
                 {
-                    string terminal_ID = dgvDispose.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    int well_State_ID = int.Parse(dgvDispose.Rows[e.RowIndex].Cells[1].Value.ToString());
+                    string terminal_ID = dgvDispose.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    int well_State_ID = int.Parse(dgvDispose.Rows[e.RowIndex].Cells[2].Value.ToString());
                     DisposeMsg(well_State_ID, terminal_ID, false);
                     dgvDispose.Rows.RemoveAt(e.RowIndex);
                 }
@@ -103,7 +102,7 @@ namespace CSPN.control
         /// <summary>
         /// 处理报警信息以及完成处理（同时适用于地图）
         /// </summary>
-        public void DisposeMsg(int well_State_ID,string terminal_ID, bool isAlarm)
+        public void DisposeMsg(int well_State_ID, string terminal_ID, bool isAlarm)
         {
             if (isAlarm)
             {
@@ -116,11 +115,26 @@ namespace CSPN.control
                     place = wellCurrentStateInfo.WellInfo.Place;
                     time = wellCurrentStateInfo.Report_Time;
 
-                    CDMASMS.SendCHNSms("报警信息：地点：" + place + "，发生时间：" + time, phone);
-
-                    userLogHelper.InsertUserLog(wellCurrentStateInfo.Report_Time, "处理报警信息", CommonClass.UserName, DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), wellCurrentStateInfo.OperatorInfo.RealName);
-
-                    wellStateService.UpdateWellCurrentStateInfo(5, terminal_ID);
+                    switch (well_State_ID)
+                    {
+                        case 2:
+                            CDMASMS.SendCHNSms("报警信息：地点：" + place + "，发生时间：" + time, phone);
+                            userLogHelper.InsertUserLog(wellCurrentStateInfo.Report_Time, "处理报警信息。", CommonClass.UserName, DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), wellCurrentStateInfo.OperatorInfo.RealName);
+                            break;
+                        case 3:
+                            CDMASMS.SendCHNSms("状态信息（低电量报警）：地点：" + place + "，发生时间：" + time, phone);
+                            userLogHelper.InsertUserLog(wellCurrentStateInfo.Report_Time, "处理状态信息（低电量报警）。", CommonClass.UserName, DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), wellCurrentStateInfo.OperatorInfo.RealName);
+                            break;
+                        case 4:
+                            CDMASMS.SendCHNSms("状态信息（烟感报警）：地点：" + place + "，发生时间：" + time, phone);
+                            userLogHelper.InsertUserLog(wellCurrentStateInfo.Report_Time, "处理状态信息（烟感报警）。", CommonClass.UserName, DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), wellCurrentStateInfo.OperatorInfo.RealName);
+                            break;
+                        case 5:
+                            CDMASMS.SendCHNSms("状态信息（烟感低电量报警）：地点：" + place + "，发生时间：" + time, phone);
+                            userLogHelper.InsertUserLog(wellCurrentStateInfo.Report_Time, "处理状态信息（烟感低电量报警）。", CommonClass.UserName, DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), wellCurrentStateInfo.OperatorInfo.RealName);
+                            break;
+                    }
+                    wellStateService.UpdateWellCurrentStateInfo(7, terminal_ID);
                     GetSMS.UpdateMap(terminal_ID);
                     MessageBox.Show("处理成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -128,9 +142,21 @@ namespace CSPN.control
             else
             {
                 wellCurrentStateInfo = wellStateService.GetAlarmInfo_StatusInfo(well_State_ID, terminal_ID);
-
-                userLogHelper.UpdateUserLog(wellCurrentStateInfo.OperatorInfo.RealName, "完成报警信息处理。", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), wellCurrentStateInfo.Report_Time);
-
+                switch (well_State_ID)
+                {
+                    case 2:
+                        userLogHelper.UpdateUserLog(wellCurrentStateInfo.OperatorInfo.RealName, "完成报警信息处理。", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), wellCurrentStateInfo.Report_Time);
+                        break;
+                    case 3:
+                        userLogHelper.UpdateUserLog(wellCurrentStateInfo.OperatorInfo.RealName, "完成状态信息（低电量报警）处理。", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), wellCurrentStateInfo.Report_Time);
+                        break;
+                    case 4:
+                        userLogHelper.UpdateUserLog(wellCurrentStateInfo.OperatorInfo.RealName, "完成状态信息（烟感报警）处理。", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), wellCurrentStateInfo.Report_Time);
+                        break;
+                    case 5:
+                        userLogHelper.UpdateUserLog(wellCurrentStateInfo.OperatorInfo.RealName, "完成状态信息（烟感低电量报警）处理。", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), wellCurrentStateInfo.Report_Time);
+                        break;
+                }
                 wellStateService.UpdateWellCurrentStateInfo(1, terminal_ID);
                 GetSMS.UpdateMap(terminal_ID);
                 MessageBox.Show("处理成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -145,8 +171,7 @@ namespace CSPN.control
             IList<WellCurrentStateInfo> list = wellStateService.GetAlarmInfo_StatusInfo();
             for (int i = 0; i < list.Count; i++)
             {
-                gridAlarm.Rows.Add(list[i].WellInfo.Terminal_ID, list[i].Well_State_ID, list[i].WellInfo.Name, list[i].WellInfo.Place, list[i].WellStateInfo.Icon, list[i].Report_Time, list[i].OperatorInfo.Telephone);
-                gridAlarm.Sort(gridAlarm.Columns[5], ListSortDirection.Descending);
+                gridAlarm.Rows.Add(list[i].Report_Time, list[i].WellInfo.Terminal_ID, list[i].Well_State_ID, list[i].WellInfo.Name, list[i].WellInfo.Place, list[i].WellStateInfo.Icon, list[i].OperatorInfo.Telephone);
             }
         }
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
@@ -157,8 +182,7 @@ namespace CSPN.control
                 IList<WellCurrentStateInfo> wellCurrentlist = wellStateService.GetProcessedInfoByWell_State_ID(5);
                 for (int i = 0; i < wellCurrentlist.Count; i++)
                 {
-                    dgvDispose.Rows.Add(wellCurrentlist[i].WellInfo.Terminal_ID, wellCurrentlist[i].Well_State_ID, wellCurrentlist[i].WellInfo.Name, wellCurrentlist[i].WellInfo.Place, wellCurrentlist[i].WellStateInfo.Icon, wellCurrentlist[i].Report_Time, wellCurrentlist[i].OperatorInfo.Telephone);
-                    dgvDispose.Sort(dgvDispose.Columns[5], ListSortDirection.Descending);
+                    dgvDispose.Rows.Add(wellCurrentlist[i].Report_Time, wellCurrentlist[i].WellInfo.Terminal_ID, wellCurrentlist[i].Well_State_ID, wellCurrentlist[i].WellInfo.Name, wellCurrentlist[i].WellInfo.Place, wellCurrentlist[i].WellStateInfo.Icon, wellCurrentlist[i].OperatorInfo.Telephone);
                 }
             }
             if (e.TabPage == NotReportTab)
@@ -176,7 +200,7 @@ namespace CSPN.control
             IList<ReportNumInfo> list = wellInfoService.GetNotReportNumInfo(reportTimes);
             for (int i = 0; i < list.Count; i++)
             {
-                dgvNotReport.Rows.Add(list[i].WellInfo.Terminal_ID, list[i].WellInfo.Name, list[i].WellInfo.Longitude, list[i].WellInfo.Latitude, list[i].WellInfo.Place, list[i].ReportTimes, list[i].OperatorInfo.Telephone);
+                dgvNotReport.Rows.Add(list[i].WellInfo.Terminal_ID, list[i].WellInfo.Name, list[i].WellInfo.Longitude, list[i].WellInfo.Latitude, list[i].WellInfo.Place, list[i].OperatorInfo.Telephone);
             }
         }
         private void dgvNotReport_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -188,7 +212,7 @@ namespace CSPN.control
                 {
                     string terminal_Name = dgvNotReport.Rows[e.RowIndex].Cells[1].Value.ToString();
                     string place = dgvNotReport.Rows[e.RowIndex].Cells[4].Value.ToString();
-                    string phone = dgvNotReport.Rows[e.RowIndex].Cells[6].Value.ToString();
+                    string phone = dgvNotReport.Rows[e.RowIndex].Cells[5].Value.ToString();
                     CDMASMS.SendCHNSms(string.Format("位于：{0}的{1}已经{2}天或超过{2}天未发送信息。", place, terminal_Name, ReadWriteConfig.ReadConfig("NotReportTimes")), phone);
 
                     userLogHelper.InsertUserLog(wellCurrentStateInfo.Report_Time, "处理未上报信息。", CommonClass.UserName, null, null);

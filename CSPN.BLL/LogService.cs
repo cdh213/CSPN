@@ -76,6 +76,13 @@ namespace CSPN.BLL
             return syslogdal.GetSystemLogInfo();
         }
         /// <summary>
+        /// 查询发生时间的最小值
+        /// </summary>
+        public DateTime GetMinHappen_Time()
+        {
+            return syslogdal.GetMinHappen_Time();
+        }
+        /// <summary>
         /// 添加系统日志信息
         /// </summary>
         /// <param name="UserLog">日志信息</param>

@@ -102,7 +102,6 @@ namespace CSPN
             panelMain.Controls.Clear();
             lil.Dock = DockStyle.Fill;
             panelMain.Controls.Add(lil);
-            lil.DataLoade(false, null);
             WaitWin.Close();
         }
         private void btnAppointment_Click(object sender, EventArgs e)

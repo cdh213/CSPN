@@ -25,8 +25,9 @@ namespace CSPN.DAL
         }
         #endregion
 
-        private const string SELECT_SystemLog = "select Happen_Time,a.Terminal_ID,Name,Place,Well_State,Temperature,Humidity,Smoke_Detector,Smoke_Power,Signal_Strength from (CSPN_System_Log_Info as a inner join CSPN_Well_Info as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Dic_Well_State_Info as c on a.Well_State=c.State";
-        private const string INSERT_SystemLog = "insert into CSPN_System_Log_Info(Happen_Time,Terminal_ID,Well_State,Temperature,Humidity,Smoke_Detector,Smoke_Power,Signal_Strength) values(@Happen_Time,@Terminal_ID,@Well_State,@Temperature,@Humidity,@Smoke_Detector,@Smoke_Power,@Signal_Strength)";
+        private const string SELECT_SystemLog = "select Happen_Time,a.Terminal_ID,Name,Place,Well_State,Electricity,Temperature,Humidity,Smoke_Detector,Smoke_Power,Signal_Strength from (CSPN_System_Log_Info as a inner join CSPN_Well_Info as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Dic_Well_State_Info as c on a.Well_State=c.State order by Happen_Time desc";
+        private const string SELECT_MinHappen_Time = "select min(Happen_Time) from CSPN_System_Log_Info";
+        private const string INSERT_SystemLog = "insert into CSPN_System_Log_Info(Happen_Time,Terminal_ID,Well_State,Electricity,Temperature,Humidity,Smoke_Detector,Smoke_Power,Signal_Strength) values(@Happen_Time,@Terminal_ID,@Well_State,@Electricity,@Temperature,@Humidity,@Smoke_Detector,@Smoke_Power,@Signal_Strength)";
         private const string DELETE_SystemLog = "delete from CSPN_System_Log_Info where DateDiff('d',format(Happen_Time,'yyyy/mm/dd'),@NowTime)>=@Save_Day";
 
         /// <summary>
@@ -41,7 +42,16 @@ namespace CSPN.DAL
             }
             return table;
         }
-
+        /// <summary>
+        /// 查询发生时间的最小值
+        /// </summary>
+        public DateTime GetMinHappen_Time()
+        {
+            using (Conn)
+            {
+                return DateTime.Parse(Conn.ExecuteScalar(SELECT_MinHappen_Time).ToString());
+            }
+        }
         /// <summary>
         /// 添加系统日志信息
         /// </summary>
@@ -51,6 +61,7 @@ namespace CSPN.DAL
             param.Add("@Happen_Time", sysLog.Happen_Time);
             param.Add("@Terminal_ID", sysLog.Terminal_ID);
             param.Add("@Well_State", sysLog.Well_State);
+            param.Add("@Electricity", sysLog.Electricity);
             param.Add("@Temperature", sysLog.Temperature);
             param.Add("@Humidity", sysLog.Humidity);
             param.Add("@Smoke_Detector", sysLog.Smoke_Detector);
