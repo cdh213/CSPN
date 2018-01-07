@@ -35,24 +35,28 @@ namespace CSPN.DAL
        /// </summary>
         public DataTable GetUserLogInfo_WellInfo() 
         {
-            DataTable table = new DataTable();
-            using (Conn)
+            using (DataTable table = new DataTable())
             {
-                table.Load(Conn.ExecuteReader(SELECT_UserLog_WellInfo));
+                using (Conn)
+                {
+                    table.Load(Conn.ExecuteReader(SELECT_UserLog_WellInfo));
+                }
+                return table;
             }
-            return table;
         }
         /// <summary>
         /// 查询用户日志信息
         /// </summary>
         public DataTable GetUserLogInfo_GeneralInfo()
         {
-            DataTable table = new DataTable();
-            using (Conn)
+            using (DataTable table = new DataTable())
             {
-                table.Load(Conn.ExecuteReader(SELECT_UserLog_GeneralInfo));
+                using (Conn)
+                {
+                    table.Load(Conn.ExecuteReader(SELECT_UserLog_GeneralInfo));
+                }
+                return table;
             }
-            return table;
         }
         /// <summary>
         /// 添加用户日志信息

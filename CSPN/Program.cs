@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,7 +26,6 @@ namespace CSPN
         [STAThread]
         static void Main()
         {
-            
             bool createdNew;
             Mutex instance = new Mutex(true, "CSPN", out createdNew); //同步基元变量   
             if (createdNew)
@@ -61,8 +61,11 @@ namespace CSPN
                             case DialogResult.No:
                                 Application.Run(new MainForm(false));
                                 break;
-                            case DialogResult.Cancel:
+                            case DialogResult.Abort:
                                 Application.Run(new MainForm(null));
+                                break;
+                            default:
+                                Environment.Exit(0);
                                 break;
                         }
                     }
@@ -73,8 +76,12 @@ namespace CSPN
                     MessageBox.Show("系统错误。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Process.GetCurrentProcess().CloseMainWindow();
                 }
-                instance.ReleaseMutex();
-                Environment.Exit(0);
+                finally
+                {
+                    instance.ReleaseMutex();
+                    Environment.Exit(0);
+                }
+                
             }
             else
             {

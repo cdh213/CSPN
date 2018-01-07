@@ -17,10 +17,11 @@ using Newtonsoft.Json;
 
 namespace CSPN.sms
 {
+    public delegate void GetSMSEventHandler();
+
     public class GetSMS
     {
-        public delegate void GetSMSEventHandler(int well_State_ID, string terminal_ID);//声明委托
-        public static event GetSMSEventHandler getSMSHandler;//事件
+        public static event GetSMSEventHandler getSMSEventHandler;
 
         static IWellStateService wellStateService = new WellStateService();
         static IWellInfoService wellInfoService = new WellInfoService();
@@ -68,9 +69,9 @@ namespace CSPN.sms
                                     UpdateWellCurrentState();
                                     InsertSystemLogInfo();
                                     UpdateMap(wellInfo.Terminal_ID);
-                                    if (getSMSHandler != null)
+                                    if (getSMSEventHandler != null)
                                     {
-                                        getSMSHandler(wellCurrentStateInfo.Well_State_ID, wellInfo.Terminal_ID);
+                                        getSMSEventHandler();
                                     }
                                     new MessageForm("有一条报警信息（人井非正常打开）！").Show();
                                 }
@@ -83,9 +84,9 @@ namespace CSPN.sms
                                         UpdateWellCurrentState();
                                         InsertSystemLogInfo();
                                         UpdateMap(wellInfo.Terminal_ID);
-                                        if (getSMSHandler != null)
+                                        if (getSMSEventHandler != null)
                                         {
-                                            getSMSHandler(wellCurrentStateInfo.Well_State_ID, wellInfo.Terminal_ID);
+                                            getSMSEventHandler();
                                         }
                                         new MessageForm("有一条状态信息（终端低电量报警）！").Show();
                                     }
@@ -96,9 +97,9 @@ namespace CSPN.sms
                                         UpdateWellCurrentState();
                                         InsertSystemLogInfo();
                                         UpdateMap(wellInfo.Terminal_ID);
-                                        if (getSMSHandler != null)
+                                        if (getSMSEventHandler != null)
                                         {
-                                            getSMSHandler(wellCurrentStateInfo.Well_State_ID, wellInfo.Terminal_ID);
+                                            getSMSEventHandler();
                                         }
                                         new MessageForm("有一条状态信息（烟感报警）！").Show();
                                     }
@@ -109,9 +110,9 @@ namespace CSPN.sms
                                         UpdateWellCurrentState();
                                         InsertSystemLogInfo();
                                         UpdateMap(wellInfo.Terminal_ID);
-                                        if (getSMSHandler != null)
+                                        if (getSMSEventHandler != null)
                                         {
-                                            getSMSHandler(wellCurrentStateInfo.Well_State_ID, wellInfo.Terminal_ID);
+                                            getSMSEventHandler();
                                         }
                                         new MessageForm("有一条状态信息（烟感低电量报警）！").Show();
                                     }

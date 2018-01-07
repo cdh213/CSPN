@@ -61,6 +61,12 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CefSharp">
       <HintPath>..\packages\Cefsharp\CefSharp.Common.49.0.1\CefSharp\x86\CefSharp.dll</HintPath>
@@ -194,11 +200,12 @@
     </Compile>
     <Compile Include="common\CommonClass.cs" />
     <Compile Include="common\CSPNType.cs" />
-    <Compile Include="control\AppointmentControl.cs">
+    <Compile Include="common\QuartzInit.cs" />
+    <Compile Include="control\MaintainControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="control\AppointmentControl.Designer.cs">
-      <DependentUpon>AppointmentControl.cs</DependentUpon>
+    <Compile Include="control\MaintainControl.Designer.cs">
+      <DependentUpon>MaintainControl.cs</DependentUpon>
     </Compile>
     <Compile Include="helper\ExcelHelper.cs" />
     <Compile Include="helper\FileHelper.cs" />
@@ -226,8 +233,9 @@
     <Compile Include="helper\LogHelper.cs" />
     <Compile Include="helper\QuartzHelper.cs" />
     <Compile Include="helper\UserLogHelper.cs" />
-    <Compile Include="job\DeleteSysLogJob.cs" />
-    <Compile Include="job\DeleteUserLogJob.cs" />
+    <Compile Include="job\DeleteLogJob.cs" />
+    <Compile Include="job\MaintainInfoJob.cs" />
+    <Compile Include="job\RefreshWellInfoJob.cs" />
     <Compile Include="job\UpdateNotReportNumJob.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -236,6 +244,7 @@
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="sms\CDMASMS.cs" />
+    <Compile Include="webbrower\JsDialogHandler.cs" />
     <Compile Include="webbrower\JsEvent.cs" />
     <Compile Include="webbrower\MenuHandler.cs" />
     <Compile Include="common\ReadWriteConfig.cs" />
@@ -290,8 +299,8 @@
     <EmbeddedResource Include="assistcontrol\ImportProgressBarForm.resx">
       <DependentUpon>ImportProgressBarForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="control\AppointmentControl.resx">
-      <DependentUpon>AppointmentControl.cs</DependentUpon>
+    <EmbeddedResource Include="control\MaintainControl.resx">
+      <DependentUpon>MaintainControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="control\LogInfoControl.resx">
       <DependentUpon>LogInfoControl.cs</DependentUpon>
@@ -321,7 +330,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="app.manifest" />
+    <None Include="app.manifest">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -349,9 +360,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="resource\images\buttonbg.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resource\images\close.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="resource\images\cspn.ico" />

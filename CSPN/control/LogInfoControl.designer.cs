@@ -34,6 +34,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.Syspage = new CSPN.assistcontrol.DataGridPage();
             this.btnSysOut = new System.Windows.Forms.Button();
+            this.panelSys = new System.Windows.Forms.Panel();
             this.TabPageuser = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.userpage = new CSPN.assistcontrol.DataGridPage();
@@ -41,7 +42,6 @@
             this.panelUser = new System.Windows.Forms.Panel();
             this.cbType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.panelSys = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.TabPagesys.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -67,7 +67,6 @@
             this.TabPagesys.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.TabPagesys.Location = new System.Drawing.Point(4, 29);
             this.TabPagesys.Name = "TabPagesys";
-            this.TabPagesys.Padding = new System.Windows.Forms.Padding(3);
             this.TabPagesys.Size = new System.Drawing.Size(959, 434);
             this.TabPagesys.TabIndex = 0;
             this.TabPagesys.Text = "系统日志信息";
@@ -82,27 +81,26 @@
             this.tableLayoutPanel1.Controls.Add(this.btnSysOut, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panelSys, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(953, 428);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(959, 434);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // Syspage
             // 
             this.Syspage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Syspage.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Syspage.Location = new System.Drawing.Point(3, 392);
-            this.Syspage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Syspage.Location = new System.Drawing.Point(3, 397);
             this.Syspage.Name = "Syspage";
             this.Syspage.PageCount = 0;
             this.Syspage.PageIndex = 1;
             this.Syspage.PageSize = 30;
             this.Syspage.RecorderCount = 0;
-            this.Syspage.Size = new System.Drawing.Size(947, 32);
+            this.Syspage.Size = new System.Drawing.Size(953, 34);
             this.Syspage.TabIndex = 0;
             // 
             // btnSysOut
@@ -117,7 +115,7 @@
             this.btnSysOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSysOut.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnSysOut.ForeColor = System.Drawing.Color.White;
-            this.btnSysOut.Location = new System.Drawing.Point(810, 5);
+            this.btnSysOut.Location = new System.Drawing.Point(816, 5);
             this.btnSysOut.Name = "btnSysOut";
             this.btnSysOut.Size = new System.Drawing.Size(140, 30);
             this.btnSysOut.TabIndex = 14;
@@ -125,13 +123,20 @@
             this.btnSysOut.UseVisualStyleBackColor = true;
             this.btnSysOut.Click += new System.EventHandler(this.btnSysOut_Click);
             // 
+            // panelSys
+            // 
+            this.panelSys.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelSys.Location = new System.Drawing.Point(3, 43);
+            this.panelSys.Name = "panelSys";
+            this.panelSys.Size = new System.Drawing.Size(953, 348);
+            this.panelSys.TabIndex = 15;
+            // 
             // TabPageuser
             // 
             this.TabPageuser.Controls.Add(this.tableLayoutPanel2);
             this.TabPageuser.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.TabPageuser.Location = new System.Drawing.Point(4, 29);
             this.TabPageuser.Name = "TabPageuser";
-            this.TabPageuser.Padding = new System.Windows.Forms.Padding(3);
             this.TabPageuser.Size = new System.Drawing.Size(959, 434);
             this.TabPageuser.TabIndex = 1;
             this.TabPageuser.Text = "用户日志信息";
@@ -150,13 +155,13 @@
             this.tableLayoutPanel2.Controls.Add(this.cbType, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(953, 428);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(959, 434);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // userpage
@@ -164,14 +169,13 @@
             this.tableLayoutPanel2.SetColumnSpan(this.userpage, 3);
             this.userpage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userpage.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.userpage.Location = new System.Drawing.Point(3, 392);
-            this.userpage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.userpage.Location = new System.Drawing.Point(3, 397);
             this.userpage.Name = "userpage";
             this.userpage.PageCount = 0;
             this.userpage.PageIndex = 1;
             this.userpage.PageSize = 30;
             this.userpage.RecorderCount = 0;
-            this.userpage.Size = new System.Drawing.Size(947, 32);
+            this.userpage.Size = new System.Drawing.Size(953, 34);
             this.userpage.TabIndex = 0;
             // 
             // btnUserOut
@@ -186,7 +190,7 @@
             this.btnUserOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUserOut.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnUserOut.ForeColor = System.Drawing.Color.White;
-            this.btnUserOut.Location = new System.Drawing.Point(810, 5);
+            this.btnUserOut.Location = new System.Drawing.Point(816, 5);
             this.btnUserOut.Name = "btnUserOut";
             this.btnUserOut.Size = new System.Drawing.Size(140, 30);
             this.btnUserOut.TabIndex = 14;
@@ -200,7 +204,7 @@
             this.panelUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelUser.Location = new System.Drawing.Point(3, 43);
             this.panelUser.Name = "panelUser";
-            this.panelUser.Size = new System.Drawing.Size(947, 342);
+            this.panelUser.Size = new System.Drawing.Size(953, 348);
             this.panelUser.TabIndex = 15;
             // 
             // cbType
@@ -227,14 +231,6 @@
             this.label1.Text = "日志类型";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // panelSys
-            // 
-            this.panelSys.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelSys.Location = new System.Drawing.Point(3, 43);
-            this.panelSys.Name = "panelSys";
-            this.panelSys.Size = new System.Drawing.Size(947, 342);
-            this.panelSys.TabIndex = 15;
-            // 
             // LogInfoControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -242,7 +238,6 @@
             this.Controls.Add(this.tabControl1);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "LogInfoControl";
             this.Size = new System.Drawing.Size(967, 467);
             this.Load += new System.EventHandler(this.LogInfoControl_Load);
@@ -298,7 +293,6 @@
             Sysgrid.Dock = System.Windows.Forms.DockStyle.Fill;
             Sysgrid.GridColor = System.Drawing.Color.Blue;
             Sysgrid.Location = new System.Drawing.Point(3, 44);
-            Sysgrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             Sysgrid.MultiSelect = false;
             Sysgrid.Name = "Sysgrid";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -444,7 +438,6 @@
             gridUserLogInfo_WellInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             gridUserLogInfo_WellInfo.GridColor = System.Drawing.Color.Blue;
             gridUserLogInfo_WellInfo.Location = new System.Drawing.Point(3, 44);
-            gridUserLogInfo_WellInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             gridUserLogInfo_WellInfo.MultiSelect = false;
             gridUserLogInfo_WellInfo.Name = "this.gridUserLogInfo_GeneralInfo";
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -569,7 +562,6 @@
             gridUserLogInfo_GeneralInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             gridUserLogInfo_GeneralInfo.GridColor = System.Drawing.Color.Blue;
             gridUserLogInfo_GeneralInfo.Location = new System.Drawing.Point(3, 44);
-            gridUserLogInfo_GeneralInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             gridUserLogInfo_GeneralInfo.MultiSelect = false;
             gridUserLogInfo_GeneralInfo.Name = "this.gridUserLogInfo_GeneralInfo";
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;

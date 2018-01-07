@@ -80,7 +80,7 @@ namespace CSPN.BLL
         /// <summary>
         /// 查询未上报人井信息
         /// </summary>
-        public IList<ReportNumInfo> GetNotReportNumInfo(int reportTimes)
+        public DataTable GetNotReportNumInfo(int reportTimes)
         {
             return reportnumdal.GetNotReportNumInfo(reportTimes);
         }
@@ -90,6 +90,13 @@ namespace CSPN.BLL
         public int Empty_ReportNumInfo()
         {
             return reportnumdal.Empty_ReportNumInfo();
+        }
+        /// <summary>
+        /// 重置未上报次数
+        /// </summary>
+        public int Empty_NotReportNumInfo(string terminal_ID)
+        {
+            return reportnumdal.Empty_NotReportNumInfo(terminal_ID);
         }
         /// <summary>
         /// 更新人井上报次数

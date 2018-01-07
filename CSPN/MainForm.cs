@@ -2,8 +2,6 @@
 using CSPN.assistcontrol;
 using CSPN.common;
 using CSPN.control;
-using CSPN.helper;
-using CSPN.job;
 using CSPN.sms;
 using CSPN.webbrower;
 using System;
@@ -21,11 +19,11 @@ namespace CSPN
 {
     public partial class MainForm : Form
     {
-        static MsgShowControl msc;
+        static MsgShowControl msc = null;
         PendingMsgControl pmc = new PendingMsgControl();
         SystemSettingsControl ssc = new SystemSettingsControl();
-        AppointmentControl amc = new AppointmentControl();
-        QuartzHelper quartzHelper = new QuartzHelper();
+        MaintainControl amc = new MaintainControl();
+        LogInfoControl lil = new LogInfoControl();
         bool? _isOpen = true;
 
         public MainForm(bool? isOpen)
@@ -33,9 +31,7 @@ namespace CSPN
             InitializeComponent();
             _isOpen = isOpen;
             lbUserName.Text += CommonClass.UserName;
-            quartzHelper.init(typeof(DeleteSysLogJob), 23, 30);
-            quartzHelper.init(typeof(DeleteUserLogJob), 23, 30);
-            quartzHelper.init(typeof(UpdateNotReportNumJob), 23, 30);
+            new QuartzInit().Quartz();
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -55,7 +51,7 @@ namespace CSPN
                     btnMsgShow.Enabled = false;
                     btnPendingMsg.Enabled = false;
                     btnMessagelog.Enabled = false;
-                    btnAppointment.Enabled = false;
+                    btnMaintain.Enabled = false;
 
                     panelMain.Controls.Clear();
                     ssc.Dock = DockStyle.Fill;
@@ -69,7 +65,7 @@ namespace CSPN
                     btnSystemSettings.Enabled = false;
                     btnMessagelog.Enabled = false;
                     btnPendingMsg.Enabled = false;
-                    btnAppointment.Enabled = false;
+                    btnMaintain.Enabled = false;
 
                     pmc.Enabled = false;
                     WaitWin.Close();
@@ -92,19 +88,20 @@ namespace CSPN
             panelMain.Controls.Clear();
             pmc.Dock = DockStyle.Fill;
             panelMain.Controls.Add(pmc);
+            pmc.RefreshInfo();
             WaitWin.Close();
         }
 
         private void btnMessagelog_Click(object sender, EventArgs e)
         {
             WaitWin.Show(this, "正在打开，请稍后。。。。。。");
-            LogInfoControl lil = new LogInfoControl();
+            
             panelMain.Controls.Clear();
             lil.Dock = DockStyle.Fill;
             panelMain.Controls.Add(lil);
             WaitWin.Close();
         }
-        private void btnAppointment_Click(object sender, EventArgs e)
+        private void btnMaintain_Click(object sender, EventArgs e)
         {
             WaitWin.Show(this, "正在打开，请稍后。。。。。。");
             panelMain.Controls.Clear();
@@ -130,7 +127,10 @@ namespace CSPN
                 WebBrower.webBrower.Dispose();
                 Cef.Shutdown();
             }
-            CDMASMS.Close();
+            if (_isOpen != false)
+            {
+                CDMASMS.Close();
+            }
             WaitWin.Close();
         }
     }

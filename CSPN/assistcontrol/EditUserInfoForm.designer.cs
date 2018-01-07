@@ -72,7 +72,6 @@
             this.tableLayoutPanel1.Controls.Add(this.label4, 3, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -92,7 +91,6 @@
             "是",
             "否"});
             this.cmbreceive.Location = new System.Drawing.Point(363, 161);
-            this.cmbreceive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbreceive.Name = "cmbreceive";
             this.cmbreceive.Size = new System.Drawing.Size(157, 28);
             this.cmbreceive.TabIndex = 33;
@@ -101,7 +99,6 @@
             // 
             this.txtArea.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtArea.Location = new System.Drawing.Point(363, 23);
-            this.txtArea.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtArea.Name = "txtArea";
             this.txtArea.Size = new System.Drawing.Size(157, 23);
             this.txtArea.TabIndex = 32;
@@ -111,7 +108,6 @@
             this.txtWorkID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtWorkID.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtWorkID.Location = new System.Drawing.Point(120, 22);
-            this.txtWorkID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtWorkID.Name = "txtWorkID";
             this.txtWorkID.Size = new System.Drawing.Size(157, 26);
             this.txtWorkID.TabIndex = 31;
@@ -125,7 +121,7 @@
             this.label2.Size = new System.Drawing.Size(74, 70);
             this.label2.TabIndex = 2;
             this.label2.Text = "区域";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
@@ -136,14 +132,13 @@
             this.label1.Size = new System.Drawing.Size(74, 70);
             this.label1.TabIndex = 0;
             this.label1.Text = "工号";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtTelephone
             // 
             this.txtTelephone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTelephone.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtTelephone.Location = new System.Drawing.Point(363, 92);
-            this.txtTelephone.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTelephone.Name = "txtTelephone";
             this.txtTelephone.Size = new System.Drawing.Size(157, 26);
             this.txtTelephone.TabIndex = 19;
@@ -158,7 +153,6 @@
             "男",
             "女"});
             this.cmbGender.Location = new System.Drawing.Point(120, 161);
-            this.cmbGender.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbGender.Name = "cmbGender";
             this.cmbGender.Size = new System.Drawing.Size(157, 28);
             this.cmbGender.TabIndex = 28;
@@ -168,7 +162,6 @@
             this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtName.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtName.Location = new System.Drawing.Point(120, 92);
-            this.txtName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(157, 26);
             this.txtName.TabIndex = 1;
@@ -196,7 +189,6 @@
             this.btnSure.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnSure.ForeColor = System.Drawing.Color.White;
             this.btnSure.Location = new System.Drawing.Point(125, 20);
-            this.btnSure.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSure.Name = "btnSure";
             this.btnSure.Size = new System.Drawing.Size(86, 26);
             this.btnSure.TabIndex = 23;
@@ -213,7 +205,7 @@
             this.label8.Size = new System.Drawing.Size(74, 70);
             this.label8.TabIndex = 8;
             this.label8.Text = "性别";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
             // 
@@ -224,7 +216,7 @@
             this.label3.Size = new System.Drawing.Size(74, 70);
             this.label3.TabIndex = 35;
             this.label3.Text = "姓名";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label10
             // 
@@ -235,7 +227,7 @@
             this.label10.Size = new System.Drawing.Size(74, 70);
             this.label10.TabIndex = 10;
             this.label10.Text = "自动接收\r\n报警信息";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label4
             // 
@@ -246,7 +238,7 @@
             this.label4.Size = new System.Drawing.Size(74, 70);
             this.label4.TabIndex = 36;
             this.label4.Text = "联系方式";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // EditUserInfoForm
             // 
@@ -257,7 +249,6 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "EditUserInfoForm";

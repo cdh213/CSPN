@@ -35,7 +35,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MsgShowControl));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TabPagemap = new System.Windows.Forms.TabPage();
-            this.web = new System.Windows.Forms.Panel();
             this.TabPagelist = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.grid = new System.Windows.Forms.DataGridView();
@@ -67,7 +66,6 @@
             this.ck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
-            this.TabPagemap.SuspendLayout();
             this.TabPagelist.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
@@ -82,7 +80,6 @@
             this.tabControl1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tabControl1.ItemSize = new System.Drawing.Size(100, 25);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1070, 315);
@@ -92,34 +89,20 @@
             // 
             // TabPagemap
             // 
-            this.TabPagemap.Controls.Add(this.web);
             this.TabPagemap.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.TabPagemap.Location = new System.Drawing.Point(4, 29);
-            this.TabPagemap.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TabPagemap.Name = "TabPagemap";
-            this.TabPagemap.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TabPagemap.Size = new System.Drawing.Size(1062, 282);
             this.TabPagemap.TabIndex = 0;
             this.TabPagemap.Text = "地图显示";
             this.TabPagemap.UseVisualStyleBackColor = true;
-            // 
-            // web
-            // 
-            this.web.AutoScroll = true;
-            this.web.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.web.Location = new System.Drawing.Point(3, 4);
-            this.web.Name = "web";
-            this.web.Size = new System.Drawing.Size(1056, 274);
-            this.web.TabIndex = 0;
             // 
             // TabPagelist
             // 
             this.TabPagelist.Controls.Add(this.tableLayoutPanel1);
             this.TabPagelist.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.TabPagelist.Location = new System.Drawing.Point(4, 29);
-            this.TabPagelist.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TabPagelist.Name = "TabPagelist";
-            this.TabPagelist.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TabPagelist.Size = new System.Drawing.Size(1062, 282);
             this.TabPagelist.TabIndex = 1;
             this.TabPagelist.Text = "列表显示";
@@ -149,15 +132,14 @@
             this.tableLayoutPanel1.Controls.Add(this.page, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtCondition, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 4);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1056, 274);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1062, 282);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // grid
@@ -218,7 +200,7 @@
             this.grid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.grid.RowTemplate.Height = 35;
             this.grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grid.Size = new System.Drawing.Size(1050, 188);
+            this.grid.Size = new System.Drawing.Size(1056, 196);
             this.grid.TabIndex = 15;
             this.grid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grid_CellFormatting);
             this.grid.CellToolTipTextNeeded += new System.Windows.Forms.DataGridViewCellToolTipTextNeededEventHandler(this.grid_CellToolTipTextNeeded);
@@ -365,7 +347,7 @@
             this.btnQuery.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuery.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnQuery.ForeColor = System.Drawing.Color.White;
-            this.btnQuery.Location = new System.Drawing.Point(218, 7);
+            this.btnQuery.Location = new System.Drawing.Point(221, 7);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(69, 26);
             this.btnQuery.TabIndex = 4;
@@ -385,7 +367,7 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(505, 7);
+            this.btnAdd.Location = new System.Drawing.Point(508, 7);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(69, 26);
             this.btnAdd.TabIndex = 7;
@@ -405,7 +387,7 @@
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(605, 7);
+            this.btnUpdate.Location = new System.Drawing.Point(608, 7);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(69, 26);
             this.btnUpdate.TabIndex = 5;
@@ -425,7 +407,7 @@
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(705, 7);
+            this.btnDelete.Location = new System.Drawing.Point(708, 7);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(69, 26);
             this.btnDelete.TabIndex = 6;
@@ -445,7 +427,7 @@
             this.btnInto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInto.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnInto.ForeColor = System.Drawing.Color.White;
-            this.btnInto.Location = new System.Drawing.Point(805, 7);
+            this.btnInto.Location = new System.Drawing.Point(808, 7);
             this.btnInto.Name = "btnInto";
             this.btnInto.Size = new System.Drawing.Size(120, 26);
             this.btnInto.TabIndex = 8;
@@ -465,7 +447,7 @@
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(955, 7);
+            this.btnRefresh.Location = new System.Drawing.Point(958, 7);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(69, 26);
             this.btnRefresh.TabIndex = 9;
@@ -478,20 +460,19 @@
             this.tableLayoutPanel1.SetColumnSpan(this.page, 10);
             this.page.Dock = System.Windows.Forms.DockStyle.Fill;
             this.page.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.page.Location = new System.Drawing.Point(3, 238);
-            this.page.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.page.Location = new System.Drawing.Point(3, 245);
             this.page.Name = "page";
             this.page.PageCount = 0;
             this.page.PageIndex = 1;
             this.page.PageSize = 30;
             this.page.RecorderCount = 0;
-            this.page.Size = new System.Drawing.Size(1050, 32);
+            this.page.Size = new System.Drawing.Size(1056, 34);
             this.page.TabIndex = 16;
             // 
             // txtCondition
             // 
             this.txtCondition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCondition.Location = new System.Drawing.Point(18, 7);
+            this.txtCondition.Location = new System.Drawing.Point(21, 7);
             this.txtCondition.Name = "txtCondition";
             this.txtCondition.Size = new System.Drawing.Size(194, 26);
             this.txtCondition.TabIndex = 17;
@@ -525,12 +506,10 @@
             this.Controls.Add(this.tabControl1);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MsgShowControl";
             this.Size = new System.Drawing.Size(1070, 315);
             this.Load += new System.EventHandler(this.MsgShowControl_Load);
             this.tabControl1.ResumeLayout(false);
-            this.TabPagemap.ResumeLayout(false);
             this.TabPagelist.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -543,7 +522,6 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage TabPagemap;
-        private System.Windows.Forms.Panel web;
         private System.Windows.Forms.TabPage TabPagelist;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button btnQuery;

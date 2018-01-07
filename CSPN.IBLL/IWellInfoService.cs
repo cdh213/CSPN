@@ -50,11 +50,15 @@ namespace CSPN.IBLL
         /// <summary>
         /// 查询未上报人井信息
         /// </summary>
-        IList<ReportNumInfo> GetNotReportNumInfo(int reportTimes);
+        DataTable GetNotReportNumInfo(int reportTimes);
         /// <summary>
         /// 重置上报次数
         /// </summary>
         int Empty_ReportNumInfo();
+        /// <summary>
+        /// 重置未上报次数
+        /// </summary>
+        int Empty_NotReportNumInfo(string terminal_ID);
         /// <summary>
         /// 更新人井上报次数
         /// </summary>

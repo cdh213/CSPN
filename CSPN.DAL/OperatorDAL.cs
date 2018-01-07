@@ -39,12 +39,14 @@ namespace CSPN.DAL
         /// <returns></returns>
         public DataTable GetOperator_Table()
         {
-            DataTable table = new DataTable();
-            using (Conn)
+            using (DataTable table = new DataTable())
             {
-                table.Load(Conn.ExecuteReader(SELECT_OPERATOR));
+                using (Conn)
+                {
+                    table.Load(Conn.ExecuteReader(SELECT_OPERATOR));
+                }
+                return table;
             }
-            return table;
         }
         /// <summary>
         /// 加载值班人员信息

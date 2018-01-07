@@ -28,6 +28,7 @@ namespace CSPN.DAL
         const string Update_ReportNumInfo_ReportTimes = "update CSPN_ReportNumInfo set ReportTimes=ReportTimes+1 where Terminal_ID=@Terminal_ID";
         const string Update_NotReportNumInfo_ReportTimes = "update CSPN_ReportNumInfo set NotReportTimes=NotReportTimes+1 where ReportTimes=0";
         const string Empty_ReportNumInfo_ReportTimes = "update CSPN_ReportNumInfo set ReportTimes=0 where ReportTimes>0";
+        const string Empty_ReportNumInfo_NotReportTimes = "update CSPN_ReportNumInfo set NotReportTimes=0 where Terminal_ID=@Terminal_ID";
 
         const string Insert_WellInfo = "insert into CSPN_ReportNumInfo(Terminal_ID,ReportTimes,NotReportTimes) values(@Terminal_ID,0,0)";
         const string Delete_WellInfo = "delete from CSPN_ReportNumInfo where Terminal_ID=@Terminal_ID";
@@ -35,11 +36,15 @@ namespace CSPN.DAL
         /// <summary>
         /// 查询未上报人井信息
         /// </summary>
-        public IList<ReportNumInfo> GetNotReportNumInfo(int reportTimes)
+        public DataTable GetNotReportNumInfo(int reportTimes)
         {
-            using (Conn)
+            using (DataTable table = new DataTable())
             {
-                return Conn.Query<WellInfo, ReportNumInfo, OperatorInfo, ReportNumInfo>(SELECT_ReportNumInfo_ReportTimes, (a, b, c) => { b.WellInfo = a; b.OperatorInfo = c; return b; }, new { ReportTimes = reportTimes }, null, true, "Terminal_ID,ReportTimes,Telephone", null, null).ToList();
+                using (Conn)
+                {
+                    table.Load(Conn.ExecuteReader(SELECT_ReportNumInfo_ReportTimes, new { ReportTimes = reportTimes }));
+                }
+                return table;
             }
         }
         /// <summary>
@@ -50,6 +55,16 @@ namespace CSPN.DAL
             using (Conn)
             {
                 return Conn.Execute(Empty_ReportNumInfo_ReportTimes);
+            }
+        }
+        /// <summary>
+        /// 重置未上报次数
+        /// </summary>
+        public int Empty_NotReportNumInfo(string terminal_ID)
+        {
+            using (Conn)
+            {
+                return Conn.Execute(Empty_ReportNumInfo_NotReportTimes, new { Terminal_ID = terminal_ID });
             }
         }
         /// <summary>

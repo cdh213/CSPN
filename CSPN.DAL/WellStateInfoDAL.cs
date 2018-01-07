@@ -27,7 +27,7 @@ namespace CSPN.DAL
         }
         #endregion
 
-        private const string SELECT_WELL_STATE = "select * from CSPN_Dic_Well_State_Info";
+        private const string SELECT_WELL_STATE = "select * from CSPN_Dic_Well_State_Info where ID=1 or ID=2 or ID=6";
         private const string SELECT_WELL_STATE_ID = "select * from CSPN_Dic_Well_State_Info where ID=@ID";
 
         /// <summary>

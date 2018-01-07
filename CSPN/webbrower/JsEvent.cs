@@ -17,24 +17,22 @@ using System.Windows.Forms;
 
 namespace CSPN.webbrower
 {
+    public delegate void DisposeMsgDelegate(int well_State_ID, string terminal_ID, CSPNType type);
+
     public class JsEvent
     {
+        public static DisposeMsgDelegate disposeMsgDelegate;
+
         IWellInfoService wellInfoService = new WellInfoService();
         IWellStateService wellStateService = new WellStateService();
         WellInfo well = new WellInfo();
         WellStateInfo stateInfo = new WellStateInfo();
 
-        string _locationInfo;
-
         public string inputvalue { get; set; }
         public string terminal_ID { get; set; }
         public int well_State_ID { get; set; }
-        public string locationInfo
-        {
-            get { string str = ReadWriteConfig.ReadConfig("DefaultLocation"); return str; }
-            set { _locationInfo = value; }
-        }
         public string menuPositon { get; set; }
+        public string locationInfo { get; set; }
 
         public void Search(IJavascriptCallback javascriptCallback)
         {
@@ -106,22 +104,26 @@ namespace CSPN.webbrower
         }
         public void DisposeAlarmMsg()
         {
-            PendingMsgControl pmc = new PendingMsgControl();
-            pmc.DisposeMsg(well_State_ID,terminal_ID, true);
+            if (disposeMsgDelegate != null)
+            {
+                disposeMsgDelegate(well_State_ID, terminal_ID, CSPNType.AlarmInfo);
+            }
         }
         public void DisposeMsgFinish()
         {
-            PendingMsgControl pmc = new PendingMsgControl();
-            pmc.DisposeMsg(well_State_ID, terminal_ID, false);
+            if (disposeMsgDelegate != null)
+            {
+                disposeMsgDelegate(well_State_ID, terminal_ID, CSPNType.DisposeInfo);
+            }
         }
         public void SaveLocationInfo()
         {
-            ReadWriteConfig.WriteConfig("DefaultLocation", _locationInfo);
+            ReadWriteConfig.WriteConfig("DefaultLocation", locationInfo);
             MessageBox.Show("设置成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         public void Refresh()
         {
-            WebBrower.webBrower.Reload(false);
+            WebBrower.Reload();
         }
     }
 }

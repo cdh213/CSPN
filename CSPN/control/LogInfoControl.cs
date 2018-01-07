@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using CSPN.assistcontrol;
 using CSPN.helper;
 using CSPN.common;
+using CSPN.job;
 
 namespace CSPN.control
 {
@@ -21,6 +22,7 @@ namespace CSPN.control
             InitializeSysLogInfo();
             InitializeUserLogInfo_WellInfo();
             InitializeUserLogInfo_GeneralInfo();
+            RefreshWellInfoJob.refreshEventHandler += new job.RefreshEventHandler(RefreshInfo);
         }
         
         private void LogInfoControl_Load(object sender, EventArgs e)
@@ -58,6 +60,18 @@ namespace CSPN.control
             if (Sysgrid.Columns[e.ColumnIndex].Name.Equals("Icon"))
             {
                 e.Value = ImageHelper.ToImage(e.Value.ToString());
+            }
+        }
+        //自动刷新
+        private void RefreshInfo()
+        {
+            if (Sysgrid.InvokeRequired)
+            {
+                Sysgrid.Invoke(new job.RefreshEventHandler(RefreshInfo));
+            }
+            else
+            {
+                DataLoade(false, null);
             }
         }
         //加载日志信息

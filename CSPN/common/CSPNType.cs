@@ -31,6 +31,18 @@ namespace CSPN.common
         /// <summary>
         /// 预约维护
         /// </summary>
-        AppointmentInfo
+        MaintainInfo,
+        /// <summary>
+        /// 报警信息
+        /// </summary>
+        AlarmInfo,
+        /// <summary>
+        /// 已处理信息
+        /// </summary>
+        DisposeInfo,
+        /// <summary>
+        /// 未上报信息
+        /// </summary>
+        NotReportInfo
     }
 }

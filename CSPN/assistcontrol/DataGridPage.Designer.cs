@@ -72,7 +72,6 @@
             this.tableLayoutPanel1.Controls.Add(this.btnGo, 9, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -199,6 +198,7 @@
             this.tbPageIndex.Name = "tbPageIndex";
             this.tbPageIndex.Size = new System.Drawing.Size(34, 23);
             this.tbPageIndex.TabIndex = 10;
+            this.tbPageIndex.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
             // 
@@ -237,7 +237,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "DataGridPage";
             this.Size = new System.Drawing.Size(1049, 49);
             this.tableLayoutPanel1.ResumeLayout(false);

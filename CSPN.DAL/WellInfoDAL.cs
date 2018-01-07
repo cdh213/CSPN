@@ -45,19 +45,21 @@ namespace CSPN.DAL
         public DataTable GetWellInfo_Table(string wellinfo)
         {
             StringBuilder sb = new StringBuilder(select_WellInfo);
-            DataTable table = new DataTable();
-            if (wellinfo != null)
+            using (DataTable table = new DataTable())
             {
-                sb.AppendFormat(" and Terminal_ID='{0}' or Name='{0}' or Place='{0}' or Place='{0}'", wellinfo);
-            }
-            using (Conn)
-            {
-                using (IDataReader read = Conn.ExecuteReader(sb.ToString()))
+                if (wellinfo != null)
                 {
-                    table.Load(read);
+                    sb.AppendFormat(" and Terminal_ID='{0}' or Name='{0}' or Place='{0}' or Place='{0}'", wellinfo);
                 }
+                using (Conn)
+                {
+                    using (IDataReader read = Conn.ExecuteReader(sb.ToString()))
+                    {
+                        table.Load(read);
+                    }
+                }
+                return table;
             }
-            return table;
         }
         /// <summary>
         /// 查询人井信息

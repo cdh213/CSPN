@@ -31,19 +31,15 @@ namespace CSPN.IBLL
         /// <summary>
         /// 更新当前人井状态信息
         /// </summary>
-        int UpdateWellCurrentStateInfo(WellCurrentStateInfo wellCurrentStateInfo);
+        int UpdateWellCurrentStateInfo(int well_State_ID, string terminal_ID);
         /// <summary>
         /// 更新当前人井状态信息
         /// </summary>
-        int UpdateWellCurrentStateInfo(int well_State_ID, string terminal_ID);
+        int UpdateWellCurrentStateInfo(WellCurrentStateInfo wellCurrentStateInfo);
         /// <summary>
         /// 查询报警,状态信息
         /// </summary>
-        IList<WellCurrentStateInfo> GetAlarmInfo_StatusInfo();
-        /// <summary>
-        /// 通过Terminal_ID查询报警,状态信息
-        /// </summary>
-        WellCurrentStateInfo GetAlarmInfo_StatusInfo(string terminal_ID);
+        DataTable GetAlarmInfo_StatusInfo();
         /// <summary>
         /// 通过Well_State_ID，Terminal_ID查询报警,状态信息
         /// </summary>
@@ -51,7 +47,7 @@ namespace CSPN.IBLL
         /// <summary>
         /// 查询已处理信息
         /// </summary>
-        IList<WellCurrentStateInfo> GetProcessedInfoByWell_State_ID(int well_State_ID);
+        DataTable GetProcessedInfo();
         /// <summary>
         /// 增加人井信息
         /// </summary>
@@ -66,11 +62,19 @@ namespace CSPN.IBLL
         /// <summary>
         /// 加载维护信息
         /// </summary>
-        DataTable GetAppointmentInfo();
+        DataTable GetMaintainInfo();
         /// <summary>
         /// 维护信息更新
         /// </summary>
-        int UpdateAppointmentInfo(int well_State_ID, string terminal_ID);
+        int UpdateMaintainInfo(WellCurrentStateInfo wellCurrentStateInfo);
+        /// <summary>
+        /// 通过维护开始时间查询人井
+        /// </summary>
+        object GetMaintain_StartTime(string startTime);
+        /// <summary>
+        /// 通过维护结束时间查询人井
+        /// </summary>
+        object GetMaintain_EndTime(string endTime);
         #endregion
     }
 }

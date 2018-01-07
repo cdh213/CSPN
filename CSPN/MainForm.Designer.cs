@@ -33,7 +33,7 @@
             this.btnMsgShow = new System.Windows.Forms.ToolStripButton();
             this.btnPendingMsg = new System.Windows.Forms.ToolStripButton();
             this.btnMessagelog = new System.Windows.Forms.ToolStripButton();
-            this.btnAppointment = new System.Windows.Forms.ToolStripButton();
+            this.btnMaintain = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.btnSystemSettings = new System.Windows.Forms.ToolStripButton();
             this.lbUserName = new System.Windows.Forms.ToolStripLabel();
@@ -51,7 +51,7 @@
             this.btnMsgShow,
             this.btnPendingMsg,
             this.btnMessagelog,
-            this.btnAppointment,
+            this.btnMaintain,
             this.toolStripButton4,
             this.btnSystemSettings,
             this.lbUserName});
@@ -99,19 +99,18 @@
             this.btnMessagelog.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnMessagelog.Click += new System.EventHandler(this.btnMessagelog_Click);
             // 
-            // btnAppointment
+            // btnMaintain
             // 
-            this.btnAppointment.Enabled = false;
-            this.btnAppointment.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnAppointment.Image = ((System.Drawing.Image)(resources.GetObject("btnAppointment.Image")));
-            this.btnAppointment.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnAppointment.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAppointment.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.btnAppointment.Name = "btnAppointment";
-            this.btnAppointment.Size = new System.Drawing.Size(65, 72);
-            this.btnAppointment.Text = "预约维护";
-            this.btnAppointment.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnAppointment.Click += new System.EventHandler(this.btnAppointment_Click);
+            this.btnMaintain.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnMaintain.Image = ((System.Drawing.Image)(resources.GetObject("btnMaintain.Image")));
+            this.btnMaintain.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnMaintain.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnMaintain.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnMaintain.Name = "btnMaintain";
+            this.btnMaintain.Size = new System.Drawing.Size(65, 72);
+            this.btnMaintain.Text = "预约维护";
+            this.btnMaintain.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnMaintain.Click += new System.EventHandler(this.btnMaintain_Click);
             // 
             // toolStripButton4
             // 
@@ -186,7 +185,7 @@
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.ToolStripButton btnPendingMsg;
         private System.Windows.Forms.ToolStripButton btnMessagelog;
-        private System.Windows.Forms.ToolStripButton btnAppointment;
+        private System.Windows.Forms.ToolStripButton btnMaintain;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.ToolStripButton btnSystemSettings;
         private System.Windows.Forms.ToolStripButton btnMsgShow;

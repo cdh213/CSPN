@@ -23,8 +23,7 @@ namespace CSPN.assistcontrol
         }
 
         FileHelper file = new FileHelper();
-        string portName = null;
-        int baudRate = 0;
+        string portName = "", baudRate = "";
 
         private void WelcomeForm_Load(object sender, EventArgs e)
         {
@@ -40,61 +39,79 @@ namespace CSPN.assistcontrol
         private void timer1_Tick(object sender, EventArgs e)
         {
             this.timer1.Stop();
-            //打开串口
+            //读取配置文件
             portName = ReadWriteConfig.ReadConfig("PortName");
-            baudRate = Convert.ToInt32(ReadWriteConfig.ReadConfig("BaudRate"));
-            CDMASMS.Set(portName, baudRate);
-            if (CDMASMS.Open())
+            baudRate = ReadWriteConfig.ReadConfig("BaudRate");
+            if (portName != "" || baudRate != "")
             {
-                string TSX = CDMASMS.SendAT("AT^MEID").Replace("\r\n", "").Replace("OK", "");
-                if (TSX.Length == 14)
+                string[] names = SerialPort.GetPortNames();
+                if (names.Contains(portName))
                 {
-                    TSX = SysFunction.GetSecurit(TSX.Remove(3, 5));
-                    if (ReadWriteConfig.ReadConfig("TSX").Equals(TSX))
+                    CDMASMS.Set(portName, Convert.ToInt32(baudRate));
+                    if (CDMASMS.Open())
                     {
-                        string netstat = CDMASMS.SendAT("AT+CREG?").Replace("\r\n", "").Replace("OK", "");
-                        if (netstat.Split(',')[1] == "1")
+                        string TSX = CDMASMS.SendAT("AT^MEID").Replace("\r\n", "").Replace("OK", "");
+                        if (TSX.Length == 14)
                         {
-                            if (ReadWriteRegistry.ReadRegistry("isInvalid") == null)
+                            TSX = SysFunction.GetSecurit(TSX.Remove(3, 5));
+                            if (ReadWriteConfig.ReadConfig("TSX").Equals(TSX))
                             {
-                                ReadWriteRegistry.WriteRegistry("isInvalid", "false");
-                            }
-                            if (ReadWriteRegistry.ReadRegistry("isInvalid") == "true")
-                            {
-                                this.DialogResult = DialogResult.Cancel;
+                                string netstat = CDMASMS.SendAT("AT+CREG?").Replace("\r\n", "").Replace("OK", "");
+                                if (netstat.Split(',')[1] == "1")
+                                {
+                                    if (ReadWriteRegistry.ReadRegistry("isInvalid") == null)
+                                    {
+                                        ReadWriteRegistry.WriteRegistry("isInvalid", "false");
+                                    }
+                                    if (ReadWriteRegistry.ReadRegistry("isInvalid") == "true")
+                                    {
+                                        this.DialogResult = DialogResult.Abort;
+                                    }
+                                    else
+                                    {
+                                        CDMASMS.DeviceInitialize();
+                                        this.DialogResult = DialogResult.OK;
+                                    }
+                                    this.Close();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("未注册到本地网络！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    CDMASMS.Close();
+                                    this.Close();
+                                }
                             }
                             else
                             {
-                                CDMASMS.DeviceInitialize();
-                                this.DialogResult = DialogResult.OK;
+                                MessageBox.Show("硬件不匹配！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                CDMASMS.Close();
+                                this.Close();
                             }
-                            this.Close();
                         }
                         else
                         {
-                            MessageBox.Show("未注册到本地网络！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("读取硬件信息失败！请确认硬件设备连接正确。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             CDMASMS.Close();
                             this.Close();
                         }
                     }
                     else
                     {
-                        MessageBox.Show("硬件不匹配！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        CDMASMS.Close();
+                        MessageBox.Show("串口打开失败，请在系统设置中重新配置串口数据。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        this.DialogResult = DialogResult.No;
                         this.Close();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("读取硬件信息失败！请确认硬件设备连接正确。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    CDMASMS.Close();
+                    MessageBox.Show("串口打开失败，请在系统设置中重新配置串口数据。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.DialogResult = DialogResult.No;
                     this.Close();
-                }  
+                } 
             }
             else
             {
-                MessageBox.Show("串口打开失败，请在系统设置中重新配置串口数据。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.DialogResult = DialogResult.No;
+                MessageBox.Show("读取配置文件失败。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
             }
         }
@@ -102,7 +119,6 @@ namespace CSPN.assistcontrol
         private void WelcomeForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             //关闭定时器
-            this.timer1.Stop();
             this.timer1.Dispose();
         }
     }

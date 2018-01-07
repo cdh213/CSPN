@@ -34,12 +34,12 @@ namespace CSPN.assistcontrol
     }
     public class WaitWin
     {
-        private static WaitWin _instance;
+        private static WaitWin instance = null;
         private static readonly Object syncLock = new Object();
-        private Thread waitThread;
-        private static WaitForm waitForm;
+        private Thread waitThread = null;
+        private static WaitForm waitForm = null;
         private static string _msg = null;
-        private static ContainerControl _control;
+        private static ContainerControl _control = null;
 
         /// <summary>    
         /// 单例模式    
@@ -48,17 +48,17 @@ namespace CSPN.assistcontrol
         {
             get
             {
-                if (WaitWin._instance == null)
+                if (instance == null)
                 {
                     lock (syncLock)
                     {
-                        if (WaitWin._instance == null)
+                        if (instance == null)
                         {
-                            WaitWin._instance = new WaitWin();
+                            instance = new WaitWin();
                         }
                     }
                 }
-                return WaitWin._instance;
+                return instance;
             }
         }
         /// <summary>    
@@ -74,7 +74,7 @@ namespace CSPN.assistcontrol
         {
             _control = control;
             _msg = msg;
-            WaitWin.Instance._CreateForm();
+            WaitWin.Instance.CreateForm();
         }
         /// <summary>    
         /// 关闭等待窗体    
@@ -82,19 +82,19 @@ namespace CSPN.assistcontrol
         public static void Close()
         {
             Thread.Sleep(100);
-            WaitWin.Instance._CloseForm();
+            WaitWin.Instance.CloseForm();
         }
         /// <summary>    
         /// 创建等待窗体    
         /// </summary>    
-        public void _CreateForm()
+        private void CreateForm()
         {
             waitForm = null;
-            waitThread = new Thread(new ThreadStart(this._ShowWaitForm));
+            waitThread = new Thread(new ThreadStart(this.ShowWaitForm));
             waitThread.Start();
             Thread.Sleep(100);
         }
-        private void _ShowWaitForm()
+        private void ShowWaitForm()
         {
             try
             {
@@ -124,7 +124,7 @@ namespace CSPN.assistcontrol
         /// <summary>    
         /// 关闭窗体    
         /// </summary>    
-        private void _CloseForm()
+        private void CloseForm()
         {
             if (waitThread != null)
             {

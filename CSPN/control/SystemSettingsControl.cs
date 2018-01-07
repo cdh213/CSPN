@@ -30,9 +30,8 @@ namespace CSPN.control
         UsersInfo userinfo = new UsersInfo();
 
         public bool isOpen { get; set; }
-        string portName = null;
+        string portName, work_ID;
         int baudRate = 0;
-        string work_ID = null;
 
         public SystemSettingsControl()
         {
@@ -45,7 +44,9 @@ namespace CSPN.control
                 tbSysLogTime.Text = ReadWriteConfig.ReadConfig("SysLogTime");
                 tbUserLogTime.Text = ReadWriteConfig.ReadConfig("UserLogTime");
                 tbNotReportTimes.Text = ReadWriteConfig.ReadConfig("NotReportTimes");
+                tbRefreshTime.Text = ReadWriteConfig.ReadConfig("RefreshTime");
                 DeviceLoad();
+                GetDeviceMsg();
                 DataLoade(false, null);
                 UserDataLoade(null);
             }
@@ -63,21 +64,24 @@ namespace CSPN.control
         #region 系统设置
         private void btnSysSet_Click(object sender, EventArgs e)
         {
-            if (tbSysLogTime.Text.Trim() == "" && tbUserLogTime.Text.Trim() == "" && tbNotReportTimes.Text.Trim() == "")
+            if (tbSysLogTime.Text.Trim() == "" && tbUserLogTime.Text.Trim() == "" && tbNotReportTimes.Text.Trim() == "" && tbRefreshTime.Text.Trim() == "")
             {
                 MessageBox.Show("请输入内容。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (isNumber(tbSysLogTime.Text.Trim()) && isNumber(tbUserLogTime.Text.Trim()) && isNumber(tbNotReportTimes.Text.Trim()))
-            {
-                ReadWriteConfig.WriteConfig("SysLogTime", tbSysLogTime.Text.Trim());
-                ReadWriteConfig.WriteConfig("UserLogTime", tbUserLogTime.Text.Trim());
-                ReadWriteConfig.WriteConfig("NotReportTimes", tbNotReportTimes.Text.Trim());
-                MessageBox.Show("设置成功。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("输入的值错误。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (isNumber(tbSysLogTime.Text.Trim()) && isNumber(tbUserLogTime.Text.Trim()) && isNumber(tbNotReportTimes.Text.Trim()) && isNumber(tbRefreshTime.Text.Trim()))
+                {
+                    ReadWriteConfig.WriteConfig("SysLogTime", tbSysLogTime.Text.Trim());
+                    ReadWriteConfig.WriteConfig("UserLogTime", tbUserLogTime.Text.Trim());
+                    ReadWriteConfig.WriteConfig("NotReportTimes", tbNotReportTimes.Text.Trim());
+                    ReadWriteConfig.WriteConfig("RefreshTime", tbRefreshTime.Text.Trim());
+                    MessageBox.Show("设置成功。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("输入的值错误。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         private bool isNumber(string str)
@@ -94,7 +98,6 @@ namespace CSPN.control
         {
             PortName.DataSource = SerialPort.GetPortNames();
             BaudRate.DataSource = new string[] { "9600", "115200" };
-            GetDeviceMsg();
             tableLayoutPanel1.Visible = true;
         }
         private void btnSet_Click(object sender, EventArgs e)
@@ -228,7 +231,7 @@ namespace CSPN.control
             work_ID = usergrid.CurrentRow.Cells[0].Value.ToString();
             new EditUserInfoForm(false, work_ID).ShowDialog();
             DataLoade(false, null);
-            WebBrower.webBrower.GetBrowser().Reload();
+            WebBrower.Reload();
         }
         //删除值班人员
         private void btnDelete_Click(object sender, EventArgs e)

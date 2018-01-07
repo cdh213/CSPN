@@ -20,6 +20,8 @@ namespace CSPN.Model
         private string _smoke_Power;//烟感电量
         private string _signal_Strength;//信号强度
         private string _report_Time;//上报时间
+        private string _maintain_StartTime;//维护开始时间
+        private string _maintain_EndTime;//维护结束结束
         private WellStateInfo _wellStateInfo;
         private OperatorInfo _operatorInfo;
         private SystemLogInfo _systemLogInfo;
@@ -97,6 +99,22 @@ namespace CSPN.Model
         {
             get { return _report_Time; }
             set { _report_Time = value; }
+        }
+       /// <summary>
+        /// 维护开始时间
+        /// </summary>
+        public string Maintain_StartTime
+        {
+            get { return _maintain_StartTime; }
+            set { _maintain_StartTime = value; }
+        }
+        /// <summary>
+        /// 维护结束时间
+        /// </summary>
+        public string Maintain_EndTime
+        {
+            get { return _maintain_EndTime; }
+            set { _maintain_EndTime = value; }
         }
         public WellStateInfo WellStateInfo
         {

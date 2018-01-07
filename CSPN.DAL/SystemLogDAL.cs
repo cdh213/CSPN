@@ -35,12 +35,14 @@ namespace CSPN.DAL
         /// </summary>
         public DataTable GetSystemLogInfo()
         {
-            DataTable table = new DataTable();
-            using (Conn)
+            using (DataTable table = new DataTable())
             {
-                table.Load(Conn.ExecuteReader(SELECT_SystemLog));
+                using (Conn)
+                {
+                    table.Load(Conn.ExecuteReader(SELECT_SystemLog));
+                }
+                return table;
             }
-            return table;
         }
         /// <summary>
         /// 查询发生时间的最小值

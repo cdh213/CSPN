@@ -62,8 +62,8 @@ namespace CSPN.assistcontrol
                 case CSPNType.UserLogInfo_GeneralInfo:
                     table = logservice.GetUserLogInfo_GeneralInfo();
                     break;
-                case CSPNType.AppointmentInfo:
-                    table = wellStateService.GetAppointmentInfo();
+                case CSPNType.MaintainInfo:
+                    table = wellStateService.GetMaintainInfo();
                     break;
             }
             //多少页
@@ -86,6 +86,7 @@ namespace CSPN.assistcontrol
                 for (int i = first; i < this.table.Rows.Count; i++)
                     tmpTable.ImportRow(this.table.Rows[i]);
             }
+
             this._grid.DataSource = tmpTable;
             table.Clear();
             tmpTable.Dispose();

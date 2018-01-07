@@ -64,7 +64,7 @@ namespace CSPN.assistcontrol
             {
                 this.Text = "更新数据";
                 this.Icon = new Icon("resource/images/update.ico");
-
+                txtTerminal_ID.Enabled = false;
                 wellInfo = wellInfoService.GetWellInfoByTerminal_ID(wellInfo.Terminal_ID);
 
                 txtTerminal_ID.Text = wellInfo.Terminal_ID;

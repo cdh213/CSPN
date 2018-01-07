@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,9 +20,19 @@ namespace CSPN.common
         /// <param name="value">要存储的数据。</param>
         public static void WriteRegistry(string name, object value)
         {
-            using (RegistryKey software = Registry.CurrentUser.CreateSubKey("Software\\CSPN", RegistryKeyPermissionCheck.ReadWriteSubTree))
+            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\CSPN", RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryRights.FullControl))
             {
-                software.SetValue(name, value, RegistryValueKind.String);
+                if (key == null)
+                {
+                    using (RegistryKey software = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\CSPN",RegistryKeyPermissionCheck.ReadWriteSubTree))
+                    {
+                        software.SetValue(name, value);
+                    }
+                }
+                else
+                {
+                    key.SetValue(name, value);
+                }
             }
         }
         /// <summary>
@@ -32,13 +43,13 @@ namespace CSPN.common
         public static string ReadRegistry(string name)
         {
             string value = null;
-            using (RegistryKey software = Registry.CurrentUser.OpenSubKey("Software\\CSPN",true))
+            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\CSPN", false))
             {
-                if (software != null)
+                if (key != null)
                 {
-                    if (software.GetValue(name) != null) //读取失败返回null
+                    if (key.GetValue(name) != null) //读取失败返回null
                     {
-                        value = software.GetValue(name).ToString();
+                        value = key.GetValue(name).ToString();
                     }
                 }
                 return value;

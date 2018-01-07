@@ -20,6 +20,7 @@ using NPOI.HSSF.UserModel;
 using CSPN.webbrower;
 using CSPN.helper;
 using Newtonsoft.Json;
+using CSPN.job;
 
 namespace CSPN.control
 {
@@ -37,7 +38,8 @@ namespace CSPN.control
         {
             InitializeComponent();
             WebBrower.webBrower.Dock = DockStyle.Fill;
-            this.web.Controls.Add(WebBrower.webBrower);
+            TabPagemap.Controls.Add(WebBrower.webBrower);
+            RefreshWellInfoJob.refreshEventHandler += new job.RefreshEventHandler(RefreshInfo);
         }
         private void MsgShowControl_Load(object sender, EventArgs e)
         {
@@ -120,7 +122,7 @@ namespace CSPN.control
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("导入成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            WebBrower.webBrower.GetBrowser().Reload();
+            WebBrower.Reload();
         }
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -189,6 +191,18 @@ namespace CSPN.control
             if (e.ColumnIndex == 11)
             {
                 e.ToolTipText = "取值从00到31。若为99，表示无信号。";
+            }
+        }
+        //自动刷新
+        private void RefreshInfo()
+        {
+            if (grid.InvokeRequired)
+            {
+                grid.Invoke(new job.RefreshEventHandler(RefreshInfo));
+            }
+            else
+            {
+                DataLoade(null);
             }
         }
         //加载

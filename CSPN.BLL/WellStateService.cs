@@ -57,16 +57,9 @@ namespace CSPN.BLL
         /// <summary>
         /// 查询报警,状态信息
         /// </summary>
-        public IList<WellCurrentStateInfo> GetAlarmInfo_StatusInfo()
+        public DataTable GetAlarmInfo_StatusInfo()
         {
             return wellcurrentdal.GetAlarmInfo_StatusInfo();
-        }
-        /// <summary>
-        /// 通过Terminal_ID查询报警,状态信息
-        /// </summary>
-        public WellCurrentStateInfo GetAlarmInfo_StatusInfo(string terminal_ID)
-        {
-            return wellcurrentdal.GetAlarmInfo_StatusInfo(terminal_ID);
         }
         /// <summary>
         /// 通过Well_State_ID，Terminal_ID查询报警,状态信息
@@ -78,9 +71,9 @@ namespace CSPN.BLL
         /// <summary>
         /// 查询已处理信息
         /// </summary>
-        public IList<WellCurrentStateInfo> GetProcessedInfoByWell_State_ID(int well_State_ID)
+        public DataTable GetProcessedInfo()
         {
-            return wellcurrentdal.GetProcessedInfoByWell_State_ID(well_State_ID);
+            return wellcurrentdal.GetProcessedInfo();
         }
         /// <summary>
         /// 增加人井信息
@@ -102,16 +95,30 @@ namespace CSPN.BLL
         /// <summary>
         /// 加载维护信息
         /// </summary>
-        public DataTable GetAppointmentInfo()
+        public DataTable GetMaintainInfo()
         {
-            return wellcurrentdal.GetAppointmentInfo();
+            return wellcurrentdal.GetMaintainInfo();
         }
         /// <summary>
         /// 维护信息更新
         /// </summary>
-        public int UpdateAppointmentInfo(int well_State_ID, string terminal_ID)
+        public int UpdateMaintainInfo(WellCurrentStateInfo wellCurrentStateInfo)
         {
-            return wellcurrentdal.UpdateAppointmentInfo(well_State_ID, terminal_ID);
+            return wellcurrentdal.UpdateMaintainInfo(wellCurrentStateInfo);
+        }
+        /// <summary>
+        /// 通过维护开始时间查询人井
+        /// </summary>
+        public object GetMaintain_StartTime(string startTime)
+        {
+            return wellcurrentdal.GetMaintain_StartTime(startTime);
+        }
+        /// <summary>
+        /// 通过维护结束时间查询人井
+        /// </summary>
+        public object GetMaintain_EndTime(string endTime)
+        {
+            return wellcurrentdal.GetMaintain_EndTime(endTime);
         }
         #endregion
     }

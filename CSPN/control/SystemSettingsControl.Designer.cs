@@ -40,12 +40,10 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.label9 = new System.Windows.Forms.Label();
-            this.tbSysLogTime = new CSPN.assistcontrol.WaterTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.tbUserLogTime = new CSPN.assistcontrol.WaterTextBox();
-            this.tbNotReportTimes = new CSPN.assistcontrol.WaterTextBox();
             this.btnSysSet = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             this.SMSSettings = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.myGroupBox1 = new System.Windows.Forms.GroupBox();
@@ -91,20 +89,24 @@
             this.OperatorSet = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.usergrid = new System.Windows.Forms.DataGridView();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnInto = new System.Windows.Forms.Button();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.page = new CSPN.assistcontrol.DataGridPage();
-            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RealName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Telephone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Area = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReceiveMsg = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnInto = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.tbSysLogTime = new System.Windows.Forms.TextBox();
+            this.tbUserLogTime = new System.Windows.Forms.TextBox();
+            this.tbNotReportTimes = new CSPN.assistcontrol.WaterTextBox();
+            this.tbRefreshTime = new CSPN.assistcontrol.WaterTextBox();
+            this.page = new CSPN.assistcontrol.DataGridPage();
             this.tabControl1.SuspendLayout();
             this.SysSetTab.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
@@ -137,7 +139,6 @@
             this.tabControl1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tabControl1.ItemSize = new System.Drawing.Size(100, 25);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1159, 553);
@@ -199,12 +200,14 @@
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel8.Controls.Add(this.label9, 1, 0);
-            this.tableLayoutPanel8.Controls.Add(this.tbSysLogTime, 2, 0);
             this.tableLayoutPanel8.Controls.Add(this.label5, 1, 1);
             this.tableLayoutPanel8.Controls.Add(this.label10, 4, 0);
-            this.tableLayoutPanel8.Controls.Add(this.tbUserLogTime, 5, 0);
             this.tableLayoutPanel8.Controls.Add(this.tbNotReportTimes, 2, 1);
             this.tableLayoutPanel8.Controls.Add(this.btnSysSet, 3, 2);
+            this.tableLayoutPanel8.Controls.Add(this.label11, 4, 1);
+            this.tableLayoutPanel8.Controls.Add(this.tbRefreshTime, 5, 1);
+            this.tableLayoutPanel8.Controls.Add(this.tbSysLogTime, 2, 0);
+            this.tableLayoutPanel8.Controls.Add(this.tbUserLogTime, 5, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 22);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
@@ -227,17 +230,6 @@
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.label9, "设置保存系统日志的天数，超过天数的系统日志会被自动删除。");
             // 
-            // tbSysLogTime
-            // 
-            this.tbSysLogTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbSysLogTime.Location = new System.Drawing.Point(315, 40);
-            this.tbSysLogTime.Name = "tbSysLogTime";
-            this.tbSysLogTime.Size = new System.Drawing.Size(94, 26);
-            this.tbSysLogTime.TabIndex = 16;
-            this.tbSysLogTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.tbSysLogTime, "设置保存系统日志的天数，超过天数的系统日志会被自动删除。");
-            this.tbSysLogTime.WaterText = "";
-            // 
             // label5
             // 
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -259,27 +251,6 @@
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.label10, "设置保存用户日志的天数，超过天数的用户日志会被自动删除。");
             // 
-            // tbUserLogTime
-            // 
-            this.tbUserLogTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbUserLogTime.Location = new System.Drawing.Point(635, 40);
-            this.tbUserLogTime.Name = "tbUserLogTime";
-            this.tbUserLogTime.Size = new System.Drawing.Size(94, 26);
-            this.tbUserLogTime.TabIndex = 18;
-            this.tbUserLogTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.tbUserLogTime, "设置保存用户日志的天数，超过天数的用户日志会被自动删除。");
-            this.tbUserLogTime.WaterText = "";
-            // 
-            // tbNotReportTimes
-            // 
-            this.tbNotReportTimes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbNotReportTimes.Location = new System.Drawing.Point(315, 146);
-            this.tbNotReportTimes.Name = "tbNotReportTimes";
-            this.tbNotReportTimes.Size = new System.Drawing.Size(94, 26);
-            this.tbNotReportTimes.TabIndex = 13;
-            this.tbNotReportTimes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbNotReportTimes.WaterText = "";
-            // 
             // btnSysSet
             // 
             this.btnSysSet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -299,6 +270,17 @@
             this.btnSysSet.Text = "设置";
             this.btnSysSet.UseVisualStyleBackColor = true;
             this.btnSysSet.Click += new System.EventHandler(this.btnSysSet_Click);
+            // 
+            // label11
+            // 
+            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label11.Location = new System.Drawing.Point(485, 106);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(144, 106);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "人井信息列表刷新时间";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.label11, "人井信息列表刷新时间，改设置更改后需要重启系统才能生效。");
             // 
             // SMSSettings
             // 
@@ -884,7 +866,6 @@
             this.tableLayoutPanel5.Controls.Add(this.page, 0, 2);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 3;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
@@ -944,6 +925,48 @@
             this.usergrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.usergrid.Size = new System.Drawing.Size(1145, 434);
             this.usergrid.TabIndex = 14;
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "Work_ID";
+            this.ID.HeaderText = "工号";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // RealName
+            // 
+            this.RealName.DataPropertyName = "RealName";
+            this.RealName.HeaderText = "姓名";
+            this.RealName.Name = "RealName";
+            this.RealName.ReadOnly = true;
+            // 
+            // Gender
+            // 
+            this.Gender.DataPropertyName = "Gender";
+            this.Gender.HeaderText = "性别";
+            this.Gender.Name = "Gender";
+            this.Gender.ReadOnly = true;
+            // 
+            // Telephone
+            // 
+            this.Telephone.DataPropertyName = "Telephone";
+            this.Telephone.HeaderText = "联系方式";
+            this.Telephone.Name = "Telephone";
+            this.Telephone.ReadOnly = true;
+            // 
+            // Area
+            // 
+            this.Area.DataPropertyName = "Area";
+            this.Area.HeaderText = "区域";
+            this.Area.Name = "Area";
+            this.Area.ReadOnly = true;
+            // 
+            // ReceiveMsg
+            // 
+            this.ReceiveMsg.DataPropertyName = "ReceiveMsg";
+            this.ReceiveMsg.HeaderText = "自动接收报警消息";
+            this.ReceiveMsg.Name = "ReceiveMsg";
+            this.ReceiveMsg.ReadOnly = true;
             // 
             // btnAdd
             // 
@@ -1045,21 +1068,6 @@
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // page
-            // 
-            this.tableLayoutPanel5.SetColumnSpan(this.page, 10);
-            this.page.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.page.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.page.Location = new System.Drawing.Point(3, 484);
-            this.page.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.page.Name = "page";
-            this.page.PageCount = 0;
-            this.page.PageIndex = 1;
-            this.page.PageSize = 30;
-            this.page.RecorderCount = 0;
-            this.page.Size = new System.Drawing.Size(1145, 32);
-            this.page.TabIndex = 13;
-            // 
             // backgroundWorker
             // 
             this.backgroundWorker.WorkerReportsProgress = true;
@@ -1073,47 +1081,60 @@
             this.toolTip1.InitialDelay = 50;
             this.toolTip1.ReshowDelay = 100;
             // 
-            // ID
+            // tbSysLogTime
             // 
-            this.ID.DataPropertyName = "Work_ID";
-            this.ID.HeaderText = "工号";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
+            this.tbSysLogTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbSysLogTime.Location = new System.Drawing.Point(315, 40);
+            this.tbSysLogTime.Name = "tbSysLogTime";
+            this.tbSysLogTime.Size = new System.Drawing.Size(94, 26);
+            this.tbSysLogTime.TabIndex = 21;
+            this.tbSysLogTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip1.SetToolTip(this.tbSysLogTime, "设置保存系统日志的天数，超过天数的系统日志会被自动删除。");
             // 
-            // RealName
+            // tbUserLogTime
             // 
-            this.RealName.DataPropertyName = "RealName";
-            this.RealName.HeaderText = "姓名";
-            this.RealName.Name = "RealName";
-            this.RealName.ReadOnly = true;
+            this.tbUserLogTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbUserLogTime.Location = new System.Drawing.Point(635, 40);
+            this.tbUserLogTime.Name = "tbUserLogTime";
+            this.tbUserLogTime.Size = new System.Drawing.Size(94, 26);
+            this.tbUserLogTime.TabIndex = 22;
+            this.tbUserLogTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip1.SetToolTip(this.tbUserLogTime, "设置保存用户日志的天数，超过天数的用户日志会被自动删除。");
             // 
-            // Gender
+            // tbNotReportTimes
             // 
-            this.Gender.DataPropertyName = "Gender";
-            this.Gender.HeaderText = "性别";
-            this.Gender.Name = "Gender";
-            this.Gender.ReadOnly = true;
+            this.tbNotReportTimes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbNotReportTimes.Location = new System.Drawing.Point(315, 146);
+            this.tbNotReportTimes.Name = "tbNotReportTimes";
+            this.tbNotReportTimes.Size = new System.Drawing.Size(94, 26);
+            this.tbNotReportTimes.TabIndex = 13;
+            this.tbNotReportTimes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbNotReportTimes.WaterText = "";
             // 
-            // Telephone
+            // tbRefreshTime
             // 
-            this.Telephone.DataPropertyName = "Telephone";
-            this.Telephone.HeaderText = "联系方式";
-            this.Telephone.Name = "Telephone";
-            this.Telephone.ReadOnly = true;
+            this.tbRefreshTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbRefreshTime.Location = new System.Drawing.Point(635, 146);
+            this.tbRefreshTime.Name = "tbRefreshTime";
+            this.tbRefreshTime.Size = new System.Drawing.Size(94, 26);
+            this.tbRefreshTime.TabIndex = 20;
+            this.tbRefreshTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip1.SetToolTip(this.tbRefreshTime, "人井信息列表刷新时间，该设置更改后需要重启系统才能生效。");
+            this.tbRefreshTime.WaterText = "";
             // 
-            // Area
+            // page
             // 
-            this.Area.DataPropertyName = "Area";
-            this.Area.HeaderText = "区域";
-            this.Area.Name = "Area";
-            this.Area.ReadOnly = true;
-            // 
-            // ReceiveMsg
-            // 
-            this.ReceiveMsg.DataPropertyName = "ReceiveMsg";
-            this.ReceiveMsg.HeaderText = "自动接收报警消息";
-            this.ReceiveMsg.Name = "ReceiveMsg";
-            this.ReceiveMsg.ReadOnly = true;
+            this.tableLayoutPanel5.SetColumnSpan(this.page, 10);
+            this.page.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.page.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.page.Location = new System.Drawing.Point(3, 484);
+            this.page.Name = "page";
+            this.page.PageCount = 0;
+            this.page.PageIndex = 1;
+            this.page.PageSize = 30;
+            this.page.RecorderCount = 0;
+            this.page.Size = new System.Drawing.Size(1145, 32);
+            this.page.TabIndex = 13;
             // 
             // SystemSettingsControl
             // 
@@ -1122,7 +1143,6 @@
             this.Controls.Add(this.tabControl1);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "SystemSettingsControl";
             this.Size = new System.Drawing.Size(1159, 553);
             this.Load += new System.EventHandler(this.SystemSettingsControl_Load);
@@ -1214,10 +1234,8 @@
         private System.Windows.Forms.Label label5;
         private assistcontrol.WaterTextBox tbNotReportTimes;
         private System.Windows.Forms.Button btnSysSet;
-        private assistcontrol.WaterTextBox tbSysLogTime;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private assistcontrol.WaterTextBox tbUserLogTime;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.DataGridView usergrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
@@ -1226,6 +1244,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Telephone;
         private System.Windows.Forms.DataGridViewTextBoxColumn Area;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReceiveMsg;
+        private System.Windows.Forms.Label label11;
+        private assistcontrol.WaterTextBox tbRefreshTime;
+        private System.Windows.Forms.TextBox tbSysLogTime;
+        private System.Windows.Forms.TextBox tbUserLogTime;
 
     }
 }
