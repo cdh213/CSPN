@@ -145,7 +145,7 @@ namespace CSPN.sms
             Thread.Sleep(500);
             IList<WellInfo> list = wellInfoService.GetWellInfo_List(terminal_ID);
             string json = JsonConvert.SerializeObject(list);
-            WebBrower.webBrower.ExecuteScriptAsync("updateMarker", json);
+            WebBrower.GetInstance().webBrower.ExecuteScriptAsync("updateMarker", json);
         }
         /// <summary>
         /// 更新人井当前状态信息表数据

@@ -28,6 +28,8 @@ namespace CSPN.webbrower
         WellInfo well = new WellInfo();
         WellStateInfo stateInfo = new WellStateInfo();
 
+        IList<WellInfo> list = null;
+        string json = null;
         public string inputvalue { get; set; }
         public string terminal_ID { get; set; }
         public int well_State_ID { get; set; }
@@ -46,8 +48,8 @@ namespace CSPN.webbrower
 
                using (javascriptCallback)
                {
-                   IList<WellInfo> list = wellInfoService.GetWellInfo_List(inputvalue);
-                   string json = JsonConvert.SerializeObject(list);
+                   list = wellInfoService.GetWellInfo_List(inputvalue);
+                   json = JsonConvert.SerializeObject(list);
                    await javascriptCallback.ExecuteAsync(json);
                }
            });
@@ -63,8 +65,8 @@ namespace CSPN.webbrower
                 {
                     using (javascriptCallback)
                     {
-                        IList<WellInfo> list = wellInfoService.GetWellInfo_List(terminal_ID);
-                        string json = JsonConvert.SerializeObject(list);
+                        list = wellInfoService.GetWellInfo_List(terminal_ID);
+                        json = JsonConvert.SerializeObject(list);
                         await javascriptCallback.ExecuteAsync(json);
                     }
                 });
@@ -80,8 +82,8 @@ namespace CSPN.webbrower
                 {
                     using (javascriptCallback)
                     {
-                        IList<WellInfo> list = wellInfoService.GetWellInfo_List(terminal_ID);
-                        string json = JsonConvert.SerializeObject(list);
+                        list = wellInfoService.GetWellInfo_List(terminal_ID);
+                        json = JsonConvert.SerializeObject(list);
                         await javascriptCallback.ExecuteAsync(json);
                     }
                 });
@@ -94,7 +96,7 @@ namespace CSPN.webbrower
                 if (wellInfoService.DeleteWellInfo(terminal_ID) > 0 && wellStateService.DeleteWellCurrentStateInfo(terminal_ID) > 0 && wellInfoService.DeleteReportNumInfo(terminal_ID) > 0)
                 {
                     MessageBox.Show("数据删除成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    WebBrower.webBrower.ExecuteScriptAsync("deleteMarker", terminal_ID);
+                    WebBrower.GetInstance().webBrower.ExecuteScriptAsync("deleteMarker", terminal_ID);
                 }
                 else
                 {
@@ -121,9 +123,17 @@ namespace CSPN.webbrower
             ReadWriteConfig.WriteConfig("DefaultLocation", locationInfo);
             MessageBox.Show("设置成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        public void Refresh()
+        public void Reload(IJavascriptCallback javascriptCallback)
         {
-            WebBrower.Reload();
+            Task.Run(async () =>
+            {
+                using (javascriptCallback)
+                {
+                    list = wellInfoService.GetWellInfo_List(null);
+                    json = JsonConvert.SerializeObject(list);
+                    await javascriptCallback.ExecuteAsync(json);
+                }
+            });
         }
     }
 }

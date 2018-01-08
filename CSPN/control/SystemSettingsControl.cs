@@ -231,7 +231,7 @@ namespace CSPN.control
             work_ID = usergrid.CurrentRow.Cells[0].Value.ToString();
             new EditUserInfoForm(false, work_ID).ShowDialog();
             DataLoade(false, null);
-            WebBrower.Reload();
+            WebBrower.GetInstance().Reload();
         }
         //删除值班人员
         private void btnDelete_Click(object sender, EventArgs e)

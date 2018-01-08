@@ -106,21 +106,25 @@
         var contextMenu = new AMap.ContextMenu();  //创建点标记右键菜单
         var mapMenu = new AMap.ContextMenu();  //创建地图右键菜单
         //实例化点标记
-        for (var i = 0; i < mapdata.length; i++) {
-            marker = new AMap.Marker({
-                icon: mapdata[i].WellStateInfo.Icon,
-                position: [mapdata[i].Longitude, mapdata[i].Latitude]
-            });
-            marker.setTitle(mapdata[i].Terminal_ID);
+        markerAdd();
+        function markerAdd() {
+            markers.splice(0, markers.length);
+            for (var i = 0; i < mapdata.length; i++) {
+                marker = new AMap.Marker({
+                    icon: mapdata[i].WellStateInfo.Icon,
+                    position: [mapdata[i].Longitude, mapdata[i].Latitude]
+                });
+                marker.setTitle(mapdata[i].Terminal_ID);
 
-            marker.content = markersContent(mapdata, i);
+                marker.content = markersContent(mapdata, i);
 
-            marker.on('click', markerClick);//单击事件
-            marker.on('dblclick', markerdbClick);//双击事件
-            marker.on('rightclick', markerrightclick);//右击事件
-            markers.push(marker);
+                marker.on('click', markerClick);//单击事件
+                marker.on('dblclick', markerdbClick);//双击事件
+                marker.on('rightclick', markerrightclick);//右击事件
+                markers.push(marker);
+            }
+            infoWindow.close();
         }
-        infoWindow.close();
         // 添加点聚合
         var markers2 = [];
         function addMarkers() {
@@ -219,6 +223,12 @@
                 }
             }
         }
+        //刷新
+        function Refresh(date) {
+            mapdata = eval(date);
+            markerAdd();
+            addMarkers();
+        }
         //获取markersContent
         function markersContent(setmapdata, i) {
             return "<table><tr><td>人井编号:</td><td>" + setmapdata[i].Terminal_ID + "</td><td style='display:none;'>" + setmapdata[i].WellCurrentStateInfo.Well_State_ID + "</td><td>人井名称:</td><td>" + setmapdata[i].Name + "</td><td>终端手机号:</td><td>" + setmapdata[i].Terminal_Phone + "</td></tr><tr><td>经度:</td><td>" + setmapdata[i].Longitude + "</td><td>纬度:</td><td>" + setmapdata[i].Latitude + "</td><td>地点:</td><td>" + setmapdata[i].Place + "</td></tr><tr><td>温度:</td><td>" + setmapdata[i].WellCurrentStateInfo.Temperature + "</td><td>湿度:</td><td>" + setmapdata[i].WellCurrentStateInfo.Humidity + "</td><td>信号强度:</td><td>" + setmapdata[i].WellCurrentStateInfo.Signal_Strength + "</td></tr><tr><td>烟感:</td><td colspan='2'>" + setmapdata[i].WellCurrentStateInfo.Smoke_Detector + "</td><td>烟感电量:</td><td colspan='2'>" + setmapdata[i].WellCurrentStateInfo.Smoke_Power + "</td></tr><tr><td>值班人员工号:</td><td>" + setmapdata[i].OperatorInfo.Work_ID + "</td><td>值班人员姓名:</td><td>" + setmapdata[i].OperatorInfo.RealName.trim() + "</td><td>值班人员手机号:</td><td>" + setmapdata[i].OperatorInfo.Telephone + "</td></tr></table>";
@@ -261,7 +271,7 @@
         }, 0);
         //右键刷新
         mapMenu.addItem("刷新", function (e) {
-            jsObj.Refresh();
+            jsObj.Reload(Refresh);
         }, 1);
 
         //行政区划查询

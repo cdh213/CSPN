@@ -124,7 +124,6 @@ namespace CSPN
             WaitWin.Show(this, "正在关闭，请稍后。。。。。。");
             if (_isOpen == true)
             {
-                WebBrower.webBrower.Dispose();
                 Cef.Shutdown();
             }
             if (_isOpen != false)

@@ -37,8 +37,8 @@ namespace CSPN.control
         public MsgShowControl()
         {
             InitializeComponent();
-            WebBrower.webBrower.Dock = DockStyle.Fill;
-            TabPagemap.Controls.Add(WebBrower.webBrower);
+            WebBrower.GetInstance().webBrower.Dock = DockStyle.Fill;
+            TabPagemap.Controls.Add(WebBrower.GetInstance().webBrower);
             RefreshWellInfoJob.refreshEventHandler += new job.RefreshEventHandler(RefreshInfo);
         }
         private void MsgShowControl_Load(object sender, EventArgs e)
@@ -61,7 +61,7 @@ namespace CSPN.control
             {
                 IList<WellInfo> list = wellInfoService.GetWellInfo_List(ef.GetTerminal_ID());
                 string json = JsonConvert.SerializeObject(list);
-                WebBrower.webBrower.ExecuteScriptAsync("addMaker", json);
+                WebBrower.GetInstance().webBrower.ExecuteScriptAsync("addMaker", json);
             }
             DataLoade(null);
         }
@@ -77,7 +77,7 @@ namespace CSPN.control
             new EditWellInfoForm(terminal_ID, false, false, null).ShowDialog();
             IList<WellInfo> list = wellInfoService.GetWellInfo_List(terminal_ID);
             string json = JsonConvert.SerializeObject(list);
-            WebBrower.webBrower.ExecuteScriptAsync("updateMarker", json);
+            WebBrower.GetInstance().webBrower.ExecuteScriptAsync("updateMarker", json);
             DataLoade(null);
         }
             
@@ -95,7 +95,7 @@ namespace CSPN.control
                 if (wellInfoService.DeleteWellInfo(terminal_ID) > 0 && wellStateService.DeleteWellCurrentStateInfo(terminal_ID) > 0 && wellInfoService.DeleteReportNumInfo(terminal_ID) > 0)
                 {
                     MessageBox.Show("数据删除成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    WebBrower.webBrower.ExecuteScriptAsync("deleteMarker", terminal_ID);
+                    WebBrower.GetInstance().webBrower.ExecuteScriptAsync("deleteMarker", terminal_ID);
                 }
                 else
                 {
@@ -122,7 +122,7 @@ namespace CSPN.control
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("导入成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            WebBrower.Reload();
+            WebBrower.GetInstance().Reload();
         }
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {

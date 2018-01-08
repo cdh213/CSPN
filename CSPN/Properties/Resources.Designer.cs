@@ -61,8 +61,16 @@ namespace CSPN.Properties {
         }
         
         /// <summary>
-        ///   查找类似 &lt;style type=&quot;text/css&quot;&gt;
-        ///        #container,body,html{width:100%;height:100%;margin:0}p.my-desc{margin:5px 0;line-height:150%}.search{z-index:6201;left:5%;position:absolute}.searchbox{position:relative;z-index:2201;width:225px;height:40px;background:#fff;box-shadow:0 2px 2px rgba(0,0,0,.15);border-radius:3px}.searchbox .iptbox{position:absolute;top:0;width:225px;height:40px;box-sizing:border-box;z-index:2202;border-radius:2px}.searchbox #searchipt{position:absolute;top:10px;box-sizing:border-box;text-indent [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///   查找类似 &lt;!DOCTYPE html&gt;&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;head&gt;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;&lt;title&gt;&lt;/title&gt;&lt;style&gt;body{text-align:center}#loading{position:fixed;top:50%;left:50%;width:auto;height:150px;-webkit-transform:translateX(-50%) translateY(-50%)}.object{float:left;margin-top:40px;margin-right:30px;width:50px;height:50px;-webkit-border-radius:50% 50% 50% 50%;background-color:#002cff}#object_one{-webkit-animation:object_one 1.5s infinite}#object_two{-webkit-anima [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string Loading {
+            get {
+                return ResourceManager.GetString("Loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 &lt;style type=&quot;text/css&quot;&gt;#container,body,html{width:100%;height:100%;margin:0}p.my-desc{margin:5px 0;line-height:150%}.search{z-index:6201;left:5%;position:absolute}.searchbox{position:relative;z-index:2201;width:225px;height:40px;background:#fff;box-shadow:0 2px 2px rgba(0,0,0,.15);border-radius:3px}.searchbox .iptbox{position:absolute;top:0;width:225px;height:40px;box-sizing:border-box;z-index:2202;border-radius:2px}.searchbox #searchipt{position:absolute;top:10px;box-sizing:border-box;text-indent:2px;z-ind [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
         internal static string mapContent {
             get {

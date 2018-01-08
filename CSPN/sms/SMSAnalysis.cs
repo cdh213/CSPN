@@ -59,7 +59,6 @@ namespace CSPN.sms
         /// <param name="smsMsg"></param>
         public static void MsgResult(string smsMsg)
         {
-            ReadWriteRegistry registry = new ReadWriteRegistry();
             string[] s = new string[smsMsg.Length];
             for (int i = 0; i < smsMsg.Length - 1; i++)
             {
