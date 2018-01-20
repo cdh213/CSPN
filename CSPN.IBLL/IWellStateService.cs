@@ -62,7 +62,7 @@ namespace CSPN.IBLL
         /// <summary>
         /// 加载维护信息
         /// </summary>
-        DataTable GetMaintainInfo();
+        DataTable GetMaintainInfo(int pageSize, int pageIndex, out int pageCount);
         /// <summary>
         /// 维护信息更新
         /// </summary>

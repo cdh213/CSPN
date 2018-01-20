@@ -31,32 +31,41 @@ namespace CSPN.DAL
         }
         #endregion
 
-        const string select_WellInfo = "select a.Terminal_ID,Name,Longitude,Latitude,Place,Terminal_Phone,c.Terminal_ID as cTerminal_ID,Well_State_ID,Electricity,Temperature,Humidity,Smoke_Detector,Smoke_Power,Signal_Strength,d.ID,Icon,Color,Work_ID,RealName,Telephone from ((CSPN_Well_Info as a inner join CSPN_Operator_Info as b on a.Operator_ID=b.ID) inner join CSPN_Well_Current_State_Info as c on a.Terminal_ID=c.Terminal_ID) inner join CSPN_Dic_Well_State_Info as d on c.Well_State_ID=d.ID where 1=1";
-        const string query_WellInfo_Terminal_ID = "select a.Terminal_ID,Name,Longitude,Latitude,Place,Terminal_Phone,[State],RealName from ((CSPN_Well_Info as a inner join CSPN_Well_Current_State_Info as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Dic_Well_State_Info as c on b.Well_State_ID=c.ID) inner join CSPN_Operator_Info as d on a.Operator_ID=d.ID where a.Terminal_ID=@Terminal_ID";
-        const string query_WellInfo_Terminal_Phone = "select * from CSPN_Well_Info where Terminal_Phone=@Terminal_Phone";
+        const string select_WellInfo_Table = "select a.Terminal_ID,Name,Longitude,Latitude,Place,Terminal_Phone,Well_State_ID,Electricity,Temperature,Humidity,Smoke_Detector,Smoke_Power,Signal_Strength,Icon,Color,ReportInterval,Work_ID,RealName,Telephone from (((CSPN_Well_Info as a inner join CSPN_Operator_Info as b on a.Operator_ID=b.ID) inner join CSPN_Well_Current_State_Info as c on a.Terminal_ID=c.Terminal_ID) inner join CSPN_Dic_Well_State_Info as d on c.Well_State_ID=d.ID) inner join CSPN_ReportNumInfo as e on a.Terminal_ID=e.Terminal_ID where a.Terminal_ID between (select max(a.Terminal_ID) from (select top {0} a.Terminal_ID from CSPN_Well_Info as a order by a.Terminal_ID asc)) and (select max(a.Terminal_ID) from (select top {1} a.Terminal_ID from CSPN_Well_Info as a order by a.Terminal_ID asc)) order by a.Terminal_ID asc";
+        const string select_WellInfo_Count = "select count(*) from CSPN_Well_Info where 1=1";
+        const string select_WellInfo = "select a.Terminal_ID,Name,Longitude,Latitude,Place,Terminal_Phone,c.Terminal_ID as cTerminal_ID,Well_State_ID,Electricity,Temperature,Humidity,Smoke_Detector,Smoke_Power,Signal_Strength,d.ID,Icon,Color,e.Terminal_ID as eTerminal_ID,ReportInterval,Work_ID,RealName,Telephone from (((CSPN_Well_Info as a inner join CSPN_Operator_Info as b on a.Operator_ID=b.ID) inner join CSPN_Well_Current_State_Info as c on a.Terminal_ID=c.Terminal_ID) inner join CSPN_Dic_Well_State_Info as d on c.Well_State_ID=d.ID) inner join CSPN_ReportNumInfo as e on a.Terminal_ID=e.Terminal_ID where 1=1";
+        const string query_WellInfo_Terminal_ID = "select a.Terminal_ID as Terminal_ID,Name,Longitude,Latitude,Place,Terminal_Phone,[State],RealName,e.Terminal_ID,ReportInterval from (((CSPN_Well_Info as a inner join CSPN_Well_Current_State_Info as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Dic_Well_State_Info as c on b.Well_State_ID=c.ID) inner join CSPN_Operator_Info as d on a.Operator_ID=d.ID) inner join CSPN_ReportNumInfo as e on a.Terminal_ID=e.Terminal_ID where a.Terminal_ID=@Terminal_ID";
+        const string query_WellInfo_Terminal_Phone = "select a.*,b.Well_State_ID from CSPN_Well_Info as a inner join CSPN_Well_Current_State_Info as b on a.Terminal_ID=b.Terminal_ID where Terminal_Phone=@Terminal_Phone";
         const string update_WellInfo_Terminal_ID = "update CSPN_Well_Info set Name=@Name,Longitude=@Longitude,Latitude=@Latitude,Place=@Place,Operator_ID=@Operator_ID,Terminal_Phone=@Terminal_Phone where Terminal_ID=@Terminal_ID";
         const string Insert_WellInfo = "insert into CSPN_Well_Info(Terminal_ID,Name,Longitude,Latitude,Place,Operator_ID,Terminal_Phone) values(@Terminal_ID,@Name,@Longitude,@Latitude,@Place,@Operator_ID,@Terminal_Phone)";
         const string Delete_WellInfo = "delete from CSPN_Well_Info where Terminal_ID=@Terminal_ID";
 
-        
+        StringBuilder sb = null;
+        StringBuilder count = null;
         /// <summary>
         /// 查询人井信息
         /// </summary>
-        public DataTable GetWellInfo_Table(string wellinfo)
+        public DataTable GetWellInfo_Table(string wellinfo,int fSize,int sSize,out int pageCount)
         {
-            StringBuilder sb = new StringBuilder(select_WellInfo);
             using (DataTable table = new DataTable())
             {
-                if (wellinfo != null)
+                if (wellinfo == null)
                 {
-                    sb.AppendFormat(" and Terminal_ID='{0}' or Name='{0}' or Place='{0}' or Place='{0}'", wellinfo);
+                    sb = new StringBuilder();
+                    sb.AppendFormat(select_WellInfo_Table, fSize, sSize);
+                    count = new StringBuilder(select_WellInfo_Count);
+                }
+                else
+                {
+                    sb = new StringBuilder(select_WellInfo);
+                    sb.AppendFormat(" and a.Terminal_ID='{0}' or Name='{0}' or Place='{0}' or Place='{0}'", wellinfo);
+                    count = new StringBuilder(select_WellInfo_Count);
+                    count.AppendFormat(" and Terminal_ID='{0}' or Name='{0}' or Place='{0}' or Place='{0}'", wellinfo);
                 }
                 using (Conn)
                 {
-                    using (IDataReader read = Conn.ExecuteReader(sb.ToString()))
-                    {
-                        table.Load(read);
-                    }
+                    pageCount = (int)Conn.ExecuteScalar(count.ToString());
+                    table.Load(Conn.ExecuteReader(sb.ToString()));
                 }
                 return table;
             }
@@ -66,14 +75,14 @@ namespace CSPN.DAL
         /// </summary>
         public IList<WellInfo> GetWellInfo_List(string wellinfo)
         {
-            StringBuilder sb = new StringBuilder(select_WellInfo);
+            sb = new StringBuilder(select_WellInfo);
             if (wellinfo != null)
             {
                 sb.AppendFormat(" and a.Terminal_ID='{0}' or Name='{0}' or Place='{0}' or Place='{0}'", wellinfo);
             }
             using (Conn)
             {
-                return Conn.Query<WellInfo, WellCurrentStateInfo, WellStateInfo, OperatorInfo, WellInfo>(sb.ToString(), (a, c, d, b) => { a.WellCurrentStateInfo = c; a.WellStateInfo = d; a.OperatorInfo = b; return a; }, null, null, true, "Terminal_ID,cTerminal_ID,ID,Work_ID").ToList();
+                return Conn.Query<WellInfo, WellCurrentStateInfo, WellStateInfo, ReportNumInfo, OperatorInfo, WellInfo>(sb.ToString(), (a, c, d, e, b) => { a.WellCurrentStateInfo = c; a.WellStateInfo = d; a.OperatorInfo = b; a.ReportNumInfo = e; return a; }, null, null, true, "Terminal_ID,cTerminal_ID,ID,eTerminal_ID,Work_ID").ToList();
             }
         }
         /// <summary>
@@ -83,7 +92,7 @@ namespace CSPN.DAL
         {
             using (Conn)
             {
-                return Conn.Query<WellInfo, WellStateInfo, OperatorInfo, WellInfo>(query_WellInfo_Terminal_ID, (a, b, c) => { a.WellStateInfo = b; a.OperatorInfo = c; return a; }, new { Terminal_ID = terminal_ID }, null, true, "Terminal_ID,State,RealName").FirstOrDefault();
+                return Conn.Query<WellInfo, WellStateInfo, OperatorInfo, ReportNumInfo, WellInfo>(query_WellInfo_Terminal_ID, (a, b, c, d) => { a.WellStateInfo = b; a.OperatorInfo = c; a.ReportNumInfo = d; return a; }, new { Terminal_ID = terminal_ID }, null, true, "Terminal_ID,State,RealName,e.Terminal_ID").FirstOrDefault();
             }
         }
         /// <summary>
@@ -93,8 +102,7 @@ namespace CSPN.DAL
         {
             using (Conn)
             {
-                return Conn.Query<WellInfo>(query_WellInfo_Terminal_Phone, new { Terminal_Phone = terminal_Phone }).FirstOrDefault();
-                
+                return Conn.Query<WellInfo, WellCurrentStateInfo, WellInfo>(query_WellInfo_Terminal_Phone, (a, b) => { a.WellCurrentStateInfo = b; return a; }, new { Terminal_Phone = terminal_Phone }, null, true, "Terminal_ID,Well_State_ID").FirstOrDefault();
             }
         }
         /// <summary>

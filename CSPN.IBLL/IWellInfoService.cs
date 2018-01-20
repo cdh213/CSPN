@@ -19,7 +19,7 @@ namespace CSPN.IBLL
         /// <summary>
         /// 查询人井信息
         /// </summary>
-        DataTable GetWellInfo_Table(string wellinfo);
+        DataTable GetWellInfo_Table(string wellinfo, int pageSize, int pageIndex, out int pageCount);
         /// <summary>
         /// 查询人井信息
         /// </summary>
@@ -68,9 +68,13 @@ namespace CSPN.IBLL
         /// </summary>
         int UpdateNotReportTimes();
         /// <summary>
+        /// 更新人井上未时间间隔
+        /// </summary>
+        int UpdateReportInterval(int reportInterval, string terminal_ID);
+        /// <summary>
         /// 增加人井信息
         /// </summary>
-        int InsertReportNumInfo(string terminal_ID);
+        int InsertReportNumInfo(string terminal_ID, int reportInterval);
         /// <summary>
         /// 删除人井信息
         /// </summary>

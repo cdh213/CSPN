@@ -38,6 +38,17 @@
             this.TabPagelist = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.grid = new System.Windows.Forms.DataGridView();
+            this.btnQuery = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnInto = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.page = new CSPN.assistcontrol.DataGridPage();
+            this.txtCondition = new CSPN.assistcontrol.WaterTextBox();
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.ck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TerminalID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Terminal_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Longitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,20 +62,10 @@
             this.Smoke_Power = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Signal_Strength = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Icon = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ReportInterval = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Work_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RealName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Telephone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnQuery = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnInto = new System.Windows.Forms.Button();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.page = new CSPN.assistcontrol.DataGridPage();
-            this.txtCondition = new CSPN.assistcontrol.WaterTextBox();
-            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.ck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.TabPagelist.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -176,6 +177,7 @@
             this.Smoke_Power,
             this.Signal_Strength,
             this.Icon,
+            this.ReportInterval,
             this.Work_ID,
             this.RealName,
             this.Telephone});
@@ -204,136 +206,6 @@
             this.grid.TabIndex = 15;
             this.grid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grid_CellFormatting);
             this.grid.CellToolTipTextNeeded += new System.Windows.Forms.DataGridViewCellToolTipTextNeededEventHandler(this.grid_CellToolTipTextNeeded);
-            // 
-            // TerminalID
-            // 
-            this.TerminalID.DataPropertyName = "Terminal_ID";
-            this.TerminalID.HeaderText = "人井编号";
-            this.TerminalID.Name = "TerminalID";
-            this.TerminalID.ReadOnly = true;
-            this.TerminalID.Width = 90;
-            // 
-            // Terminal_Name
-            // 
-            this.Terminal_Name.DataPropertyName = "Name";
-            this.Terminal_Name.HeaderText = "人井名称";
-            this.Terminal_Name.Name = "Terminal_Name";
-            this.Terminal_Name.ReadOnly = true;
-            this.Terminal_Name.Width = 90;
-            // 
-            // Longitude
-            // 
-            this.Longitude.DataPropertyName = "Longitude";
-            this.Longitude.HeaderText = "经度";
-            this.Longitude.Name = "Longitude";
-            this.Longitude.ReadOnly = true;
-            this.Longitude.Width = 62;
-            // 
-            // Latitude
-            // 
-            this.Latitude.DataPropertyName = "Latitude";
-            this.Latitude.HeaderText = "纬度";
-            this.Latitude.Name = "Latitude";
-            this.Latitude.ReadOnly = true;
-            this.Latitude.Width = 62;
-            // 
-            // Place
-            // 
-            this.Place.DataPropertyName = "Place";
-            this.Place.HeaderText = "地点";
-            this.Place.Name = "Place";
-            this.Place.ReadOnly = true;
-            this.Place.Width = 62;
-            // 
-            // Terminal_Phone
-            // 
-            this.Terminal_Phone.DataPropertyName = "Terminal_Phone";
-            this.Terminal_Phone.HeaderText = "终端手机号";
-            this.Terminal_Phone.Name = "Terminal_Phone";
-            this.Terminal_Phone.ReadOnly = true;
-            this.Terminal_Phone.Width = 104;
-            // 
-            // Electricity
-            // 
-            this.Electricity.DataPropertyName = "Electricity";
-            this.Electricity.HeaderText = "终端电量";
-            this.Electricity.Name = "Electricity";
-            this.Electricity.ReadOnly = true;
-            this.Electricity.Width = 90;
-            // 
-            // Temperature
-            // 
-            this.Temperature.DataPropertyName = "Temperature";
-            this.Temperature.HeaderText = "温度";
-            this.Temperature.Name = "Temperature";
-            this.Temperature.ReadOnly = true;
-            this.Temperature.Width = 62;
-            // 
-            // Humidity
-            // 
-            this.Humidity.DataPropertyName = "Humidity";
-            this.Humidity.HeaderText = "湿度";
-            this.Humidity.Name = "Humidity";
-            this.Humidity.ReadOnly = true;
-            this.Humidity.Width = 62;
-            // 
-            // Smoke_Detector
-            // 
-            this.Smoke_Detector.DataPropertyName = "Smoke_Detector";
-            this.Smoke_Detector.HeaderText = "烟感";
-            this.Smoke_Detector.Name = "Smoke_Detector";
-            this.Smoke_Detector.ReadOnly = true;
-            this.Smoke_Detector.Width = 62;
-            // 
-            // Smoke_Power
-            // 
-            this.Smoke_Power.DataPropertyName = "Smoke_Power";
-            this.Smoke_Power.HeaderText = "烟感电量";
-            this.Smoke_Power.Name = "Smoke_Power";
-            this.Smoke_Power.ReadOnly = true;
-            this.Smoke_Power.Width = 90;
-            // 
-            // Signal_Strength
-            // 
-            this.Signal_Strength.DataPropertyName = "Signal_Strength";
-            this.Signal_Strength.HeaderText = "信号强度";
-            this.Signal_Strength.Name = "Signal_Strength";
-            this.Signal_Strength.ReadOnly = true;
-            this.Signal_Strength.ToolTipText = "取值从00到31。若为99，表示无信号。";
-            this.Signal_Strength.Width = 90;
-            // 
-            // Icon
-            // 
-            this.Icon.DataPropertyName = "Icon";
-            this.Icon.HeaderText = "状态";
-            this.Icon.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Icon.Name = "Icon";
-            this.Icon.ReadOnly = true;
-            this.Icon.Width = 43;
-            // 
-            // Work_ID
-            // 
-            this.Work_ID.DataPropertyName = "Work_ID";
-            this.Work_ID.HeaderText = "值班人员工号";
-            this.Work_ID.Name = "Work_ID";
-            this.Work_ID.ReadOnly = true;
-            this.Work_ID.Width = 118;
-            // 
-            // RealName
-            // 
-            this.RealName.DataPropertyName = "RealName";
-            this.RealName.HeaderText = "值班人员姓名";
-            this.RealName.Name = "RealName";
-            this.RealName.ReadOnly = true;
-            this.RealName.Width = 118;
-            // 
-            // Telephone
-            // 
-            this.Telephone.DataPropertyName = "Telephone";
-            this.Telephone.HeaderText = "值班人员手机号";
-            this.Telephone.Name = "Telephone";
-            this.Telephone.ReadOnly = true;
-            this.Telephone.Width = 132;
             // 
             // btnQuery
             // 
@@ -462,10 +334,7 @@
             this.page.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.page.Location = new System.Drawing.Point(3, 245);
             this.page.Name = "page";
-            this.page.PageCount = 0;
-            this.page.PageIndex = 1;
-            this.page.PageSize = 30;
-            this.page.RecorderCount = 0;
+            this.page.PageSize = 50;
             this.page.Size = new System.Drawing.Size(1056, 34);
             this.page.TabIndex = 16;
             // 
@@ -498,6 +367,144 @@
             this.Column1.HeaderText = "Well_Info_ID";
             this.Column1.Name = "Column1";
             this.Column1.Visible = false;
+            // 
+            // TerminalID
+            // 
+            this.TerminalID.DataPropertyName = "Terminal_ID";
+            this.TerminalID.HeaderText = "人井编号";
+            this.TerminalID.Name = "TerminalID";
+            this.TerminalID.ReadOnly = true;
+            this.TerminalID.Width = 90;
+            // 
+            // Terminal_Name
+            // 
+            this.Terminal_Name.DataPropertyName = "Name";
+            this.Terminal_Name.HeaderText = "人井名称";
+            this.Terminal_Name.Name = "Terminal_Name";
+            this.Terminal_Name.ReadOnly = true;
+            this.Terminal_Name.Width = 90;
+            // 
+            // Longitude
+            // 
+            this.Longitude.DataPropertyName = "Longitude";
+            this.Longitude.HeaderText = "经度";
+            this.Longitude.Name = "Longitude";
+            this.Longitude.ReadOnly = true;
+            this.Longitude.Width = 62;
+            // 
+            // Latitude
+            // 
+            this.Latitude.DataPropertyName = "Latitude";
+            this.Latitude.HeaderText = "纬度";
+            this.Latitude.Name = "Latitude";
+            this.Latitude.ReadOnly = true;
+            this.Latitude.Width = 62;
+            // 
+            // Place
+            // 
+            this.Place.DataPropertyName = "Place";
+            this.Place.HeaderText = "地点";
+            this.Place.Name = "Place";
+            this.Place.ReadOnly = true;
+            this.Place.Width = 62;
+            // 
+            // Terminal_Phone
+            // 
+            this.Terminal_Phone.DataPropertyName = "Terminal_Phone";
+            this.Terminal_Phone.HeaderText = "终端手机号";
+            this.Terminal_Phone.Name = "Terminal_Phone";
+            this.Terminal_Phone.ReadOnly = true;
+            this.Terminal_Phone.Width = 104;
+            // 
+            // Electricity
+            // 
+            this.Electricity.DataPropertyName = "Electricity";
+            this.Electricity.HeaderText = "终端电量";
+            this.Electricity.Name = "Electricity";
+            this.Electricity.ReadOnly = true;
+            this.Electricity.Width = 90;
+            // 
+            // Temperature
+            // 
+            this.Temperature.DataPropertyName = "Temperature";
+            this.Temperature.HeaderText = "温度";
+            this.Temperature.Name = "Temperature";
+            this.Temperature.ReadOnly = true;
+            this.Temperature.Width = 62;
+            // 
+            // Humidity
+            // 
+            this.Humidity.DataPropertyName = "Humidity";
+            this.Humidity.HeaderText = "湿度";
+            this.Humidity.Name = "Humidity";
+            this.Humidity.ReadOnly = true;
+            this.Humidity.Width = 62;
+            // 
+            // Smoke_Detector
+            // 
+            this.Smoke_Detector.DataPropertyName = "Smoke_Detector";
+            this.Smoke_Detector.HeaderText = "烟感";
+            this.Smoke_Detector.Name = "Smoke_Detector";
+            this.Smoke_Detector.ReadOnly = true;
+            this.Smoke_Detector.Width = 62;
+            // 
+            // Smoke_Power
+            // 
+            this.Smoke_Power.DataPropertyName = "Smoke_Power";
+            this.Smoke_Power.HeaderText = "烟感电量";
+            this.Smoke_Power.Name = "Smoke_Power";
+            this.Smoke_Power.ReadOnly = true;
+            this.Smoke_Power.Width = 90;
+            // 
+            // Signal_Strength
+            // 
+            this.Signal_Strength.DataPropertyName = "Signal_Strength";
+            this.Signal_Strength.HeaderText = "信号强度";
+            this.Signal_Strength.Name = "Signal_Strength";
+            this.Signal_Strength.ReadOnly = true;
+            this.Signal_Strength.ToolTipText = "取值从00到31。若为99，表示无信号。";
+            this.Signal_Strength.Width = 90;
+            // 
+            // Icon
+            // 
+            this.Icon.DataPropertyName = "Icon";
+            this.Icon.HeaderText = "状态";
+            this.Icon.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Icon.Name = "Icon";
+            this.Icon.ReadOnly = true;
+            this.Icon.Width = 43;
+            // 
+            // ReportInterval
+            // 
+            this.ReportInterval.DataPropertyName = "ReportInterval";
+            this.ReportInterval.HeaderText = "上报时间间隔";
+            this.ReportInterval.Name = "ReportInterval";
+            this.ReportInterval.ReadOnly = true;
+            this.ReportInterval.Width = 118;
+            // 
+            // Work_ID
+            // 
+            this.Work_ID.DataPropertyName = "Work_ID";
+            this.Work_ID.HeaderText = "值班人员工号";
+            this.Work_ID.Name = "Work_ID";
+            this.Work_ID.ReadOnly = true;
+            this.Work_ID.Width = 118;
+            // 
+            // RealName
+            // 
+            this.RealName.DataPropertyName = "RealName";
+            this.RealName.HeaderText = "值班人员姓名";
+            this.RealName.Name = "RealName";
+            this.RealName.ReadOnly = true;
+            this.RealName.Width = 118;
+            // 
+            // Telephone
+            // 
+            this.Telephone.DataPropertyName = "Telephone";
+            this.Telephone.HeaderText = "值班人员手机号";
+            this.Telephone.Name = "Telephone";
+            this.Telephone.ReadOnly = true;
+            this.Telephone.Width = 132;
             // 
             // MsgShowControl
             // 
@@ -549,6 +556,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Smoke_Power;
         private System.Windows.Forms.DataGridViewTextBoxColumn Signal_Strength;
         private System.Windows.Forms.DataGridViewImageColumn Icon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReportInterval;
         private System.Windows.Forms.DataGridViewTextBoxColumn Work_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn RealName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Telephone;

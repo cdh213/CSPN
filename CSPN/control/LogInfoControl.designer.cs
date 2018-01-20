@@ -32,8 +32,9 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TabPagesys = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.Syspage = new CSPN.assistcontrol.DataGridPage();
+            this.btnSysRefresh = new System.Windows.Forms.Button();
             this.btnSysOut = new System.Windows.Forms.Button();
+            this.Syspage = new CSPN.assistcontrol.DataGridPage();
             this.panelSys = new System.Windows.Forms.Panel();
             this.TabPageuser = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -42,6 +43,7 @@
             this.panelUser = new System.Windows.Forms.Panel();
             this.cbType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnUserRefresh = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.TabPagesys.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -75,10 +77,12 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.AutoScroll = true;
-            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.Syspage, 0, 2);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.btnSysRefresh, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnSysOut, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.Syspage, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.panelSys, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -90,18 +94,25 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(959, 434);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // Syspage
+            // btnSysRefresh
             // 
-            this.Syspage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Syspage.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Syspage.Location = new System.Drawing.Point(3, 397);
-            this.Syspage.Name = "Syspage";
-            this.Syspage.PageCount = 0;
-            this.Syspage.PageIndex = 1;
-            this.Syspage.PageSize = 30;
-            this.Syspage.RecorderCount = 0;
-            this.Syspage.Size = new System.Drawing.Size(953, 34);
-            this.Syspage.TabIndex = 0;
+            this.btnSysRefresh.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSysRefresh.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSysRefresh.BackgroundImage")));
+            this.btnSysRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSysRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSysRefresh.FlatAppearance.BorderSize = 0;
+            this.btnSysRefresh.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSysRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSysRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSysRefresh.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnSysRefresh.ForeColor = System.Drawing.Color.White;
+            this.btnSysRefresh.Location = new System.Drawing.Point(874, 7);
+            this.btnSysRefresh.Name = "btnSysRefresh";
+            this.btnSysRefresh.Size = new System.Drawing.Size(69, 26);
+            this.btnSysRefresh.TabIndex = 15;
+            this.btnSysRefresh.Text = "刷新";
+            this.btnSysRefresh.UseVisualStyleBackColor = true;
+            this.btnSysRefresh.Click += new System.EventHandler(this.btnSysRefresh_Click);
             // 
             // btnSysOut
             // 
@@ -115,16 +126,28 @@
             this.btnSysOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSysOut.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnSysOut.ForeColor = System.Drawing.Color.White;
-            this.btnSysOut.Location = new System.Drawing.Point(816, 5);
+            this.btnSysOut.Location = new System.Drawing.Point(716, 7);
             this.btnSysOut.Name = "btnSysOut";
-            this.btnSysOut.Size = new System.Drawing.Size(140, 30);
+            this.btnSysOut.Size = new System.Drawing.Size(140, 26);
             this.btnSysOut.TabIndex = 14;
             this.btnSysOut.Text = "信息导出(Excel)";
             this.btnSysOut.UseVisualStyleBackColor = true;
             this.btnSysOut.Click += new System.EventHandler(this.btnSysOut_Click);
             // 
+            // Syspage
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.Syspage, 2);
+            this.Syspage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Syspage.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Syspage.Location = new System.Drawing.Point(3, 397);
+            this.Syspage.Name = "Syspage";
+            this.Syspage.PageSize = 50;
+            this.Syspage.Size = new System.Drawing.Size(953, 34);
+            this.Syspage.TabIndex = 0;
+            // 
             // panelSys
             // 
+            this.tableLayoutPanel1.SetColumnSpan(this.panelSys, 2);
             this.panelSys.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelSys.Location = new System.Drawing.Point(3, 43);
             this.panelSys.Name = "panelSys";
@@ -145,10 +168,12 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.AutoScroll = true;
-            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnCount = 4;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.btnUserRefresh, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.userpage, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.btnUserOut, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.panelUser, 0, 1);
@@ -166,15 +191,12 @@
             // 
             // userpage
             // 
-            this.tableLayoutPanel2.SetColumnSpan(this.userpage, 3);
+            this.tableLayoutPanel2.SetColumnSpan(this.userpage, 4);
             this.userpage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userpage.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.userpage.Location = new System.Drawing.Point(3, 397);
             this.userpage.Name = "userpage";
-            this.userpage.PageCount = 0;
-            this.userpage.PageIndex = 1;
-            this.userpage.PageSize = 30;
-            this.userpage.RecorderCount = 0;
+            this.userpage.PageSize = 50;
             this.userpage.Size = new System.Drawing.Size(953, 34);
             this.userpage.TabIndex = 0;
             // 
@@ -190,9 +212,9 @@
             this.btnUserOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUserOut.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnUserOut.ForeColor = System.Drawing.Color.White;
-            this.btnUserOut.Location = new System.Drawing.Point(816, 5);
+            this.btnUserOut.Location = new System.Drawing.Point(715, 7);
             this.btnUserOut.Name = "btnUserOut";
-            this.btnUserOut.Size = new System.Drawing.Size(140, 30);
+            this.btnUserOut.Size = new System.Drawing.Size(140, 26);
             this.btnUserOut.TabIndex = 14;
             this.btnUserOut.Text = "信息导出(Excel)";
             this.btnUserOut.UseVisualStyleBackColor = true;
@@ -200,7 +222,7 @@
             // 
             // panelUser
             // 
-            this.tableLayoutPanel2.SetColumnSpan(this.panelUser, 3);
+            this.tableLayoutPanel2.SetColumnSpan(this.panelUser, 4);
             this.panelUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelUser.Location = new System.Drawing.Point(3, 43);
             this.panelUser.Name = "panelUser";
@@ -230,6 +252,26 @@
             this.label1.TabIndex = 17;
             this.label1.Text = "日志类型";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btnUserRefresh
+            // 
+            this.btnUserRefresh.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnUserRefresh.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnUserRefresh.BackgroundImage")));
+            this.btnUserRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnUserRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUserRefresh.FlatAppearance.BorderSize = 0;
+            this.btnUserRefresh.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnUserRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnUserRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUserRefresh.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnUserRefresh.ForeColor = System.Drawing.Color.White;
+            this.btnUserRefresh.Location = new System.Drawing.Point(874, 7);
+            this.btnUserRefresh.Name = "btnUserRefresh";
+            this.btnUserRefresh.Size = new System.Drawing.Size(69, 26);
+            this.btnUserRefresh.TabIndex = 16;
+            this.btnUserRefresh.Text = "刷新";
+            this.btnUserRefresh.UseVisualStyleBackColor = true;
+            this.btnUserRefresh.Click += new System.EventHandler(this.btnUserRefresh_Click);
             // 
             // LogInfoControl
             // 
@@ -626,5 +668,7 @@
         private System.Windows.Forms.ComboBox cbType;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelSys;
+        private System.Windows.Forms.Button btnSysRefresh;
+        private System.Windows.Forms.Button btnUserRefresh;
     }
 }

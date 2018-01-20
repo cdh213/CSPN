@@ -231,7 +231,7 @@ namespace CSPN.control
             work_ID = usergrid.CurrentRow.Cells[0].Value.ToString();
             new EditUserInfoForm(false, work_ID).ShowDialog();
             DataLoade(false, null);
-            WebBrower.GetInstance().Reload();
+            WebBrower.Reload();
         }
         //删除值班人员
         private void btnDelete_Click(object sender, EventArgs e)
@@ -270,7 +270,7 @@ namespace CSPN.control
             {
                 path = openFileDialog.FileName;
                 this.backgroundWorker.RunWorkerAsync(); // 运行 backgroundWorker 组件
-                ImportProgressBarForm form = new ImportProgressBarForm(this.backgroundWorker);// 显示进度条窗体
+                ImportProgressBarForm form = new ImportProgressBarForm(this.backgroundWorker, this.ParentForm.Width);// 显示进度条窗体
                 form.ShowDialog(this);
                 DataLoade(false, null);
             }

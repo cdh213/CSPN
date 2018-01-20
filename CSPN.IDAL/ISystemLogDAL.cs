@@ -16,6 +16,10 @@ namespace CSPN.IDAL
         /// </summary>
         DataTable GetSystemLogInfo();
         /// <summary>
+        /// 查询系统日志信息
+        /// </summary>
+        DataTable GetSystemLogInfo(int fSize, int sSize, out int pageCount);
+        /// <summary>
         /// 查询发生时间的最小值
         /// </summary>
         DateTime GetMinHappen_Time();

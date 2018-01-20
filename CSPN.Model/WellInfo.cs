@@ -22,6 +22,8 @@ namespace CSPN.Model
         private WellStateInfo _wellStateInfo;
         private OperatorInfo _operatorInfo;
         private SystemLogInfo _systemLogInfo;
+        private ReportNumInfo _reportNumInfo;
+
 
         #region 属性
         /// <summary>
@@ -99,6 +101,11 @@ namespace CSPN.Model
         {
             get { return _systemLogInfo; }
             set { _systemLogInfo = value; }
+        }
+        public ReportNumInfo ReportNumInfo
+        {
+            get { return _reportNumInfo; }
+            set { _reportNumInfo = value; }
         }
         #endregion
     }

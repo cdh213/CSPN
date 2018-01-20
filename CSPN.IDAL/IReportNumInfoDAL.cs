@@ -31,9 +31,13 @@ namespace CSPN.IDAL
         /// </summary>
         int UpdateNotReportTimes();
         /// <summary>
+        /// 更新人井上未时间间隔
+        /// </summary>
+        int UpdateReportInterval(int reportInterval, string terminal_ID);
+        /// <summary>
         /// 增加人井信息
         /// </summary>
-        int InsertReportNumInfo(string terminal_ID);
+        int InsertReportNumInfo(string terminal_ID, int reportInterval);
         /// <summary>
         /// 删除人井信息
         /// </summary>

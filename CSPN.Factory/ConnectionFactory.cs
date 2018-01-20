@@ -21,22 +21,21 @@ namespace CSPN.Factory
 
         public static IDbConnection CreateConnection()
         {
-            IDbConnection conn;
-            switch (connectionName)
+            IDbConnection conn = null;
+            if (conn == null)
             {
-                case "SQLServer":
-                    conn = new SqlConnection(connStr);
-                    break;
-                case "Access":
-                    conn = new OleDbConnection(connStr);
-                    break;
-                default:
-                    conn = new SqlConnection(connStr);
-                    break;
-            }
-            if (conn.State != ConnectionState.Open)
-            {
-                conn.Open();
+                switch (connectionName)
+                {
+                    case "SQLServer":
+                        conn = new SqlConnection(connStr);
+                        break;
+                    case "Access":
+                        conn = new OleDbConnection(connStr);
+                        break;
+                    default:
+                        conn = new SqlConnection(connStr);
+                        break;
+                }
             }
             return conn;
         }

@@ -191,6 +191,21 @@ namespace CSPN.control
             dgvNotReport.AutoGenerateColumns = false;
             dgvNotReport.DataSource = wellInfoService.GetNotReportNumInfo(reportTimes);
         }
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+            if (e.TabPage == AlarmTab)
+            {
+                AlarmDataLoade();
+            }
+            else if (e.TabPage == ProcessedTab)
+            {
+                DisposeDataLoade();
+            }
+            else
+            {
+                NotReportDataLoade();
+            }
+        }
         #endregion
 
         #region 创建图片
@@ -216,6 +231,5 @@ namespace CSPN.control
             DisposeDataLoade();
             NotReportDataLoade();
         }
-
     }
 }

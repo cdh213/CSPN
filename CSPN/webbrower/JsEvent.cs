@@ -59,7 +59,7 @@ namespace CSPN.webbrower
             EditWellInfoForm ef = new EditWellInfoForm(null, true, true, menuPositon);
             ef.ShowDialog();
             terminal_ID = ef.GetTerminal_ID();
-            if (ef.result == DialogResult.OK)
+            if (ef.DialogResult == DialogResult.OK)
             {
                 Task.Run(async () =>
                 {
@@ -76,7 +76,7 @@ namespace CSPN.webbrower
         {
             EditWellInfoForm ef = new EditWellInfoForm(terminal_ID, false, false, null);
             ef.ShowDialog();
-            if (ef.result == DialogResult.OK)
+            if (ef.DialogResult == DialogResult.OK)
             {
                 Task.Run(async () =>
                 {
@@ -96,7 +96,7 @@ namespace CSPN.webbrower
                 if (wellInfoService.DeleteWellInfo(terminal_ID) > 0 && wellStateService.DeleteWellCurrentStateInfo(terminal_ID) > 0 && wellInfoService.DeleteReportNumInfo(terminal_ID) > 0)
                 {
                     MessageBox.Show("数据删除成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    WebBrower.GetInstance().webBrower.ExecuteScriptAsync("deleteMarker", terminal_ID);
+                    WebBrower.webBrower.ExecuteScriptAsync("deleteMarker", terminal_ID);
                 }
                 else
                 {

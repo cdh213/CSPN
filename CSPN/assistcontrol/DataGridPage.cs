@@ -39,136 +39,70 @@ namespace CSPN.assistcontrol
             _type = type;
             ReadDataTable();
         }
-        #region Access分页
+
         /// <summary>
-        /// 绑定数据
+        /// 得到数据
         /// </summary>
-        private void ReadDataTable()
+        public void ReadDataTable()
         {
             switch (_type)
             {
                 case CSPNType.WellInfo:
-                    table = wellInfoService.GetWellInfo_Table(_info);
+                    table = wellInfoService.GetWellInfo_Table(_info, pageSize, pageIndex, out recorderCount);
                     break;
                 case CSPNType.OperatorInfo:
-                    table = userservice.GetOperator_Table();
+                    table = userservice.GetOperator_Table(pageSize, pageIndex, out recorderCount);
                     break;
                 case CSPNType.SysLogInfo:
-                    table = logservice.GetSystemLogInfo();
+                    table = logservice.GetSystemLogInfo(pageSize, pageIndex, out recorderCount);
                     break;
                 case CSPNType.UserLogInfo_WellInfo:
-                    table = logservice.GetUserLogInfo_WellInfo();
+                    table = logservice.GetUserLogInfo_WellInfo(pageSize, pageIndex, out recorderCount);
                     break;
                 case CSPNType.UserLogInfo_GeneralInfo:
-                    table = logservice.GetUserLogInfo_GeneralInfo();
+                    table = logservice.GetUserLogInfo_GeneralInfo(pageSize, pageIndex, out recorderCount);
                     break;
                 case CSPNType.MaintainInfo:
-                    table = wellStateService.GetMaintainInfo();
+                    table = wellStateService.GetMaintainInfo(pageSize, pageIndex, out recorderCount);
                     break;
             }
-            //多少页
-            MaxIndex = table.Rows.Count / pageSize + 1;
-            tbPageIndex.Text = PageIndex.ToString();
-            lbPageCount.Text = "/共" + MaxIndex + "页";
-            lbPageSize.Text = "每页" + PageSize.ToString() + "条";
-            DataTable tmpTable = new DataTable();
-            tmpTable = this.table.Clone();
-            int first = this.PageSize * (this.PageIndex - 1);
-            first = (first > 0) ? first : 0;
-            //如何总数量大于每页显示数量
-            if (this.table.Rows.Count >= this.PageSize * this.PageIndex)
+            //--控制
+            lbPageSize.Text = "每页" + pageSize.ToString() + "条";
+            lbPageCount.Text = "/共" + PageCount.ToString() + "页";
+            tbPageIndex.Text = pageIndex.ToString();
+            btnLast.Tag = PageCount;
+
+            if (PageCount > 1 && PageCount > pageIndex)
             {
-                for (int i = first; i < PageSize * this.PageIndex; i++)
-                    tmpTable.ImportRow(this.table.Rows[i]);
+                btnNext.Enabled = true;
+                btnLast.Enabled = true;
             }
             else
             {
-                for (int i = first; i < this.table.Rows.Count; i++)
-                    tmpTable.ImportRow(this.table.Rows[i]);
+                btnNext.Enabled = false;
+                btnLast.Enabled = false;
             }
 
-            this._grid.DataSource = tmpTable;
-            table.Clear();
-            tmpTable.Dispose();
+            if (pageIndex > 1 && pageIndex <= PageCount)
+            {
+                btnFirst.Enabled = true;
+                btnPrev.Enabled = true;
+            }
+            else
+            {
+                btnFirst.Enabled = false;
+                btnPrev.Enabled = false;
+            }
+            _grid.DataSource = table;
             table.Dispose();
-            DisplayPagingInfo();
         }
-
-        /// <summary>
-        /// 每页显示等数据
-        /// </summary>
-        private void DisplayPagingInfo()
-        {
-            if (this.PageIndex == 1)
-            {
-                this.btnPrev.Enabled = false;
-                this.btnFirst.Enabled = false;
-            }
-            else
-            {
-                this.btnPrev.Enabled = true;
-                this.btnFirst.Enabled = true;
-            }
-            if (this.PageIndex == this.MaxIndex)
-            {
-                this.btnNext.Enabled = false;
-                this.btnLast.Enabled = false;
-            }
-            else
-            {
-                this.btnNext.Enabled = true;
-                this.btnLast.Enabled = true;
-            }
-            lbPageCount.Text = "/共" + MaxIndex + "页";
-            int first = (this.PageIndex - 4) > 0 ? (this.PageIndex - 4) : 1;
-            int last = (first + 9) > this.MaxIndex ? this.MaxIndex : (first + 9);
-        }
-        #endregion
-
-        #region 其他分页
-        ///// <summary>
-        ///// 得到数据
-        ///// </summary>
-        //public void Bind()
-        //{
-        //    table = wellInfoService.GetWellInfo(PageSize, PageIndex, _strWhere, _wellInfo, out recorderCount);
-        //    //--控制
-        //    lbPageSize.Text = "每页" + PageSize.ToString() + "条";
-        //    lbPageCount.Text = "/共" + PageCount.ToString() + "页";
-        //    tbPageIndex.Text = PageIndex.ToString();
-
-        //    if (PageCount > 1 && PageCount > PageIndex)
-        //    {
-        //        btnNext.Enabled = true;
-        //        btnLast.Enabled = true;
-        //    }
-        //    else
-        //    {
-        //        btnNext.Enabled = false;
-        //        btnLast.Enabled = false;
-        //    }
-
-        //    if (PageIndex > 1 && PageIndex <= PageCount)
-        //    {
-        //        btnFirst.Enabled = true;
-        //        btnPrev.Enabled = true;
-        //    }
-        //    else
-        //    {
-        //        btnFirst.Enabled = false;
-        //        btnPrev.Enabled = false;
-        //    }
-        //    _grid.DataSource = table;
-        //    table.Dispose();
-        //}
-        #endregion
 
         /// <summary>
         /// 第一页
         /// </summary>
         private void btnFirst_Click(object sender, EventArgs e)
         {
-            PageIndex = 1;
+            pageIndex = 1;
             ReadDataTable();
         }
         /// <summary>
@@ -176,7 +110,7 @@ namespace CSPN.assistcontrol
         /// </summary>
         private void btnPrev_Click(object sender, EventArgs e)
         {
-            PageIndex--;
+            pageIndex--;
             ReadDataTable();
         }
         /// <summary>
@@ -184,7 +118,7 @@ namespace CSPN.assistcontrol
         /// </summary>
         private void btnNext_Click(object sender, EventArgs e)
         {
-            PageIndex++;
+            pageIndex++;
             ReadDataTable();
         }
         /// <summary>
@@ -192,7 +126,7 @@ namespace CSPN.assistcontrol
         /// </summary>
         private void btnLast_Click(object sender, EventArgs e)
         {
-            PageIndex = MaxIndex;
+            pageIndex = (int)btnLast.Tag;
             ReadDataTable();
         }
         /// <summary>
@@ -200,39 +134,39 @@ namespace CSPN.assistcontrol
         /// </summary>
         private void btnGo_Click(object sender, EventArgs e)
         {
-            PageIndex = int.Parse(tbPageIndex.Text.ToString());
+            pageIndex = int.Parse(tbPageIndex.Text.ToString());
             ReadDataTable();
         }
 
-        private int pageIndex = 1;    //当前页，默认第一页
-        private int pageSize = 30;    //页大小，默认20条目
-        private int pageCount;      //总共页
-        private int recorderCount;  //总共条目
-        private int MaxIndex = 1; //最大页数
-
-
         /// <summary>
-        /// 当前页
+        /// 当前页，默认第一页
         /// </summary>
-        public int PageIndex
-        {
-            get { return pageIndex; }
-            set { pageIndex = value; }
-        }
+        private int pageIndex = 1;
+        /// <summary>
+        /// 页大小，默认50条目
+        /// </summary>
+        private int pageSize = 50;
+        /// <summary>
+        /// 总共页
+        /// </summary>
+        private int pageCount;
+        /// <summary>
+        /// 总共条目
+        /// </summary>
+        private int recorderCount = 0;
 
         /// <summary>
-        /// 页大小
+        /// 页大小，默认50条目
         /// </summary>
         public int PageSize
         {
             get { return pageSize; }
             set { pageSize = value; }
         }
-
         /// <summary>
         /// 总共页
         /// </summary>
-        public int PageCount
+        private int PageCount
         {
             get
             {
@@ -241,15 +175,6 @@ namespace CSPN.assistcontrol
                     (recorderCount / pageSize);
             }
             set { pageCount = value; }
-        }
-
-        /// <summary>
-        /// 总共条目数
-        /// </summary>
-        public int RecorderCount
-        {
-            get { return recorderCount; }
-            set { recorderCount = value; }
         }
     }
 }

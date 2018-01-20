@@ -70,7 +70,8 @@ namespace CSPN.Properties {
         }
         
         /// <summary>
-        ///   查找类似 &lt;style type=&quot;text/css&quot;&gt;#container,body,html{width:100%;height:100%;margin:0}p.my-desc{margin:5px 0;line-height:150%}.search{z-index:6201;left:5%;position:absolute}.searchbox{position:relative;z-index:2201;width:225px;height:40px;background:#fff;box-shadow:0 2px 2px rgba(0,0,0,.15);border-radius:3px}.searchbox .iptbox{position:absolute;top:0;width:225px;height:40px;box-sizing:border-box;z-index:2202;border-radius:2px}.searchbox #searchipt{position:absolute;top:10px;box-sizing:border-box;text-indent:2px;z-ind [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///   查找类似 &lt;style type=&quot;text/css&quot;&gt;
+        ///        body,html{margin:0}#container,body,html{position:absolute;width:100%;height:100%}#container{top:0;right:0;bottom:0;left:0}.search{position:absolute;left:5%;z-index:6201}.searchbox{position:relative;z-index:2201;width:225px;height:40px;border-radius:3px;background:#fff;box-shadow:0 2px 2px rgba(0,0,0,.15)}.searchbox .iptbox{position:absolute;top:0;z-index:2202;box-sizing:border-box;width:225px;height:40px;border-radius:2px}.searchbox #searchipt{position:absolute;top:10px;left [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
         internal static string mapContent {
             get {
@@ -86,10 +87,11 @@ namespace CSPN.Properties {
         ///    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;
         ///    &lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1.0, user-scalable=no, width=device-width&quot; /&gt;
         ///    &lt;title&gt;地图&lt;/title&gt;
-        ///    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cache.amap.com/lbs/static/main1119.css&quot; /&gt;
-        ///    &lt;script src=&quot;https://webapi.amap.com/maps?v=1.3&amp;key=f30294b3e24d47a6986cabdb002d043d&quot;&gt;&lt;/script&gt;
-        ///    &lt;script src=&quot;https://webapi.amap.com/ui/1.0/main.js?v=1.0.10&quot;&gt;&lt;/script&gt;
-        ///    &lt;s [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///    &lt;script src=&quot;http://webapi.amap.com/maps?v=1.4.3&amp;key=f30294b3e24d47a6986cabdb002d043d&quot;&gt;&lt;/script&gt;
+        ///    &lt;script type=&quot;text/javascript&quot;&gt;
+        ///        var mapdata = eval(&apos;{0}&apos;);
+        ///        var locationInfo = &apos;{1}&apos;;
+        ///    &lt;/script&gt; 的本地化字符串。
         /// </summary>
         internal static string mapHeader {
             get {

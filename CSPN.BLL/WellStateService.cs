@@ -95,9 +95,11 @@ namespace CSPN.BLL
         /// <summary>
         /// 加载维护信息
         /// </summary>
-        public DataTable GetMaintainInfo()
+        public DataTable GetMaintainInfo(int pageSize, int pageIndex, out int pageCount)
         {
-            return wellcurrentdal.GetMaintainInfo();
+            int fSize = pageSize * (pageIndex - 1) + 1;
+            int sSize = fSize + (pageSize - 1);
+            return wellcurrentdal.GetMaintainInfo(fSize, sSize, out pageCount);
         }
         /// <summary>
         /// 维护信息更新

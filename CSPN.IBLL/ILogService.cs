@@ -18,7 +18,15 @@ namespace CSPN.IBLL
         /// <summary>
         /// 查询用户日志信息
         /// </summary>
+        DataTable GetUserLogInfo_WellInfo(int pageSize, int pageIndex, out int pageCount);
+        /// <summary>
+        /// 查询用户日志信息
+        /// </summary>
         DataTable GetUserLogInfo_GeneralInfo();
+        /// <summary>
+        /// 查询用户日志信息
+        /// </summary>
+        DataTable GetUserLogInfo_GeneralInfo(int pageSize, int pageIndex, out int pageCount);
         /// <summary>
         /// 添加用户日志信息
         /// </summary>
@@ -38,6 +46,10 @@ namespace CSPN.IBLL
         /// 查询系统日志信息
         /// </summary>
         DataTable GetSystemLogInfo();
+        /// <summary>
+        /// 查询系统日志信息
+        /// </summary>
+        DataTable GetSystemLogInfo(int pageSize, int pageIndex, out int pageCount);
         /// <summary>
         /// 查询发生时间的最小值
         /// </summary>

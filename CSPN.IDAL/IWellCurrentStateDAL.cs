@@ -48,7 +48,7 @@ namespace CSPN.IDAL
         /// <summary>
         /// 加载维护信息
         /// </summary>
-        DataTable GetMaintainInfo();
+        DataTable GetMaintainInfo(int fSize, int sSize, out int pageCount);
         /// <summary>
         /// 维护信息更新
         /// </summary>

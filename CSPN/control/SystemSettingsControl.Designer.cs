@@ -1129,10 +1129,6 @@
             this.page.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.page.Location = new System.Drawing.Point(3, 484);
             this.page.Name = "page";
-            this.page.PageCount = 0;
-            this.page.PageIndex = 1;
-            this.page.PageSize = 30;
-            this.page.RecorderCount = 0;
             this.page.Size = new System.Drawing.Size(1145, 32);
             this.page.TabIndex = 13;
             // 

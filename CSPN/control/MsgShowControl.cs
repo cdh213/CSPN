@@ -21,6 +21,7 @@ using CSPN.webbrower;
 using CSPN.helper;
 using Newtonsoft.Json;
 using CSPN.job;
+using System.Threading;
 
 namespace CSPN.control
 {
@@ -37,8 +38,8 @@ namespace CSPN.control
         public MsgShowControl()
         {
             InitializeComponent();
-            WebBrower.GetInstance().webBrower.Dock = DockStyle.Fill;
-            TabPagemap.Controls.Add(WebBrower.GetInstance().webBrower);
+            WebBrower.webBrower.Dock = DockStyle.Fill;
+            TabPagemap.Controls.Add(WebBrower.webBrower);
             RefreshWellInfoJob.refreshEventHandler += new job.RefreshEventHandler(RefreshInfo);
         }
         private void MsgShowControl_Load(object sender, EventArgs e)
@@ -57,11 +58,11 @@ namespace CSPN.control
         {
             EditWellInfoForm ef = new EditWellInfoForm(null, true, false, null);
             ef.ShowDialog();
-            if (ef.result == DialogResult.OK)
+            if (ef.DialogResult == DialogResult.OK)
             {
                 IList<WellInfo> list = wellInfoService.GetWellInfo_List(ef.GetTerminal_ID());
                 string json = JsonConvert.SerializeObject(list);
-                WebBrower.GetInstance().webBrower.ExecuteScriptAsync("addMaker", json);
+                WebBrower.webBrower.ExecuteScriptAsync("addMaker", json);
             }
             DataLoade(null);
         }
@@ -77,7 +78,7 @@ namespace CSPN.control
             new EditWellInfoForm(terminal_ID, false, false, null).ShowDialog();
             IList<WellInfo> list = wellInfoService.GetWellInfo_List(terminal_ID);
             string json = JsonConvert.SerializeObject(list);
-            WebBrower.GetInstance().webBrower.ExecuteScriptAsync("updateMarker", json);
+            WebBrower.webBrower.ExecuteScriptAsync("updateMarker", json);
             DataLoade(null);
         }
             
@@ -95,7 +96,7 @@ namespace CSPN.control
                 if (wellInfoService.DeleteWellInfo(terminal_ID) > 0 && wellStateService.DeleteWellCurrentStateInfo(terminal_ID) > 0 && wellInfoService.DeleteReportNumInfo(terminal_ID) > 0)
                 {
                     MessageBox.Show("数据删除成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    WebBrower.GetInstance().webBrower.ExecuteScriptAsync("deleteMarker", terminal_ID);
+                    WebBrower.webBrower.ExecuteScriptAsync("deleteMarker", terminal_ID);
                 }
                 else
                 {
@@ -114,7 +115,7 @@ namespace CSPN.control
             {
                 path = openFileDialog.FileName;
                 this.backgroundWorker.RunWorkerAsync(); // 运行 backgroundWorker 组件
-                ImportProgressBarForm form = new ImportProgressBarForm(this.backgroundWorker);// 显示进度条窗体
+                ImportProgressBarForm form = new ImportProgressBarForm(this.backgroundWorker, this.ParentForm.Width);// 显示进度条窗体
                 form.ShowDialog(this);
                 DataLoade(null);
             }
@@ -122,7 +123,7 @@ namespace CSPN.control
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("导入成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            WebBrower.GetInstance().Reload();
+            WebBrower.Reload();
         }
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -143,7 +144,6 @@ namespace CSPN.control
                 ISheet sheet = workbook.GetSheetAt(0);
                 IRow currentRow;  //新建当前工作表行数据
                 IList<ICell> listCells = new List<ICell>(); //list中保存当前行的所有的单元格内容
-                
                 //遍历说有行
                 for (int r = 1; r <= sheet.LastRowNum; r++)
                 {
@@ -162,7 +162,7 @@ namespace CSPN.control
                     //执行sql语句
                     wellInfoService.InsertWellInfo(well);
                     wellStateService.InsertWellCurrentStateInfo(well.Terminal_ID, 1);
-                    wellInfoService.InsertReportNumInfo(well.Terminal_ID);
+                    wellInfoService.InsertReportNumInfo(well.Terminal_ID, 1);
                     worker.ReportProgress(r, sheet.LastRowNum);
                 }
             }

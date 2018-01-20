@@ -28,22 +28,27 @@ namespace CSPN.DAL
         #endregion
 
         private const string SELECT_OPERATOR = "select * from CSPN_Operator_Info";
+        private const string SELECT = "select * from CSPN_Operator_Info where ID between (select max(ID) from (select top {0} ID from CSPN_Operator_Info order by ID asc)) and (select max(ID) from (select top {1} ID from CSPN_Operator_Info order by ID asc)) order by ID asc";
+        private const string SELECT_Count = "select count(*) from CSPN_Operator_Info";
         private const string SELECT_OPERATOR_WORKID = "select * from CSPN_Operator_Info where Work_ID=@Work_ID";
         private const string INSERT_OPERATOR = "insert into CSPN_Operator_Info(Work_ID,RealName,Gender,Telephone,Area,ReceiveMsg) values(@Work_ID,@RealName,@Gender,@Telephone,@Area,@ReceiveMsg)";
         private const string UPDATE_OPERATOR = "update CSPN_Operator_Info set Work_ID=@Work_ID,RealName=@RealName,Gender=@Gender,Telephone=@Telephone,Area=@Area,ReceiveMsg=@ReceiveMsg where Work_ID=@Work_ID";
         private const string DELETE_OPERATOR = "delete from CSPN_Operator_Info where Work_ID=@Work_ID";
 
+        StringBuilder sb = new StringBuilder();
         /// <summary>
         /// 加载值班人员信息
         /// </summary>
         /// <returns></returns>
-        public DataTable GetOperator_Table()
+        public DataTable GetOperator_Table(int fSize, int sSize, out int pageCount)
         {
+            sb.AppendFormat(SELECT, fSize, sSize);
             using (DataTable table = new DataTable())
             {
                 using (Conn)
                 {
-                    table.Load(Conn.ExecuteReader(SELECT_OPERATOR));
+                    pageCount = (int)Conn.ExecuteScalar(SELECT_Count);
+                    table.Load(Conn.ExecuteReader(sb.ToString()));
                 }
                 return table;
             }

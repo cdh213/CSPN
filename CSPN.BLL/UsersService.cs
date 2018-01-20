@@ -55,9 +55,11 @@ namespace CSPN.BLL
         /// 加载值班人员信息
         /// </summary>
         /// <returns></returns>
-        public DataTable GetOperator_Table()
+        public DataTable GetOperator_Table(int pageSize, int pageIndex, out int pageCount)
         {
-            return operatordal.GetOperator_Table();
+            int fSize = pageSize * (pageIndex - 1) + 1;
+            int sSize = fSize + (pageSize - 1);
+            return operatordal.GetOperator_Table(fSize, sSize, out pageCount);
         }
         /// <summary>
         /// 加载值班人员信息

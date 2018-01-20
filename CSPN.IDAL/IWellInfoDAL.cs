@@ -17,7 +17,7 @@ namespace CSPN.IDAL
         /// <summary>
         /// 查询人井信息
         /// </summary>
-        DataTable GetWellInfo_Table(string wellinfo);
+        DataTable GetWellInfo_Table(string wellinfo, int fSize, int sSize, out int pageCount);
         /// <summary>
         /// 查询人井信息
         /// </summary>

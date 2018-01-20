@@ -4,6 +4,7 @@ using CSPN.BLL;
 using CSPN.common;
 using CSPN.helper;
 using CSPN.IBLL;
+using CSPN.job;
 using CSPN.Model;
 using CSPN.Properties;
 using Newtonsoft.Json;
@@ -13,37 +14,21 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CSPN.webbrower
 {
     public class WebBrower
     {
-        private static WebBrower webBrowerInstance = null;
-        private static readonly object locker = new object();
-        private IWellInfoService wellInfoService = null;
-        BackgroundWorker bw = null;
-        private IList<WellInfo> list = null;
-        private string json = null;
+        private static IWellInfoService wellInfoService = null;
+        private BackgroundWorker bw = null;
+        private static IList<WellInfo> list = null;
+        private static string json = null;
 
-        public ChromiumWebBrowser webBrower { get; set; }
+        public static ChromiumWebBrowser webBrower { get; set; }
 
-        private WebBrower()
+        public WebBrower()
         {
-        }
-        public static WebBrower GetInstance()
-        {
-            if (webBrowerInstance == null)
-            {
-                lock (locker)
-                {
-                    if (webBrowerInstance == null)
-                    {
-                        webBrowerInstance = new WebBrower();
-                    }
-                }
-            }
-            return webBrowerInstance;
+            RefreshWellInfoJob.refreshEventHandler += new job.RefreshEventHandler(Reload);
         }
 
         public void Init()
@@ -92,18 +77,17 @@ namespace CSPN.webbrower
             html.AppendFormat(Resources.mapHeader, e.Result, location);
             html.Append(Resources.mapContent);
             webBrower.LoadHtml(html.ToString(), "http://rendering/");
-            if (bw != null)
-            {
-                bw.Dispose();
-            }
         }
         
-        public void Reload()
+        public static void Reload()
         {
-            wellInfoService = new WellInfoService();
-            list = wellInfoService.GetWellInfo_List(null);
-            json = JsonConvert.SerializeObject(list);
-            webBrower.ExecuteScriptAsync("Refresh", json);
+            if (webBrower.IsBrowserInitialized)
+            {
+                wellInfoService = new WellInfoService();
+                list = wellInfoService.GetWellInfo_List(null);
+                json = JsonConvert.SerializeObject(list);
+                webBrower.ExecuteScriptAsync("Refresh", json);
+            }
         }
     }
 }

@@ -28,24 +28,19 @@ namespace CSPN.DAL
         #endregion
 
         private const string UPDATE_Well_Current_State = "update CSPN_Well_Current_State_Info set Well_State_ID=@Well_State_ID,Electricity=@Electricity,Temperature=@Temperature,Humidity=@Humidity,Smoke_Detector=@Smoke_Detector,Smoke_Power=@Smoke_Power,Signal_Strength=@Signal_Strength,Report_Time=@Report_Time where Terminal_ID=@Terminal_ID";
-
         private const string UPDATE_Well_State_ID = "update CSPN_Well_Current_State_Info set Well_State_ID=@Well_State_ID where Terminal_ID=@Terminal_ID";
-
         private const string SELECT_WELL_INFO = "select Report_Time,Well_State_ID,a.Terminal_ID,Name,Place,Icon,RealName,Telephone from ((CSPN_Well_Info as a inner join CSPN_Well_Current_State_Info as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Dic_Well_State_Info as c on b.Well_State_ID=c.ID) inner join CSPN_Operator_Info as d on a.Operator_ID=d.ID where 1=1";
-
         private const string SELECT_ProcessedInfo = "select Report_Time,Well_State_ID,a.Terminal_ID,Name,Place,Icon,Telephone from ((CSPN_Well_Info as a inner join CSPN_Well_Current_State_Info as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Dic_Well_State_Info as c on b.Well_State_ID=c.ID) inner join CSPN_Operator_Info as d on a.Operator_ID=d.ID where b.Well_State_ID=7 order by Report_Time desc";
         private const string Insert_WellInfo = "insert into CSPN_Well_Current_State_Info(Terminal_ID,Well_State_ID) values(@Terminal_ID,@Well_State_ID)";
-
         private const string Delete_WellInfo = "delete from CSPN_Well_Current_State_Info where Terminal_ID=@Terminal_ID";
-
-        private const string select_Well_Maintain_Info = "select a.Terminal_ID,Name,Place,b.Terminal_ID,b.Well_State_ID,Maintain_StartTime,Maintain_EndTime,c.ID,Icon,State from (CSPN_Well_Info as a inner join CSPN_Well_Current_State_Info as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Dic_Well_State_Info as c on b.Well_State_ID=c.ID";
-
+        private const string select_Well_Maintain_Info = "select a.Terminal_ID,Name,Place,b.Terminal_ID,b.Well_State_ID,Maintain_StartTime,Maintain_EndTime,c.ID,Icon,State from (CSPN_Well_Info as a inner join CSPN_Well_Current_State_Info as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Dic_Well_State_Info as c on b.Well_State_ID=c.ID where a.Terminal_ID between (select max(a.Terminal_ID) from (select top {0} a.Terminal_ID from CSPN_Well_Info as a order by a.Terminal_ID asc)) and (select max(a.Terminal_ID) from (select top {1} a.Terminal_ID from CSPN_Well_Info as a order by a.Terminal_ID asc)) order by a.Terminal_ID asc";
+        private const string select_Well_Maintain_Info_Count = "select count(*) from CSPN_Well_Info";
         private const string select_Maintain_StartTime = "select Terminal_ID from CSPN_Well_Current_State_Info where Maintain_StartTime=@Maintain_StartTime";
-
         private const string select_Maintain_EndTime = "select Terminal_ID from CSPN_Well_Current_State_Info where Maintain_EndTime=@Maintain_EndTime";
-
         private const string updade_Well_Maintain_Info = "update CSPN_Well_Current_State_Info set Maintain_StartTime=@Maintain_StartTime,Maintain_EndTime=@Maintain_EndTime where Terminal_ID=@Terminal_ID";
 
+
+        StringBuilder sb = null;
         #region 当前人井状态信息
         /// <summary>
         /// 更新当前人井状态信息
@@ -83,13 +78,13 @@ namespace CSPN.DAL
         /// </summary>
         public DataTable GetAlarmInfo_StatusInfo()
         {
-            StringBuilder sql = new StringBuilder(SELECT_WELL_INFO);
-            sql.Append(" and b.Well_State_ID=2 or b.Well_State_ID=3 or b.Well_State_ID=4 or b.Well_State_ID=5 order by Report_Time desc");
+            sb = new StringBuilder(SELECT_WELL_INFO);
+            sb.Append(" and b.Well_State_ID=2 or b.Well_State_ID=3 or b.Well_State_ID=4 or b.Well_State_ID=5 order by Report_Time desc");
             using (DataTable table = new DataTable())
             {
                 using (Conn)
                 {
-                    table.Load(Conn.ExecuteReader(sql.ToString()));
+                    table.Load(Conn.ExecuteReader(sb.ToString()));
                 }
                 return table;
             }
@@ -99,11 +94,11 @@ namespace CSPN.DAL
         /// </summary>
         public WellCurrentStateInfo GetAlarmInfo_StatusInfo(int well_State_ID, string terminal_ID)
         {
-            StringBuilder sql = new StringBuilder(SELECT_WELL_INFO);
-            sql.AppendFormat(" and b.Well_State_ID={0} and a.Terminal_ID='{1}' order by Report_Time desc", well_State_ID, terminal_ID);
+            sb = new StringBuilder(SELECT_WELL_INFO);
+            sb.AppendFormat(" and b.Well_State_ID={0} and a.Terminal_ID='{1}' order by Report_Time desc", well_State_ID, terminal_ID);
             using (Conn)
             {
-                return Conn.Query<WellCurrentStateInfo, WellInfo, WellStateInfo, OperatorInfo, WellCurrentStateInfo>(sql.ToString(), (a, b, c, d) => { a.WellInfo = b; a.WellStateInfo = c; a.OperatorInfo = d; return a; }, null, null, true, "Report_Time,Terminal_ID,Icon,RealName").SingleOrDefault();
+                return Conn.Query<WellCurrentStateInfo, WellInfo, WellStateInfo, OperatorInfo, WellCurrentStateInfo>(sb.ToString(), (a, b, c, d) => { a.WellInfo = b; a.WellStateInfo = c; a.OperatorInfo = d; return a; }, null, null, true, "Report_Time,Terminal_ID,Icon,RealName").SingleOrDefault();
             }
         }
         /// <summary>
@@ -146,13 +141,16 @@ namespace CSPN.DAL
         /// <summary>
         /// 加载维护信息
         /// </summary>
-        public DataTable GetMaintainInfo()
+        public DataTable GetMaintainInfo(int fSize, int sSize, out int pageCount)
         {
+            sb = new StringBuilder();
+            sb.AppendFormat(select_Well_Maintain_Info, fSize, sSize);
             using (DataTable table = new DataTable())
             {
                 using (Conn)
                 {
-                    table.Load(Conn.ExecuteReader(select_Well_Maintain_Info));
+                    pageCount = (int)Conn.ExecuteScalar(select_Well_Maintain_Info_Count);
+                    table.Load(Conn.ExecuteReader(sb.ToString()));
                 }
                 return table;
             }

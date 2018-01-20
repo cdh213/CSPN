@@ -24,9 +24,11 @@ namespace CSPN.BLL
         /// <summary>
         /// 查询人井信息
         /// </summary>
-        public DataTable GetWellInfo_Table(string wellinfo)
+        public DataTable GetWellInfo_Table(string wellinfo, int pageSize, int pageIndex, out int pageCount)
         {
-            return welldal.GetWellInfo_Table(wellinfo);
+            int fSize = pageSize * (pageIndex - 1) + 1;
+            int sSize = fSize + (pageSize - 1);
+            return welldal.GetWellInfo_Table(wellinfo, fSize, sSize, out pageCount);
         }
         /// <summary>
         /// 查询人井信息
@@ -113,11 +115,18 @@ namespace CSPN.BLL
             return reportnumdal.UpdateNotReportTimes();
         }
         /// <summary>
+        /// 更新人井上未时间间隔
+        /// </summary>
+        public int UpdateReportInterval(int reportInterval, string terminal_ID)
+        {
+            return reportnumdal.UpdateReportInterval(reportInterval, terminal_ID);
+        }
+        /// <summary>
         /// 增加人井信息
         /// </summary>
-        public int InsertReportNumInfo(string terminal_ID)
+        public int InsertReportNumInfo(string terminal_ID, int reportInterval)
         {
-            return reportnumdal.InsertReportNumInfo(terminal_ID);
+            return reportnumdal.InsertReportNumInfo(terminal_ID, reportInterval);
         }
         /// <summary>
         /// 删除人井信息

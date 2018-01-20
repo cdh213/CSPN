@@ -54,13 +54,15 @@ namespace CSPN.control
             }
             DataLoade(false, null);
         }
-        //显示图标
-        private void grid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        //系统日志刷新
+        private void btnSysRefresh_Click(object sender, EventArgs e)
         {
-            if (Sysgrid.Columns[e.ColumnIndex].Name.Equals("Icon"))
-            {
-                e.Value = ImageHelper.ToImage(e.Value.ToString());
-            }
+            DataLoade(false, null);
+        }
+        //用户日志刷新
+        private void btnUserRefresh_Click(object sender, EventArgs e)
+        {
+            DataLoade(false, null);
         }
         //自动刷新
         private void RefreshInfo()
@@ -102,6 +104,14 @@ namespace CSPN.control
                 gridUserLogInfo_GeneralInfo.DataSource = null;
                 userpage.PageSize = 50;
                 userpage.ShowPages(gridUserLogInfo_GeneralInfo, null, CSPNType.UserLogInfo_GeneralInfo);
+            }
+        }
+        //显示图标
+        private void grid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (Sysgrid.Columns[e.ColumnIndex].Name.Equals("Icon"))
+            {
+                e.Value = ImageHelper.ToImage(e.Value.ToString());
             }
         }
         private void Sysgrid_CellToolTipTextNeeded(object sender, DataGridViewCellToolTipTextNeededEventArgs e)

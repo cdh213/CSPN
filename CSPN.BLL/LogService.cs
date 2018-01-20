@@ -32,9 +32,29 @@ namespace CSPN.BLL
         /// 查询用户日志信息
         /// </summary>
         /// <returns></returns>
+        public DataTable GetUserLogInfo_WellInfo(int pageSize, int pageIndex, out int pageCount)
+        {
+            int fSize = pageSize * (pageIndex - 1) + 1;
+            int sSize = fSize + (pageSize - 1);
+            return userlogdal.GetUserLogInfo_WellInfo(fSize, sSize, out pageCount);
+        }
+        /// <summary>
+        /// 查询用户日志信息
+        /// </summary>
+        /// <returns></returns>
         public DataTable GetUserLogInfo_GeneralInfo()
         {
             return userlogdal.GetUserLogInfo_GeneralInfo();
+        }
+        /// <summary>
+        /// 查询用户日志信息
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetUserLogInfo_GeneralInfo(int pageSize, int pageIndex, out int pageCount)
+        {
+            int fSize = pageSize * (pageIndex - 1) + 1;
+            int sSize = fSize + (pageSize - 1);
+            return userlogdal.GetUserLogInfo_GeneralInfo(fSize, sSize, out pageCount);
         }
         /// <summary>
         /// 添加用户日志信息
@@ -74,6 +94,16 @@ namespace CSPN.BLL
         public DataTable GetSystemLogInfo()
         {
             return syslogdal.GetSystemLogInfo();
+        }
+        /// <summary>
+        /// 查询系统日志信息
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetSystemLogInfo(int pageSize, int pageIndex, out int pageCount)
+        {
+            int fSize = pageSize * (pageIndex - 1) + 1;
+            int sSize = fSize + (pageSize - 1);
+            return syslogdal.GetSystemLogInfo(fSize, sSize, out pageCount);
         }
         /// <summary>
         /// 查询发生时间的最小值

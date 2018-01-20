@@ -29,8 +29,8 @@ namespace CSPN.DAL
         const string Update_NotReportNumInfo_ReportTimes = "update CSPN_ReportNumInfo set NotReportTimes=NotReportTimes+1 where ReportTimes=0";
         const string Empty_ReportNumInfo_ReportTimes = "update CSPN_ReportNumInfo set ReportTimes=0 where ReportTimes>0";
         const string Empty_ReportNumInfo_NotReportTimes = "update CSPN_ReportNumInfo set NotReportTimes=0 where Terminal_ID=@Terminal_ID";
-
-        const string Insert_WellInfo = "insert into CSPN_ReportNumInfo(Terminal_ID,ReportTimes,NotReportTimes) values(@Terminal_ID,0,0)";
+        const string Update_ReportInterval = "update CSPN_ReportNumInfo set ReportInterval=@ReportInterval where Terminal_ID=@Terminal_ID";
+        const string Insert_WellInfo = "insert into CSPN_ReportNumInfo(Terminal_ID,ReportInterval,ReportTimes,NotReportTimes) values(@Terminal_ID,@ReportInterval,0,0)";
         const string Delete_WellInfo = "delete from CSPN_ReportNumInfo where Terminal_ID=@Terminal_ID";
 
         /// <summary>
@@ -88,13 +88,23 @@ namespace CSPN.DAL
             }
         }
         /// <summary>
-        /// 增加人井信息
+        /// 更新人井上未时间间隔
         /// </summary>
-        public int InsertReportNumInfo(string terminal_ID)
+        public int UpdateReportInterval(int reportInterval, string terminal_ID)
         {
             using (Conn)
             {
-                return Conn.Execute(Insert_WellInfo, new { Terminal_ID = terminal_ID });
+                return Conn.Execute(Update_ReportInterval, new { ReportInterval = reportInterval, Terminal_ID = terminal_ID });
+            }
+        }
+        /// <summary>
+        /// 增加人井信息
+        /// </summary>
+        public int InsertReportNumInfo(string terminal_ID, int reportInterval)
+        {
+            using (Conn)
+            {
+                return Conn.Execute(Insert_WellInfo, new { Terminal_ID = terminal_ID, ReportInterval = reportInterval });
             }
         }
         /// <summary>

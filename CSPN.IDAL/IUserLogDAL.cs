@@ -18,7 +18,15 @@ namespace CSPN.IDAL
         /// <summary>
         /// 查询用户日志信息
         /// </summary>
+        DataTable GetUserLogInfo_WellInfo(int fSize, int sSize, out int pageCount);
+        /// <summary>
+        /// 查询用户日志信息
+        /// </summary>
         DataTable GetUserLogInfo_GeneralInfo();
+        /// <summary>
+        /// 查询用户日志信息
+        /// </summary>
+        DataTable GetUserLogInfo_GeneralInfo(int fSize, int sSize, out int pageCount);
         /// <summary>
         /// 添加用户日志信息
         /// </summary>

@@ -9,6 +9,7 @@ namespace CSPN.Model
     public class ReportNumInfo
     {
         private string _terminal_ID;//人井编号
+        private int _reportInterval;//上报时间间隔
         private int _reportTimes;//上报次数
         private int _notReportTimes;//上报次数
         private WellInfo _wellInfo;
@@ -21,6 +22,14 @@ namespace CSPN.Model
         {
             get { return _terminal_ID; }
             set { _terminal_ID = value; }
+        }
+        /// <summary>
+        /// 上报时间间隔
+        /// </summary>
+        public int ReportInterval
+        {
+            get { return _reportInterval; }
+            set { _reportInterval = value; }
         }
         /// <summary>
         /// 上报次数

@@ -55,7 +55,7 @@ namespace CSPN
                         {
                             case DialogResult.OK:
                                 Cef.EnableHighDPISupport();
-                                WebBrower.GetInstance().Init();
+                                new WebBrower().Init();
                                 Application.Run(new MainForm(true));
                                 break;
                             case DialogResult.No:

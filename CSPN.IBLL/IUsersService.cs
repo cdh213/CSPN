@@ -38,7 +38,7 @@ namespace CSPN.IBLL
         /// 加载值班人员信息
         /// </summary>
         /// <returns></returns>
-        DataTable GetOperator_Table();
+        DataTable GetOperator_Table(int pageSize, int pageIndex, out int pageCount);
         /// <summary>
         /// 加载值班人员信息
         /// </summary>

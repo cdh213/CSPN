@@ -10,6 +10,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -25,10 +26,8 @@ namespace CSPN.assistcontrol
         WellInfo wellInfo = new WellInfo();
         WellCurrentStateInfo wellCurrentStateInfo = new WellCurrentStateInfo();
         bool _isInsert = false;
-        bool _isaddMaker = false;
-        string _menuPositon = null;
         string terminal_ID = null;
-        public DialogResult result = DialogResult.Cancel;
+        int reportInterval = 1;
 
         /// <summary>
         /// EditWellInfoForm
@@ -42,20 +41,15 @@ namespace CSPN.assistcontrol
             InitializeComponent();
             wellInfo.Terminal_ID = terminal_ID;
             _isInsert = isInsert;
-            _isaddMaker = isaddMaker;
-            _menuPositon = menuPositon;
-        }
 
-        private void EditInfoForm_Load(object sender, EventArgs e)
-        {
             cbState.DataSource = wellStateService.GetWellStateInfo();
             cbOperator.DataSource = userService.GetOperator();
-            if (_isInsert)
+            if (isInsert)
             {
-                if (_isaddMaker)
+                if (isaddMaker)
                 {
-                    txtLongitude.Text = _menuPositon.Split(',')[0];
-                    txtLatitude.Text = _menuPositon.Split(',')[1];
+                    txtLongitude.Text = menuPositon.Split(',')[0];
+                    txtLatitude.Text = menuPositon.Split(',')[1];
                 }
                 this.Text = "添加数据";
                 this.Icon = new Icon("resource/images/add.ico");
@@ -75,8 +69,10 @@ namespace CSPN.assistcontrol
                 txtTerminal_Phone.Text = wellInfo.Terminal_Phone;
                 cbState.Text = wellInfo.WellStateInfo.State;
                 cbOperator.Text = wellInfo.OperatorInfo.RealName;
+                tbReportInterval.Text = wellInfo.ReportNumInfo.ReportInterval.ToString();
             }
         }
+
         public string GetTerminal_ID()
         {
             return terminal_ID;
@@ -103,8 +99,13 @@ namespace CSPN.assistcontrol
                 MessageBox.Show("请选择值班人员。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+            if (tbReportInterval.Text.Trim() == "" && !isNumber(tbReportInterval.Text.Trim()))
+            {
+                MessageBox.Show("请填写上报时间间隔。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
-            result = DialogResult.OK;
+            this.DialogResult = DialogResult.OK;
             terminal_ID = wellInfo.Terminal_ID = txtTerminal_ID.Text.Trim();
             wellInfo.Name = txtName.Text.Trim();
             wellInfo.Longitude = txtLongitude.Text.Trim();
@@ -112,6 +113,7 @@ namespace CSPN.assistcontrol
             wellInfo.Place = txtPlace.Text.Trim();
             wellInfo.Terminal_Phone = txtTerminal_Phone.Text.Trim();
             wellInfo.Operator_ID = (int)cbOperator.SelectedValue;
+            reportInterval = int.Parse(tbReportInterval.Text.Trim());
 
             if (_isInsert)
             {
@@ -119,7 +121,7 @@ namespace CSPN.assistcontrol
                 {
                     wellInfoService.InsertWellInfo(wellInfo);
                     wellStateService.InsertWellCurrentStateInfo(wellInfo.Terminal_ID, (int)cbState.SelectedValue);
-                    wellInfoService.InsertReportNumInfo(wellInfo.Terminal_ID);
+                    wellInfoService.InsertReportNumInfo(wellInfo.Terminal_ID, reportInterval);
 
                     userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "添加人井。", CommonClass.UserName, null, null);
                 }
@@ -133,11 +135,19 @@ namespace CSPN.assistcontrol
             {
                 wellInfoService.UpdateWellInfo(wellInfo);
                 wellStateService.UpdateWellCurrentStateInfo((int)cbState.SelectedValue, wellInfo.Terminal_ID);
+                wellInfoService.UpdateReportInterval(reportInterval, wellInfo.Terminal_ID);
 
                 userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "更新人井信息。", CommonClass.UserName, null, null);
             }
             MessageBox.Show(this.Text + "成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
+        }
+        private bool isNumber(string str)
+        {
+            if ((Regex.IsMatch(str, @"^[1-9]+\d*$")))
+                return true;
+            else
+                return false;
         }
     }
 }
