@@ -14,7 +14,6 @@ namespace CSPN.IBLL
     /// </summary>
     public interface IWellInfoService
     {
-
         #region 人井基本信息
         /// <summary>
         /// 查询人井信息
@@ -79,6 +78,33 @@ namespace CSPN.IBLL
         /// 删除人井信息
         /// </summary>
         int DeleteReportNumInfo(string terminal_ID);
+        #endregion
+
+        #region 人井报警信息
+        /// <summary>
+        /// 查询报警,状态信息
+        /// </summary>
+        DataTable GetAlarmInfo_StatusInfo();
+        /// <summary>
+        /// 通过Terminal_ID查询报警,状态信息
+        /// </summary>
+        AlarmInfo GetAlarmInfo_StatusInfo(int well_State_ID, string terminal_ID);
+        /// <summary>
+        /// 查询已处理信息
+        /// </summary>
+        DataTable GetProcessedInfo();
+        /// <summary>
+        /// 增加报警、状态信息
+        /// </summary>
+        int InsertAlarmInfo(AlarmInfo alarmInfo);
+        /// <summary>
+        /// 删除报警、状态信息
+        /// </summary>
+        int DeleteAlarmInfo(string report_Time);
+        /// <summary>
+        /// 更新报警、状态信息
+        /// </summary>
+        int UpdateAlarmInfo(int well_State_ID, string report_Time);
         #endregion
     }
 }

@@ -15,7 +15,7 @@ namespace CSPN.sms
     public class CDMASMS
     {
         //私有字段 串口对象
-        static SerialPort sp;
+        static SerialPort sp = null;
         public static Queue<int> queue = new Queue<int>();
 
         /// <summary>
@@ -80,7 +80,6 @@ namespace CSPN.sms
                 {
                     //更新添加连接识别
                     string s = SendAT("AT");
-                    int v = s.IndexOf("OK");
                     if (s.IndexOf("OK") == -1)
                     {
                         return false;
@@ -110,7 +109,6 @@ namespace CSPN.sms
             try
             {
                 sp.Close();
-                sp.Dispose();
                 sp = null;
             }
             catch (Exception ex)

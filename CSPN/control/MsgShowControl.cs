@@ -33,7 +33,7 @@ namespace CSPN.control
         WellStateInfo stateInfo = new WellStateInfo();
         OperatorInfo operatorInfo = new OperatorInfo();
         IUsersService user = new UsersService();
-        string terminal_ID = null;
+        string terminal_ID;
 
         public MsgShowControl()
         {

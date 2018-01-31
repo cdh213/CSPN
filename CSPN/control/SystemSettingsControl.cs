@@ -30,8 +30,7 @@ namespace CSPN.control
         UsersInfo userinfo = new UsersInfo();
 
         public bool isOpen { get; set; }
-        string portName, work_ID;
-        int baudRate = 0;
+        string work_ID;
 
         public SystemSettingsControl()
         {
@@ -57,8 +56,8 @@ namespace CSPN.control
                 tabControl1.TabPages.Remove(UserSet);
                 tabControl1.TabPages.Remove(SysSetTab);
             }
-            PortName.Text = ReadWriteConfig.ReadConfig("PortName");
-            BaudRate.Text = ReadWriteConfig.ReadConfig("BaudRate");
+            PortName.SelectedItem = ReadWriteConfig.ReadConfig("PortName");
+            BaudRate.SelectedItem = ReadWriteConfig.ReadConfig("BaudRate");
         }
 
         #region 系统设置
@@ -97,45 +96,51 @@ namespace CSPN.control
         private void DeviceLoad()
         {
             PortName.DataSource = SerialPort.GetPortNames();
-            BaudRate.DataSource = new string[] { "9600", "115200" };
-            tableLayoutPanel1.Visible = true;
         }
         private void btnSet_Click(object sender, EventArgs e)
         {
-            if (PortName.Text == "" || BaudRate.Text == "")
+            if (PortName.SelectedItem == null || BaudRate.SelectedItem == null)
             {
                 MessageBox.Show("请选择串口号和波特率！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                ReadWriteConfig.WriteConfig("PortName", PortName.Text.ToString());
-                ReadWriteConfig.WriteConfig("BaudRate", BaudRate.Text.ToString());
+                ReadWriteConfig.WriteConfig("PortName", PortName.SelectedItem.ToString());
+                ReadWriteConfig.WriteConfig("BaudRate", BaudRate.SelectedItem.ToString());
                 MessageBox.Show("保存成功，请重启系统!", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Process.GetCurrentProcess().CloseMainWindow();
             }
         }
         private void btnTest_Click(object sender, EventArgs e)
         {
-            if (PortName.Text == "" || BaudRate.Text == "")
+            if (PortName.SelectedItem == null || BaudRate.SelectedItem == null)
             {
                 MessageBox.Show("请选择串口号和波特率！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
                 WaitWin.Show(this, "正在测试，请稍后。。。。。。");
-                portName = PortName.SelectedItem.ToString();
-                baudRate = Int32.Parse(BaudRate.SelectedItem.ToString());
                 CDMASMS.Close();
-                CDMASMS.Set(portName, baudRate);
-                if (CDMASMS.Open() == false)
+                CDMASMS.Set(PortName.SelectedItem.ToString(), Convert.ToInt32(BaudRate.SelectedItem.ToString()));
+                if (CDMASMS.Open())
                 {
-                    WaitWin.Close();
-                    MessageBox.Show("测试未通过，请重试！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    string TSX = CDMASMS.SendAT("AT^MEID").Replace("\r\n", "").Replace("OK", "");
+                    string production_Name = CDMASMS.SendAT("AT+CGMM").Replace("\r\n", "").Replace("OK", "");
+                    if (TSX.Length == 14 && production_Name.IndexOf("MC323") != -1)
+                    {
+                        WaitWin.Close();
+                        MessageBox.Show("测试通过，请保存后重启系统。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        WaitWin.Close();
+                        MessageBox.Show("测试未通过，请重试！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
                 else
                 {
                     WaitWin.Close();
-                    MessageBox.Show("测试通过，请保存后重启系统。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("测试未通过，请重试！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }

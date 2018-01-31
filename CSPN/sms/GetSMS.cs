@@ -24,16 +24,17 @@ namespace CSPN.sms
     {
         public static event GetSMSEventHandler getSMSEventHandler;
 
-        static IWellStateService wellStateService = new WellStateService();
-        static IWellInfoService wellInfoService = new WellInfoService();
-        static ILogService logService = new LogService();
+        private static IWellStateService wellStateService = new WellStateService();
+        private static IWellInfoService wellInfoService = new WellInfoService();
+        private static ILogService logService = new LogService();
 
-        static WellCurrentStateInfo wellCurrentStateInfo = new WellCurrentStateInfo();
-        static SystemLogInfo systemLogInfo = new SystemLogInfo();
-        static ReportNumInfo reportNumInfo = new ReportNumInfo();
-        static WellStateInfo wellStateInfo = new WellStateInfo();
-        static WellInfo wellInfo = new WellInfo();
-        static ReadWriteRegistry registry = new ReadWriteRegistry();
+        private static WellCurrentStateInfo wellCurrentStateInfo = new WellCurrentStateInfo();
+        private static SystemLogInfo systemLogInfo = new SystemLogInfo();
+        private static ReportNumInfo reportNumInfo = new ReportNumInfo();
+        private static WellStateInfo wellStateInfo = new WellStateInfo();
+        private static WellInfo wellInfo = new WellInfo();
+        private static AlarmInfo alarmInfo = new AlarmInfo();
+        private static ReadWriteRegistry registry = new ReadWriteRegistry();
 
         public static void GetSMSHandle()
         {
@@ -75,8 +76,7 @@ namespace CSPN.sms
                                     {
                                         wellCurrentStateInfo.Well_State_ID = 2;
                                         UpdateWellCurrentState();
-                                        InsertSystemLogInfo();
-                                        UpdateMap(wellInfo.Terminal_ID);
+                                        InsertAlarmInfo();
                                         if (getSMSEventHandler != null)
                                         {
                                             getSMSEventHandler();
@@ -90,8 +90,7 @@ namespace CSPN.sms
                                         {
                                             wellCurrentStateInfo.Well_State_ID = 3;
                                             UpdateWellCurrentState();
-                                            InsertSystemLogInfo();
-                                            UpdateMap(wellInfo.Terminal_ID);
+                                            InsertAlarmInfo();
                                             if (getSMSEventHandler != null)
                                             {
                                                 getSMSEventHandler();
@@ -103,8 +102,7 @@ namespace CSPN.sms
                                         {
                                             wellCurrentStateInfo.Well_State_ID = 4;
                                             UpdateWellCurrentState();
-                                            InsertSystemLogInfo();
-                                            UpdateMap(wellInfo.Terminal_ID);
+                                            InsertAlarmInfo();
                                             if (getSMSEventHandler != null)
                                             {
                                                 getSMSEventHandler();
@@ -116,8 +114,7 @@ namespace CSPN.sms
                                         {
                                             wellCurrentStateInfo.Well_State_ID = 5;
                                             UpdateWellCurrentState();
-                                            InsertSystemLogInfo();
-                                            UpdateMap(wellInfo.Terminal_ID);
+                                            InsertAlarmInfo();
                                             if (getSMSEventHandler != null)
                                             {
                                                 getSMSEventHandler();
@@ -128,10 +125,11 @@ namespace CSPN.sms
                                         {
                                             wellCurrentStateInfo.Well_State_ID = 1;
                                             UpdateWellCurrentState();
-                                            InsertSystemLogInfo();
-                                            UpdateMap(wellInfo.Terminal_ID);
+                                            InsertAlarmInfo();
                                         }
                                     }
+                                    InsertSystemLogInfo();
+                                    UpdateMap(wellInfo.Terminal_ID);
                                     UpdateReportNum();
                                 }
                             }
@@ -159,7 +157,7 @@ namespace CSPN.sms
         /// <summary>
         /// 更新人井当前状态信息表数据
         /// </summary>
-        static void UpdateWellCurrentState()
+        private static void UpdateWellCurrentState()
         {
             wellCurrentStateInfo.Terminal_ID = wellInfo.Terminal_ID;
             wellCurrentStateInfo.Electricity = SMSAnalysis.IsElectricityAlarm == true ? "终端低电量报警" : "终端电量正常";
@@ -181,7 +179,7 @@ namespace CSPN.sms
         /// <summary>
         /// 插入系统日志信息表数据
         /// </summary>
-        static void InsertSystemLogInfo()
+        private static void InsertSystemLogInfo()
         {
             systemLogInfo.Happen_Time = wellCurrentStateInfo.Report_Time;
             systemLogInfo.Terminal_ID = wellInfo.Terminal_ID;
@@ -204,9 +202,19 @@ namespace CSPN.sms
             logService.InsertSystemLogInfo(systemLogInfo);
         }
         /// <summary>
+        /// 插入报警信息表数据
+        /// </summary>
+        private static void InsertAlarmInfo()
+        {
+            alarmInfo.Report_Time = wellCurrentStateInfo.Report_Time;
+            alarmInfo.Terminal_ID = wellInfo.Terminal_ID;
+            alarmInfo.Well_State_ID = wellCurrentStateInfo.Well_State_ID;
+            wellInfoService.InsertAlarmInfo(alarmInfo);
+        }
+        /// <summary>
         /// 更新人井上报次数表
         /// </summary>
-        static void UpdateReportNum()
+        private static void UpdateReportNum()
         {
             wellInfoService.UpdateReportTimes(wellInfo.Terminal_ID);
         }

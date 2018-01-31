@@ -23,15 +23,15 @@ namespace CSPN.control
         IWellStateService wellStateService = new WellStateService();
         IWellInfoService wellInfoService = new WellInfoService();
         UserLogHelper userLogHelper = new UserLogHelper();
-        string phone, place, time, terminal_Name, _terminal_ID;
-        int _well_State_ID;
+        string terminal_ID, phone, place, time, terminal_Name, realName;
+        int well_State_ID = 0;
 
         public PendingMsgControl()
         {
             InitializeComponent();
             GetSMS.GetSMSHandle();
             GetSMS.getSMSEventHandler += new GetSMSEventHandler(ShowAlarmMsg);
-            JsEvent.disposeMsgDelegate = new DisposeMsgDelegate(DisposeMsg);
+            JsEvent.disposeMsgDelegate = new DisposeMsgDelegate(DisposeMsg_Map);
         }
 
         #region 列表信息处理
@@ -43,10 +43,13 @@ namespace CSPN.control
                 DataGridViewColumn column = dgvAlarm.Columns[e.ColumnIndex];
                 if (column is DataGridViewButtonColumn)
                 {
-                    _terminal_ID = dgvAlarm.Rows[e.RowIndex].Cells[1].Value.ToString();
-                    _well_State_ID = int.Parse(dgvAlarm.Rows[e.RowIndex].Cells[2].Value.ToString());
+                    time = dgvAlarm.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    terminal_ID = dgvAlarm.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    well_State_ID = int.Parse(dgvAlarm.Rows[e.RowIndex].Cells[2].Value.ToString());
+                    place = dgvAlarm.Rows[e.RowIndex].Cells[4].Value.ToString();
+                    phone = dgvAlarm.Rows[e.RowIndex].Cells[6].Value.ToString();
                     dgvAlarm.Rows.RemoveAt(e.RowIndex);
-                    DisposeMsg(_well_State_ID, _terminal_ID, CSPNType.AlarmInfo);
+                    DisposeMsg(CSPNType.AlarmInfo);
                 }
             }
         }
@@ -58,10 +61,12 @@ namespace CSPN.control
                 DataGridViewColumn column = dgvDispose.Columns[e.ColumnIndex];
                 if (column is DataGridViewButtonColumn)
                 {
-                    _terminal_ID = dgvDispose.Rows[e.RowIndex].Cells[1].Value.ToString();
-                    _well_State_ID = int.Parse(dgvDispose.Rows[e.RowIndex].Cells[2].Value.ToString());
+                    time = dgvDispose.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    terminal_ID = dgvDispose.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    well_State_ID = int.Parse(dgvDispose.Rows[e.RowIndex].Cells[2].Value.ToString());
+                    realName = dgvDispose.Rows[e.RowIndex].Cells[6].Value.ToString();
                     dgvDispose.Rows.RemoveAt(e.RowIndex);
-                    DisposeMsg(_well_State_ID, _terminal_ID, CSPNType.DisposeInfo);
+                    DisposeMsg(CSPNType.DisposeInfo);
                 }
             }
         }
@@ -73,73 +78,81 @@ namespace CSPN.control
                 DataGridViewColumn column = dgvNotReport.Columns[e.ColumnIndex];
                 if (column is DataGridViewButtonColumn)
                 {
-                    _terminal_ID = dgvNotReport.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    terminal_ID = dgvNotReport.Rows[e.RowIndex].Cells[0].Value.ToString();
                     terminal_Name = dgvNotReport.Rows[e.RowIndex].Cells[1].Value.ToString();
                     place = dgvNotReport.Rows[e.RowIndex].Cells[4].Value.ToString();
                     phone = dgvNotReport.Rows[e.RowIndex].Cells[5].Value.ToString();
                     dgvNotReport.Rows.RemoveAt(e.RowIndex);
-                    DisposeMsg(0, null, CSPNType.NotReportInfo);
+                    DisposeMsg(CSPNType.NotReportInfo);
                 }
             }
         }
         #endregion
 
-        #region 处理信息（同时适用于地图）
+        #region 处理信息
+        private void DisposeMsg_Map(int well_State_ID, string terminal_ID, CSPNType type)
+        {
+            AlarmInfo alarmInfo = wellInfoService.GetAlarmInfo_StatusInfo(well_State_ID, terminal_ID);
+            this.terminal_ID = terminal_ID;
+            this.well_State_ID = well_State_ID;
+            phone = alarmInfo.OperatorInfo.Telephone;
+            place = alarmInfo.WellInfo.Place;
+            time = alarmInfo.Report_Time;
+            realName = alarmInfo.OperatorInfo.RealName;
+            DisposeMsg(type);
+        }
         /// <summary>
-        /// 处理所有（同时适用于地图）
+        /// 处理信息
         /// </summary>
-        public void DisposeMsg(int well_State_ID, string terminal_ID, CSPNType type)
+        private void DisposeMsg(CSPNType type)
         {
             switch (type)
             {
                 case CSPNType.AlarmInfo:
-                    WellCurrentStateInfo alarmInfo = wellStateService.GetAlarmInfo_StatusInfo(well_State_ID, terminal_ID);
-                    phone = alarmInfo.OperatorInfo.Telephone;
-                    place = alarmInfo.WellInfo.Place;
-                    time = alarmInfo.Report_Time;
                     switch (well_State_ID)
                     {
                         case 2:
-                            SenAlarmMsg("报警信息", alarmInfo.Report_Time, alarmInfo.OperatorInfo.RealName);
+                            SenAlarmMsg("报警信息", time, realName);
                             break;
                         case 3:
-                            SenAlarmMsg("状态信息（低电量报警）", alarmInfo.Report_Time, alarmInfo.OperatorInfo.RealName);
+                            SenAlarmMsg("状态信息（低电量报警）", time, realName);
                             break;
                         case 4:
-                            SenAlarmMsg("状态信息（烟感报警）", alarmInfo.Report_Time, alarmInfo.OperatorInfo.RealName);
+                            SenAlarmMsg("状态信息（烟感报警）", time, realName);
                             break;
                         case 5:
-                            SenAlarmMsg("状态信息（烟感低电量报警）", alarmInfo.Report_Time, alarmInfo.OperatorInfo.RealName);
+                            SenAlarmMsg("状态信息（烟感低电量报警）", time, realName);
                             break;
                     }
                     wellStateService.UpdateWellCurrentStateInfo(7, terminal_ID);
+                    wellInfoService.UpdateAlarmInfo(7, time);
                     GetSMS.UpdateMap(terminal_ID);
                     MessageBox.Show("处理成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
                 case CSPNType.DisposeInfo:
-                    WellCurrentStateInfo disposeInfo = wellStateService.GetAlarmInfo_StatusInfo(well_State_ID, terminal_ID);
                     switch (well_State_ID)
                     {
                         case 2:
-                            UpdateDisposeMsg("报警信息", disposeInfo.Report_Time, disposeInfo.OperatorInfo.RealName);
+                            UpdateDisposeMsg("报警信息", time, realName);
                             break;
                         case 3:
-                            UpdateDisposeMsg("状态信息（低电量报警）", disposeInfo.Report_Time, disposeInfo.OperatorInfo.RealName);
+                            UpdateDisposeMsg("状态信息（低电量报警）", time, realName);
                             break;
                         case 4:
-                            UpdateDisposeMsg("状态信息（烟感报警）", disposeInfo.Report_Time, disposeInfo.OperatorInfo.RealName);
+                            UpdateDisposeMsg("状态信息（烟感报警）", time, realName);
                             break;
                         case 5:
-                            UpdateDisposeMsg("状态信息（烟感低电量报警）", disposeInfo.Report_Time, disposeInfo.OperatorInfo.RealName);
+                            UpdateDisposeMsg("状态信息（烟感低电量报警）", time, realName);
                             break;
                     }
                     wellStateService.UpdateWellCurrentStateInfo(1, terminal_ID);
+                    wellInfoService.DeleteAlarmInfo(time);
                     GetSMS.UpdateMap(terminal_ID);
                     MessageBox.Show("处理成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
                 case CSPNType.NotReportInfo:
                     CDMASMS.SendCHNSms(string.Format("位于：{0}的{1}已经{2}天或超过{2}天未发送信息。", place, terminal_Name, ReadWriteConfig.ReadConfig("NotReportTimes")), phone);
-                    wellInfoService.Empty_NotReportNumInfo(_terminal_ID);
+                    wellInfoService.Empty_NotReportNumInfo(terminal_ID);
                     userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "处理未上报信息。", CommonClass.UserName, null, null);
                     MessageBox.Show("处理成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
@@ -176,13 +189,13 @@ namespace CSPN.control
         private void AlarmDataLoade()
         {
             dgvAlarm.AutoGenerateColumns = false;
-            dgvAlarm.DataSource = wellStateService.GetAlarmInfo_StatusInfo();
+            dgvAlarm.DataSource = wellInfoService.GetAlarmInfo_StatusInfo();
         }
         //已处理信息
         private void DisposeDataLoade()
         {
             dgvDispose.AutoGenerateColumns = false;
-            dgvDispose.DataSource = wellStateService.GetProcessedInfo();
+            dgvDispose.DataSource = wellInfoService.GetProcessedInfo();
         }
         //未上报信息
         private void NotReportDataLoade()

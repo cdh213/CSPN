@@ -27,12 +27,33 @@ namespace CSPN.control
             InitializeComponent();
             RefreshWellInfoJob.refreshEventHandler += new job.RefreshEventHandler(RefreshInfo);
         }
-
         private void MaintainControl_Load(object sender, EventArgs e)
         {
             DataLoade(false, null);
         }
+        //对Maintenancegrid进行选中，并读取到textbox中
+        private void maintainGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                txtTerminal_ID.Text = terminal_ID = maintainGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
+                txtTerminal_Name.Text = maintainGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
+                txtPlace.Text = maintainGrid.Rows[e.RowIndex].Cells[2].Value.ToString();
+                txtState.Text = maintainGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
+                startDateTime = maintainGrid.Rows[e.RowIndex].Cells[5].Value.ToString();
+                endDateTime = maintainGrid.Rows[e.RowIndex].Cells[6].Value.ToString();
+                if (startDateTime != "")
+                    dtpStartDateTime.Value = DateTime.Parse(startDateTime);
+                else
+                    dtpStartDateTime.Value = DateTime.Parse(DateTime.Now.ToString("yyyy/MM/dd HH:mm:00"));
 
+                if (endDateTime != "")
+                    dtpEndDateTime.Value = DateTime.Parse(endDateTime);
+                else
+                    dtpEndDateTime.Value = DateTime.Parse(DateTime.Now.ToString("yyyy/MM/dd HH:mm:00"));
+            }
+        }
+        //设定修改时间
         private void btnSet_Click(object sender, EventArgs e)
         {
             startDateTime = dtpStartDateTime.Value.ToString("yyyy/MM/dd HH:mm:00");
@@ -57,27 +78,6 @@ namespace CSPN.control
                 }
             }
         }
-
-        private void appointmentGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex > -1)
-            {
-                txtTerminal_ID.Text = terminal_ID = maintainGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
-                txtTerminal_Name.Text = maintainGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
-                txtPlace.Text = maintainGrid.Rows[e.RowIndex].Cells[2].Value.ToString();
-                txtState.Text = maintainGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
-                startDateTime = maintainGrid.Rows[e.RowIndex].Cells[5].Value.ToString();
-                endDateTime = maintainGrid.Rows[e.RowIndex].Cells[6].Value.ToString();
-                if (startDateTime != "")
-                {
-                    dtpStartDateTime.Value = DateTime.Parse(startDateTime);
-                }
-                if (endDateTime != "")
-                {
-                    dtpEndDateTime.Value = DateTime.Parse(endDateTime);
-                }
-            }
-        }
         //刷新
         private void btnRefresh_Click(object sender, EventArgs e)
         {
@@ -96,7 +96,7 @@ namespace CSPN.control
             }
         }
         //加载系统维护信息
-        public void DataLoade(bool strWhere, string info)
+        private void DataLoade(bool strWhere, string info)
         {
             maintainGrid.AutoGenerateColumns = false;
             maintainGrid.DataSource = null;

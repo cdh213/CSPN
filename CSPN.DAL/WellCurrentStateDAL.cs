@@ -17,20 +17,17 @@ namespace CSPN.DAL
     public class WellCurrentStateDAL : IWellCurrentStateDAL
     {
         #region Conn
-        private IDbConnection _conn;
         public IDbConnection Conn
         {
             get
             {
-                return _conn = ConnectionFactory.CreateConnection();
+                return ConnectionFactory.CreateConnection();
             }
         }
         #endregion
 
         private const string UPDATE_Well_Current_State = "update CSPN_Well_Current_State_Info set Well_State_ID=@Well_State_ID,Electricity=@Electricity,Temperature=@Temperature,Humidity=@Humidity,Smoke_Detector=@Smoke_Detector,Smoke_Power=@Smoke_Power,Signal_Strength=@Signal_Strength,Report_Time=@Report_Time where Terminal_ID=@Terminal_ID";
         private const string UPDATE_Well_State_ID = "update CSPN_Well_Current_State_Info set Well_State_ID=@Well_State_ID where Terminal_ID=@Terminal_ID";
-        private const string SELECT_WELL_INFO = "select Report_Time,Well_State_ID,a.Terminal_ID,Name,Place,Icon,RealName,Telephone from ((CSPN_Well_Info as a inner join CSPN_Well_Current_State_Info as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Dic_Well_State_Info as c on b.Well_State_ID=c.ID) inner join CSPN_Operator_Info as d on a.Operator_ID=d.ID where 1=1";
-        private const string SELECT_ProcessedInfo = "select Report_Time,Well_State_ID,a.Terminal_ID,Name,Place,Icon,Telephone from ((CSPN_Well_Info as a inner join CSPN_Well_Current_State_Info as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Dic_Well_State_Info as c on b.Well_State_ID=c.ID) inner join CSPN_Operator_Info as d on a.Operator_ID=d.ID where b.Well_State_ID=7 order by Report_Time desc";
         private const string Insert_WellInfo = "insert into CSPN_Well_Current_State_Info(Terminal_ID,Well_State_ID) values(@Terminal_ID,@Well_State_ID)";
         private const string Delete_WellInfo = "delete from CSPN_Well_Current_State_Info where Terminal_ID=@Terminal_ID";
         private const string select_Well_Maintain_Info = "select a.Terminal_ID,Name,Place,b.Terminal_ID,b.Well_State_ID,Maintain_StartTime,Maintain_EndTime,c.ID,Icon,State from (CSPN_Well_Info as a inner join CSPN_Well_Current_State_Info as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Dic_Well_State_Info as c on b.Well_State_ID=c.ID where a.Terminal_ID between (select max(a.Terminal_ID) from (select top {0} a.Terminal_ID from CSPN_Well_Info as a order by a.Terminal_ID asc)) and (select max(a.Terminal_ID) from (select top {1} a.Terminal_ID from CSPN_Well_Info as a order by a.Terminal_ID asc)) order by a.Terminal_ID asc";
@@ -71,48 +68,6 @@ namespace CSPN.DAL
             using (Conn)
             {
                 return Conn.Execute(UPDATE_Well_Current_State, parm);
-            }
-        }
-        /// <summary>
-        /// 查询报警,状态信息
-        /// </summary>
-        public DataTable GetAlarmInfo_StatusInfo()
-        {
-            sb = new StringBuilder(SELECT_WELL_INFO);
-            sb.Append(" and b.Well_State_ID=2 or b.Well_State_ID=3 or b.Well_State_ID=4 or b.Well_State_ID=5 order by Report_Time desc");
-            using (DataTable table = new DataTable())
-            {
-                using (Conn)
-                {
-                    table.Load(Conn.ExecuteReader(sb.ToString()));
-                }
-                return table;
-            }
-        }
-        /// <summary>
-        /// 通过Well_State_ID，Terminal_ID查询报警,状态信息
-        /// </summary>
-        public WellCurrentStateInfo GetAlarmInfo_StatusInfo(int well_State_ID, string terminal_ID)
-        {
-            sb = new StringBuilder(SELECT_WELL_INFO);
-            sb.AppendFormat(" and b.Well_State_ID={0} and a.Terminal_ID='{1}' order by Report_Time desc", well_State_ID, terminal_ID);
-            using (Conn)
-            {
-                return Conn.Query<WellCurrentStateInfo, WellInfo, WellStateInfo, OperatorInfo, WellCurrentStateInfo>(sb.ToString(), (a, b, c, d) => { a.WellInfo = b; a.WellStateInfo = c; a.OperatorInfo = d; return a; }, null, null, true, "Report_Time,Terminal_ID,Icon,RealName").SingleOrDefault();
-            }
-        }
-        /// <summary>
-        /// 查询已处理信息
-        /// </summary>
-        public DataTable GetProcessedInfo()
-        {
-            using (DataTable table = new DataTable())
-            {
-                using (Conn)
-                {
-                    table.Load(Conn.ExecuteReader(SELECT_ProcessedInfo));
-                }
-                return table;
             }
         }
         /// <summary>

@@ -19,6 +19,7 @@ namespace CSPN.BLL
     {
         private static readonly IWellInfoDAL welldal = DALFactory.CreateWellInfoDAL();
         private static readonly IReportNumInfoDAL reportnumdal = DALFactory.CreateReportNumInfoDAL();
+        private static readonly IAlarmInfoDAL alarmInfoDAL = DALFactory.CreateAlarmInfoDAL();
 
         #region 人井基本信息
         /// <summary>
@@ -134,6 +135,51 @@ namespace CSPN.BLL
         public int DeleteReportNumInfo(string terminal_ID)
         {
             return reportnumdal.DeleteReportNumInfo(terminal_ID);
+        }
+        #endregion
+
+        #region 人井报警信息
+        /// <summary>
+        /// 查询报警,状态信息
+        /// </summary>
+        public DataTable GetAlarmInfo_StatusInfo()
+        {
+            return alarmInfoDAL.GetAlarmInfo_StatusInfo();
+        }
+        /// <summary>
+        /// 通过Terminal_ID查询报警,状态信息
+        /// </summary>
+        public AlarmInfo GetAlarmInfo_StatusInfo(int well_State_ID, string terminal_ID)
+        {
+            return alarmInfoDAL.GetAlarmInfo_StatusInfo(well_State_ID, terminal_ID);
+        }
+        /// <summary>
+        /// 查询已处理信息
+        /// </summary>
+        public DataTable GetProcessedInfo()
+        {
+            return alarmInfoDAL.GetProcessedInfo();
+        }
+        /// <summary>
+        /// 增加报警、状态信息
+        /// </summary>
+        public int InsertAlarmInfo(AlarmInfo alarmInfo)
+        {
+            return alarmInfoDAL.InsertAlarmInfo(alarmInfo);
+        }
+        /// <summary>
+        /// 删除报警、状态信息
+        /// </summary>
+        public int DeleteAlarmInfo(string report_Time)
+        {
+            return alarmInfoDAL.DeleteAlarmInfo(report_Time);
+        }
+        /// <summary>
+        /// 更新报警、状态信息
+        /// </summary>
+        public int UpdateAlarmInfo(int well_State_ID, string report_Time)
+        {
+            return alarmInfoDAL.UpdateAlarmInfo(well_State_ID, report_Time);
         }
         #endregion
     }

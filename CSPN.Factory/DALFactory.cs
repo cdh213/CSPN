@@ -59,5 +59,10 @@ namespace CSPN.Factory
             string className = path + ".ReportNumInfoDAL";
             return (IReportNumInfoDAL)Assembly.Load(path).CreateInstance(className);
         }
+        public static IAlarmInfoDAL CreateAlarmInfoDAL()
+        {
+            string className = path + ".AlarmInfoDAL";
+            return (IAlarmInfoDAL)Assembly.Load(path).CreateInstance(className);
+        }
     }
 }

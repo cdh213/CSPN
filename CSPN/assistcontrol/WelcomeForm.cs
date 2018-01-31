@@ -23,13 +23,12 @@ namespace CSPN.assistcontrol
         }
 
         FileHelper file = new FileHelper();
-        string portName = "", baudRate = "";
 
         private void WelcomeForm_Load(object sender, EventArgs e)
         {
             if (file.FileSize("cache") > 31457280)
             {
-                file.DelectDir("cache");
+                file.DeleteDir("cache");
             }
             //设置启动窗体
             this.timer1.Start();
@@ -39,58 +38,49 @@ namespace CSPN.assistcontrol
         private void timer1_Tick(object sender, EventArgs e)
         {
             this.timer1.Stop();
-            //读取配置文件
-            portName = ReadWriteConfig.ReadConfig("PortName");
-            baudRate = ReadWriteConfig.ReadConfig("BaudRate");
-            if (portName != "" || baudRate != "")
+            if (SerialPort.GetPortNames().Length != 0)
             {
-                string[] names = SerialPort.GetPortNames();
-                if (names.Contains(portName))
+                //读取配置文件
+                string portName = ReadWriteConfig.ReadConfig("PortName");
+                string baudRate = ReadWriteConfig.ReadConfig("BaudRate");
+                CDMASMS.Set(portName, Convert.ToInt32(baudRate));
+                if (CDMASMS.Open())
                 {
-                    CDMASMS.Set(portName, Convert.ToInt32(baudRate));
-                    if (CDMASMS.Open())
+                    string TSX = CDMASMS.SendAT("AT^MEID").Replace("\r\n", "").Replace("OK", "");
+                    string production_Name = CDMASMS.SendAT("AT+CGMM").Replace("\r\n", "").Replace("OK", "");
+                    if (TSX.Length == 14 && production_Name.IndexOf("MC323") != -1)
                     {
-                        string TSX = CDMASMS.SendAT("AT^MEID").Replace("\r\n", "").Replace("OK", "");
-                        if (TSX.Length == 14)
+                        TSX = SysFunction.GetSecurit(TSX.Remove(3, 5));
+                        if (ReadWriteConfig.ReadConfig("TSX").Equals(TSX))
                         {
-                            TSX = SysFunction.GetSecurit(TSX.Remove(3, 5));
-                            if (ReadWriteConfig.ReadConfig("TSX").Equals(TSX))
+                            string netstat = CDMASMS.SendAT("AT+CREG?").Replace("\r\n", "").Replace("OK", "");
+                            if (netstat.Split(',')[1] == "1")
                             {
-                                string netstat = CDMASMS.SendAT("AT+CREG?").Replace("\r\n", "").Replace("OK", "");
-                                if (netstat.Split(',')[1] == "1")
+                                if (ReadWriteRegistry.ReadRegistry("isInvalid") == null)
                                 {
-                                    if (ReadWriteRegistry.ReadRegistry("isInvalid") == null)
-                                    {
-                                        ReadWriteRegistry.WriteRegistry("isInvalid", "false");
-                                    }
-                                    if (ReadWriteRegistry.ReadRegistry("isInvalid") == "true")
-                                    {
-                                        this.DialogResult = DialogResult.Abort;
-                                    }
-                                    else
-                                    {
-                                        CDMASMS.DeviceInitialize();
-                                        this.DialogResult = DialogResult.OK;
-                                    }
-                                    this.Close();
+                                    ReadWriteRegistry.WriteRegistry("isInvalid", "false");
+                                }
+                                if (ReadWriteRegistry.ReadRegistry("isInvalid") == "true")
+                                {
+                                    this.DialogResult = DialogResult.Abort;
                                 }
                                 else
                                 {
-                                    MessageBox.Show("未注册到本地网络！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    CDMASMS.Close();
-                                    this.Close();
+                                    CDMASMS.DeviceInitialize();
+                                    this.DialogResult = DialogResult.OK;
                                 }
+                                this.Close();
                             }
                             else
                             {
-                                MessageBox.Show("硬件不匹配！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("未注册到本地网络！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 CDMASMS.Close();
                                 this.Close();
                             }
                         }
                         else
                         {
-                            MessageBox.Show("读取硬件信息失败！请确认硬件设备连接正确。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("硬件不匹配！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             CDMASMS.Close();
                             this.Close();
                         }
@@ -107,11 +97,12 @@ namespace CSPN.assistcontrol
                     MessageBox.Show("串口打开失败，请在系统设置中重新配置串口数据。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     this.DialogResult = DialogResult.No;
                     this.Close();
-                } 
+                }
             }
             else
             {
-                MessageBox.Show("读取配置文件失败。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("读取硬件信息失败！请确认硬件设备连接正确。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CDMASMS.Close();
                 this.Close();
             }
         }

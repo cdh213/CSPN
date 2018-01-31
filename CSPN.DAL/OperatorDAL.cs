@@ -35,13 +35,14 @@ namespace CSPN.DAL
         private const string UPDATE_OPERATOR = "update CSPN_Operator_Info set Work_ID=@Work_ID,RealName=@RealName,Gender=@Gender,Telephone=@Telephone,Area=@Area,ReceiveMsg=@ReceiveMsg where Work_ID=@Work_ID";
         private const string DELETE_OPERATOR = "delete from CSPN_Operator_Info where Work_ID=@Work_ID";
 
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = null;
         /// <summary>
         /// 加载值班人员信息
         /// </summary>
         /// <returns></returns>
         public DataTable GetOperator_Table(int fSize, int sSize, out int pageCount)
         {
+            sb = new StringBuilder();
             sb.AppendFormat(SELECT, fSize, sSize);
             using (DataTable table = new DataTable())
             {

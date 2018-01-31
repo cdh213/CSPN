@@ -78,6 +78,7 @@
             this.txtPWD.Size = new System.Drawing.Size(164, 26);
             this.txtPWD.TabIndex = 4;
             this.txtPWD.WaterText = "请输入密码";
+            this.txtPWD.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPWD_KeyUp);
             // 
             // btnLogin
             // 

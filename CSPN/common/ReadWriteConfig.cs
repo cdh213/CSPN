@@ -14,10 +14,12 @@ namespace CSPN.common
     {
         public static string ReadConfig(string key)
         {
+            string value = "";
             //获取Configuration对象
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             //读取元素的Value
-            return config.AppSettings.Settings[key].Value;
+            value = config.AppSettings.Settings[key].Value;
+            return value;
         }
         public static void WriteConfig(string key, string value)
         {

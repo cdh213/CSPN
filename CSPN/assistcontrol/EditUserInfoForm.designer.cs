@@ -58,18 +58,18 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 163F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.cmbreceive, 4, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtArea, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtWorkID, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtTelephone, 4, 1);
-            this.tableLayoutPanel1.Controls.Add(this.cmbGender, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtName, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label8, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label10, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.label4, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txtName, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.cmbGender, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label8, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.txtArea, 2, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -93,15 +93,15 @@
             this.cmbreceive.Location = new System.Drawing.Point(363, 161);
             this.cmbreceive.Name = "cmbreceive";
             this.cmbreceive.Size = new System.Drawing.Size(157, 28);
-            this.cmbreceive.TabIndex = 33;
+            this.cmbreceive.TabIndex = 6;
             // 
             // txtArea
             // 
             this.txtArea.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtArea.Location = new System.Drawing.Point(363, 23);
+            this.txtArea.Location = new System.Drawing.Point(120, 163);
             this.txtArea.Name = "txtArea";
             this.txtArea.Size = new System.Drawing.Size(157, 23);
-            this.txtArea.TabIndex = 32;
+            this.txtArea.TabIndex = 5;
             // 
             // txtWorkID
             // 
@@ -110,13 +110,13 @@
             this.txtWorkID.Location = new System.Drawing.Point(120, 22);
             this.txtWorkID.Name = "txtWorkID";
             this.txtWorkID.Size = new System.Drawing.Size(157, 26);
-            this.txtWorkID.TabIndex = 31;
+            this.txtWorkID.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(283, 0);
+            this.label2.Location = new System.Drawing.Point(40, 140);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 70);
             this.label2.TabIndex = 2;
@@ -141,7 +141,7 @@
             this.txtTelephone.Location = new System.Drawing.Point(363, 92);
             this.txtTelephone.Name = "txtTelephone";
             this.txtTelephone.Size = new System.Drawing.Size(157, 26);
-            this.txtTelephone.TabIndex = 19;
+            this.txtTelephone.TabIndex = 4;
             // 
             // cmbGender
             // 
@@ -152,19 +152,19 @@
             this.cmbGender.Items.AddRange(new object[] {
             "男",
             "女"});
-            this.cmbGender.Location = new System.Drawing.Point(120, 161);
+            this.cmbGender.Location = new System.Drawing.Point(120, 91);
             this.cmbGender.Name = "cmbGender";
             this.cmbGender.Size = new System.Drawing.Size(157, 28);
-            this.cmbGender.TabIndex = 28;
+            this.cmbGender.TabIndex = 3;
             // 
             // txtName
             // 
             this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtName.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtName.Location = new System.Drawing.Point(120, 92);
+            this.txtName.Location = new System.Drawing.Point(363, 22);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(157, 26);
-            this.txtName.TabIndex = 1;
+            this.txtName.TabIndex = 2;
             // 
             // panel1
             // 
@@ -191,7 +191,7 @@
             this.btnSure.Location = new System.Drawing.Point(125, 20);
             this.btnSure.Name = "btnSure";
             this.btnSure.Size = new System.Drawing.Size(86, 26);
-            this.btnSure.TabIndex = 23;
+            this.btnSure.TabIndex = 7;
             this.btnSure.Text = "确定";
             this.btnSure.UseVisualStyleBackColor = true;
             this.btnSure.Click += new System.EventHandler(this.btnSure_Click);
@@ -200,7 +200,7 @@
             // 
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label8.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label8.Location = new System.Drawing.Point(40, 140);
+            this.label8.Location = new System.Drawing.Point(40, 70);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(74, 70);
             this.label8.TabIndex = 8;
@@ -211,7 +211,7 @@
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(40, 70);
+            this.label3.Location = new System.Drawing.Point(283, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 70);
             this.label3.TabIndex = 35;

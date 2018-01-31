@@ -44,6 +44,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.btnSysSet = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
+            this.tbSysLogTime = new System.Windows.Forms.TextBox();
+            this.tbUserLogTime = new System.Windows.Forms.TextBox();
             this.SMSSettings = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.myGroupBox1 = new System.Windows.Forms.GroupBox();
@@ -102,8 +104,6 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.tbSysLogTime = new System.Windows.Forms.TextBox();
-            this.tbUserLogTime = new System.Windows.Forms.TextBox();
             this.tbNotReportTimes = new CSPN.assistcontrol.WaterTextBox();
             this.tbRefreshTime = new CSPN.assistcontrol.WaterTextBox();
             this.page = new CSPN.assistcontrol.DataGridPage();
@@ -282,6 +282,26 @@
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.label11, "人井信息列表刷新时间，改设置更改后需要重启系统才能生效。");
             // 
+            // tbSysLogTime
+            // 
+            this.tbSysLogTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbSysLogTime.Location = new System.Drawing.Point(315, 40);
+            this.tbSysLogTime.Name = "tbSysLogTime";
+            this.tbSysLogTime.Size = new System.Drawing.Size(94, 26);
+            this.tbSysLogTime.TabIndex = 21;
+            this.tbSysLogTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip1.SetToolTip(this.tbSysLogTime, "设置保存系统日志的天数，超过天数的系统日志会被自动删除。");
+            // 
+            // tbUserLogTime
+            // 
+            this.tbUserLogTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbUserLogTime.Location = new System.Drawing.Point(635, 40);
+            this.tbUserLogTime.Name = "tbUserLogTime";
+            this.tbUserLogTime.Size = new System.Drawing.Size(94, 26);
+            this.tbUserLogTime.TabIndex = 22;
+            this.tbUserLogTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip1.SetToolTip(this.tbUserLogTime, "设置保存用户日志的天数，超过天数的用户日志会被自动删除。");
+            // 
             // SMSSettings
             // 
             this.SMSSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -312,7 +332,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1151, 520);
             this.tableLayoutPanel1.TabIndex = 0;
-            this.tableLayoutPanel1.Visible = false;
             // 
             // myGroupBox1
             // 
@@ -389,6 +408,9 @@
             this.BaudRate.Dock = System.Windows.Forms.DockStyle.Top;
             this.BaudRate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.BaudRate.FormattingEnabled = true;
+            this.BaudRate.Items.AddRange(new object[] {
+            "9600",
+            "115200"});
             this.BaudRate.Location = new System.Drawing.Point(463, 87);
             this.BaudRate.Name = "BaudRate";
             this.BaudRate.Size = new System.Drawing.Size(144, 28);
@@ -1081,26 +1103,6 @@
             this.toolTip1.InitialDelay = 50;
             this.toolTip1.ReshowDelay = 100;
             // 
-            // tbSysLogTime
-            // 
-            this.tbSysLogTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbSysLogTime.Location = new System.Drawing.Point(315, 40);
-            this.tbSysLogTime.Name = "tbSysLogTime";
-            this.tbSysLogTime.Size = new System.Drawing.Size(94, 26);
-            this.tbSysLogTime.TabIndex = 21;
-            this.tbSysLogTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.tbSysLogTime, "设置保存系统日志的天数，超过天数的系统日志会被自动删除。");
-            // 
-            // tbUserLogTime
-            // 
-            this.tbUserLogTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbUserLogTime.Location = new System.Drawing.Point(635, 40);
-            this.tbUserLogTime.Name = "tbUserLogTime";
-            this.tbUserLogTime.Size = new System.Drawing.Size(94, 26);
-            this.tbUserLogTime.TabIndex = 22;
-            this.tbUserLogTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.tbUserLogTime, "设置保存用户日志的天数，超过天数的用户日志会被自动删除。");
-            // 
             // tbNotReportTimes
             // 
             this.tbNotReportTimes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -1127,9 +1129,10 @@
             this.tableLayoutPanel5.SetColumnSpan(this.page, 10);
             this.page.Dock = System.Windows.Forms.DockStyle.Fill;
             this.page.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.page.Location = new System.Drawing.Point(3, 484);
+            this.page.Location = new System.Drawing.Point(3, 483);
             this.page.Name = "page";
-            this.page.Size = new System.Drawing.Size(1145, 32);
+            this.page.PageSize = 50;
+            this.page.Size = new System.Drawing.Size(1145, 34);
             this.page.TabIndex = 13;
             // 
             // SystemSettingsControl

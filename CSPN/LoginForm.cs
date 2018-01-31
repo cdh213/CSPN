@@ -62,5 +62,13 @@ namespace CSPN
                 MessageBox.Show("请输入用户名或密码。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void txtPWD_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)//如果输入的是回车键  
+            {
+                this.btnLogin_Click(sender, e);//触发button事件  
+            }
+        }
     }
 }

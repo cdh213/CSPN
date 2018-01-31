@@ -39,7 +39,7 @@ namespace CSPN.helper
         /// 删除文件夹内的内容
         /// </summary>
         /// <param name="srcPath"></param>
-        public void DelectDir(string filePath)
+        public void DeleteDir(string filePath)
         {
             DirectoryInfo dir = new DirectoryInfo(filePath);
             FileSystemInfo[] fileinfo = dir.GetFileSystemInfos();  //返回目录中所有文件和子目录

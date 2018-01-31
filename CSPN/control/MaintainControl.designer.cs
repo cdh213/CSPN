@@ -251,7 +251,7 @@
             this.maintainGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.maintainGrid.Size = new System.Drawing.Size(756, 429);
             this.maintainGrid.TabIndex = 37;
-            this.maintainGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.appointmentGrid_CellContentClick);
+            this.maintainGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.maintainGrid_CellContentClick);
             this.maintainGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.maintainGrid_CellFormatting);
             // 
             // Terminal_ID

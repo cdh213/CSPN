@@ -23,18 +23,6 @@ namespace CSPN.IDAL
         /// </summary>
         int UpdateWellCurrentStateInfo(WellCurrentStateInfo wellCurrentStateInfo);
         /// <summary>
-        /// 查询报警,状态信息
-        /// </summary>
-        DataTable GetAlarmInfo_StatusInfo();
-        /// <summary>
-        /// 通过Well_State_ID，Terminal_ID查询报警,状态信息
-        /// </summary>
-        WellCurrentStateInfo GetAlarmInfo_StatusInfo(int well_State_ID, string terminal_ID);
-        /// <summary>
-        /// 查询已处理信息
-        /// </summary>
-        DataTable GetProcessedInfo();
-        /// <summary>
         /// 增加人井信息
         /// </summary>
         int InsertWellCurrentStateInfo(string terminal_ID, int well_State_ID);

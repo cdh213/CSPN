@@ -55,27 +55,6 @@ namespace CSPN.BLL
             return wellcurrentdal.UpdateWellCurrentStateInfo(well_State_ID, terminal_ID);
         }
         /// <summary>
-        /// 查询报警,状态信息
-        /// </summary>
-        public DataTable GetAlarmInfo_StatusInfo()
-        {
-            return wellcurrentdal.GetAlarmInfo_StatusInfo();
-        }
-        /// <summary>
-        /// 通过Well_State_ID，Terminal_ID查询报警,状态信息
-        /// </summary>
-        public WellCurrentStateInfo GetAlarmInfo_StatusInfo(int well_State_ID, string terminal_ID)
-        {
-            return wellcurrentdal.GetAlarmInfo_StatusInfo(well_State_ID, terminal_ID);
-        }
-        /// <summary>
-        /// 查询已处理信息
-        /// </summary>
-        public DataTable GetProcessedInfo()
-        {
-            return wellcurrentdal.GetProcessedInfo();
-        }
-        /// <summary>
         /// 增加人井信息
         /// </summary>
         public int InsertWellCurrentStateInfo(string terminal_ID, int well_State_ID)
