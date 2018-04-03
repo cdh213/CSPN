@@ -189,6 +189,9 @@
     <Compile Include="assistcontrol\MessageForm.Designer.cs">
       <DependentUpon>MessageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="assistcontrol\UserComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="assistcontrol\WaitForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,6 +210,7 @@
     <Compile Include="common\CommonClass.cs" />
     <Compile Include="common\CSPNType.cs" />
     <Compile Include="common\QuartzInit.cs" />
+    <Compile Include="common\ReadWriteData.cs" />
     <Compile Include="control\MaintainControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

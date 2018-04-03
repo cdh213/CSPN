@@ -18,14 +18,16 @@ namespace CSPN.helper
         /// <param name="e"></param>
         public static string ToBase64(Bitmap image)
         {
-            MemoryStream ms = new MemoryStream();
-            image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-            byte[] arr = new byte[ms.Length];
-            ms.Position = 0;
-            ms.Read(arr, 0, (int)ms.Length);
-            ms.Close();
-            string base64 = Convert.ToBase64String(arr);
-            return base64;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                byte[] arr = new byte[ms.Length];
+                ms.Position = 0;
+                ms.Read(arr, 0, (int)ms.Length);
+                ms.Close();
+                string base64 = Convert.ToBase64String(arr);
+                return base64;
+            }
         }
 
         /// <summary>
@@ -36,9 +38,11 @@ namespace CSPN.helper
         public static Bitmap ToImage(string base64)
         {
             byte[] bytes = Convert.FromBase64String(base64.Remove(0, 22));
-            MemoryStream ms = new MemoryStream(bytes);
-            Bitmap bitmap = new Bitmap(ms);
-            return bitmap;
+            using (MemoryStream ms = new MemoryStream(bytes))
+            {
+                Bitmap bitmap = new Bitmap(ms);
+                return bitmap;
+            }
         }
     }
 }

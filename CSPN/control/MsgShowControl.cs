@@ -22,6 +22,7 @@ using CSPN.helper;
 using Newtonsoft.Json;
 using CSPN.job;
 using System.Threading;
+using System.Collections;
 
 namespace CSPN.control
 {
@@ -69,40 +70,81 @@ namespace CSPN.control
         //编辑
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (grid.SelectedRows.Count == 0)
+            int[] n = new int[grid.Rows.Count + 1];
+            for (int i = 0; i < grid.Rows.Count; i++)
+            {
+                //判断该行的复选框是否存在
+                if (grid.Rows[i].Cells[0].Value != null)
+                {
+                    //判断该复选框是否被选中
+                    if (Convert.ToBoolean(grid.Rows[i].Cells[0].Value))
+                    {
+                        n[0]++;
+                        n[i + 1] = -1;
+                    }
+                }
+            }
+            if (n[0] == 0)
             {
                 MessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            terminal_ID = grid.CurrentRow.Cells[0].Value.ToString();
-            new EditWellInfoForm(terminal_ID, false, false, null).ShowDialog();
-            IList<WellInfo> list = wellInfoService.GetWellInfo_List(terminal_ID);
-            string json = JsonConvert.SerializeObject(list);
-            WebBrower.webBrower.ExecuteScriptAsync("updateMarker", json);
-            DataLoade(null);
+            else if (n[0] > 1)
+            {
+                MessageBox.Show("请选择一项！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else
+            {
+                terminal_ID = grid.Rows[Array.IndexOf(n, -1) - 1].Cells[1].Value.ToString();
+                new EditWellInfoForm(terminal_ID, false, false, null).ShowDialog();
+                IList<WellInfo> list = wellInfoService.GetWellInfo_List(terminal_ID);
+                string json = JsonConvert.SerializeObject(list);
+                WebBrower.webBrower.ExecuteScriptAsync("updateMarker", json);
+                DataLoade(null);
+            }
         }
             
         //删除
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (grid.SelectedRows.Count == 0)
+            int[] n = new int[grid.Rows.Count + 1];
+            for (int i = 0; i < grid.Rows.Count; i++)
+            {
+                //判断该行的复选框是否存在
+                if (grid.Rows[i].Cells[0].Value != null)
+                {
+                    //判断该复选框是否被选中
+                    if (Convert.ToBoolean(grid.Rows[i].Cells[0].Value))
+                    {
+                        n[0]++;
+                        n[i + 1] = i;
+                    }
+                }
+            }
+            if (n[0] == 0)
             {
                 MessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            if (MessageBox.Show("是否删除？", "人井监控管理系统", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            else
             {
-                terminal_ID = grid.CurrentRow.Cells[0].Value.ToString();
-                if (wellInfoService.DeleteWellInfo(terminal_ID) > 0 && wellStateService.DeleteWellCurrentStateInfo(terminal_ID) > 0 && wellInfoService.DeleteReportNumInfo(terminal_ID) > 0)
+                if (MessageBox.Show("是否删除？", "人井监控管理系统", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    for (int i = 1; i < n.Length; i++)
+                    {
+                        if (n[i] != 0)
+                        {
+                            terminal_ID = grid.Rows[n[i]].Cells[1].Value.ToString();
+                            wellInfoService.DeleteWellInfo(terminal_ID);
+                            wellStateService.DeleteWellCurrentStateInfo(terminal_ID);
+                            wellInfoService.DeleteReportNumInfo(terminal_ID);
+                        }
+                    }
                     MessageBox.Show("数据删除成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    WebBrower.webBrower.ExecuteScriptAsync("deleteMarker", terminal_ID);
+                    WebBrower.Reload();
+                    DataLoade(null);
                 }
-                else
-                {
-                    MessageBox.Show("数据删除失败！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                DataLoade(null);
             }
         }
         //信息导入

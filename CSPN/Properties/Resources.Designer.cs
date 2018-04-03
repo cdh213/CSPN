@@ -71,8 +71,7 @@ namespace CSPN.Properties {
         
         /// <summary>
         ///   查找类似 &lt;/script&gt;
-        ///    &lt;style type=&quot;text/css&quot;&gt;
-        ///        body,html{margin:0}#container,body,html{position:absolute;width:100%;height:100%}#container{top:0;right:0;bottom:0;left:0}.search{position:absolute;left:5%;z-index:6201}.searchbox{position:relative;z-index:2201;width:225px;height:40px;border-radius:3px;background:#fff;box-shadow:0 2px 2px rgba(0,0,0,.15)}.searchbox .iptbox{position:absolute;top:0;z-index:2202;box-sizing:border-box;width:225px;height:40px;border-radius:2px}.searchbox #searchipt{position:absolut [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///    &lt;style type=&quot;text/css&quot;&gt;body,html{margin:0}#container,body,html{position:absolute;width:100%;height:100%}#container{top:0;right:0;bottom:0;left:0}.search{position:absolute;left:5%;z-index:6201}.searchbox{position:relative;z-index:2201;width:225px;height:40px;border-radius:3px;background:#fff;box-shadow:0 2px 2px rgba(0,0,0,.15)}.searchbox .iptbox{position:absolute;top:0;z-index:2202;box-sizing:border-box;width:225px;height:40px;border-radius:2px}.searchbox #searchipt{position:absolute;top:10px [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
         internal static string mapContent {
             get {

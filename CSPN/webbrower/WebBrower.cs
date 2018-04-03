@@ -11,7 +11,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -78,7 +77,7 @@ namespace CSPN.webbrower
             html.Append(Resources.mapContent);
             webBrower.LoadHtml(html.ToString(), "http://rendering/");
         }
-        
+
         public static void Reload()
         {
             if (webBrower.IsBrowserInitialized)

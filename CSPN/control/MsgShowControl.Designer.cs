@@ -49,6 +49,7 @@
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.ck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.TerminalID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Terminal_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Longitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -164,6 +165,7 @@
             this.grid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.grid.ColumnHeadersHeight = 30;
             this.grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column2,
             this.TerminalID,
             this.Terminal_Name,
             this.Longitude,
@@ -368,6 +370,12 @@
             this.Column1.Name = "Column1";
             this.Column1.Visible = false;
             // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "选择";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 43;
+            // 
             // TerminalID
             // 
             this.TerminalID.DataPropertyName = "Terminal_ID";
@@ -543,6 +551,7 @@
         private assistcontrol.DataGridPage page;
         private assistcontrol.WaterTextBox txtCondition;
         private System.Windows.Forms.DataGridView grid;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn TerminalID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Terminal_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Longitude;

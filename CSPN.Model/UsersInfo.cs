@@ -9,6 +9,7 @@ namespace CSPN.Model
     /// <summary>
     /// 用户信息
     /// </summary>
+    [Serializable]
     public class UsersInfo
     {
         private string _work_ID;//工号
