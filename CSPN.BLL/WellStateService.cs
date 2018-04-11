@@ -2,12 +2,8 @@
 using CSPN.IBLL;
 using CSPN.IDAL;
 using CSPN.Model;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSPN.BLL
 {
@@ -24,7 +20,7 @@ namespace CSPN.BLL
         /// 查询人井状态信息
         /// </summary>
         /// <returns>人井状态</returns>
-        public IList<WellStateInfo> GetWellStateInfo()
+        public List<WellStateInfo> GetWellStateInfo()
         {
             return wellstatedal.GetWellStateInfo();
         }

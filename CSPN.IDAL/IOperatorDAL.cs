@@ -1,10 +1,6 @@
 ﻿using CSPN.Model;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSPN.IDAL
 {
@@ -22,7 +18,7 @@ namespace CSPN.IDAL
         /// 加载值班人员信息
         /// </summary>
         /// <returns></returns>
-        IList<OperatorInfo> GetOperator();
+        List<OperatorInfo> GetOperator();
         /// <summary>
         /// 查询人员信息
         /// </summary>

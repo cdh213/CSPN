@@ -34,16 +34,22 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.SysSetTab = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnSysSet = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.btnSysSet = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
+            this.tbNotReportTimes = new System.Windows.Forms.TextBox();
+            this.tbRefreshTime = new System.Windows.Forms.TextBox();
             this.tbSysLogTime = new System.Windows.Forms.TextBox();
             this.tbUserLogTime = new System.Windows.Forms.TextBox();
             this.SMSSettings = new System.Windows.Forms.TabPage();
@@ -72,41 +78,34 @@
             this.CardNo = new System.Windows.Forms.TextBox();
             this.UserSet = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtlogintime = new System.Windows.Forms.TextBox();
-            this.txtRealName = new System.Windows.Forms.TextBox();
-            this.username = new System.Windows.Forms.Label();
-            this.txtWorkID = new System.Windows.Forms.TextBox();
-            this.workid = new System.Windows.Forms.Label();
-            this.rename = new System.Windows.Forms.Label();
-            this.txtusername = new System.Windows.Forms.TextBox();
-            this.phone = new System.Windows.Forms.Label();
-            this.txtTelephone = new System.Windows.Forms.TextBox();
-            this.logintime = new System.Windows.Forms.Label();
-            this.lgender = new System.Windows.Forms.Label();
-            this.comGender = new System.Windows.Forms.ComboBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnedit = new System.Windows.Forms.Button();
+            this.btnAddUser = new System.Windows.Forms.Button();
+            this.btnRefreshUser = new System.Windows.Forms.Button();
+            this.pageUser = new CSPN.assistcontrol.DataGridPage();
+            this.userGrid = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnUpdateUser = new System.Windows.Forms.Button();
+            this.btnDeleteUser = new System.Windows.Forms.Button();
             this.OperatorSet = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.usergrid = new System.Windows.Forms.DataGridView();
+            this.operatorGrid = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RealName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Telephone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Area = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReceiveMsg = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnInto = new System.Windows.Forms.Button();
-            this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnAddOperator = new System.Windows.Forms.Button();
+            this.btnUpdateOperator = new System.Windows.Forms.Button();
+            this.btnDeleteOperator = new System.Windows.Forms.Button();
+            this.btnIntoOperator = new System.Windows.Forms.Button();
+            this.btnRefreshOperator = new System.Windows.Forms.Button();
+            this.pageOperator = new CSPN.assistcontrol.DataGridPage();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.tbNotReportTimes = new CSPN.assistcontrol.WaterTextBox();
-            this.tbRefreshTime = new CSPN.assistcontrol.WaterTextBox();
-            this.page = new CSPN.assistcontrol.DataGridPage();
             this.tabControl1.SuspendLayout();
             this.SysSetTab.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
@@ -120,12 +119,10 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.UserSet.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
-            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userGrid)).BeginInit();
             this.OperatorSet.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.usergrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.operatorGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -144,6 +141,7 @@
             this.tabControl1.Size = new System.Drawing.Size(1159, 553);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 1;
+            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
             // SysSetTab
             // 
@@ -193,18 +191,18 @@
             this.tableLayoutPanel8.AutoScroll = true;
             this.tableLayoutPanel8.ColumnCount = 7;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.Controls.Add(this.btnSysSet, 3, 2);
             this.tableLayoutPanel8.Controls.Add(this.label9, 1, 0);
             this.tableLayoutPanel8.Controls.Add(this.label5, 1, 1);
             this.tableLayoutPanel8.Controls.Add(this.label10, 4, 0);
-            this.tableLayoutPanel8.Controls.Add(this.tbNotReportTimes, 2, 1);
-            this.tableLayoutPanel8.Controls.Add(this.btnSysSet, 3, 2);
             this.tableLayoutPanel8.Controls.Add(this.label11, 4, 1);
+            this.tableLayoutPanel8.Controls.Add(this.tbNotReportTimes, 2, 1);
             this.tableLayoutPanel8.Controls.Add(this.tbRefreshTime, 5, 1);
             this.tableLayoutPanel8.Controls.Add(this.tbSysLogTime, 2, 0);
             this.tableLayoutPanel8.Controls.Add(this.tbUserLogTime, 5, 0);
@@ -219,38 +217,6 @@
             this.tableLayoutPanel8.Size = new System.Drawing.Size(894, 427);
             this.tableLayoutPanel8.TabIndex = 0;
             // 
-            // label9
-            // 
-            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(165, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(144, 106);
-            this.label9.TabIndex = 15;
-            this.label9.Text = "系统日志保存时间";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.label9, "设置保存系统日志的天数，超过天数的系统日志会被自动删除。");
-            // 
-            // label5
-            // 
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(165, 106);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(144, 106);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "人井未上报次数";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label10
-            // 
-            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(485, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(144, 106);
-            this.label10.TabIndex = 17;
-            this.label10.Text = "用户日志保存时间";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.label10, "设置保存用户日志的天数，超过天数的用户日志会被自动删除。");
-            // 
             // btnSysSet
             // 
             this.btnSysSet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -263,29 +229,80 @@
             this.btnSysSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSysSet.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnSysSet.ForeColor = System.Drawing.Color.White;
-            this.btnSysSet.Location = new System.Drawing.Point(415, 252);
+            this.btnSysSet.Location = new System.Drawing.Point(390, 252);
             this.btnSysSet.Name = "btnSysSet";
             this.btnSysSet.Size = new System.Drawing.Size(64, 26);
-            this.btnSysSet.TabIndex = 14;
+            this.btnSysSet.TabIndex = 25;
             this.btnSysSet.Text = "设置";
             this.btnSysSet.UseVisualStyleBackColor = true;
             this.btnSysSet.Click += new System.EventHandler(this.btnSysSet_Click);
             // 
+            // label9
+            // 
+            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label9.Location = new System.Drawing.Point(120, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(164, 106);
+            this.label9.TabIndex = 15;
+            this.label9.Text = "系统日志保存时间（天）";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.label9, "设置保存系统日志的天数，超过天数的系统日志会被自动删除。");
+            // 
+            // label5
+            // 
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Location = new System.Drawing.Point(120, 106);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(164, 106);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "通讯故障次数";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label10
+            // 
+            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label10.Location = new System.Drawing.Point(460, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(214, 106);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "用户日志保存时间（天）";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.label10, "设置保存用户日志的天数，超过天数的用户日志会被自动删除。");
+            // 
             // label11
             // 
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(485, 106);
+            this.label11.Location = new System.Drawing.Point(460, 106);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(144, 106);
+            this.label11.Size = new System.Drawing.Size(214, 106);
             this.label11.TabIndex = 19;
-            this.label11.Text = "人井信息列表刷新时间";
+            this.label11.Text = "人井信息列表刷新时间（分钟）";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.label11, "人井信息列表刷新时间，改设置更改后需要重启系统才能生效。");
+            // 
+            // tbNotReportTimes
+            // 
+            this.tbNotReportTimes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbNotReportTimes.Location = new System.Drawing.Point(290, 146);
+            this.tbNotReportTimes.Name = "tbNotReportTimes";
+            this.tbNotReportTimes.Size = new System.Drawing.Size(94, 26);
+            this.tbNotReportTimes.TabIndex = 23;
+            this.tbNotReportTimes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbRefreshTime
+            // 
+            this.tbRefreshTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbRefreshTime.Location = new System.Drawing.Point(680, 146);
+            this.tbRefreshTime.Name = "tbRefreshTime";
+            this.tbRefreshTime.Size = new System.Drawing.Size(94, 26);
+            this.tbRefreshTime.TabIndex = 24;
+            this.tbRefreshTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip1.SetToolTip(this.tbRefreshTime, "人井信息列表刷新时间，该设置更改后需要重启系统才能生效。");
             // 
             // tbSysLogTime
             // 
             this.tbSysLogTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbSysLogTime.Location = new System.Drawing.Point(315, 40);
+            this.tbSysLogTime.Location = new System.Drawing.Point(290, 40);
             this.tbSysLogTime.Name = "tbSysLogTime";
             this.tbSysLogTime.Size = new System.Drawing.Size(94, 26);
             this.tbSysLogTime.TabIndex = 21;
@@ -295,7 +312,7 @@
             // tbUserLogTime
             // 
             this.tbUserLogTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbUserLogTime.Location = new System.Drawing.Point(635, 40);
+            this.tbUserLogTime.Location = new System.Drawing.Point(680, 40);
             this.tbUserLogTime.Name = "tbUserLogTime";
             this.tbUserLogTime.Size = new System.Drawing.Size(94, 26);
             this.tbUserLogTime.TabIndex = 22;
@@ -632,228 +649,208 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.AutoScroll = true;
-            this.tableLayoutPanel4.ColumnCount = 3;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel4.Controls.Add(this.groupBox1, 1, 1);
+            this.tableLayoutPanel4.ColumnCount = 10;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 239F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 78F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 132F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Controls.Add(this.btnAddUser, 5, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnRefreshUser, 8, 0);
+            this.tableLayoutPanel4.Controls.Add(this.pageUser, 0, 2);
+            this.tableLayoutPanel4.Controls.Add(this.userGrid, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.btnUpdateUser, 6, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnDeleteUser, 7, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 3;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(1151, 520);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
-            // groupBox1
+            // btnAddUser
             // 
-            this.groupBox1.Controls.Add(this.tableLayoutPanel6);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(135, 72);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(20);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(880, 376);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "系统用户信息";
+            this.btnAddUser.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnAddUser.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddUser.BackgroundImage")));
+            this.btnAddUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAddUser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddUser.FlatAppearance.BorderSize = 0;
+            this.btnAddUser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnAddUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddUser.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnAddUser.ForeColor = System.Drawing.Color.White;
+            this.btnAddUser.Location = new System.Drawing.Point(702, 7);
+            this.btnAddUser.Name = "btnAddUser";
+            this.btnAddUser.Size = new System.Drawing.Size(70, 26);
+            this.btnAddUser.TabIndex = 21;
+            this.btnAddUser.Text = "添加";
+            this.btnAddUser.UseVisualStyleBackColor = true;
+            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
-            // tableLayoutPanel6
+            // btnRefreshUser
             // 
-            this.tableLayoutPanel6.AutoScroll = true;
-            this.tableLayoutPanel6.ColumnCount = 6;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Controls.Add(this.txtlogintime, 4, 3);
-            this.tableLayoutPanel6.Controls.Add(this.txtRealName, 2, 2);
-            this.tableLayoutPanel6.Controls.Add(this.username, 3, 1);
-            this.tableLayoutPanel6.Controls.Add(this.txtWorkID, 2, 1);
-            this.tableLayoutPanel6.Controls.Add(this.workid, 1, 1);
-            this.tableLayoutPanel6.Controls.Add(this.rename, 1, 2);
-            this.tableLayoutPanel6.Controls.Add(this.txtusername, 4, 1);
-            this.tableLayoutPanel6.Controls.Add(this.phone, 3, 2);
-            this.tableLayoutPanel6.Controls.Add(this.txtTelephone, 4, 2);
-            this.tableLayoutPanel6.Controls.Add(this.logintime, 3, 3);
-            this.tableLayoutPanel6.Controls.Add(this.lgender, 1, 3);
-            this.tableLayoutPanel6.Controls.Add(this.comGender, 2, 3);
-            this.tableLayoutPanel6.Controls.Add(this.panel1, 2, 4);
-            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 22);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 6;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(874, 351);
-            this.tableLayoutPanel6.TabIndex = 2;
+            this.btnRefreshUser.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnRefreshUser.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRefreshUser.BackgroundImage")));
+            this.btnRefreshUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRefreshUser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRefreshUser.FlatAppearance.BorderSize = 0;
+            this.btnRefreshUser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnRefreshUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnRefreshUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefreshUser.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnRefreshUser.ForeColor = System.Drawing.Color.White;
+            this.btnRefreshUser.Location = new System.Drawing.Point(1002, 7);
+            this.btnRefreshUser.Name = "btnRefreshUser";
+            this.btnRefreshUser.Size = new System.Drawing.Size(70, 26);
+            this.btnRefreshUser.TabIndex = 17;
+            this.btnRefreshUser.Text = "刷新";
+            this.btnRefreshUser.UseVisualStyleBackColor = true;
+            this.btnRefreshUser.Click += new System.EventHandler(this.btnRefreshUser_Click);
             // 
-            // txtlogintime
+            // pageUser
             // 
-            this.txtlogintime.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtlogintime.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtlogintime.Location = new System.Drawing.Point(562, 197);
-            this.txtlogintime.Name = "txtlogintime";
-            this.txtlogintime.ReadOnly = true;
-            this.txtlogintime.Size = new System.Drawing.Size(200, 26);
-            this.txtlogintime.TabIndex = 19;
+            this.tableLayoutPanel4.SetColumnSpan(this.pageUser, 10);
+            this.pageUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pageUser.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pageUser.Location = new System.Drawing.Point(3, 483);
+            this.pageUser.Name = "pageUser";
+            this.pageUser.PageSize = 50;
+            this.pageUser.Size = new System.Drawing.Size(1145, 34);
+            this.pageUser.TabIndex = 16;
             // 
-            // txtRealName
+            // userGrid
             // 
-            this.txtRealName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtRealName.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtRealName.Location = new System.Drawing.Point(212, 127);
-            this.txtRealName.Name = "txtRealName";
-            this.txtRealName.ReadOnly = true;
-            this.txtRealName.Size = new System.Drawing.Size(200, 26);
-            this.txtRealName.TabIndex = 9;
+            this.userGrid.AllowUserToAddRows = false;
+            this.userGrid.AllowUserToDeleteRows = false;
+            this.userGrid.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.userGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.userGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.userGrid.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.userGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.userGrid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.userGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.userGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.userGrid.ColumnHeadersHeight = 30;
+            this.userGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.UserName,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4});
+            this.tableLayoutPanel4.SetColumnSpan(this.userGrid, 10);
+            this.userGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userGrid.GridColor = System.Drawing.Color.Blue;
+            this.userGrid.Location = new System.Drawing.Point(3, 43);
+            this.userGrid.MultiSelect = false;
+            this.userGrid.Name = "userGrid";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.userGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.userGrid.RowHeadersVisible = false;
+            this.userGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.userGrid.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.userGrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.userGrid.RowTemplate.Height = 35;
+            this.userGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.userGrid.Size = new System.Drawing.Size(1145, 434);
+            this.userGrid.TabIndex = 15;
             // 
-            // username
+            // dataGridViewTextBoxColumn1
             // 
-            this.username.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.username.AutoSize = true;
-            this.username.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.username.Location = new System.Drawing.Point(458, 59);
-            this.username.Name = "username";
-            this.username.Size = new System.Drawing.Size(58, 21);
-            this.username.TabIndex = 0;
-            this.username.Text = "用户名";
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Work_ID";
+            this.dataGridViewTextBoxColumn1.HeaderText = "工号";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
-            // txtWorkID
+            // UserName
             // 
-            this.txtWorkID.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtWorkID.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtWorkID.Location = new System.Drawing.Point(212, 57);
-            this.txtWorkID.Name = "txtWorkID";
-            this.txtWorkID.ReadOnly = true;
-            this.txtWorkID.Size = new System.Drawing.Size(200, 26);
-            this.txtWorkID.TabIndex = 7;
+            this.UserName.DataPropertyName = "UserName";
+            this.UserName.HeaderText = "用户名";
+            this.UserName.Name = "UserName";
+            this.UserName.ReadOnly = true;
             // 
-            // workid
+            // dataGridViewTextBoxColumn2
             // 
-            this.workid.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.workid.AutoSize = true;
-            this.workid.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.workid.Location = new System.Drawing.Point(116, 59);
-            this.workid.Name = "workid";
-            this.workid.Size = new System.Drawing.Size(42, 21);
-            this.workid.TabIndex = 1;
-            this.workid.Text = "工号";
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "RealName";
+            this.dataGridViewTextBoxColumn2.HeaderText = "姓名";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
-            // rename
+            // dataGridViewTextBoxColumn3
             // 
-            this.rename.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.rename.AutoSize = true;
-            this.rename.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.rename.Location = new System.Drawing.Point(100, 129);
-            this.rename.Name = "rename";
-            this.rename.Size = new System.Drawing.Size(74, 21);
-            this.rename.TabIndex = 2;
-            this.rename.Text = "真实姓名";
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Gender";
+            this.dataGridViewTextBoxColumn3.HeaderText = "性别";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
-            // txtusername
+            // dataGridViewTextBoxColumn4
             // 
-            this.txtusername.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtusername.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtusername.Location = new System.Drawing.Point(562, 57);
-            this.txtusername.Name = "txtusername";
-            this.txtusername.ReadOnly = true;
-            this.txtusername.Size = new System.Drawing.Size(200, 26);
-            this.txtusername.TabIndex = 17;
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Telephone";
+            this.dataGridViewTextBoxColumn4.HeaderText = "联系方式";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
             // 
-            // phone
+            // btnUpdateUser
             // 
-            this.phone.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.phone.AutoSize = true;
-            this.phone.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.phone.Location = new System.Drawing.Point(450, 129);
-            this.phone.Name = "phone";
-            this.phone.Size = new System.Drawing.Size(74, 21);
-            this.phone.TabIndex = 4;
-            this.phone.Text = "联系电话";
+            this.btnUpdateUser.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnUpdateUser.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnUpdateUser.BackgroundImage")));
+            this.btnUpdateUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnUpdateUser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUpdateUser.FlatAppearance.BorderSize = 0;
+            this.btnUpdateUser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnUpdateUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnUpdateUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateUser.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnUpdateUser.ForeColor = System.Drawing.Color.White;
+            this.btnUpdateUser.Location = new System.Drawing.Point(802, 7);
+            this.btnUpdateUser.Name = "btnUpdateUser";
+            this.btnUpdateUser.Size = new System.Drawing.Size(70, 26);
+            this.btnUpdateUser.TabIndex = 20;
+            this.btnUpdateUser.Text = "编辑";
+            this.btnUpdateUser.UseVisualStyleBackColor = true;
+            this.btnUpdateUser.Click += new System.EventHandler(this.btnUpdateUser_Click);
             // 
-            // txtTelephone
+            // btnDeleteUser
             // 
-            this.txtTelephone.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtTelephone.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtTelephone.Location = new System.Drawing.Point(562, 127);
-            this.txtTelephone.Name = "txtTelephone";
-            this.txtTelephone.ReadOnly = true;
-            this.txtTelephone.Size = new System.Drawing.Size(200, 26);
-            this.txtTelephone.TabIndex = 11;
-            // 
-            // logintime
-            // 
-            this.logintime.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.logintime.AutoSize = true;
-            this.logintime.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.logintime.Location = new System.Drawing.Point(450, 199);
-            this.logintime.Name = "logintime";
-            this.logintime.Size = new System.Drawing.Size(74, 21);
-            this.logintime.TabIndex = 5;
-            this.logintime.Text = "登陆时间";
-            // 
-            // lgender
-            // 
-            this.lgender.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lgender.AutoSize = true;
-            this.lgender.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lgender.Location = new System.Drawing.Point(116, 199);
-            this.lgender.Name = "lgender";
-            this.lgender.Size = new System.Drawing.Size(42, 21);
-            this.lgender.TabIndex = 6;
-            this.lgender.Text = "性别";
-            // 
-            // comGender
-            // 
-            this.comGender.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.comGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comGender.Enabled = false;
-            this.comGender.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.comGender.FormattingEnabled = true;
-            this.comGender.Items.AddRange(new object[] {
-            "男",
-            "女"});
-            this.comGender.Location = new System.Drawing.Point(212, 196);
-            this.comGender.Name = "comGender";
-            this.comGender.Size = new System.Drawing.Size(200, 28);
-            this.comGender.TabIndex = 16;
-            // 
-            // panel1
-            // 
-            this.tableLayoutPanel6.SetColumnSpan(this.panel1, 3);
-            this.panel1.Controls.Add(this.btnedit);
-            this.panel1.Location = new System.Drawing.Point(190, 248);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(594, 64);
-            this.panel1.TabIndex = 21;
-            // 
-            // btnedit
-            // 
-            this.btnedit.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnedit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnedit.BackgroundImage")));
-            this.btnedit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnedit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnedit.FlatAppearance.BorderSize = 0;
-            this.btnedit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnedit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnedit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnedit.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnedit.ForeColor = System.Drawing.Color.White;
-            this.btnedit.Location = new System.Drawing.Point(205, 19);
-            this.btnedit.Name = "btnedit";
-            this.btnedit.Size = new System.Drawing.Size(90, 30);
-            this.btnedit.TabIndex = 20;
-            this.btnedit.Text = "修改信息";
-            this.btnedit.UseVisualStyleBackColor = true;
-            this.btnedit.Click += new System.EventHandler(this.btnedit_Click);
+            this.btnDeleteUser.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnDeleteUser.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDeleteUser.BackgroundImage")));
+            this.btnDeleteUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDeleteUser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDeleteUser.FlatAppearance.BorderSize = 0;
+            this.btnDeleteUser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnDeleteUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnDeleteUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteUser.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnDeleteUser.ForeColor = System.Drawing.Color.White;
+            this.btnDeleteUser.Location = new System.Drawing.Point(902, 7);
+            this.btnDeleteUser.Name = "btnDeleteUser";
+            this.btnDeleteUser.Size = new System.Drawing.Size(70, 26);
+            this.btnDeleteUser.TabIndex = 19;
+            this.btnDeleteUser.Text = "删除";
+            this.btnDeleteUser.UseVisualStyleBackColor = true;
+            this.btnDeleteUser.Click += new System.EventHandler(this.btnDeleteUser_Click);
             // 
             // OperatorSet
             // 
@@ -879,13 +876,13 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Controls.Add(this.usergrid, 0, 1);
-            this.tableLayoutPanel5.Controls.Add(this.btnAdd, 4, 0);
-            this.tableLayoutPanel5.Controls.Add(this.btnUpdate, 5, 0);
-            this.tableLayoutPanel5.Controls.Add(this.btnDelete, 6, 0);
-            this.tableLayoutPanel5.Controls.Add(this.btnInto, 7, 0);
-            this.tableLayoutPanel5.Controls.Add(this.btnRefresh, 8, 0);
-            this.tableLayoutPanel5.Controls.Add(this.page, 0, 2);
+            this.tableLayoutPanel5.Controls.Add(this.operatorGrid, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.btnAddOperator, 4, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnUpdateOperator, 5, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnDeleteOperator, 6, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnIntoOperator, 7, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnRefreshOperator, 8, 0);
+            this.tableLayoutPanel5.Controls.Add(this.pageOperator, 0, 2);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -897,56 +894,56 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(1151, 520);
             this.tableLayoutPanel5.TabIndex = 3;
             // 
-            // usergrid
+            // operatorGrid
             // 
-            this.usergrid.AllowUserToAddRows = false;
-            this.usergrid.AllowUserToDeleteRows = false;
-            this.usergrid.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.usergrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.usergrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.usergrid.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.usergrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.usergrid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            this.usergrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.usergrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.usergrid.ColumnHeadersHeight = 30;
-            this.usergrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.operatorGrid.AllowUserToAddRows = false;
+            this.operatorGrid.AllowUserToDeleteRows = false;
+            this.operatorGrid.AllowUserToResizeRows = false;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.operatorGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.operatorGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.operatorGrid.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.operatorGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.operatorGrid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.operatorGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.operatorGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.operatorGrid.ColumnHeadersHeight = 30;
+            this.operatorGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
             this.RealName,
             this.Gender,
             this.Telephone,
             this.Area,
             this.ReceiveMsg});
-            this.tableLayoutPanel5.SetColumnSpan(this.usergrid, 10);
-            this.usergrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.usergrid.GridColor = System.Drawing.Color.Blue;
-            this.usergrid.Location = new System.Drawing.Point(3, 43);
-            this.usergrid.MultiSelect = false;
-            this.usergrid.Name = "usergrid";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.usergrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.usergrid.RowHeadersVisible = false;
-            this.usergrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.usergrid.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.usergrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.usergrid.RowTemplate.Height = 35;
-            this.usergrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.usergrid.Size = new System.Drawing.Size(1145, 434);
-            this.usergrid.TabIndex = 14;
+            this.tableLayoutPanel5.SetColumnSpan(this.operatorGrid, 10);
+            this.operatorGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operatorGrid.GridColor = System.Drawing.Color.Blue;
+            this.operatorGrid.Location = new System.Drawing.Point(3, 43);
+            this.operatorGrid.MultiSelect = false;
+            this.operatorGrid.Name = "operatorGrid";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.operatorGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.operatorGrid.RowHeadersVisible = false;
+            this.operatorGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.operatorGrid.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            this.operatorGrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.operatorGrid.RowTemplate.Height = 35;
+            this.operatorGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.operatorGrid.Size = new System.Drawing.Size(1145, 434);
+            this.operatorGrid.TabIndex = 14;
             // 
             // ID
             // 
@@ -990,105 +987,116 @@
             this.ReceiveMsg.Name = "ReceiveMsg";
             this.ReceiveMsg.ReadOnly = true;
             // 
-            // btnAdd
+            // btnAddOperator
             // 
-            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnAdd.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAdd.BackgroundImage")));
-            this.btnAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.FlatAppearance.BorderSize = 0;
-            this.btnAdd.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(552, 7);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(70, 26);
-            this.btnAdd.TabIndex = 7;
-            this.btnAdd.Text = "添加";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnAddOperator.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnAddOperator.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddOperator.BackgroundImage")));
+            this.btnAddOperator.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAddOperator.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddOperator.FlatAppearance.BorderSize = 0;
+            this.btnAddOperator.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnAddOperator.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnAddOperator.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddOperator.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnAddOperator.ForeColor = System.Drawing.Color.White;
+            this.btnAddOperator.Location = new System.Drawing.Point(552, 7);
+            this.btnAddOperator.Name = "btnAddOperator";
+            this.btnAddOperator.Size = new System.Drawing.Size(70, 26);
+            this.btnAddOperator.TabIndex = 7;
+            this.btnAddOperator.Text = "添加";
+            this.btnAddOperator.UseVisualStyleBackColor = true;
+            this.btnAddOperator.Click += new System.EventHandler(this.btnAddOperator_Click);
             // 
-            // btnUpdate
+            // btnUpdateOperator
             // 
-            this.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnUpdate.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnUpdate.BackgroundImage")));
-            this.btnUpdate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUpdate.FlatAppearance.BorderSize = 0;
-            this.btnUpdate.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnUpdate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(652, 7);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(70, 26);
-            this.btnUpdate.TabIndex = 5;
-            this.btnUpdate.Text = "编辑";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.btnUpdateOperator.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnUpdateOperator.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnUpdateOperator.BackgroundImage")));
+            this.btnUpdateOperator.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnUpdateOperator.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUpdateOperator.FlatAppearance.BorderSize = 0;
+            this.btnUpdateOperator.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnUpdateOperator.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnUpdateOperator.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateOperator.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnUpdateOperator.ForeColor = System.Drawing.Color.White;
+            this.btnUpdateOperator.Location = new System.Drawing.Point(652, 7);
+            this.btnUpdateOperator.Name = "btnUpdateOperator";
+            this.btnUpdateOperator.Size = new System.Drawing.Size(70, 26);
+            this.btnUpdateOperator.TabIndex = 5;
+            this.btnUpdateOperator.Text = "编辑";
+            this.btnUpdateOperator.UseVisualStyleBackColor = true;
+            this.btnUpdateOperator.Click += new System.EventHandler(this.btnUpdateOperator_Click);
             // 
-            // btnDelete
+            // btnDeleteOperator
             // 
-            this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnDelete.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDelete.BackgroundImage")));
-            this.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.FlatAppearance.BorderSize = 0;
-            this.btnDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(752, 7);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(70, 26);
-            this.btnDelete.TabIndex = 6;
-            this.btnDelete.Text = "删除";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnDeleteOperator.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnDeleteOperator.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDeleteOperator.BackgroundImage")));
+            this.btnDeleteOperator.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDeleteOperator.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDeleteOperator.FlatAppearance.BorderSize = 0;
+            this.btnDeleteOperator.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnDeleteOperator.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnDeleteOperator.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteOperator.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnDeleteOperator.ForeColor = System.Drawing.Color.White;
+            this.btnDeleteOperator.Location = new System.Drawing.Point(752, 7);
+            this.btnDeleteOperator.Name = "btnDeleteOperator";
+            this.btnDeleteOperator.Size = new System.Drawing.Size(70, 26);
+            this.btnDeleteOperator.TabIndex = 6;
+            this.btnDeleteOperator.Text = "删除";
+            this.btnDeleteOperator.UseVisualStyleBackColor = true;
+            this.btnDeleteOperator.Click += new System.EventHandler(this.btnDeleteOperator_Click);
             // 
-            // btnInto
+            // btnIntoOperator
             // 
-            this.btnInto.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnInto.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnInto.BackgroundImage")));
-            this.btnInto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnInto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnInto.FlatAppearance.BorderSize = 0;
-            this.btnInto.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInto.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInto.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnInto.ForeColor = System.Drawing.Color.White;
-            this.btnInto.Location = new System.Drawing.Point(852, 7);
-            this.btnInto.Name = "btnInto";
-            this.btnInto.Size = new System.Drawing.Size(120, 26);
-            this.btnInto.TabIndex = 8;
-            this.btnInto.Text = "信息导入(Excel)";
-            this.btnInto.UseVisualStyleBackColor = true;
-            this.btnInto.Click += new System.EventHandler(this.btnInto_Click);
+            this.btnIntoOperator.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnIntoOperator.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnIntoOperator.BackgroundImage")));
+            this.btnIntoOperator.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnIntoOperator.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnIntoOperator.FlatAppearance.BorderSize = 0;
+            this.btnIntoOperator.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnIntoOperator.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnIntoOperator.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIntoOperator.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnIntoOperator.ForeColor = System.Drawing.Color.White;
+            this.btnIntoOperator.Location = new System.Drawing.Point(852, 7);
+            this.btnIntoOperator.Name = "btnIntoOperator";
+            this.btnIntoOperator.Size = new System.Drawing.Size(120, 26);
+            this.btnIntoOperator.TabIndex = 8;
+            this.btnIntoOperator.Text = "信息导入(Excel)";
+            this.btnIntoOperator.UseVisualStyleBackColor = true;
+            this.btnIntoOperator.Click += new System.EventHandler(this.btnIntoOperator_Click);
             // 
-            // btnRefresh
+            // btnRefreshOperator
             // 
-            this.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnRefresh.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRefresh.BackgroundImage")));
-            this.btnRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRefresh.FlatAppearance.BorderSize = 0;
-            this.btnRefresh.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(1002, 7);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(70, 26);
-            this.btnRefresh.TabIndex = 9;
-            this.btnRefresh.Text = "刷新";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            this.btnRefreshOperator.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnRefreshOperator.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRefreshOperator.BackgroundImage")));
+            this.btnRefreshOperator.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRefreshOperator.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRefreshOperator.FlatAppearance.BorderSize = 0;
+            this.btnRefreshOperator.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnRefreshOperator.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnRefreshOperator.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefreshOperator.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnRefreshOperator.ForeColor = System.Drawing.Color.White;
+            this.btnRefreshOperator.Location = new System.Drawing.Point(1002, 7);
+            this.btnRefreshOperator.Name = "btnRefreshOperator";
+            this.btnRefreshOperator.Size = new System.Drawing.Size(70, 26);
+            this.btnRefreshOperator.TabIndex = 9;
+            this.btnRefreshOperator.Text = "刷新";
+            this.btnRefreshOperator.UseVisualStyleBackColor = true;
+            this.btnRefreshOperator.Click += new System.EventHandler(this.btnRefreshOperator_Click);
+            // 
+            // pageOperator
+            // 
+            this.tableLayoutPanel5.SetColumnSpan(this.pageOperator, 10);
+            this.pageOperator.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pageOperator.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pageOperator.Location = new System.Drawing.Point(3, 483);
+            this.pageOperator.Name = "pageOperator";
+            this.pageOperator.PageSize = 50;
+            this.pageOperator.Size = new System.Drawing.Size(1145, 34);
+            this.pageOperator.TabIndex = 13;
             // 
             // backgroundWorker
             // 
@@ -1102,38 +1110,6 @@
             this.toolTip1.AutoPopDelay = 5000;
             this.toolTip1.InitialDelay = 50;
             this.toolTip1.ReshowDelay = 100;
-            // 
-            // tbNotReportTimes
-            // 
-            this.tbNotReportTimes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbNotReportTimes.Location = new System.Drawing.Point(315, 146);
-            this.tbNotReportTimes.Name = "tbNotReportTimes";
-            this.tbNotReportTimes.Size = new System.Drawing.Size(94, 26);
-            this.tbNotReportTimes.TabIndex = 13;
-            this.tbNotReportTimes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbNotReportTimes.WaterText = "";
-            // 
-            // tbRefreshTime
-            // 
-            this.tbRefreshTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbRefreshTime.Location = new System.Drawing.Point(635, 146);
-            this.tbRefreshTime.Name = "tbRefreshTime";
-            this.tbRefreshTime.Size = new System.Drawing.Size(94, 26);
-            this.tbRefreshTime.TabIndex = 20;
-            this.tbRefreshTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.tbRefreshTime, "人井信息列表刷新时间，该设置更改后需要重启系统才能生效。");
-            this.tbRefreshTime.WaterText = "";
-            // 
-            // page
-            // 
-            this.tableLayoutPanel5.SetColumnSpan(this.page, 10);
-            this.page.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.page.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.page.Location = new System.Drawing.Point(3, 483);
-            this.page.Name = "page";
-            this.page.PageSize = 50;
-            this.page.Size = new System.Drawing.Size(1145, 34);
-            this.page.TabIndex = 13;
             // 
             // SystemSettingsControl
             // 
@@ -1161,13 +1137,10 @@
             this.tableLayoutPanel2.PerformLayout();
             this.UserSet.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.tableLayoutPanel6.ResumeLayout(false);
-            this.tableLayoutPanel6.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.userGrid)).EndInit();
             this.OperatorSet.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.usergrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.operatorGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1202,41 +1175,25 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TabPage OperatorSet;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnInto;
-        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnAddOperator;
+        private System.Windows.Forms.Button btnUpdateOperator;
+        private System.Windows.Forms.Button btnDeleteOperator;
+        private System.Windows.Forms.Button btnIntoOperator;
+        private System.Windows.Forms.Button btnRefreshOperator;
         private System.ComponentModel.BackgroundWorker backgroundWorker;
-        private assistcontrol.DataGridPage page;
+        private assistcontrol.DataGridPage pageOperator;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-        private System.Windows.Forms.TextBox txtlogintime;
-        private System.Windows.Forms.Label logintime;
-        private System.Windows.Forms.TextBox txtRealName;
-        private System.Windows.Forms.TextBox txtTelephone;
-        private System.Windows.Forms.Label username;
-        private System.Windows.Forms.TextBox txtWorkID;
-        private System.Windows.Forms.ComboBox comGender;
-        private System.Windows.Forms.Button btnedit;
-        private System.Windows.Forms.Label workid;
-        private System.Windows.Forms.Label rename;
-        private System.Windows.Forms.Label lgender;
-        private System.Windows.Forms.TextBox txtusername;
-        private System.Windows.Forms.Label phone;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TabPage SysSetTab;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.Label label5;
-        private assistcontrol.WaterTextBox tbNotReportTimes;
+        private System.Windows.Forms.TextBox tbNotReportTimes;
         private System.Windows.Forms.Button btnSysSet;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.DataGridView usergrid;
+        private System.Windows.Forms.DataGridView operatorGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn RealName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Gender;
@@ -1244,9 +1201,20 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Area;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReceiveMsg;
         private System.Windows.Forms.Label label11;
-        private assistcontrol.WaterTextBox tbRefreshTime;
+        private System.Windows.Forms.TextBox tbRefreshTime;
         private System.Windows.Forms.TextBox tbSysLogTime;
         private System.Windows.Forms.TextBox tbUserLogTime;
+        private assistcontrol.DataGridPage pageUser;
+        private System.Windows.Forms.DataGridView userGrid;
+        private System.Windows.Forms.Button btnAddUser;
+        private System.Windows.Forms.Button btnUpdateUser;
+        private System.Windows.Forms.Button btnDeleteUser;
+        private System.Windows.Forms.Button btnRefreshUser;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
 
     }
 }

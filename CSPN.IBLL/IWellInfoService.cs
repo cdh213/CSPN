@@ -1,11 +1,6 @@
 ﻿using CSPN.Model;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSPN.IBLL
 {
@@ -22,7 +17,7 @@ namespace CSPN.IBLL
         /// <summary>
         /// 查询人井信息
         /// </summary>
-        IList<WellInfo> GetWellInfo_List(string wellinfo);
+        List<WellInfo> GetWellInfo_List(string wellinfo);
         /// <summary>
         /// 通过Terminal_ID查询人井信息
         /// </summary>
@@ -47,6 +42,10 @@ namespace CSPN.IBLL
         
         #region 人井上报次数
         /// <summary>
+        /// 查询上报人井信息
+        /// </summary>
+        List<ReportInfo> GetReportInfo();
+        /// <summary>
         /// 查询未上报人井信息
         /// </summary>
         DataTable GetNotReportNumInfo(int reportTimes);
@@ -65,7 +64,7 @@ namespace CSPN.IBLL
         /// <summary>
         /// 更新人井上未报次数
         /// </summary>
-        int UpdateNotReportTimes();
+        int UpdateNotReportTimes(string terminal_ID);
         /// <summary>
         /// 更新人井上未时间间隔
         /// </summary>
@@ -73,38 +72,43 @@ namespace CSPN.IBLL
         /// <summary>
         /// 增加人井信息
         /// </summary>
-        int InsertReportNumInfo(string terminal_ID, int reportInterval);
+        int InsertReportInfo(string terminal_ID, int reportInterval);
         /// <summary>
         /// 删除人井信息
         /// </summary>
-        int DeleteReportNumInfo(string terminal_ID);
+        int DeleteReportInfo(string terminal_ID);
         #endregion
 
         #region 人井报警信息
         /// <summary>
-        /// 查询报警,状态信息
+        /// 查询待处理信息
         /// </summary>
-        DataTable GetAlarmInfo_StatusInfo();
+        /// <returns></returns>
+        DataTable GetReportInfo_Pending();
         /// <summary>
-        /// 通过Terminal_ID查询报警,状态信息
+        /// 查询已通知信息
         /// </summary>
-        AlarmInfo GetAlarmInfo_StatusInfo(int well_State_ID, string terminal_ID);
+        /// <returns></returns>
+        DataTable GetReportInfo_Send();
         /// <summary>
-        /// 查询已处理信息
+        /// 通过Terminal_ID查询信息
         /// </summary>
-        DataTable GetProcessedInfo();
+        ReportInfo GetReportInfo_Terminal_ID(int well_State_ID, string terminal_ID);
         /// <summary>
-        /// 增加报警、状态信息
+        /// 更新待处理信息
         /// </summary>
-        int InsertAlarmInfo(AlarmInfo alarmInfo);
+        /// <returns></returns>
+        int UpdateReportInfo_Pending(int well_State_ID_Pending, string terminal_ID);
         /// <summary>
-        /// 删除报警、状态信息
+        /// 更新待处理信息
         /// </summary>
-        int DeleteAlarmInfo(string report_Time);
+        /// <returns></returns>
+        int UpdateReportInfo_Pending(ReportInfo reportInfo);
         /// <summary>
-        /// 更新报警、状态信息
+        /// 更新已通知信息
         /// </summary>
-        int UpdateAlarmInfo(int well_State_ID, string report_Time);
+        /// <returns></returns>
+        int UpdateReportInfo_Send(int well_State_ID_Send, string terminal_ID);
         #endregion
     }
 }

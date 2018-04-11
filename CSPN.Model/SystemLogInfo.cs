@@ -20,7 +20,6 @@ namespace CSPN.Model
         private string _smoke_Detector;//烟感
         private string _smoke_Power;//烟感电量
         private string _signal_Strength;//信号强度
-        
 
         #region 属性
         /// <summary>

@@ -1,14 +1,10 @@
 ﻿using CSPN.Factory;
 using CSPN.Model;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using CSPN.IDAL;
 using Dapper;
-using System.Data.SqlClient;
 
 namespace CSPN.DAL
 {

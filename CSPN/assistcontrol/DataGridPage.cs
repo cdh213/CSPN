@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CSPN.IBLL;
 using CSPN.BLL;
@@ -50,9 +44,6 @@ namespace CSPN.assistcontrol
                 case CSPNType.WellInfo:
                     table = wellInfoService.GetWellInfo_Table(_info, pageSize, pageIndex, out recorderCount);
                     break;
-                case CSPNType.OperatorInfo:
-                    table = userservice.GetOperator_Table(pageSize, pageIndex, out recorderCount);
-                    break;
                 case CSPNType.SysLogInfo:
                     table = logservice.GetSystemLogInfo(pageSize, pageIndex, out recorderCount);
                     break;
@@ -64,6 +55,12 @@ namespace CSPN.assistcontrol
                     break;
                 case CSPNType.MaintainInfo:
                     table = wellStateService.GetMaintainInfo(pageSize, pageIndex, out recorderCount);
+                    break;
+                case CSPNType.OperatorInfo:
+                    table = userservice.GetOperator_Table(pageSize, pageIndex, out recorderCount);
+                    break;
+                case CSPNType.UserInfo:
+                    table = userservice.GetUserInfo_Table(pageSize, pageIndex, out recorderCount);
                     break;
             }
             //--控制

@@ -4,8 +4,6 @@ using CSPN.IBLL;
 using CSPN.Model;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace CSPN
@@ -39,12 +37,12 @@ namespace CSPN
             if (cbUserName.Items.Count > 0)
             {
                 cbUserName.SelectedIndex = 0;
-                txtPWD.Text = users[cbUserName.Text.Trim()].PassWord;
+                txtPWD.Text = users[cbUserName.SelectedItem.ToString().Trim()].PassWord;
             }
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (cbUserName.Text.Trim() != "" && txtPWD.Text.Trim() != "")
+            if (cbUserName.Text.Trim() != null && txtPWD.Text.Trim() != "")
             {
                 usersInfo = userService.GetUsersByUserName(cbUserName.Text.Trim());
                 if (usersInfo != null)
@@ -62,7 +60,7 @@ namespace CSPN
                             readWriteData.WriteData(usersInfo);
                         }
                         userName = usersInfo.UserName;
-                        userService.UpdateLoginTimeByID(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), usersInfo.Work_ID);
+                        userService.UpdateLoginTimeByWork_ID(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), usersInfo.Work_ID);
                         this.Close();
                         this.DialogResult = DialogResult.OK;
                     }
@@ -94,7 +92,7 @@ namespace CSPN
         {
             if (cbUserName.Items.Count != 0)
             {
-                txtPWD.Text = users[cbUserName.Text.Trim()].PassWord;
+                txtPWD.Text = users[cbUserName.SelectedItem.ToString().Trim()].PassWord;
             }
         }
     }

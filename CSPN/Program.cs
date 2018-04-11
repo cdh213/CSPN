@@ -4,16 +4,10 @@ using CSPN.common;
 using CSPN.helper;
 using CSPN.webbrower;
 using log4net.Config;
-using log4net.Repository;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CSPN
@@ -26,8 +20,7 @@ namespace CSPN
         [STAThread]
         static void Main()
         {
-            bool createdNew;
-            Mutex instance = new Mutex(true, "CSPN", out createdNew); //同步基元变量   
+            Mutex instance = new Mutex(true, "CSPN", out bool createdNew); //同步基元变量   
             if (createdNew)
             {
                 try

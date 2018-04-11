@@ -4,8 +4,6 @@ using CSPN.IBLL;
 using CSPN.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using CefSharp;
 using System.Threading;
@@ -30,10 +28,10 @@ namespace CSPN.sms
 
         private static WellCurrentStateInfo wellCurrentStateInfo = new WellCurrentStateInfo();
         private static SystemLogInfo systemLogInfo = new SystemLogInfo();
-        private static ReportNumInfo reportNumInfo = new ReportNumInfo();
+        private static ReportInfo reportNumInfo = new ReportInfo();
         private static WellStateInfo wellStateInfo = new WellStateInfo();
         private static WellInfo wellInfo = new WellInfo();
-        private static AlarmInfo alarmInfo = new AlarmInfo();
+        private static ReportInfo reportInfo = new ReportInfo();
         private static ReadWriteRegistry registry = new ReadWriteRegistry();
 
         public static void GetSMSHandle()
@@ -125,7 +123,6 @@ namespace CSPN.sms
                                         {
                                             wellCurrentStateInfo.Well_State_ID = 1;
                                             UpdateWellCurrentState();
-                                            InsertAlarmInfo();
                                         }
                                     }
                                     InsertSystemLogInfo();
@@ -150,7 +147,7 @@ namespace CSPN.sms
         public static void UpdateMap(string terminal_ID)
         {
             Thread.Sleep(500);
-            IList<WellInfo> list = wellInfoService.GetWellInfo_List(terminal_ID);
+            List<WellInfo> list = wellInfoService.GetWellInfo_List(terminal_ID);
             string json = JsonConvert.SerializeObject(list);
             WebBrower.webBrower.ExecuteScriptAsync("updateMarker", json);
         }
@@ -206,10 +203,10 @@ namespace CSPN.sms
         /// </summary>
         private static void InsertAlarmInfo()
         {
-            alarmInfo.Report_Time = wellCurrentStateInfo.Report_Time;
-            alarmInfo.Terminal_ID = wellInfo.Terminal_ID;
-            alarmInfo.Well_State_ID = wellCurrentStateInfo.Well_State_ID;
-            wellInfoService.InsertAlarmInfo(alarmInfo);
+            reportInfo.Report_Time = wellCurrentStateInfo.Report_Time;
+            reportInfo.Terminal_ID = wellInfo.Terminal_ID;
+            reportInfo.Well_State_ID_Pending = wellCurrentStateInfo.Well_State_ID;
+            wellInfoService.UpdateReportInfo_Pending(reportInfo);
         }
         /// <summary>
         /// 更新人井上报次数表
@@ -217,6 +214,7 @@ namespace CSPN.sms
         private static void UpdateReportNum()
         {
             wellInfoService.UpdateReportTimes(wellInfo.Terminal_ID);
+            wellInfoService.Empty_NotReportNumInfo(wellInfo.Terminal_ID);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace CSPN.Model
         private WellStateInfo _wellStateInfo;
         private OperatorInfo _operatorInfo;
         private SystemLogInfo _systemLogInfo;
-        private ReportNumInfo _reportNumInfo;
+        private ReportInfo _reportNumInfo;
 
 
         #region 属性
@@ -102,7 +102,7 @@ namespace CSPN.Model
             get { return _systemLogInfo; }
             set { _systemLogInfo = value; }
         }
-        public ReportNumInfo ReportNumInfo
+        public ReportInfo ReportNumInfo
         {
             get { return _reportNumInfo; }
             set { _reportNumInfo = value; }

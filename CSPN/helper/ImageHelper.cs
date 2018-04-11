@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSPN.helper
 {
@@ -24,7 +19,6 @@ namespace CSPN.helper
                 byte[] arr = new byte[ms.Length];
                 ms.Position = 0;
                 ms.Read(arr, 0, (int)ms.Length);
-                ms.Close();
                 string base64 = Convert.ToBase64String(arr);
                 return base64;
             }

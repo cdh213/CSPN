@@ -101,6 +101,7 @@
             this.cbUserName.Size = new System.Drawing.Size(164, 28);
             this.cbUserName.TabIndex = 1;
             this.cbUserName.WaterText = "请输入用户名";
+            this.cbUserName.DropDownClosed += new System.EventHandler(this.cbUserName_DropDownClosed);
             // 
             // txtPWD
             // 
@@ -111,6 +112,7 @@
             this.txtPWD.PasswordChar = '*';
             this.txtPWD.Size = new System.Drawing.Size(164, 26);
             this.txtPWD.TabIndex = 2;
+            this.txtPWD.UseSystemPasswordChar = true;
             this.txtPWD.WaterText = "请输入密码";
             this.txtPWD.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPWD_KeyUp);
             // 

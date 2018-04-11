@@ -1,10 +1,6 @@
 ﻿using Quartz;
 using Quartz.Impl;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSPN.helper
 {
@@ -19,7 +15,7 @@ namespace CSPN.helper
         /// </summary>
         /// <param name="jobType">要执行的作业</param>
         /// <param name="second">触发时间</param>
-        public void init(Type jobType, int minutes)
+        public void WithIntervalInMinutes(Type jobType, int minutes)
         {
             //工厂
             factory = new StdSchedulerFactory();
@@ -36,6 +32,36 @@ namespace CSPN.helper
                                        .StartNow()                        //现在开始
                                        .WithSimpleSchedule(x => x         //触发时间
                                            .WithIntervalInMinutes(minutes)
+                                           .RepeatForever())              //不间断重复执行
+                                       .Build();
+
+            //执行  
+            scheduler.ScheduleJob(job, trigger);
+        }
+        /// <summary>
+        /// 初始化定时器。
+        /// 现在开始，每hours小时触发一次。
+        /// 不间断重复执行。
+        /// </summary>
+        /// <param name="jobType">要执行的作业</param>
+        /// <param name="second">触发时间</param>
+        public void WithIntervalInHours(Type jobType, int hours)
+        {
+            //工厂
+            factory = new StdSchedulerFactory();
+            //创建scheduler
+            IScheduler scheduler = factory.GetScheduler();
+            //启动
+            scheduler.Start();
+            //描述工作
+            IJobDetail job = JobBuilder.Create(jobType)
+                                       .WithIdentity(jobType.Name, "myGroup")
+                                       .UsingJobData("name", "quartz").Build();
+            ITrigger trigger = TriggerBuilder.Create()
+                                       .WithIdentity(jobType.Name + "trigger", "myGroup")
+                                       .StartNow()                        //现在开始
+                                       .WithSimpleSchedule(x => x         //触发时间
+                                           .WithIntervalInHours(hours)
                                            .RepeatForever())              //不间断重复执行
                                        .Build();
 

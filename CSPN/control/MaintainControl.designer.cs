@@ -41,7 +41,6 @@
             this.dtpStartDateTime = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.dtpEndDateTime = new System.Windows.Forms.DateTimePicker();
-            this.btnSet = new System.Windows.Forms.Button();
             this.maintainGrid = new System.Windows.Forms.DataGridView();
             this.Terminal_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Terminal_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,8 +55,9 @@
             this.txtTerminal_Name = new System.Windows.Forms.TextBox();
             this.txtPlace = new System.Windows.Forms.TextBox();
             this.txtState = new System.Windows.Forms.TextBox();
-            this.btnRefresh = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnSet = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maintainGrid)).BeginInit();
             this.panel1.SuspendLayout();
@@ -181,26 +181,6 @@
             this.dtpEndDateTime.Size = new System.Drawing.Size(164, 26);
             this.dtpEndDateTime.TabIndex = 35;
             // 
-            // btnSet
-            // 
-            this.btnSet.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSet.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSet.BackgroundImage")));
-            this.btnSet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSet.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSet.FlatAppearance.BorderSize = 0;
-            this.btnSet.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnSet.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSet.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnSet.ForeColor = System.Drawing.Color.White;
-            this.btnSet.Location = new System.Drawing.Point(144, 11);
-            this.btnSet.Name = "btnSet";
-            this.btnSet.Size = new System.Drawing.Size(75, 26);
-            this.btnSet.TabIndex = 36;
-            this.btnSet.Text = "设定";
-            this.btnSet.UseVisualStyleBackColor = true;
-            this.btnSet.Click += new System.EventHandler(this.btnSet_Click);
-            // 
             // maintainGrid
             // 
             this.maintainGrid.AllowUserToAddRows = false;
@@ -251,7 +231,7 @@
             this.maintainGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.maintainGrid.Size = new System.Drawing.Size(756, 429);
             this.maintainGrid.TabIndex = 37;
-            this.maintainGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.maintainGrid_CellContentClick);
+            this.maintainGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.maintainGrid_CellClick);
             this.maintainGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.maintainGrid_CellFormatting);
             // 
             // Terminal_ID
@@ -367,6 +347,17 @@
             this.txtState.Size = new System.Drawing.Size(164, 26);
             this.txtState.TabIndex = 43;
             // 
+            // panel1
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.panel1, 2);
+            this.panel1.Controls.Add(this.btnRefresh);
+            this.panel1.Controls.Add(this.btnSet);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(785, 383);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(244, 49);
+            this.panel1.TabIndex = 45;
+            // 
             // btnRefresh
             // 
             this.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -387,16 +378,25 @@
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // panel1
+            // btnSet
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.panel1, 2);
-            this.panel1.Controls.Add(this.btnRefresh);
-            this.panel1.Controls.Add(this.btnSet);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(785, 383);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(244, 49);
-            this.panel1.TabIndex = 45;
+            this.btnSet.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnSet.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSet.BackgroundImage")));
+            this.btnSet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSet.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSet.FlatAppearance.BorderSize = 0;
+            this.btnSet.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSet.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSet.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnSet.ForeColor = System.Drawing.Color.White;
+            this.btnSet.Location = new System.Drawing.Point(144, 11);
+            this.btnSet.Name = "btnSet";
+            this.btnSet.Size = new System.Drawing.Size(75, 26);
+            this.btnSet.TabIndex = 36;
+            this.btnSet.Text = "设定";
+            this.btnSet.UseVisualStyleBackColor = true;
+            this.btnSet.Click += new System.EventHandler(this.btnSet_Click);
             // 
             // MaintainControl
             // 

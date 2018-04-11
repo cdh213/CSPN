@@ -1,11 +1,6 @@
 ﻿using CSPN.Model;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSPN.IBLL
 {
@@ -16,21 +11,33 @@ namespace CSPN.IBLL
     {
         #region 用户信息管理
         /// <summary>
+        /// 查询系统用户信息
+        /// </summary>
+        DataTable GetUserInfo_Table(int fSize, int sSize, out int pageCount);
+        /// <summary>
+        /// 查询系统用户信息
+        /// </summary>
+        UsersInfo GetUsersByWork_ID(string work_Id);
+        /// <summary>
         /// 查询登录用户信息
         /// </summary>
         UsersInfo GetUsersByUserName(string username);
         /// <summary>
         /// 更新登录时间
         /// </summary>
-        int UpdateLoginTimeByID(string loginTime, string work_ID);
-        /// <summary>
-        /// 查询系统用户信息
-        /// </summary>
-        UsersInfo GetUsersByID(string work_Id);
+        int UpdateLoginTimeByWork_ID(string loginTime, string work_ID);
         /// <summary>
         /// 更新系统用户信息
         /// </summary>
-        int UpdateUsersInfo(UsersInfo usersInfo);
+        int UpdateUserInfo(UsersInfo usersInfo);
+        /// <summary>
+        /// 增加系统用户信息
+        /// </summary>
+        int InsertUserInfo(UsersInfo usersInfo);
+        /// <summary>
+        /// 删除系统用户信息
+        /// </summary>
+        int DeleteUserInfo(string work_Id);
         #endregion
 
         #region 值班人员管理
@@ -43,7 +50,7 @@ namespace CSPN.IBLL
         /// 加载值班人员信息
         /// </summary>
         /// <returns></returns>
-        IList<OperatorInfo> GetOperator();
+        List<OperatorInfo> GetOperator();
         /// <summary>
         /// 查询人员信息
         /// </summary>

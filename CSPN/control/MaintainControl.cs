@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CSPN.helper;
 using CSPN.common;
@@ -32,7 +25,7 @@ namespace CSPN.control
             DataLoade(false, null);
         }
         //对Maintenancegrid进行选中，并读取到textbox中
-        private void maintainGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void maintainGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)
             {

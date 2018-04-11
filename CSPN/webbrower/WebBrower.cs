@@ -2,16 +2,13 @@
 using CefSharp.WinForms;
 using CSPN.BLL;
 using CSPN.common;
-using CSPN.helper;
 using CSPN.IBLL;
 using CSPN.job;
 using CSPN.Model;
 using CSPN.Properties;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Text;
 
 namespace CSPN.webbrower
@@ -20,7 +17,7 @@ namespace CSPN.webbrower
     {
         private static IWellInfoService wellInfoService = null;
         private BackgroundWorker bw = null;
-        private static IList<WellInfo> list = null;
+        private static List<WellInfo> list = null;
         private static string json = null;
 
         public static ChromiumWebBrowser webBrower { get; set; }

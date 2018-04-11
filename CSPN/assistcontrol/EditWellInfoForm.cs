@@ -4,14 +4,8 @@ using CSPN.helper;
 using CSPN.IBLL;
 using CSPN.Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CSPN.assistcontrol
@@ -121,7 +115,7 @@ namespace CSPN.assistcontrol
                 {
                     wellInfoService.InsertWellInfo(wellInfo);
                     wellStateService.InsertWellCurrentStateInfo(wellInfo.Terminal_ID, (int)cbState.SelectedValue);
-                    wellInfoService.InsertReportNumInfo(wellInfo.Terminal_ID, reportInterval);
+                    wellInfoService.InsertReportInfo(wellInfo.Terminal_ID, reportInterval);
 
                     userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "添加人井。", CommonClass.UserName, null, null);
                 }

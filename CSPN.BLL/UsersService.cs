@@ -2,12 +2,8 @@
 using CSPN.IBLL;
 using CSPN.IDAL;
 using CSPN.Model;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSPN.BLL
 {
@@ -21,6 +17,22 @@ namespace CSPN.BLL
 
         #region 用户信息管理
         /// <summary>
+        /// 查询系统用户信息
+        /// </summary>
+        public DataTable GetUserInfo_Table(int pageSize, int pageIndex, out int pageCount)
+        {
+            int fSize = pageSize * (pageIndex - 1) + 1;
+            int sSize = fSize + (pageSize - 1);
+            return managdal.GetUserInfo_Table(fSize, sSize, out pageCount);
+        }
+        /// <summary>
+        /// 查询系统用户信息
+        /// </summary>
+        public UsersInfo GetUsersByWork_ID(string work_Id)
+        {
+            return managdal.GetUsersByWork_ID(work_Id);
+        }
+        /// <summary>
         /// 查询登录用户信息
         /// </summary>
         public UsersInfo GetUsersByUserName(string username)
@@ -30,23 +42,30 @@ namespace CSPN.BLL
         /// <summary>
         /// 更新登录时间
         /// </summary>
-        public int UpdateLoginTimeByID(string loginTime, string work_ID)
+        public int UpdateLoginTimeByWork_ID(string loginTime, string work_ID)
         {
-            return managdal.UpdateLoginTimeByID(loginTime, work_ID);
-        }
-        /// <summary>
-        /// 查询系统用户信息
-        /// </summary>
-        public UsersInfo GetUsersByID(string work_Id)
-        {
-            return managdal.GetUsersByID(work_Id);
+            return managdal.UpdateLoginTimeByWork_ID(loginTime, work_ID);
         }
         /// <summary>
         /// 更新系统用户信息
         /// </summary>
-        public int UpdateUsersInfo(UsersInfo usersInfo)
+        public int UpdateUserInfo(UsersInfo usersInfo)
         {
-            return managdal.UpdateUsersInfo(usersInfo);
+            return managdal.UpdateUserInfo(usersInfo);
+        }
+        /// <summary>
+        /// 增加系统用户信息
+        /// </summary>
+        public int InsertUserInfo(UsersInfo usersInfo)
+        {
+            return managdal.InsertUserInfo(usersInfo);
+        }
+        /// <summary>
+        /// 删除系统用户信息
+        /// </summary>
+        public int DeleteUserInfo(string work_Id)
+        {
+            return managdal.DeleteUserInfo(work_Id);
         }
         #endregion
 
@@ -65,7 +84,7 @@ namespace CSPN.BLL
         /// 加载值班人员信息
         /// </summary>
         /// <returns></returns>
-        public IList<OperatorInfo> GetOperator()
+        public List<OperatorInfo> GetOperator()
         {
             return operatordal.GetOperator();
         }

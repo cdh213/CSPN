@@ -2,17 +2,11 @@
 using CSPN.assistcontrol;
 using CSPN.BLL;
 using CSPN.common;
-using CSPN.control;
 using CSPN.IBLL;
 using CSPN.Model;
 using Newtonsoft.Json;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Forms;
 
 namespace CSPN.webbrower
@@ -28,7 +22,7 @@ namespace CSPN.webbrower
         WellInfo well = new WellInfo();
         WellStateInfo stateInfo = new WellStateInfo();
 
-        IList<WellInfo> list = null;
+        List<WellInfo> list = null;
         string json = null;
         public string inputvalue { get; set; }
         public string terminal_ID { get; set; }
@@ -93,7 +87,7 @@ namespace CSPN.webbrower
         {
             if (MessageBox.Show("是否删除？", "人井监控管理系统", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                if (wellInfoService.DeleteWellInfo(terminal_ID) > 0 && wellStateService.DeleteWellCurrentStateInfo(terminal_ID) > 0 && wellInfoService.DeleteReportNumInfo(terminal_ID) > 0)
+                if (wellInfoService.DeleteWellInfo(terminal_ID) > 0 && wellStateService.DeleteWellCurrentStateInfo(terminal_ID) > 0 && wellInfoService.DeleteReportInfo(terminal_ID) > 0)
                 {
                     MessageBox.Show("数据删除成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     WebBrower.webBrower.ExecuteScriptAsync("deleteMarker", terminal_ID);

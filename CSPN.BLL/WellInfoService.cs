@@ -2,13 +2,8 @@
 using CSPN.IBLL;
 using CSPN.IDAL;
 using CSPN.Model;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSPN.BLL
 {
@@ -18,8 +13,7 @@ namespace CSPN.BLL
     public class WellInfoService : IWellInfoService
     {
         private static readonly IWellInfoDAL welldal = DALFactory.CreateWellInfoDAL();
-        private static readonly IReportNumInfoDAL reportnumdal = DALFactory.CreateReportNumInfoDAL();
-        private static readonly IAlarmInfoDAL alarmInfoDAL = DALFactory.CreateAlarmInfoDAL();
+        private static readonly IReportInfoDAL reportnumdal = DALFactory.CreateReportNumInfoDAL();
 
         #region 人井基本信息
         /// <summary>
@@ -34,7 +28,7 @@ namespace CSPN.BLL
         /// <summary>
         /// 查询人井信息
         /// </summary>
-        public IList<WellInfo> GetWellInfo_List(string wellinfo)
+        public List<WellInfo> GetWellInfo_List(string wellinfo)
         {
             return welldal.GetWellInfo_List(wellinfo);
         }
@@ -81,6 +75,13 @@ namespace CSPN.BLL
 
         #region 人井上报次数
         /// <summary>
+        /// 查询上报人井信息
+        /// </summary>
+        public List<ReportInfo> GetReportInfo()
+        {
+            return reportnumdal.GetReportInfo();
+        }
+        /// <summary>
         /// 查询未上报人井信息
         /// </summary>
         public DataTable GetNotReportNumInfo(int reportTimes)
@@ -111,9 +112,9 @@ namespace CSPN.BLL
         /// <summary>
         /// 更新人井上未报次数
         /// </summary>
-        public int UpdateNotReportTimes()
+        public int UpdateNotReportTimes(string terminal_ID)
         {
-            return reportnumdal.UpdateNotReportTimes();
+            return reportnumdal.UpdateNotReportTimes(terminal_ID);
         }
         /// <summary>
         /// 更新人井上未时间间隔
@@ -125,61 +126,66 @@ namespace CSPN.BLL
         /// <summary>
         /// 增加人井信息
         /// </summary>
-        public int InsertReportNumInfo(string terminal_ID, int reportInterval)
+        public int InsertReportInfo(string terminal_ID, int reportInterval)
         {
-            return reportnumdal.InsertReportNumInfo(terminal_ID, reportInterval);
+            return reportnumdal.InsertReportInfo(terminal_ID, reportInterval);
         }
         /// <summary>
         /// 删除人井信息
         /// </summary>
-        public int DeleteReportNumInfo(string terminal_ID)
+        public int DeleteReportInfo(string terminal_ID)
         {
-            return reportnumdal.DeleteReportNumInfo(terminal_ID);
+            return reportnumdal.DeleteReportInfo(terminal_ID);
         }
         #endregion
 
         #region 人井报警信息
         /// <summary>
-        /// 查询报警,状态信息
+        /// 查询待处理信息
         /// </summary>
-        public DataTable GetAlarmInfo_StatusInfo()
+        /// <returns></returns>
+        public DataTable GetReportInfo_Pending()
         {
-            return alarmInfoDAL.GetAlarmInfo_StatusInfo();
+            return reportnumdal.GetReportInfo_Pending();
         }
         /// <summary>
-        /// 通过Terminal_ID查询报警,状态信息
+        /// 查询已通知信息
         /// </summary>
-        public AlarmInfo GetAlarmInfo_StatusInfo(int well_State_ID, string terminal_ID)
+        /// <returns></returns>
+        public DataTable GetReportInfo_Send()
         {
-            return alarmInfoDAL.GetAlarmInfo_StatusInfo(well_State_ID, terminal_ID);
+            return reportnumdal.GetReportInfo_Send();
         }
         /// <summary>
-        /// 查询已处理信息
+        /// 通过Terminal_ID查询信息
         /// </summary>
-        public DataTable GetProcessedInfo()
+        public ReportInfo GetReportInfo_Terminal_ID(int well_State_ID, string terminal_ID)
         {
-            return alarmInfoDAL.GetProcessedInfo();
+            return reportnumdal.GetReportInfo_Terminal_ID(well_State_ID, terminal_ID);
         }
         /// <summary>
-        /// 增加报警、状态信息
+        /// 更新待处理信息
         /// </summary>
-        public int InsertAlarmInfo(AlarmInfo alarmInfo)
+        /// <returns></returns>
+        public int UpdateReportInfo_Pending(int well_State_ID_Pending, string terminal_ID)
         {
-            return alarmInfoDAL.InsertAlarmInfo(alarmInfo);
+            return reportnumdal.UpdateReportInfo_Pending(well_State_ID_Pending, terminal_ID);
         }
         /// <summary>
-        /// 删除报警、状态信息
+        /// 更新待处理信息
         /// </summary>
-        public int DeleteAlarmInfo(string report_Time)
+        /// <returns></returns>
+        public int UpdateReportInfo_Pending(ReportInfo reportInfo)
         {
-            return alarmInfoDAL.DeleteAlarmInfo(report_Time);
+            return reportnumdal.UpdateReportInfo_Pending(reportInfo);
         }
         /// <summary>
-        /// 更新报警、状态信息
+        /// 更新已通知信息
         /// </summary>
-        public int UpdateAlarmInfo(int well_State_ID, string report_Time)
+        /// <returns></returns>
+        public int UpdateReportInfo_Send(int well_State_ID_Send, string terminal_ID)
         {
-            return alarmInfoDAL.UpdateAlarmInfo(well_State_ID, report_Time);
+            return reportnumdal.UpdateReportInfo_Pending(well_State_ID_Send, terminal_ID);
         }
         #endregion
     }

@@ -1,11 +1,5 @@
 ﻿using CSPN.IDAL;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSPN.Factory
 {
@@ -54,15 +48,10 @@ namespace CSPN.Factory
             string className = path + ".WellStateInfoDAL";
             return (IWellStateInfoDAL)Assembly.Load(path).CreateInstance(className);
         }
-        public static IReportNumInfoDAL CreateReportNumInfoDAL()
+        public static IReportInfoDAL CreateReportNumInfoDAL()
         {
-            string className = path + ".ReportNumInfoDAL";
-            return (IReportNumInfoDAL)Assembly.Load(path).CreateInstance(className);
-        }
-        public static IAlarmInfoDAL CreateAlarmInfoDAL()
-        {
-            string className = path + ".AlarmInfoDAL";
-            return (IAlarmInfoDAL)Assembly.Load(path).CreateInstance(className);
+            string className = path + ".ReportInfoDAL";
+            return (IReportInfoDAL)Assembly.Load(path).CreateInstance(className);
         }
     }
 }

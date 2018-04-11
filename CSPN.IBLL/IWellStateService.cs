@@ -1,10 +1,6 @@
 ﻿using CSPN.Model;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSPN.IBLL
 {
@@ -18,7 +14,7 @@ namespace CSPN.IBLL
         /// 查询人井状态信息
         /// </summary>
         /// <returns>人井状态</returns>
-        IList<WellStateInfo> GetWellStateInfo();
+        List<WellStateInfo> GetWellStateInfo();
         /// <summary>
         /// 查询人井状态信息
         /// </summary>

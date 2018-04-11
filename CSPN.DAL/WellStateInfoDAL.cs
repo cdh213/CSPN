@@ -1,11 +1,8 @@
 ﻿using CSPN.Factory;
 using CSPN.Model;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Dapper;
 using CSPN.IDAL;
 
@@ -33,7 +30,7 @@ namespace CSPN.DAL
         /// <summary>
         /// 查询人井状态信息
         /// </summary>
-        public IList<WellStateInfo> GetWellStateInfo()
+        public List<WellStateInfo> GetWellStateInfo()
         {
             using (Conn)
             {

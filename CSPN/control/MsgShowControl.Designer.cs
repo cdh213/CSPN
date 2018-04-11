@@ -485,10 +485,10 @@
             // ReportInterval
             // 
             this.ReportInterval.DataPropertyName = "ReportInterval";
-            this.ReportInterval.HeaderText = "上报时间间隔";
+            this.ReportInterval.HeaderText = "上报时间间隔(小时)";
             this.ReportInterval.Name = "ReportInterval";
             this.ReportInterval.ReadOnly = true;
-            this.ReportInterval.Width = 118;
+            this.ReportInterval.Width = 156;
             // 
             // Work_ID
             // 

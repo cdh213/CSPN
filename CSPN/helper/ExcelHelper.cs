@@ -2,12 +2,8 @@
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CSPN.helper
@@ -85,7 +81,6 @@ namespace CSPN.helper
                 finally
                 {
                     ms.Close();
-                    ms.Dispose();
                 }
             }
         }

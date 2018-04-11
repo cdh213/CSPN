@@ -47,9 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlarmInfoDAL.cs" />
     <Compile Include="OperatorDAL.cs" />
-    <Compile Include="ReportNumInfoDAL.cs" />
+    <Compile Include="ReportInfoDAL.cs" />
     <Compile Include="WellInfoDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemLogDAL.cs" />

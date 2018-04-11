@@ -1,10 +1,8 @@
 ﻿using CSPN.Factory;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Dapper;
 using CSPN.Model;
 using CSPN.IDAL;
@@ -58,7 +56,7 @@ namespace CSPN.DAL
         /// 加载值班人员信息
         /// </summary>
         /// <returns></returns>
-        public IList<OperatorInfo> GetOperator()
+        public List<OperatorInfo> GetOperator()
         {
             using (Conn)
             {

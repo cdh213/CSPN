@@ -1,16 +1,11 @@
 ﻿using CSPN.Factory;
 using CSPN.Model;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Dapper;
 using CSPN.IDAL;
-using System.Collections;
-using System.Threading;
-using System.Data.OleDb;
 
 namespace CSPN.DAL
 {
@@ -31,10 +26,10 @@ namespace CSPN.DAL
         }
         #endregion
 
-        const string select_WellInfo_Table = "select a.Terminal_ID,Name,Longitude,Latitude,Place,Terminal_Phone,Well_State_ID,Electricity,Temperature,Humidity,Smoke_Detector,Smoke_Power,Signal_Strength,Icon,Color,ReportInterval,Work_ID,RealName,Telephone from (((CSPN_Well_Info as a inner join CSPN_Operator_Info as b on a.Operator_ID=b.ID) inner join CSPN_Well_Current_State_Info as c on a.Terminal_ID=c.Terminal_ID) inner join CSPN_Dic_Well_State_Info as d on c.Well_State_ID=d.ID) inner join CSPN_ReportNumInfo as e on a.Terminal_ID=e.Terminal_ID where a.Terminal_ID between (select max(a.Terminal_ID) from (select top {0} a.Terminal_ID from CSPN_Well_Info as a order by a.Terminal_ID asc)) and (select max(a.Terminal_ID) from (select top {1} a.Terminal_ID from CSPN_Well_Info as a order by a.Terminal_ID asc)) order by a.Terminal_ID asc";
+        const string select_WellInfo_Table = "select a.Terminal_ID,Name,Longitude,Latitude,Place,Terminal_Phone,Well_State_ID,Electricity,Temperature,Humidity,Smoke_Detector,Smoke_Power,Signal_Strength,Icon,Color,ReportInterval,Work_ID,RealName,Telephone from (((CSPN_Well_Info as a inner join CSPN_Operator_Info as b on a.Operator_ID=b.ID) inner join CSPN_Well_Current_State_Info as c on a.Terminal_ID=c.Terminal_ID) inner join CSPN_Dic_Well_State_Info as d on c.Well_State_ID=d.ID) inner join CSPN_Report_Info as e on a.Terminal_ID=e.Terminal_ID where a.Terminal_ID between (select max(a.Terminal_ID) from (select top {0} a.Terminal_ID from CSPN_Well_Info as a order by a.Terminal_ID asc)) and (select max(a.Terminal_ID) from (select top {1} a.Terminal_ID from CSPN_Well_Info as a order by a.Terminal_ID asc)) order by a.Terminal_ID asc";
         const string select_WellInfo_Count = "select count(*) from CSPN_Well_Info where 1=1";
-        const string select_WellInfo = "select a.Terminal_ID,Name,Longitude,Latitude,Place,Terminal_Phone,c.Terminal_ID as cTerminal_ID,Well_State_ID,Electricity,Temperature,Humidity,Smoke_Detector,Smoke_Power,Signal_Strength,d.ID,Icon,Color,e.Terminal_ID as eTerminal_ID,ReportInterval,Work_ID,RealName,Telephone from (((CSPN_Well_Info as a inner join CSPN_Operator_Info as b on a.Operator_ID=b.ID) inner join CSPN_Well_Current_State_Info as c on a.Terminal_ID=c.Terminal_ID) inner join CSPN_Dic_Well_State_Info as d on c.Well_State_ID=d.ID) inner join CSPN_ReportNumInfo as e on a.Terminal_ID=e.Terminal_ID where 1=1";
-        const string query_WellInfo_Terminal_ID = "select a.Terminal_ID as Terminal_ID,Name,Longitude,Latitude,Place,Terminal_Phone,[State],RealName,e.Terminal_ID,ReportInterval from (((CSPN_Well_Info as a inner join CSPN_Well_Current_State_Info as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Dic_Well_State_Info as c on b.Well_State_ID=c.ID) inner join CSPN_Operator_Info as d on a.Operator_ID=d.ID) inner join CSPN_ReportNumInfo as e on a.Terminal_ID=e.Terminal_ID where a.Terminal_ID=@Terminal_ID";
+        const string select_WellInfo = "select a.Terminal_ID,Name,Longitude,Latitude,Place,Terminal_Phone,c.Terminal_ID as cTerminal_ID,Well_State_ID,Electricity,Temperature,Humidity,Smoke_Detector,Smoke_Power,Signal_Strength,d.ID,Icon,Color,e.Terminal_ID as eTerminal_ID,ReportInterval,Work_ID,RealName,Telephone from (((CSPN_Well_Info as a inner join CSPN_Operator_Info as b on a.Operator_ID=b.ID) inner join CSPN_Well_Current_State_Info as c on a.Terminal_ID=c.Terminal_ID) inner join CSPN_Dic_Well_State_Info as d on c.Well_State_ID=d.ID) inner join CSPN_Report_Info as e on a.Terminal_ID=e.Terminal_ID where 1=1";
+        const string query_WellInfo_Terminal_ID = "select a.Terminal_ID as Terminal_ID,Name,Longitude,Latitude,Place,Terminal_Phone,[State],RealName,e.Terminal_ID,ReportInterval from (((CSPN_Well_Info as a inner join CSPN_Well_Current_State_Info as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Dic_Well_State_Info as c on b.Well_State_ID=c.ID) inner join CSPN_Operator_Info as d on a.Operator_ID=d.ID) inner join CSPN_Report_Info as e on a.Terminal_ID=e.Terminal_ID where a.Terminal_ID=@Terminal_ID";
         const string query_WellInfo_Terminal_Phone = "select a.*,b.Well_State_ID from CSPN_Well_Info as a inner join CSPN_Well_Current_State_Info as b on a.Terminal_ID=b.Terminal_ID where Terminal_Phone=@Terminal_Phone";
         const string update_WellInfo_Terminal_ID = "update CSPN_Well_Info set Name=@Name,Longitude=@Longitude,Latitude=@Latitude,Place=@Place,Operator_ID=@Operator_ID,Terminal_Phone=@Terminal_Phone where Terminal_ID=@Terminal_ID";
         const string Insert_WellInfo = "insert into CSPN_Well_Info(Terminal_ID,Name,Longitude,Latitude,Place,Operator_ID,Terminal_Phone) values(@Terminal_ID,@Name,@Longitude,@Latitude,@Place,@Operator_ID,@Terminal_Phone)";
@@ -73,7 +68,7 @@ namespace CSPN.DAL
         /// <summary>
         /// 查询人井信息
         /// </summary>
-        public IList<WellInfo> GetWellInfo_List(string wellinfo)
+        public List<WellInfo> GetWellInfo_List(string wellinfo)
         {
             sb = new StringBuilder(select_WellInfo);
             if (wellinfo != null)
@@ -82,7 +77,7 @@ namespace CSPN.DAL
             }
             using (Conn)
             {
-                return Conn.Query<WellInfo, WellCurrentStateInfo, WellStateInfo, ReportNumInfo, OperatorInfo, WellInfo>(sb.ToString(), (a, c, d, e, b) => { a.WellCurrentStateInfo = c; a.WellStateInfo = d; a.OperatorInfo = b; a.ReportNumInfo = e; return a; }, null, null, true, "Terminal_ID,cTerminal_ID,ID,eTerminal_ID,Work_ID").ToList();
+                return Conn.Query<WellInfo, WellCurrentStateInfo, WellStateInfo, ReportInfo, OperatorInfo, WellInfo>(sb.ToString(), (a, c, d, e, b) => { a.WellCurrentStateInfo = c; a.WellStateInfo = d; a.OperatorInfo = b; a.ReportNumInfo = e; return a; }, null, null, true, "Terminal_ID,cTerminal_ID,ID,eTerminal_ID,Work_ID").ToList();
             }
         }
         /// <summary>
@@ -92,7 +87,7 @@ namespace CSPN.DAL
         {
             using (Conn)
             {
-                return Conn.Query<WellInfo, WellStateInfo, OperatorInfo, ReportNumInfo, WellInfo>(query_WellInfo_Terminal_ID, (a, b, c, d) => { a.WellStateInfo = b; a.OperatorInfo = c; a.ReportNumInfo = d; return a; }, new { Terminal_ID = terminal_ID }, null, true, "Terminal_ID,State,RealName,e.Terminal_ID").FirstOrDefault();
+                return Conn.Query<WellInfo, WellStateInfo, OperatorInfo, ReportInfo, WellInfo>(query_WellInfo_Terminal_ID, (a, b, c, d) => { a.WellStateInfo = b; a.OperatorInfo = c; a.ReportNumInfo = d; return a; }, new { Terminal_ID = terminal_ID }, null, true, "Terminal_ID,State,RealName,e.Terminal_ID").FirstOrDefault();
             }
         }
         /// <summary>

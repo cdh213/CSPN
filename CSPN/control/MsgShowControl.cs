@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CSPN.IBLL;
 using CSPN.BLL;
@@ -21,8 +16,6 @@ using CSPN.webbrower;
 using CSPN.helper;
 using Newtonsoft.Json;
 using CSPN.job;
-using System.Threading;
-using System.Collections;
 
 namespace CSPN.control
 {
@@ -61,7 +54,7 @@ namespace CSPN.control
             ef.ShowDialog();
             if (ef.DialogResult == DialogResult.OK)
             {
-                IList<WellInfo> list = wellInfoService.GetWellInfo_List(ef.GetTerminal_ID());
+                List<WellInfo> list = wellInfoService.GetWellInfo_List(ef.GetTerminal_ID());
                 string json = JsonConvert.SerializeObject(list);
                 WebBrower.webBrower.ExecuteScriptAsync("addMaker", json);
             }
@@ -98,7 +91,7 @@ namespace CSPN.control
             {
                 terminal_ID = grid.Rows[Array.IndexOf(n, -1) - 1].Cells[1].Value.ToString();
                 new EditWellInfoForm(terminal_ID, false, false, null).ShowDialog();
-                IList<WellInfo> list = wellInfoService.GetWellInfo_List(terminal_ID);
+                List<WellInfo> list = wellInfoService.GetWellInfo_List(terminal_ID);
                 string json = JsonConvert.SerializeObject(list);
                 WebBrower.webBrower.ExecuteScriptAsync("updateMarker", json);
                 DataLoade(null);
@@ -138,7 +131,7 @@ namespace CSPN.control
                             terminal_ID = grid.Rows[n[i]].Cells[1].Value.ToString();
                             wellInfoService.DeleteWellInfo(terminal_ID);
                             wellStateService.DeleteWellCurrentStateInfo(terminal_ID);
-                            wellInfoService.DeleteReportNumInfo(terminal_ID);
+                            wellInfoService.DeleteReportInfo(terminal_ID);
                         }
                     }
                     MessageBox.Show("数据删除成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -185,7 +178,7 @@ namespace CSPN.control
                 //获取wk中的sheet
                 ISheet sheet = workbook.GetSheetAt(0);
                 IRow currentRow;  //新建当前工作表行数据
-                IList<ICell> listCells = new List<ICell>(); //list中保存当前行的所有的单元格内容
+                List<ICell> listCells = new List<ICell>(); //list中保存当前行的所有的单元格内容
                 //遍历说有行
                 for (int r = 1; r <= sheet.LastRowNum; r++)
                 {
@@ -204,7 +197,7 @@ namespace CSPN.control
                     //执行sql语句
                     wellInfoService.InsertWellInfo(well);
                     wellStateService.InsertWellCurrentStateInfo(well.Terminal_ID, 1);
-                    wellInfoService.InsertReportNumInfo(well.Terminal_ID, 1);
+                    wellInfoService.InsertReportInfo(well.Terminal_ID, 1);
                     worker.ReportProgress(r, sheet.LastRowNum);
                 }
             }

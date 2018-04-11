@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSPN.common
+﻿namespace CSPN.common
 {
     public enum CSPNType
     {
@@ -12,10 +6,6 @@ namespace CSPN.common
         /// 人井信息
         /// </summary>
         WellInfo,
-        /// <summary>
-        /// 值班人员信息
-        /// </summary>
-        OperatorInfo,
         /// <summary>
         /// 系统日志
         /// </summary>
@@ -43,6 +33,14 @@ namespace CSPN.common
         /// <summary>
         /// 未上报信息
         /// </summary>
-        NotReportInfo
+        NotReportInfo,
+        /// <summary>
+        /// 值班人员信息
+        /// </summary>
+        OperatorInfo,
+        /// <summary>
+        /// 用户信息
+        /// </summary>
+        UserInfo
     }
 }
