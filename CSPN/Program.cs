@@ -66,7 +66,7 @@ namespace CSPN
                 catch (Exception ex)
                 {
                     LogHelper.WriteLog(ex.Message, ex);
-                    MessageBox.Show("系统错误。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    UMessageBox.Show("系统错误。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Process.GetCurrentProcess().CloseMainWindow();
                 }
                 finally
@@ -78,7 +78,7 @@ namespace CSPN
             }
             else
             {
-                MessageBox.Show("已经启动了一个程序，请先退出!");
+                UMessageBox.Show("已经启动了一个程序，请先退出!", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Environment.Exit(0);
             }
         }
@@ -86,13 +86,15 @@ namespace CSPN
         static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
             LogHelper.WriteLog(e.ToString(), e.Exception);
-            MessageBox.Show("系统错误。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            UMessageBox.Show("系统错误。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            WaitWin.Close();
         }
 
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             LogHelper.WriteLog(e.ToString(), e.ExceptionObject as Exception);
-            MessageBox.Show("系统错误。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            UMessageBox.Show("系统错误。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            WaitWin.Close();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace CSPN.control
             InitializeSysLogInfo();
             InitializeUserLogInfo_WellInfo();
             InitializeUserLogInfo_GeneralInfo();
-            RefreshWellInfoJob.refreshEventHandler += new job.RefreshEventHandler(RefreshInfo);
+            RefreshWellInfoJob.refreshDelegate += new RefreshDelegate(RefreshInfo);
         }
         
         private void LogInfoControl_Load(object sender, EventArgs e)
@@ -31,6 +31,11 @@ namespace CSPN.control
         //将系统日志导出数据库
         private void btnSysOut_Click(object sender, EventArgs e)
         {
+            if (Sysgrid.Rows.Count == 0)
+            {
+                UMessageBox.Show("当前没有数据。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             new ExportLogInfoSetForm(Sysgrid, CSPNType.SysLogInfo).ShowDialog(this);
             DataLoade(false, null);
         }
@@ -39,10 +44,20 @@ namespace CSPN.control
         {
             if (cbType.SelectedIndex == 0)
             {
+                if (((DataGridView)panelUser.Controls[0]).Rows.Count == 0)
+                {
+                    UMessageBox.Show("当前没有数据。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 new ExportLogInfoSetForm((DataGridView)panelUser.Controls[0], CSPNType.UserLogInfo_WellInfo).ShowDialog(this);
             }
             else
             {
+                if (((DataGridView)panelUser.Controls[0]).Rows.Count == 0)
+                {
+                    UMessageBox.Show("当前没有数据。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 new ExportLogInfoSetForm((DataGridView)panelUser.Controls[0], CSPNType.UserLogInfo_GeneralInfo).ShowDialog(this);
             }
             DataLoade(false, null);
@@ -62,7 +77,7 @@ namespace CSPN.control
         {
             if (Sysgrid.InvokeRequired)
             {
-                Sysgrid.Invoke(new job.RefreshEventHandler(RefreshInfo));
+                Sysgrid.Invoke(new job.RefreshDelegate(RefreshInfo));
             }
             else
             {

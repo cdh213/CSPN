@@ -1,4 +1,5 @@
 ﻿using CefSharp;
+using CSPN.assistcontrol;
 using System.Windows.Forms;
 
 namespace CSPN.webbrower
@@ -19,7 +20,7 @@ namespace CSPN.webbrower
         {
             if (dialogType == CefJsDialogType.Alert)
             {
-                MessageBox.Show(messageText, "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show(messageText, "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 suppressMessage = true;
                 return false;
             }

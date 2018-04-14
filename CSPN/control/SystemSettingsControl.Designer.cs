@@ -30,20 +30,19 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SystemSettingsControl));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.SysSetTab = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnSysSet = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -52,6 +51,10 @@
             this.tbRefreshTime = new System.Windows.Forms.TextBox();
             this.tbSysLogTime = new System.Windows.Forms.TextBox();
             this.tbUserLogTime = new System.Windows.Forms.TextBox();
+            this.btnSysSet = new System.Windows.Forms.Button();
+            this.lbReportInterval = new System.Windows.Forms.Label();
+            this.tbReportInterval = new System.Windows.Forms.TextBox();
+            this.cbEnabled = new System.Windows.Forms.CheckBox();
             this.SMSSettings = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.myGroupBox1 = new System.Windows.Forms.GroupBox();
@@ -191,13 +194,12 @@
             this.tableLayoutPanel8.AutoScroll = true;
             this.tableLayoutPanel8.ColumnCount = 7;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Controls.Add(this.btnSysSet, 3, 2);
             this.tableLayoutPanel8.Controls.Add(this.label9, 1, 0);
             this.tableLayoutPanel8.Controls.Add(this.label5, 1, 1);
             this.tableLayoutPanel8.Controls.Add(this.label10, 4, 0);
@@ -206,6 +208,10 @@
             this.tableLayoutPanel8.Controls.Add(this.tbRefreshTime, 5, 1);
             this.tableLayoutPanel8.Controls.Add(this.tbSysLogTime, 2, 0);
             this.tableLayoutPanel8.Controls.Add(this.tbUserLogTime, 5, 0);
+            this.tableLayoutPanel8.Controls.Add(this.btnSysSet, 3, 3);
+            this.tableLayoutPanel8.Controls.Add(this.lbReportInterval, 1, 2);
+            this.tableLayoutPanel8.Controls.Add(this.tbReportInterval, 2, 2);
+            this.tableLayoutPanel8.Controls.Add(this.cbEnabled, 3, 2);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 22);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
@@ -216,6 +222,88 @@
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel8.Size = new System.Drawing.Size(894, 427);
             this.tableLayoutPanel8.TabIndex = 0;
+            // 
+            // label9
+            // 
+            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label9.Location = new System.Drawing.Point(95, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(214, 106);
+            this.label9.TabIndex = 15;
+            this.label9.Text = "系统日志保存时间（天）";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.label9, "设置保存系统日志的天数，超过天数的系统日志会被自动删除。");
+            // 
+            // label5
+            // 
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Location = new System.Drawing.Point(95, 106);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(214, 106);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "通讯故障次数";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label10
+            // 
+            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label10.Location = new System.Drawing.Point(485, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(214, 106);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "用户日志保存时间（天）";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.label10, "设置保存用户日志的天数，超过天数的用户日志会被自动删除。");
+            // 
+            // label11
+            // 
+            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label11.Location = new System.Drawing.Point(485, 106);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(214, 106);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "人井信息列表刷新时间（分钟）";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.label11, "人井信息列表刷新时间，改设置更改后需要重启系统才能生效。");
+            // 
+            // tbNotReportTimes
+            // 
+            this.tbNotReportTimes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbNotReportTimes.Location = new System.Drawing.Point(315, 146);
+            this.tbNotReportTimes.Name = "tbNotReportTimes";
+            this.tbNotReportTimes.Size = new System.Drawing.Size(94, 26);
+            this.tbNotReportTimes.TabIndex = 23;
+            this.tbNotReportTimes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbRefreshTime
+            // 
+            this.tbRefreshTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbRefreshTime.Location = new System.Drawing.Point(705, 146);
+            this.tbRefreshTime.Name = "tbRefreshTime";
+            this.tbRefreshTime.Size = new System.Drawing.Size(94, 26);
+            this.tbRefreshTime.TabIndex = 24;
+            this.tbRefreshTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip1.SetToolTip(this.tbRefreshTime, "人井信息列表刷新时间，该设置更改后需要重启系统才能生效。");
+            // 
+            // tbSysLogTime
+            // 
+            this.tbSysLogTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbSysLogTime.Location = new System.Drawing.Point(315, 40);
+            this.tbSysLogTime.Name = "tbSysLogTime";
+            this.tbSysLogTime.Size = new System.Drawing.Size(94, 26);
+            this.tbSysLogTime.TabIndex = 21;
+            this.tbSysLogTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip1.SetToolTip(this.tbSysLogTime, "设置保存系统日志的天数，超过天数的系统日志会被自动删除。");
+            // 
+            // tbUserLogTime
+            // 
+            this.tbUserLogTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbUserLogTime.Location = new System.Drawing.Point(705, 40);
+            this.tbUserLogTime.Name = "tbUserLogTime";
+            this.tbUserLogTime.Size = new System.Drawing.Size(94, 26);
+            this.tbUserLogTime.TabIndex = 22;
+            this.tbUserLogTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip1.SetToolTip(this.tbUserLogTime, "设置保存用户日志的天数，超过天数的用户日志会被自动删除。");
             // 
             // btnSysSet
             // 
@@ -229,7 +317,7 @@
             this.btnSysSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSysSet.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnSysSet.ForeColor = System.Drawing.Color.White;
-            this.btnSysSet.Location = new System.Drawing.Point(390, 252);
+            this.btnSysSet.Location = new System.Drawing.Point(415, 359);
             this.btnSysSet.Name = "btnSysSet";
             this.btnSysSet.Size = new System.Drawing.Size(64, 26);
             this.btnSysSet.TabIndex = 25;
@@ -237,87 +325,41 @@
             this.btnSysSet.UseVisualStyleBackColor = true;
             this.btnSysSet.Click += new System.EventHandler(this.btnSysSet_Click);
             // 
-            // label9
+            // lbReportInterval
             // 
-            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(120, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(164, 106);
-            this.label9.TabIndex = 15;
-            this.label9.Text = "系统日志保存时间（天）";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.label9, "设置保存系统日志的天数，超过天数的系统日志会被自动删除。");
+            this.lbReportInterval.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbReportInterval.Enabled = false;
+            this.lbReportInterval.Location = new System.Drawing.Point(95, 212);
+            this.lbReportInterval.Name = "lbReportInterval";
+            this.lbReportInterval.Size = new System.Drawing.Size(214, 106);
+            this.lbReportInterval.TabIndex = 26;
+            this.lbReportInterval.Text = "人井统一上报时间间隔（小时）";
+            this.lbReportInterval.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lbReportInterval, "若启用人井统一上报时间间隔，则单独设置的时间间隔无法生效。");
             // 
-            // label5
+            // tbReportInterval
             // 
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(120, 106);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(164, 106);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "通讯故障次数";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tbReportInterval.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbReportInterval.Enabled = false;
+            this.tbReportInterval.Location = new System.Drawing.Point(315, 252);
+            this.tbReportInterval.Name = "tbReportInterval";
+            this.tbReportInterval.Size = new System.Drawing.Size(94, 26);
+            this.tbReportInterval.TabIndex = 27;
+            this.tbReportInterval.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip1.SetToolTip(this.tbReportInterval, "若启用人井统一上报时间间隔，则单独设置的时间间隔无法生效。");
             // 
-            // label10
+            // cbEnabled
             // 
-            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(460, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(214, 106);
-            this.label10.TabIndex = 17;
-            this.label10.Text = "用户日志保存时间（天）";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.label10, "设置保存用户日志的天数，超过天数的用户日志会被自动删除。");
-            // 
-            // label11
-            // 
-            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(460, 106);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(214, 106);
-            this.label11.TabIndex = 19;
-            this.label11.Text = "人井信息列表刷新时间（分钟）";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.label11, "人井信息列表刷新时间，改设置更改后需要重启系统才能生效。");
-            // 
-            // tbNotReportTimes
-            // 
-            this.tbNotReportTimes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbNotReportTimes.Location = new System.Drawing.Point(290, 146);
-            this.tbNotReportTimes.Name = "tbNotReportTimes";
-            this.tbNotReportTimes.Size = new System.Drawing.Size(94, 26);
-            this.tbNotReportTimes.TabIndex = 23;
-            this.tbNotReportTimes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbRefreshTime
-            // 
-            this.tbRefreshTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbRefreshTime.Location = new System.Drawing.Point(680, 146);
-            this.tbRefreshTime.Name = "tbRefreshTime";
-            this.tbRefreshTime.Size = new System.Drawing.Size(94, 26);
-            this.tbRefreshTime.TabIndex = 24;
-            this.tbRefreshTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.tbRefreshTime, "人井信息列表刷新时间，该设置更改后需要重启系统才能生效。");
-            // 
-            // tbSysLogTime
-            // 
-            this.tbSysLogTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbSysLogTime.Location = new System.Drawing.Point(290, 40);
-            this.tbSysLogTime.Name = "tbSysLogTime";
-            this.tbSysLogTime.Size = new System.Drawing.Size(94, 26);
-            this.tbSysLogTime.TabIndex = 21;
-            this.tbSysLogTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.tbSysLogTime, "设置保存系统日志的天数，超过天数的系统日志会被自动删除。");
-            // 
-            // tbUserLogTime
-            // 
-            this.tbUserLogTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbUserLogTime.Location = new System.Drawing.Point(680, 40);
-            this.tbUserLogTime.Name = "tbUserLogTime";
-            this.tbUserLogTime.Size = new System.Drawing.Size(94, 26);
-            this.tbUserLogTime.TabIndex = 22;
-            this.tbUserLogTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.tbUserLogTime, "设置保存用户日志的天数，超过天数的用户日志会被自动删除。");
+            this.cbEnabled.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbEnabled.AutoSize = true;
+            this.cbEnabled.Location = new System.Drawing.Point(419, 253);
+            this.cbEnabled.Name = "cbEnabled";
+            this.cbEnabled.Size = new System.Drawing.Size(56, 24);
+            this.cbEnabled.TabIndex = 28;
+            this.cbEnabled.Text = "启用";
+            this.toolTip1.SetToolTip(this.cbEnabled, "若启用人井统一上报时间间隔，则单独设置的时间间隔无法生效。");
+            this.cbEnabled.UseVisualStyleBackColor = true;
+            this.cbEnabled.CheckedChanged += new System.EventHandler(this.cbEnabled_CheckedChanged);
             // 
             // SMSSettings
             // 
@@ -732,20 +774,20 @@
             this.userGrid.AllowUserToAddRows = false;
             this.userGrid.AllowUserToDeleteRows = false;
             this.userGrid.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.userGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.userGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.userGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.userGrid.BackgroundColor = System.Drawing.SystemColors.Window;
             this.userGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.userGrid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.userGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.userGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.userGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.userGrid.ColumnHeadersHeight = 30;
             this.userGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -759,18 +801,18 @@
             this.userGrid.Location = new System.Drawing.Point(3, 43);
             this.userGrid.MultiSelect = false;
             this.userGrid.Name = "userGrid";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.userGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.userGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.userGrid.RowHeadersVisible = false;
             this.userGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.userGrid.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.userGrid.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.userGrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.userGrid.RowTemplate.Height = 35;
             this.userGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -899,20 +941,20 @@
             this.operatorGrid.AllowUserToAddRows = false;
             this.operatorGrid.AllowUserToDeleteRows = false;
             this.operatorGrid.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.operatorGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.operatorGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.operatorGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.operatorGrid.BackgroundColor = System.Drawing.SystemColors.Window;
             this.operatorGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.operatorGrid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.operatorGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.operatorGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.operatorGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.operatorGrid.ColumnHeadersHeight = 30;
             this.operatorGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -927,18 +969,18 @@
             this.operatorGrid.Location = new System.Drawing.Point(3, 43);
             this.operatorGrid.MultiSelect = false;
             this.operatorGrid.Name = "operatorGrid";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.operatorGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.operatorGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.operatorGrid.RowHeadersVisible = false;
             this.operatorGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.operatorGrid.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.operatorGrid.RowsDefaultCellStyle = dataGridViewCellStyle16;
             this.operatorGrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.operatorGrid.RowTemplate.Height = 35;
             this.operatorGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -1215,6 +1257,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-
+        private System.Windows.Forms.Label lbReportInterval;
+        private System.Windows.Forms.TextBox tbReportInterval;
+        private System.Windows.Forms.CheckBox cbEnabled;
     }
 }

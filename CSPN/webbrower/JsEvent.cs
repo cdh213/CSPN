@@ -16,7 +16,6 @@ namespace CSPN.webbrower
     public class JsEvent
     {
         public static DisposeMsgDelegate disposeMsgDelegate;
-
         IWellInfoService wellInfoService = new WellInfoService();
         IWellStateService wellStateService = new WellStateService();
         WellInfo well = new WellInfo();
@@ -34,7 +33,7 @@ namespace CSPN.webbrower
         {
             if (inputvalue == "")
             {
-                MessageBox.Show("请输入内容！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("请输入内容！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             Task.Run(async () =>
@@ -85,16 +84,16 @@ namespace CSPN.webbrower
         }
         public void DeleteContent()
         {
-            if (MessageBox.Show("是否删除？", "人井监控管理系统", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (UMessageBox.Show("是否删除？", "人井监控管理系统", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 if (wellInfoService.DeleteWellInfo(terminal_ID) > 0 && wellStateService.DeleteWellCurrentStateInfo(terminal_ID) > 0 && wellInfoService.DeleteReportInfo(terminal_ID) > 0)
                 {
-                    MessageBox.Show("数据删除成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UMessageBox.Show("数据删除成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     WebBrower.webBrower.ExecuteScriptAsync("deleteMarker", terminal_ID);
                 }
                 else
                 {
-                    MessageBox.Show("数据删除失败！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    UMessageBox.Show("数据删除失败！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -114,8 +113,8 @@ namespace CSPN.webbrower
         }
         public void SaveLocationInfo()
         {
-            ReadWriteConfig.WriteConfig("DefaultLocation", locationInfo);
-            MessageBox.Show("设置成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            ReadWriteXml.WriteXml("DefaultLocation", locationInfo);
+            UMessageBox.Show("设置成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         public void Reload(IJavascriptCallback javascriptCallback)
         {

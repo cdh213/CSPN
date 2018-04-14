@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataGridPage));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
@@ -40,6 +41,7 @@
             this.tbPageIndex = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnGo = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,7 +107,9 @@
             this.btnLast.Name = "btnLast";
             this.btnLast.Size = new System.Drawing.Size(70, 25);
             this.btnLast.TabIndex = 6;
+            this.btnLast.TabStop = false;
             this.btnLast.Text = "末页";
+            this.toolTip1.SetToolTip(this.btnLast, "末页");
             this.btnLast.UseVisualStyleBackColor = true;
             this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
             // 
@@ -125,7 +129,9 @@
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(70, 25);
             this.btnNext.TabIndex = 5;
+            this.btnNext.TabStop = false;
             this.btnNext.Text = "下一页";
+            this.toolTip1.SetToolTip(this.btnNext, "下一页");
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
@@ -145,7 +151,9 @@
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(70, 25);
             this.btnPrev.TabIndex = 4;
+            this.btnPrev.TabStop = false;
             this.btnPrev.Text = "上一页";
+            this.toolTip1.SetToolTip(this.btnPrev, "上一页");
             this.btnPrev.UseVisualStyleBackColor = true;
             this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
             // 
@@ -187,7 +195,9 @@
             this.btnFirst.Name = "btnFirst";
             this.btnFirst.Size = new System.Drawing.Size(70, 25);
             this.btnFirst.TabIndex = 3;
+            this.btnFirst.TabStop = false;
             this.btnFirst.Text = "首页";
+            this.toolTip1.SetToolTip(this.btnFirst, "首页");
             this.btnFirst.UseVisualStyleBackColor = true;
             this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
             // 
@@ -198,6 +208,7 @@
             this.tbPageIndex.Name = "tbPageIndex";
             this.tbPageIndex.Size = new System.Drawing.Size(34, 23);
             this.tbPageIndex.TabIndex = 10;
+            this.tbPageIndex.TabStop = false;
             this.tbPageIndex.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
@@ -227,9 +238,17 @@
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(70, 25);
             this.btnGo.TabIndex = 11;
+            this.btnGo.TabStop = false;
             this.btnGo.Text = "转到";
+            this.toolTip1.SetToolTip(this.btnGo, "转到");
             this.btnGo.UseVisualStyleBackColor = true;
             this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.AutoPopDelay = 5000;
+            this.toolTip1.InitialDelay = 50;
+            this.toolTip1.ReshowDelay = 100;
             // 
             // DataGridPage
             // 
@@ -258,5 +277,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbPageIndex;
         private System.Windows.Forms.Button btnGo;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

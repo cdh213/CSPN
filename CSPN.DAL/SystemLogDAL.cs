@@ -26,7 +26,7 @@ namespace CSPN.DAL
         private const string SELECT_SystemLog_Count = "select count(*) from CSPN_System_Log_Info";
         private const string SELECT_MinHappen_Time = "select min(Happen_Time) from CSPN_System_Log_Info";
         private const string INSERT_SystemLog = "insert into CSPN_System_Log_Info(Happen_Time,Terminal_ID,Well_State,Electricity,Temperature,Humidity,Smoke_Detector,Smoke_Power,Signal_Strength) values(@Happen_Time,@Terminal_ID,@Well_State,@Electricity,@Temperature,@Humidity,@Smoke_Detector,@Smoke_Power,@Signal_Strength)";
-        private const string DELETE_SystemLog = "delete from CSPN_System_Log_Info where DateDiff('d',format(Happen_Time,'yyyy/mm/dd'),@NowTime)>=@Save_Day";
+        private const string DELETE_SystemLog = "delete from CSPN_System_Log_Info where DateDiff('d',format(Happen_Time,'yyyy/mm/dd'),'{0}')>={1}";
 
         StringBuilder sb = null;
         /// <summary>
@@ -63,7 +63,7 @@ namespace CSPN.DAL
         /// <summary>
         /// 查询发生时间的最小值
         /// </summary>
-        public DateTime GetMinHappen_Time()
+        public DateTime GetMinHappen_Time_SysLog()
         {
             using (Conn)
             {
@@ -96,9 +96,11 @@ namespace CSPN.DAL
         /// </summary>
         public int DeleteSystemLogInfo(string nowTime, int save_Day)
         {
+            sb = new StringBuilder();
+            sb.AppendFormat(DELETE_SystemLog, nowTime, save_Day);
             using (Conn)
             {
-                return Conn.Execute(DELETE_SystemLog, new { NowTime = nowTime, Save_Day = save_Day });
+                return Conn.Execute(sb.ToString());
             }
         }
     }

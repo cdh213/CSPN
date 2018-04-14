@@ -75,27 +75,27 @@ namespace CSPN.assistcontrol
         {
             if (txtTerminal_ID.Text.Trim() == "")
             {
-                MessageBox.Show("请填写人井编号。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("请填写人井编号。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             if (txtLongitude.Text.Trim() == "" && txtLatitude.Text.Trim() == "")
             {
-                MessageBox.Show("请填写经度纬度。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("请填写经度纬度。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             if (txtTerminal_Phone.Text.Trim() == "")
             {
-                MessageBox.Show("请填写终端手机号。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("请填写终端手机号。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             if (cbOperator.SelectedIndex == -1)
             {
-                MessageBox.Show("请选择值班人员。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("请选择值班人员。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             if (tbReportInterval.Text.Trim() == "" && !isNumber(tbReportInterval.Text.Trim()))
             {
-                MessageBox.Show("请填写上报时间间隔。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("请填写上报时间间隔。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -121,7 +121,7 @@ namespace CSPN.assistcontrol
                 }
                 else
                 {
-                    MessageBox.Show("当前人井已存在。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UMessageBox.Show("当前人井已存在。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
             }
@@ -133,7 +133,7 @@ namespace CSPN.assistcontrol
 
                 userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "更新人井信息。", CommonClass.UserName, null, null);
             }
-            MessageBox.Show(this.Text + "成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            UMessageBox.Show(this.Text + "成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
         private bool isNumber(string str)

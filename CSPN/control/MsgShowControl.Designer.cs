@@ -480,7 +480,8 @@
             this.Icon.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.Icon.Name = "Icon";
             this.Icon.ReadOnly = true;
-            this.Icon.Width = 43;
+            this.Icon.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Icon.Width = 62;
             // 
             // ReportInterval
             // 

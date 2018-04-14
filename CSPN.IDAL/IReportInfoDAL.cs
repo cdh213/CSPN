@@ -42,7 +42,7 @@ namespace CSPN.IDAL
         /// <summary>
         /// 查询未上报人井信息
         /// </summary>
-        DataTable GetNotReportNumInfo(int reportTimes);
+        DataTable GetNotReportNumInfo(int notReportTimes);
         /// <summary>
         /// 重置上报次数
         /// </summary>

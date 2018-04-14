@@ -6,6 +6,7 @@ namespace CSPN.common
     public class QuartzInit
     {
         QuartzHelper quartzHelper = new QuartzHelper();
+
         public void Quartz()
         {
             //删除日志
@@ -13,7 +14,7 @@ namespace CSPN.common
             //更新未上报次数
             quartzHelper.init(typeof(UpdateNotReportNumJob), 00, 30);
             //刷新人井信息列表
-            quartzHelper.WithIntervalInMinutes(typeof(RefreshWellInfoJob), int.Parse(ReadWriteConfig.ReadConfig("RefreshTime")));
+            quartzHelper.WithIntervalInMinutes(typeof(RefreshWellInfoJob), int.Parse(ReadWriteXml.ReadXml("RefreshTime")));
             //人井维护
             quartzHelper.WithIntervalInMinutes(typeof(MaintainInfoJob), 5);
         }

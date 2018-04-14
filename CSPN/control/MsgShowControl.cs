@@ -34,7 +34,7 @@ namespace CSPN.control
             InitializeComponent();
             WebBrower.webBrower.Dock = DockStyle.Fill;
             TabPagemap.Controls.Add(WebBrower.webBrower);
-            RefreshWellInfoJob.refreshEventHandler += new job.RefreshEventHandler(RefreshInfo);
+            RefreshWellInfoJob.refreshDelegate += new RefreshDelegate(RefreshInfo);
         }
         private void MsgShowControl_Load(object sender, EventArgs e)
         {
@@ -79,12 +79,12 @@ namespace CSPN.control
             }
             if (n[0] == 0)
             {
-                MessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             else if (n[0] > 1)
             {
-                MessageBox.Show("请选择一项！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("请选择一项！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             else
@@ -117,12 +117,12 @@ namespace CSPN.control
             }
             if (n[0] == 0)
             {
-                MessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             else
             {
-                if (MessageBox.Show("是否删除？", "人井监控管理系统", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (UMessageBox.Show("是否删除？", "人井监控管理系统", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     for (int i = 1; i < n.Length; i++)
                     {
@@ -134,7 +134,7 @@ namespace CSPN.control
                             wellInfoService.DeleteReportInfo(terminal_ID);
                         }
                     }
-                    MessageBox.Show("数据删除成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UMessageBox.Show("数据删除成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     WebBrower.Reload();
                     DataLoade(null);
                 }
@@ -157,7 +157,7 @@ namespace CSPN.control
         }
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("导入成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            UMessageBox.Show("导入成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
             WebBrower.Reload();
         }
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -233,7 +233,7 @@ namespace CSPN.control
         {
             if (grid.InvokeRequired)
             {
-                grid.Invoke(new job.RefreshEventHandler(RefreshInfo));
+                grid.Invoke(new RefreshDelegate(RefreshInfo));
             }
             else
             {

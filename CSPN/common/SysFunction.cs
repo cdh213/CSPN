@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 
 namespace CSPN.common
 {
-    public class SysFunction
+    public static class SysFunction
     {
         /// <summary>
         /// 将字符串转换为byte数组

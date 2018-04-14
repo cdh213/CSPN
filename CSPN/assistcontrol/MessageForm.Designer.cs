@@ -29,58 +29,187 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MessageForm));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lbContent = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAlarm = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.PictureBox();
+            this.dgvAlarm = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Icon = new System.Windows.Forms.DataGridViewImageColumn();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAlarm)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // panel1
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(143)))), ((int)(((byte)(198)))));
+            this.panel1.Controls.Add(this.btnAlarm);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.btnClose);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(230, 30);
+            this.panel1.TabIndex = 0;
             // 
-            // lbContent
+            // btnAlarm
             // 
-            this.lbContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbContent.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbContent.Location = new System.Drawing.Point(55, 0);
-            this.lbContent.Name = "lbContent";
-            this.lbContent.Size = new System.Drawing.Size(245, 55);
-            this.lbContent.TabIndex = 12;
-            this.lbContent.Text = "内容";
-            this.lbContent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAlarm.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAlarm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAlarm.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAlarm.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(143)))), ((int)(((byte)(198)))));
+            this.btnAlarm.FlatAppearance.BorderSize = 0;
+            this.btnAlarm.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnAlarm.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnAlarm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAlarm.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnAlarm.ForeColor = System.Drawing.Color.White;
+            this.btnAlarm.Location = new System.Drawing.Point(95, 0);
+            this.btnAlarm.Name = "btnAlarm";
+            this.btnAlarm.Size = new System.Drawing.Size(69, 30);
+            this.btnAlarm.TabIndex = 5;
+            this.btnAlarm.TabStop = false;
+            this.btnAlarm.Text = "查看";
+            this.btnAlarm.UseVisualStyleBackColor = true;
+            this.btnAlarm.Click += new System.EventHandler(this.btnAlarm_Click);
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 30);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "报警信息";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClose.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+            this.btnClose.Location = new System.Drawing.Point(183, 0);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(47, 30);
+            this.btnClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.btnClose.TabIndex = 0;
+            this.btnClose.TabStop = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.MouseEnter += new System.EventHandler(this.btnClose_MouseEnter);
+            this.btnClose.MouseLeave += new System.EventHandler(this.btnClose_MouseLeave);
+            // 
+            // dgvAlarm
+            // 
+            this.dgvAlarm.AllowUserToAddRows = false;
+            this.dgvAlarm.AllowUserToDeleteRows = false;
+            this.dgvAlarm.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dgvAlarm.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvAlarm.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAlarm.BackgroundColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAlarm.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvAlarm.ColumnHeadersHeight = 30;
+            this.dgvAlarm.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn10,
+            this.Icon});
+            this.dgvAlarm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvAlarm.GridColor = System.Drawing.Color.Blue;
+            this.dgvAlarm.Location = new System.Drawing.Point(0, 30);
+            this.dgvAlarm.MultiSelect = false;
+            this.dgvAlarm.Name = "dgvAlarm";
+            this.dgvAlarm.RowHeadersVisible = false;
+            this.dgvAlarm.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dgvAlarm.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvAlarm.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dgvAlarm.RowTemplate.Height = 30;
+            this.dgvAlarm.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAlarm.Size = new System.Drawing.Size(230, 320);
+            this.dgvAlarm.TabIndex = 1;
+            this.dgvAlarm.TabStop = false;
+            this.dgvAlarm.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAlarm_CellFormatting);
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "Report_Time";
+            dataGridViewCellStyle3.Format = "G";
+            dataGridViewCellStyle3.NullValue = null;
+            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewTextBoxColumn7.FillWeight = 87.09049F;
+            this.dataGridViewTextBoxColumn7.HeaderText = "发生时间";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "Terminal_ID";
+            this.dataGridViewTextBoxColumn10.FillWeight = 87.09049F;
+            this.dataGridViewTextBoxColumn10.HeaderText = "人井编号";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            // 
+            // Icon
+            // 
+            this.Icon.DataPropertyName = "Icon";
+            this.Icon.FillWeight = 87.09049F;
+            this.Icon.HeaderText = "状态";
+            this.Icon.Name = "Icon";
+            this.Icon.ReadOnly = true;
+            this.Icon.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // MessageForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(300, 55);
-            this.Controls.Add(this.lbContent);
-            this.Controls.Add(this.pictureBox1);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.ClientSize = new System.Drawing.Size(230, 350);
+            this.Controls.Add(this.dgvAlarm);
+            this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
-            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MessageForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "人井监控管理系统";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MessageForm_FormClosing);
-            this.Load += new System.EventHandler(this.MessageForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Text = "报警信息显示";
+            this.TopMost = true;
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAlarm)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label lbContent;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox btnClose;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dgvAlarm;
+        private System.Windows.Forms.Button btnAlarm;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private new System.Windows.Forms.DataGridViewImageColumn Icon;
     }
 }

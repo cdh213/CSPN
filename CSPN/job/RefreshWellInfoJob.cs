@@ -3,17 +3,17 @@ using Quartz;
 
 namespace CSPN.job
 {
-    public delegate void RefreshEventHandler();
+    public delegate void RefreshDelegate();
 
     public class RefreshWellInfoJob : IJob
     {
-        public static event RefreshEventHandler refreshEventHandler;
+        public static RefreshDelegate refreshDelegate;
 
         public void Execute(IJobExecutionContext context)
         {
-            if (refreshEventHandler != null)
+            if (refreshDelegate != null)
             {
-                refreshEventHandler();
+                refreshDelegate();
                 LogHelper.WriteQuartzLog("刷新信息列表。");
             }
         }

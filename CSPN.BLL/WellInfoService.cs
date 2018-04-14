@@ -84,9 +84,9 @@ namespace CSPN.BLL
         /// <summary>
         /// 查询未上报人井信息
         /// </summary>
-        public DataTable GetNotReportNumInfo(int reportTimes)
+        public DataTable GetNotReportNumInfo(int notReportTimes)
         {
-            return reportnumdal.GetNotReportNumInfo(reportTimes);
+            return reportnumdal.GetNotReportNumInfo(notReportTimes);
         }
         /// <summary>
         /// 重置上报次数
@@ -185,7 +185,7 @@ namespace CSPN.BLL
         /// <returns></returns>
         public int UpdateReportInfo_Send(int well_State_ID_Send, string terminal_ID)
         {
-            return reportnumdal.UpdateReportInfo_Pending(well_State_ID_Send, terminal_ID);
+            return reportnumdal.UpdateReportInfo_Send(well_State_ID_Send, terminal_ID);
         }
         #endregion
     }

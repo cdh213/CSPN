@@ -54,20 +54,17 @@ namespace CSPN.assistcontrol
         {
             SetTime();
         }
+        private void rbAll_CheckedChanged(object sender, EventArgs e)
+        {
+            SetTime();
+        }
         private void btnSure_Click(object sender, EventArgs e)
         {
             WaitWin.Show(this, "正在导出，请稍后。。。。。。");
             //导出当前页
             if (rbCurrent.Checked)
             {
-                if (dt.Rows.Count == 0)
-                {
-                    MessageBox.Show("当前页中没有数据", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else
-                {
-                    SetData();
-                }
+                SetData();
             }
             else//导出全部
             {
@@ -83,14 +80,7 @@ namespace CSPN.assistcontrol
                         dt = logService.GetUserLogInfo_GeneralInfo();
                         break;
                 }
-                if (dt.Rows.Count == 0)
-                {
-                    MessageBox.Show("没有数据", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else
-                {
-                    SetData();
-                }
+                SetData();
             }
             ex.setExcel(dt);
             WaitWin.Close();
@@ -124,12 +114,23 @@ namespace CSPN.assistcontrol
             if (rbCurrent.Checked)
             {
                 dtpStartTime.MinDate = DateTime.Parse(timelist.Min());
+                dtpEndTime.MinDate= DateTime.Parse(timelist.Min());
                 dtpStartTime.Value = DateTime.Parse(timelist.Min());
             }
             else
             {
-                dtpStartTime.MinDate = logService.GetMinHappen_Time();
-                dtpStartTime.Value = logService.GetMinHappen_Time();
+                if (_type == CSPNType.SysLogInfo)
+                {
+                    dtpStartTime.MinDate = logService.GetMinHappen_Time_SysLog();
+                    dtpEndTime.MinDate = logService.GetMinHappen_Time_SysLog();
+                    dtpStartTime.Value = logService.GetMinHappen_Time_SysLog();
+                }
+                else
+                {
+                    dtpStartTime.MinDate = logService.GetMinHappen_Time_UserLog();
+                    dtpEndTime.MinDate = logService.GetMinHappen_Time_UserLog();
+                    dtpStartTime.Value = logService.GetMinHappen_Time_UserLog();
+                }
             }
         }
          private void ExportLogInfoSetForm_FormClosing(object sender, FormClosingEventArgs e)

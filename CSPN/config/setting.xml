@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Setting>
+    <DefaultLocation Text="默认地址" Value="山西省,太原市,尖草坪区;15;112.539272,37.95998"/>
+    <PortName Text="串口号" Value="COM3"/>
+    <BaudRate Text="波特率" Value="9600"/>
+    <SysLogTime Text="系统日志保存时间" Value="5"/>
+    <UserLogTime Text="用户日志保存时间" Value="5"/>
+    <NotReportTimes Text="通讯故障次数" Value="5"/>
+    <RefreshTime Text="列表刷新时间" Value="1"/>
+    <ReportInterval Text="上报时间间隔" Value="False-3"/>
+</Setting>

@@ -1,4 +1,5 @@
-﻿using CSPN.BLL;
+﻿using CSPN.assistcontrol;
+using CSPN.BLL;
 using CSPN.common;
 using CSPN.IBLL;
 using CSPN.Model;
@@ -49,7 +50,7 @@ namespace CSPN
                 {
                     if (usersInfo.PassWord.Trim() == txtPWD.Text.Trim())
                     {
-                        MessageBox.Show("登录成功。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        UMessageBox.Show("登录成功。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         if (cbRemember.Checked)
                         {
                             readWriteData.WriteData(usersInfo);
@@ -66,17 +67,17 @@ namespace CSPN
                     }
                     else
                     {
-                        MessageBox.Show("密码错误。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        UMessageBox.Show("密码错误。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("用户名错误。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    UMessageBox.Show("用户名错误。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
             {
-                MessageBox.Show("请输入用户名或密码。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                UMessageBox.Show("请输入用户名或密码。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

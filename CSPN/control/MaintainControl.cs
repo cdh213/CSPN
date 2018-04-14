@@ -6,6 +6,7 @@ using CSPN.Model;
 using CSPN.IBLL;
 using CSPN.BLL;
 using CSPN.job;
+using CSPN.assistcontrol;
 
 namespace CSPN.control
 {
@@ -18,7 +19,7 @@ namespace CSPN.control
         public MaintainControl()
         {
             InitializeComponent();
-            RefreshWellInfoJob.refreshEventHandler += new job.RefreshEventHandler(RefreshInfo);
+            RefreshWellInfoJob.refreshDelegate += new RefreshDelegate(RefreshInfo);
         }
         private void MaintainControl_Load(object sender, EventArgs e)
         {
@@ -54,7 +55,7 @@ namespace CSPN.control
 
             if (startDateTime == endDateTime)
             {
-                MessageBox.Show("时间填写错误。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("时间填写错误。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -63,11 +64,11 @@ namespace CSPN.control
                 wellCurrentStateInfo.Terminal_ID = terminal_ID;
                 if (wellStateService.UpdateMaintainInfo(wellCurrentStateInfo) > 0)
                 {
-                    MessageBox.Show("设置成功。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UMessageBox.Show("设置成功。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("设置失败，请重试。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UMessageBox.Show("设置失败，请重试。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -81,7 +82,7 @@ namespace CSPN.control
         {
             if (maintainGrid.InvokeRequired)
             {
-                maintainGrid.Invoke(new job.RefreshEventHandler(RefreshInfo));
+                maintainGrid.Invoke(new job.RefreshDelegate(RefreshInfo));
             }
             else
             {

@@ -36,12 +36,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.AlarmTab = new System.Windows.Forms.TabPage();
             this.dgvAlarm = new System.Windows.Forms.DataGridView();
@@ -57,13 +57,6 @@
             this.btnAlarm = new System.Windows.Forms.Button();
             this.ProcessedTab = new System.Windows.Forms.TabPage();
             this.dgvDispose = new System.Windows.Forms.DataGridView();
-            this.Column2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnDispose = new System.Windows.Forms.Button();
             this.NotReportTab = new System.Windows.Forms.TabPage();
@@ -86,6 +79,14 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvIcon = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.disposeIcon = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.AlarmTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlarm)).BeginInit();
@@ -173,7 +174,6 @@
             this.Column1.FillWeight = 30F;
             this.Column1.HeaderText = "选择";
             this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn7
             // 
@@ -226,6 +226,7 @@
             this.Icon.HeaderText = "状态";
             this.Icon.Name = "Icon";
             this.Icon.ReadOnly = true;
+            this.Icon.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // Telephone
             // 
@@ -300,7 +301,8 @@
             this.dataGridViewTextBoxColumn16,
             this.dataGridViewTextBoxColumn17,
             this.dataGridViewTextBoxColumn18,
-            this.dataGridViewImageColumn1});
+            this.disposeIcon,
+            this.Column4});
             this.dgvDispose.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDispose.GridColor = System.Drawing.Color.Blue;
             this.dgvDispose.Location = new System.Drawing.Point(0, 33);
@@ -316,65 +318,6 @@
             this.dgvDispose.Size = new System.Drawing.Size(960, 375);
             this.dgvDispose.TabIndex = 6;
             this.dgvDispose.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvDispose_CellFormatting);
-            // 
-            // Column2
-            // 
-            this.Column2.FillWeight = 30F;
-            this.Column2.HeaderText = "选择";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Report_Time";
-            dataGridViewCellStyle7.Format = "G";
-            dataGridViewCellStyle7.NullValue = null;
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle7;
-            this.dataGridViewTextBoxColumn6.FillWeight = 74.85995F;
-            this.dataGridViewTextBoxColumn6.HeaderText = "发生时间";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridViewTextBoxColumn15
-            // 
-            this.dataGridViewTextBoxColumn15.DataPropertyName = "Terminal_ID";
-            this.dataGridViewTextBoxColumn15.FillWeight = 74.85995F;
-            this.dataGridViewTextBoxColumn15.HeaderText = "人井编号";
-            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-            this.dataGridViewTextBoxColumn15.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn16
-            // 
-            this.dataGridViewTextBoxColumn16.DataPropertyName = "Well_State_ID_Send";
-            this.dataGridViewTextBoxColumn16.HeaderText = "Well_State_ID_Send";
-            this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
-            this.dataGridViewTextBoxColumn16.ReadOnly = true;
-            this.dataGridViewTextBoxColumn16.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn17
-            // 
-            this.dataGridViewTextBoxColumn17.DataPropertyName = "Name";
-            this.dataGridViewTextBoxColumn17.FillWeight = 74.85995F;
-            this.dataGridViewTextBoxColumn17.HeaderText = "人井名称";
-            this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
-            this.dataGridViewTextBoxColumn17.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn18
-            // 
-            this.dataGridViewTextBoxColumn18.DataPropertyName = "Place";
-            this.dataGridViewTextBoxColumn18.FillWeight = 74.85995F;
-            this.dataGridViewTextBoxColumn18.HeaderText = "地点";
-            this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
-            this.dataGridViewTextBoxColumn18.ReadOnly = true;
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.DataPropertyName = "Icon";
-            this.dataGridViewImageColumn1.FillWeight = 74.85995F;
-            this.dataGridViewImageColumn1.HeaderText = "状态";
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.ReadOnly = true;
             // 
             // panel2
             // 
@@ -614,6 +557,73 @@
             this.dgvIcon.ReadOnly = true;
             this.dgvIcon.Width = 160;
             // 
+            // Column2
+            // 
+            this.Column2.FillWeight = 30F;
+            this.Column2.HeaderText = "选择";
+            this.Column2.Name = "Column2";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Report_Time";
+            dataGridViewCellStyle7.Format = "G";
+            dataGridViewCellStyle7.NullValue = null;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dataGridViewTextBoxColumn6.FillWeight = 74.85995F;
+            this.dataGridViewTextBoxColumn6.HeaderText = "发生时间";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridViewTextBoxColumn15
+            // 
+            this.dataGridViewTextBoxColumn15.DataPropertyName = "Terminal_ID";
+            this.dataGridViewTextBoxColumn15.FillWeight = 74.85995F;
+            this.dataGridViewTextBoxColumn15.HeaderText = "人井编号";
+            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            this.dataGridViewTextBoxColumn15.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn16
+            // 
+            this.dataGridViewTextBoxColumn16.DataPropertyName = "Well_State_ID_Send";
+            this.dataGridViewTextBoxColumn16.HeaderText = "Well_State_ID_Send";
+            this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
+            this.dataGridViewTextBoxColumn16.ReadOnly = true;
+            this.dataGridViewTextBoxColumn16.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn17
+            // 
+            this.dataGridViewTextBoxColumn17.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn17.FillWeight = 74.85995F;
+            this.dataGridViewTextBoxColumn17.HeaderText = "人井名称";
+            this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
+            this.dataGridViewTextBoxColumn17.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn18
+            // 
+            this.dataGridViewTextBoxColumn18.DataPropertyName = "Place";
+            this.dataGridViewTextBoxColumn18.FillWeight = 74.85995F;
+            this.dataGridViewTextBoxColumn18.HeaderText = "地点";
+            this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
+            this.dataGridViewTextBoxColumn18.ReadOnly = true;
+            // 
+            // disposeIcon
+            // 
+            this.disposeIcon.DataPropertyName = "Icon";
+            this.disposeIcon.FillWeight = 74.85995F;
+            this.disposeIcon.HeaderText = "状态";
+            this.disposeIcon.Name = "disposeIcon";
+            this.disposeIcon.ReadOnly = true;
+            this.disposeIcon.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "RealName";
+            this.Column4.HeaderText = "值班人员";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Visible = false;
+            // 
             // PendingMsgControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -658,6 +668,16 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnAlarm;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnDispose;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button btnInform;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Longitude;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Latitude;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
@@ -672,16 +692,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
-        private System.Windows.Forms.Button btnDispose;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btnInform;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Longitude;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Latitude;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridViewImageColumn disposeIcon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
     }
 }

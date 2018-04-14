@@ -1,4 +1,5 @@
 ﻿using CSPN.Model;
+using System;
 using System.Data;
 
 namespace CSPN.IDAL
@@ -21,6 +22,10 @@ namespace CSPN.IDAL
         /// 查询用户日志信息
         /// </summary>
         DataTable GetUserLogInfo_GeneralInfo(int fSize, int sSize, out int pageCount);
+        /// <summary>
+        /// 查询发生时间的最小值
+        /// </summary>
+        DateTime GetMinHappen_Time_UserLog();
         /// <summary>
         /// 添加用户日志信息
         /// </summary>

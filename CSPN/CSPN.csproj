@@ -195,6 +195,7 @@
     <Compile Include="assistcontrol\MessageForm.Designer.cs">
       <DependentUpon>MessageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="assistcontrol\UMessageBox.cs" />
     <Compile Include="assistcontrol\UserComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -215,6 +216,7 @@
     </Compile>
     <Compile Include="common\CommonClass.cs" />
     <Compile Include="common\CSPNType.cs" />
+    <Compile Include="common\NativeMethods.cs" />
     <Compile Include="common\QuartzInit.cs" />
     <Compile Include="common\ReadWriteData.cs" />
     <Compile Include="control\MaintainControl.cs">
@@ -257,7 +259,7 @@
     <Compile Include="webbrower\JsDialogHandler.cs" />
     <Compile Include="webbrower\JsEvent.cs" />
     <Compile Include="webbrower\MenuHandler.cs" />
-    <Compile Include="common\ReadWriteConfig.cs" />
+    <Compile Include="common\ReadWriteXml.cs" />
     <Compile Include="sms\GetSMS.cs" />
     <Compile Include="sms\SMSAnalysis.cs" />
     <Compile Include="webbrower\WebBrower.cs" />
@@ -362,6 +364,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="config\setting.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="cspn.ico" />
     <Content Include="resource\images\add.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -373,6 +379,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="resource\images\buttonbg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resource\images\close.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="resource\images\cspn.ico" />

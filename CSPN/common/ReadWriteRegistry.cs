@@ -6,7 +6,7 @@ namespace CSPN.common
     /// <summary>
     /// 读写注册表
     /// </summary>
-    public class ReadWriteRegistry
+    public static class ReadWriteRegistry
     {
         /// <summary>
         /// 写入注册表

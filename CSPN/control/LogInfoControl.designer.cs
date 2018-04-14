@@ -38,12 +38,12 @@
             this.panelSys = new System.Windows.Forms.Panel();
             this.TabPageuser = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnUserRefresh = new System.Windows.Forms.Button();
             this.userpage = new CSPN.assistcontrol.DataGridPage();
             this.btnUserOut = new System.Windows.Forms.Button();
             this.panelUser = new System.Windows.Forms.Panel();
             this.cbType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnUserRefresh = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.TabPagesys.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -172,7 +172,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
             this.tableLayoutPanel2.Controls.Add(this.btnUserRefresh, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.userpage, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.btnUserOut, 2, 0);
@@ -188,6 +188,26 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(959, 434);
             this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // btnUserRefresh
+            // 
+            this.btnUserRefresh.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnUserRefresh.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnUserRefresh.BackgroundImage")));
+            this.btnUserRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnUserRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUserRefresh.FlatAppearance.BorderSize = 0;
+            this.btnUserRefresh.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnUserRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnUserRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUserRefresh.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnUserRefresh.ForeColor = System.Drawing.Color.White;
+            this.btnUserRefresh.Location = new System.Drawing.Point(874, 7);
+            this.btnUserRefresh.Name = "btnUserRefresh";
+            this.btnUserRefresh.Size = new System.Drawing.Size(69, 26);
+            this.btnUserRefresh.TabIndex = 16;
+            this.btnUserRefresh.Text = "刷新";
+            this.btnUserRefresh.UseVisualStyleBackColor = true;
+            this.btnUserRefresh.Click += new System.EventHandler(this.btnUserRefresh_Click);
             // 
             // userpage
             // 
@@ -237,7 +257,7 @@
             this.cbType.Items.AddRange(new object[] {
             "人井信息日志",
             "一般用户日志"});
-            this.cbType.Location = new System.Drawing.Point(103, 6);
+            this.cbType.Location = new System.Drawing.Point(103, 10);
             this.cbType.Name = "cbType";
             this.cbType.Size = new System.Drawing.Size(167, 28);
             this.cbType.TabIndex = 16;
@@ -252,26 +272,6 @@
             this.label1.TabIndex = 17;
             this.label1.Text = "日志类型";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btnUserRefresh
-            // 
-            this.btnUserRefresh.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnUserRefresh.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnUserRefresh.BackgroundImage")));
-            this.btnUserRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnUserRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUserRefresh.FlatAppearance.BorderSize = 0;
-            this.btnUserRefresh.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnUserRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnUserRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUserRefresh.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnUserRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnUserRefresh.Location = new System.Drawing.Point(874, 7);
-            this.btnUserRefresh.Name = "btnUserRefresh";
-            this.btnUserRefresh.Size = new System.Drawing.Size(69, 26);
-            this.btnUserRefresh.TabIndex = 16;
-            this.btnUserRefresh.Text = "刷新";
-            this.btnUserRefresh.UseVisualStyleBackColor = true;
-            this.btnUserRefresh.Click += new System.EventHandler(this.btnUserRefresh_Click);
             // 
             // LogInfoControl
             // 

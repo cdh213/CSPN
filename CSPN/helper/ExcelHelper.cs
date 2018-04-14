@@ -1,4 +1,5 @@
-﻿using NPOI.HSSF.UserModel;
+﻿using CSPN.assistcontrol;
+using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System;
@@ -71,12 +72,12 @@ namespace CSPN.helper
                         fs.Write(data, 0, data.Length);
                         fs.Flush();
                     }
-                    MessageBox.Show("导出成功", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UMessageBox.Show("导出成功", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
                     LogHelper.WriteLog(ex.Message, ex);
-                    MessageBox.Show("导出失败，文件可能正在使用中", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    UMessageBox.Show("导出失败，文件可能正在使用中", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 finally
                 {

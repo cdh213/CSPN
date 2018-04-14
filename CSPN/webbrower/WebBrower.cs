@@ -8,15 +8,14 @@ using CSPN.Model;
 using CSPN.Properties;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CSPN.webbrower
 {
     public class WebBrower
     {
         private static IWellInfoService wellInfoService = null;
-        private BackgroundWorker bw = null;
         private static List<WellInfo> list = null;
         private static string json = null;
 
@@ -24,7 +23,7 @@ namespace CSPN.webbrower
 
         public WebBrower()
         {
-            RefreshWellInfoJob.refreshEventHandler += new job.RefreshEventHandler(Reload);
+            RefreshWellInfoJob.refreshDelegate += new RefreshDelegate(Reload);
         }
 
         public void Init()
@@ -55,34 +54,28 @@ namespace CSPN.webbrower
             webBrower.MenuHandler = new MenuHandler();
             webBrower.JsDialogHandler = new JsDialogHandler();
 
-            bw = new BackgroundWorker();
-            bw.DoWork += bw_DoWork;
-            bw.RunWorkerCompleted += bw_RunWorkerCompleted;
-            bw.RunWorkerAsync();
+            Task.Run(()=> {
+                wellInfoService = new WellInfoService();
+                StringBuilder html = new StringBuilder();
+                string location = ReadWriteXml.ReadXml("DefaultLocation");
+                list = wellInfoService.GetWellInfo_List(null);
+                json = JsonConvert.SerializeObject(list);
+                html.AppendFormat(Resources.mapHeader, json, location);
+                html.Append(Resources.mapContent);
+                webBrower.LoadHtml(html.ToString(), "http://rendering/");
+            });
         }
-        void bw_DoWork(object sender, DoWorkEventArgs e)
-        {
-            wellInfoService = new WellInfoService();
-            list = wellInfoService.GetWellInfo_List(null);
-            e.Result = JsonConvert.SerializeObject(list);
-        }
-        void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            StringBuilder html = new StringBuilder();
-            string location = ReadWriteConfig.ReadConfig("DefaultLocation");
-            html.AppendFormat(Resources.mapHeader, e.Result, location);
-            html.Append(Resources.mapContent);
-            webBrower.LoadHtml(html.ToString(), "http://rendering/");
-        }
-
         public static void Reload()
         {
             if (webBrower.IsBrowserInitialized)
             {
-                wellInfoService = new WellInfoService();
-                list = wellInfoService.GetWellInfo_List(null);
-                json = JsonConvert.SerializeObject(list);
-                webBrower.ExecuteScriptAsync("Refresh", json);
+                Task.Run(() =>
+                {
+                    wellInfoService = new WellInfoService();
+                    list = wellInfoService.GetWellInfo_List(null);
+                    json = JsonConvert.SerializeObject(list);
+                    webBrower.ExecuteScriptAsync("Refresh", json);
+                });
             }
         }
     }

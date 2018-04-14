@@ -81,17 +81,17 @@ namespace CSPN.assistcontrol
 
             if (txtWorkID.Text.Trim() == "")
             {
-                MessageBox.Show("请输入值班人员工号！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("请输入值班人员工号！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             if (txtName.Text.Trim() == "")
             {
-                MessageBox.Show("请输入值班人员姓名！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("请输入值班人员姓名！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             if (txtTelephone.Text.Trim() == "")
             {
-                MessageBox.Show("请输入值班人员手机号！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("请输入值班人员手机号！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             //添加
@@ -99,7 +99,7 @@ namespace CSPN.assistcontrol
             {
                 if (userService.GetOperatorByWork_ID(txtWorkID.Text.Trim()) != null)
                 {
-                    MessageBox.Show("该值班人员已存在，请勿重复添加！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    UMessageBox.Show("该值班人员已存在，请勿重复添加！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 else
@@ -107,13 +107,13 @@ namespace CSPN.assistcontrol
                     int a = userService.InsertOperatorInfo(operatorInfo);
                     if (a > 0)
                     {
-                        MessageBox.Show("数据添加成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        UMessageBox.Show("数据添加成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "添加值班人员。", CommonClass.UserName, null, null);
                         this.Close();
                     }
                     else
                     {
-                        MessageBox.Show("数据添加失败！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        UMessageBox.Show("数据添加失败！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -123,13 +123,13 @@ namespace CSPN.assistcontrol
                 int a = userService.UpdateOperatorInfo(operatorInfo);
                 if (a > 0)
                 {
-                    MessageBox.Show("数据修改成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UMessageBox.Show("数据修改成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "更新值班人员信息。", CommonClass.UserName, null, null);
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("数据修改失败！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    UMessageBox.Show("数据修改失败！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

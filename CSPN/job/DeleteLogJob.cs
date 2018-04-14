@@ -14,13 +14,17 @@ namespace CSPN.job
 
         public void Execute(IJobExecutionContext context)
         {
-            sysSave_Day = int.Parse(ReadWriteConfig.ReadConfig("SysLogTime"));
-            logService.DeleteSystemLogInfo(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), sysSave_Day);
-            LogHelper.WriteQuartzLog("删除超过" + sysSave_Day + "天的系统日志");
+            sysSave_Day = int.Parse(ReadWriteXml.ReadXml("SysLogTime"));
+            if (logService.DeleteSystemLogInfo(DateTime.Now.ToString("yyyy/MM/dd"), sysSave_Day) > 0)
+            {
+                LogHelper.WriteQuartzLog("删除超过" + sysSave_Day + "天的系统日志");
+            }
 
-            userSave_Day = int.Parse(ReadWriteConfig.ReadConfig("UserLogTime"));
-            logService.DeleteUserLogInfo(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), userSave_Day);
-            LogHelper.WriteQuartzLog("删除超过" + userSave_Day + "天的用户日志");
+            userSave_Day = int.Parse(ReadWriteXml.ReadXml("UserLogTime"));
+            if (logService.DeleteUserLogInfo(DateTime.Now.ToString("yyyy/MM/dd"), userSave_Day) > 0)
+            {
+                LogHelper.WriteQuartzLog("删除超过" + userSave_Day + "天的用户日志");
+            }
         }
     }
 }

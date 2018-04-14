@@ -2,6 +2,7 @@
 using CSPN.helper;
 using CSPN.sms;
 using System;
+using System.Configuration;
 using System.IO.Ports;
 using System.Windows.Forms;
 
@@ -15,6 +16,7 @@ namespace CSPN.assistcontrol
         }
 
         FileHelper file = new FileHelper();
+        string tsx= ConfigurationManager.AppSettings["TSX"];
 
         private void WelcomeForm_Load(object sender, EventArgs e)
         {
@@ -33,8 +35,8 @@ namespace CSPN.assistcontrol
             if (SerialPort.GetPortNames().Length != 0)
             {
                 //读取配置文件
-                string portName = ReadWriteConfig.ReadConfig("PortName");
-                string baudRate = ReadWriteConfig.ReadConfig("BaudRate");
+                string portName = ReadWriteXml.ReadXml("PortName");
+                string baudRate = ReadWriteXml.ReadXml("BaudRate");
                 CDMASMS.Set(portName, Convert.ToInt32(baudRate));
                 if (CDMASMS.Open())
                 {
@@ -43,7 +45,7 @@ namespace CSPN.assistcontrol
                     if (TSX.Length == 14 && production_Name.IndexOf("MC323") != -1)
                     {
                         TSX = SysFunction.GetSecurit(TSX.Remove(3, 5));
-                        if (ReadWriteConfig.ReadConfig("TSX").Equals(TSX))
+                        if (tsx.Equals(TSX))
                         {
                             string netstat = CDMASMS.SendAT("AT+CREG?").Replace("\r\n", "").Replace("OK", "");
                             if (netstat.Split(',')[1] == "1")
@@ -65,35 +67,35 @@ namespace CSPN.assistcontrol
                             }
                             else
                             {
-                                MessageBox.Show("未注册到本地网络！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                UMessageBox.Show("未注册到本地网络！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 CDMASMS.Close();
                                 this.Close();
                             }
                         }
                         else
                         {
-                            MessageBox.Show("硬件不匹配！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            UMessageBox.Show("硬件不匹配！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             CDMASMS.Close();
                             this.Close();
                         }
                     }
                     else
                     {
-                        MessageBox.Show("串口打开失败，请在系统设置中重新配置串口数据。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        UMessageBox.Show("串口打开失败，请在系统设置中重新配置串口数据。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         this.DialogResult = DialogResult.No;
                         this.Close();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("串口打开失败，请在系统设置中重新配置串口数据。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    UMessageBox.Show("串口打开失败，请在系统设置中重新配置串口数据。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     this.DialogResult = DialogResult.No;
                     this.Close();
                 }
             }
             else
             {
-                MessageBox.Show("读取硬件信息失败！请确认硬件设备连接正确。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                UMessageBox.Show("读取硬件信息失败！请确认硬件设备连接正确。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 CDMASMS.Close();
                 this.Close();
             }

@@ -13,12 +13,12 @@ namespace CSPN.assistcontrol
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
         }
-        private delegate void SetTextHandler(string msg);
+        private delegate void SetTextDelegate(string msg);
         public void SetText(string msg)
         {
             if (this.label1.InvokeRequired)
             {
-                this.Invoke(new SetTextHandler(SetText), msg);
+                this.Invoke(new SetTextDelegate(SetText), msg);
             }
             else
             {

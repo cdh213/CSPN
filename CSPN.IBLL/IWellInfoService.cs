@@ -48,7 +48,7 @@ namespace CSPN.IBLL
         /// <summary>
         /// 查询未上报人井信息
         /// </summary>
-        DataTable GetNotReportNumInfo(int reportTimes);
+        DataTable GetNotReportNumInfo(int notReportTimes);
         /// <summary>
         /// 重置上报次数
         /// </summary>
@@ -62,7 +62,7 @@ namespace CSPN.IBLL
         /// </summary>
         int UpdateReportTimes(string terminal_ID);
         /// <summary>
-        /// 更新人井上未报次数
+        /// 更新人井未上报次数
         /// </summary>
         int UpdateNotReportTimes(string terminal_ID);
         /// <summary>

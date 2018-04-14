@@ -53,6 +53,13 @@ namespace CSPN.BLL
             return userlogdal.GetUserLogInfo_GeneralInfo(fSize, sSize, out pageCount);
         }
         /// <summary>
+        /// 查询发生时间的最小值
+        /// </summary>
+        public DateTime GetMinHappen_Time_UserLog()
+        {
+            return userlogdal.GetMinHappen_Time_UserLog();
+        }
+        /// <summary>
         /// 添加用户日志信息
         /// </summary>
         /// <param name="UserLog">日志信息</param>
@@ -104,9 +111,9 @@ namespace CSPN.BLL
         /// <summary>
         /// 查询发生时间的最小值
         /// </summary>
-        public DateTime GetMinHappen_Time()
+        public DateTime GetMinHappen_Time_SysLog()
         {
-            return syslogdal.GetMinHappen_Time();
+            return syslogdal.GetMinHappen_Time_SysLog();
         }
         /// <summary>
         /// 添加系统日志信息

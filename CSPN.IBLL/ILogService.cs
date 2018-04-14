@@ -24,6 +24,10 @@ namespace CSPN.IBLL
         /// </summary>
         DataTable GetUserLogInfo_GeneralInfo(int pageSize, int pageIndex, out int pageCount);
         /// <summary>
+        /// 查询发生时间的最小值
+        /// </summary>
+        DateTime GetMinHappen_Time_UserLog();
+        /// <summary>
         /// 添加用户日志信息
         /// </summary>
         int InsertUserLogInfo(UserLogInfo userLog);
@@ -49,7 +53,7 @@ namespace CSPN.IBLL
         /// <summary>
         /// 查询发生时间的最小值
         /// </summary>
-        DateTime GetMinHappen_Time();
+        DateTime GetMinHappen_Time_SysLog();
         /// <summary>
         /// 添加系统日志信息
         /// </summary>

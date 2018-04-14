@@ -12,8 +12,11 @@ using System.Threading;
 
 namespace CSPN.control
 {
+    public delegate void RefreshMessageDelegate();
+
     public partial class PendingMsgControl : UserControl
     {
+        public static RefreshMessageDelegate refreshMessageDelegate; 
         IWellStateService wellStateService = new WellStateService();
         IWellInfoService wellInfoService = new WellInfoService();
         UserLogHelper userLogHelper = new UserLogHelper();
@@ -24,8 +27,8 @@ namespace CSPN.control
         {
             InitializeComponent();
             GetSMS.GetSMSHandle();
-            GetSMS.getSMSEventHandler += new GetSMSEventHandler(ShowAlarmMsg);
-            JsEvent.disposeMsgDelegate = new DisposeMsgDelegate(DisposeMsg_Map);
+            GetSMS.getSMSDelegate += new GetSMSDelegate(ShowAlarmMsg);
+            JsEvent.disposeMsgDelegate += new DisposeMsgDelegate(DisposeMsg_Map);
         }
 
         #region 列表信息处理
@@ -48,7 +51,7 @@ namespace CSPN.control
             }
             if (n[0] == 0)
             {
-                MessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             else
@@ -66,7 +69,7 @@ namespace CSPN.control
                     Thread.Sleep(1000);
                 }
                 WaitWin.Close();
-                MessageBox.Show("处理成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("处理成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         //报警信息处理完成
@@ -88,7 +91,7 @@ namespace CSPN.control
             }
             if (n[0] == 0)
             {
-                MessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             else
@@ -105,7 +108,7 @@ namespace CSPN.control
                     Thread.Sleep(500);
                 }
                 WaitWin.Close();
-                MessageBox.Show("处理成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("处理成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         //未上报处理
@@ -127,7 +130,7 @@ namespace CSPN.control
             }
             if (n[0] == 0)
             {
-                MessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             else
@@ -144,12 +147,12 @@ namespace CSPN.control
                     Thread.Sleep(500);
                 }
                 WaitWin.Close();
-                MessageBox.Show("处理成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("处理成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         #endregion
 
-        #region 处理信息（地图）
+        #region 处理信息
         private void DisposeMsg_Map(int well_State_ID, string terminal_ID, CSPNType type)
         {
             ReportInfo reportInfo = wellInfoService.GetReportInfo_Terminal_ID(well_State_ID, terminal_ID);
@@ -160,7 +163,7 @@ namespace CSPN.control
             time = reportInfo.Report_Time;
             realName = reportInfo.OperatorInfo.RealName;
             DisposeMsg(type);
-            MessageBox.Show("处理成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            UMessageBox.Show("处理成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         /// <summary>
         /// 处理信息
@@ -189,21 +192,28 @@ namespace CSPN.control
                     wellInfoService.UpdateReportInfo_Pending(1, terminal_ID);
                     wellInfoService.UpdateReportInfo_Send(7, terminal_ID);
                     GetSMS.UpdateMap(terminal_ID);
+                    if (refreshMessageDelegate != null)
+                    {
+                        refreshMessageDelegate();
+                    }
                     break;
                 case CSPNType.DisposeInfo:
                     switch (well_State_ID)
                     {
-                        case 2:
+                        //case 2:
+                        //    UpdateDisposeMsg("报警信息", time, realName);
+                        //    break;
+                        //case 3:
+                        //    UpdateDisposeMsg("状态信息（低电量报警）", time, realName);
+                        //    break;
+                        //case 4:
+                        //    UpdateDisposeMsg("状态信息（烟感报警）", time, realName);
+                        //    break;
+                        //case 5:
+                        //    UpdateDisposeMsg("状态信息（烟感低电量报警）", time, realName);
+                        //    break;
+                        case 7:
                             UpdateDisposeMsg("报警信息", time, realName);
-                            break;
-                        case 3:
-                            UpdateDisposeMsg("状态信息（低电量报警）", time, realName);
-                            break;
-                        case 4:
-                            UpdateDisposeMsg("状态信息（烟感报警）", time, realName);
-                            break;
-                        case 5:
-                            UpdateDisposeMsg("状态信息（烟感低电量报警）", time, realName);
                             break;
                     }
                     wellStateService.UpdateWellCurrentStateInfo(1, terminal_ID);
@@ -211,7 +221,7 @@ namespace CSPN.control
                     GetSMS.UpdateMap(terminal_ID);
                     break;
                 case CSPNType.NotReportInfo:
-                    CDMASMS.SendCHNSms(string.Format("位于：{0}的{1}已经{2}天或超过{2}天未发送信息。", place, terminal_Name, ReadWriteConfig.ReadConfig("NotReportTimes")), phone);
+                    CDMASMS.SendCHNSms(string.Format("位于：{0}的{1}已经{2}天或超过{2}天未发送信息。", place, terminal_Name, ReadWriteXml.ReadXml("NotReportTimes")), phone);
                     wellInfoService.Empty_NotReportNumInfo(terminal_ID);
                     userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "处理未上报信息。", CommonClass.UserName, null, null);
                     break;
@@ -234,7 +244,7 @@ namespace CSPN.control
         {
             if (dgvAlarm.InvokeRequired)
             {
-                dgvAlarm.Invoke(new GetSMSEventHandler(ShowAlarmMsg));
+                dgvAlarm.Invoke(new GetSMSDelegate(ShowAlarmMsg));
             }
             else
             {
@@ -259,9 +269,9 @@ namespace CSPN.control
         //未上报信息
         private void NotReportDataLoade()
         {
-            int reportTimes = int.Parse(ReadWriteConfig.ReadConfig("NotReportTimes"));
+            int notReportTimes = int.Parse(ReadWriteXml.ReadXml("NotReportTimes"));
             dgvNotReport.AutoGenerateColumns = false;
-            dgvNotReport.DataSource = wellInfoService.GetNotReportNumInfo(reportTimes);
+            dgvNotReport.DataSource = wellInfoService.GetNotReportNumInfo(notReportTimes);
         }
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
@@ -290,7 +300,7 @@ namespace CSPN.control
         }
         private void dgvDispose_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (dgvDispose.Columns[e.ColumnIndex].Name.Equals("dgvIcon"))
+            if (dgvDispose.Columns[e.ColumnIndex].Name.Equals("disposeIcon"))
             {
                 e.Value = ImageHelper.ToImage(e.Value.ToString());
             }

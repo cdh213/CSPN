@@ -17,7 +17,7 @@ namespace CSPN.IDAL
         /// <summary>
         /// 查询发生时间的最小值
         /// </summary>
-        DateTime GetMinHappen_Time();
+        DateTime GetMinHappen_Time_SysLog();
         /// <summary>
         /// 添加系统日志信息
         /// </summary>

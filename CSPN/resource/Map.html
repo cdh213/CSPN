@@ -180,8 +180,15 @@
                 if (markers[i].getTitle() == updatemapdata[0].Terminal_ID) {
                     markers[i].setIcon(updatemapdata[0].WellStateInfo.Icon);
                     markers[i].setPosition([updatemapdata[0].Longitude, updatemapdata[0].Latitude]); //更新点标记位置
-
                     markers[i].content = markersContent(updatemapdata, 0);
+                    markers[i].off('rightclick', markerrightclick);
+                    if (updatemapdata[0].WellStateInfo.ID == 1 || updatemapdata[0].WellStateInfo.ID == 6) {
+                        markers[i].on('rightclick', markerrightclick, 1);//右击事件
+                    } else if (updatemapdata[0].WellStateInfo.ID == 7) {
+                        markers[i].on('rightclick', markerrightclick, 2);//右击事件
+                    } else {
+                        markers[i].on('rightclick', markerrightclick, 3);//右击事件
+                    }
                 }
             }
         }

@@ -1,62 +1,128 @@
-﻿using System;
+﻿using CSPN.BLL;
+using CSPN.control;
+using CSPN.helper;
+using CSPN.IBLL;
+using CSPN.Model;
+using CSPN.sms;
+using CSPN.webbrower;
+using CefSharp;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
-using System.Runtime.InteropServices;
-using System.Threading;
 using System.Windows.Forms;
+using System.Threading.Tasks;
+using CSPN.job;
 
 namespace CSPN.assistcontrol
 {
     public partial class MessageForm : Form
     {
-        /// <summary>   
-        /// 窗体动画函数
-        /// </summary>   
-        /// <param name="hwnd">指定产生动画的窗口的句柄</param>   
-        /// <param name="dwTime">指定动画持续的时间</param>   
-        /// <param name="dwFlags">指定动画类型，可以是一个或多个标志的组合。</param>   
-        /// <returns></returns>
-        [DllImport("user32")]
-        private static extern bool AnimateWindow(IntPtr hwnd, int dwTime, int dwFlags);
-        private const int AW_HOR_NEGATIVE = 0x0002;//自右向左显示窗口
-        private const int AW_HIDE = 0x10000;//隐蔽窗口
-        private const int AW_ACTIVE = 0x20000;//激活窗口,在应用了AW_HIDE标记后不要应用这个标记
-        private const int AW_BLEND = 0x80000;//应用淡入淡出结果
+        private static MessageForm messageForm;
+        private static object obj = new object();
+        IWellInfoService wellInfoService = new WellInfoService();
+        string terminal_ID = null;
+        List<WellInfo> list = null;
+        string json = null;
 
-        public MessageForm(string content)
+        private MessageForm()
         {
             InitializeComponent();
-            lbContent.Text = content;
+            GetSMS.getSMSDelegate += new GetSMSDelegate(ShowAlarmMsg);
+            PendingMsgControl.refreshMessageDelegate += new RefreshMessageDelegate(ShowAlarmMsg);
+            RefreshWellInfoJob.refreshDelegate += new RefreshDelegate(RefreshInfo);
         }
 
-        private void MessageForm_Load(object sender, EventArgs e)
+        public static MessageForm GetMessageForm()
         {
-            int x = Screen.PrimaryScreen.WorkingArea.Right - this.Width;
-            int y = Screen.PrimaryScreen.WorkingArea.Bottom - this.Height;
-            this.Location = new Point(x, y);//设置窗体在屏幕右下角显示
-            AnimateWindow(this.Handle, 500, AW_ACTIVE | AW_HOR_NEGATIVE);
-            Thread.Sleep(3000);
-            this.Close();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void MessageForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            AnimateWindow(this.Handle, 500, AW_BLEND | AW_HIDE);
-        }
-
-        protected override CreateParams CreateParams
-        {
-            get
+            if (messageForm == null)
             {
-                const int WS_EX_NOACTIVATE = 0x08000000;
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle |= WS_EX_NOACTIVATE;
-                return cp;
+                lock (obj)
+                {
+                    if (messageForm == null)
+                    {
+                        messageForm = new MessageForm();
+                    }
+                }
             }
+            return messageForm;
+        }
+
+        private void btnAlarm_Click(object sender, EventArgs e)
+        {
+            if (dgvAlarm.SelectedRows.Count == 0)
+            {
+                UMessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            terminal_ID = dgvAlarm.CurrentRow.Cells[1].Value.ToString();
+            list = wellInfoService.GetWellInfo_List(terminal_ID);
+            json = JsonConvert.SerializeObject(list);
+            WebBrower.webBrower.ExecuteScriptAsync("searchData", json);
+        }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnClose_MouseEnter(object sender, EventArgs e)
+        {
+            btnClose.BackColor = Color.FromArgb(232, 17, 35);
+        }
+
+        private void btnClose_MouseLeave(object sender, EventArgs e)
+        {
+            btnClose.BackColor = Color.FromArgb(83, 143, 198);
+        }
+        //显示信息
+        private void ShowAlarmMsg()
+        {
+            if (dgvAlarm.InvokeRequired)
+            {
+                dgvAlarm.Invoke(new GetSMSDelegate(ShowAlarmMsg));
+            }
+            else
+            {
+                AlarmDataLoade();
+            }
+        }
+        //自动刷新
+        private void RefreshInfo()
+        {
+            if (dgvAlarm.InvokeRequired)
+            {
+                dgvAlarm.Invoke(new job.RefreshDelegate(RefreshInfo));
+            }
+            else
+            {
+                AlarmDataLoade();
+            }
+        }
+        private void AlarmDataLoade()
+        {
+            dgvAlarm.AutoGenerateColumns = false;
+            dgvAlarm.DataSource = wellInfoService.GetReportInfo_Pending();
+        }
+
+        private void dgvAlarm_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvAlarm.Columns[e.ColumnIndex].Name.Equals("Icon"))
+            {
+                e.Value = ImageHelper.ToImage(e.Value.ToString());
+            }
+        }
+    }
+    public class ShowMessageForm
+    {
+        public static void ShowForm()
+        {
+            Task.Run(()=> {
+                MessageForm messageForm = MessageForm.GetMessageForm();
+                Point p = new Point(Screen.PrimaryScreen.WorkingArea.Width - messageForm.Width, Screen.PrimaryScreen.WorkingArea.Height - messageForm.Height);
+                messageForm.PointToScreen(p);
+                messageForm.Location = p;
+                Application.Run(messageForm);
+            });
         }
     }
 }

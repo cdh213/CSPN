@@ -10,18 +10,17 @@ using System.Threading;
 using System.Globalization;
 using System.Diagnostics;
 using CSPN.webbrower;
-using CSPN.assistcontrol;
 using Newtonsoft.Json;
 using CSPN.helper;
+using CSPN.assistcontrol;
 
 namespace CSPN.sms
 {
-    public delegate void GetSMSEventHandler();
+    public delegate void GetSMSDelegate();
 
     public class GetSMS
     {
-        public static event GetSMSEventHandler getSMSEventHandler;
-
+        public static GetSMSDelegate getSMSDelegate;
         private static IWellStateService wellStateService = new WellStateService();
         private static IWellInfoService wellInfoService = new WellInfoService();
         private static ILogService logService = new LogService();
@@ -32,7 +31,6 @@ namespace CSPN.sms
         private static WellStateInfo wellStateInfo = new WellStateInfo();
         private static WellInfo wellInfo = new WellInfo();
         private static ReportInfo reportInfo = new ReportInfo();
-        private static ReadWriteRegistry registry = new ReadWriteRegistry();
 
         public static void GetSMSHandle()
         {
@@ -69,17 +67,17 @@ namespace CSPN.sms
                                 }
                                 else
                                 {
+                                    ShowMessageForm.ShowForm();
                                     //人井打开
                                     if (SMSAnalysis.IsOpen)
                                     {
                                         wellCurrentStateInfo.Well_State_ID = 2;
                                         UpdateWellCurrentState();
-                                        InsertAlarmInfo();
-                                        if (getSMSEventHandler != null)
+                                        UpdateAlarmInfo();
+                                        if (getSMSDelegate != null)
                                         {
-                                            getSMSEventHandler();
+                                            getSMSDelegate();
                                         }
-                                        new MessageForm("有一条报警信息（人井非正常打开）！").Show();
                                     }
                                     else//人井关闭
                                     {
@@ -88,36 +86,33 @@ namespace CSPN.sms
                                         {
                                             wellCurrentStateInfo.Well_State_ID = 3;
                                             UpdateWellCurrentState();
-                                            InsertAlarmInfo();
-                                            if (getSMSEventHandler != null)
+                                            UpdateAlarmInfo();
+                                            if (getSMSDelegate != null)
                                             {
-                                                getSMSEventHandler();
+                                                getSMSDelegate();
                                             }
-                                            new MessageForm("有一条状态信息（终端低电量报警）！").Show();
                                         }
                                         //烟感报警
                                         if (SMSAnalysis.IsSmokeAlarm)
                                         {
                                             wellCurrentStateInfo.Well_State_ID = 4;
                                             UpdateWellCurrentState();
-                                            InsertAlarmInfo();
-                                            if (getSMSEventHandler != null)
+                                            UpdateAlarmInfo();
+                                            if (getSMSDelegate != null)
                                             {
-                                                getSMSEventHandler();
+                                                getSMSDelegate();
                                             }
-                                            new MessageForm("有一条状态信息（烟感报警）！").Show();
                                         }
                                         //烟感电量报警
                                         if (SMSAnalysis.IsSmoke_PowerAlarm)
                                         {
                                             wellCurrentStateInfo.Well_State_ID = 5;
                                             UpdateWellCurrentState();
-                                            InsertAlarmInfo();
-                                            if (getSMSEventHandler != null)
+                                            UpdateAlarmInfo();
+                                            if (getSMSDelegate != null)
                                             {
-                                                getSMSEventHandler();
+                                                getSMSDelegate();
                                             }
-                                            new MessageForm("有一条状态信息（烟感低电量报警）！").Show();
                                         }
                                         else
                                         {
@@ -199,9 +194,9 @@ namespace CSPN.sms
             logService.InsertSystemLogInfo(systemLogInfo);
         }
         /// <summary>
-        /// 插入报警信息表数据
+        /// 更新报警信息表数据
         /// </summary>
-        private static void InsertAlarmInfo()
+        private static void UpdateAlarmInfo()
         {
             reportInfo.Report_Time = wellCurrentStateInfo.Report_Time;
             reportInfo.Terminal_ID = wellInfo.Terminal_ID;

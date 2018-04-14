@@ -126,6 +126,7 @@
             this.rbAll.TabIndex = 1;
             this.rbAll.Text = "全部数据";
             this.rbAll.UseVisualStyleBackColor = true;
+            this.rbAll.CheckedChanged += new System.EventHandler(this.rbAll_CheckedChanged);
             // 
             // rbCurrent
             // 

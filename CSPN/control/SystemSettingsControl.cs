@@ -35,10 +35,12 @@ namespace CSPN.control
         {
             if (isOpen)
             {
-                tbSysLogTime.Text = ReadWriteConfig.ReadConfig("SysLogTime");
-                tbUserLogTime.Text = ReadWriteConfig.ReadConfig("UserLogTime");
-                tbNotReportTimes.Text = ReadWriteConfig.ReadConfig("NotReportTimes");
-                tbRefreshTime.Text = ReadWriteConfig.ReadConfig("RefreshTime");
+                tbSysLogTime.Text = ReadWriteXml.ReadXml("SysLogTime");
+                tbUserLogTime.Text = ReadWriteXml.ReadXml("UserLogTime");
+                tbNotReportTimes.Text = ReadWriteXml.ReadXml("NotReportTimes");
+                tbRefreshTime.Text = ReadWriteXml.ReadXml("RefreshTime");
+                cbEnabled.Checked = Convert.ToBoolean(ReadWriteXml.ReadXml("ReportInterval").Split('-')[0]);
+                tbReportInterval.Text = ReadWriteXml.ReadXml("ReportInterval").Split('-')[1];
                 DeviceLoad();
                 GetDeviceMsg();
             }
@@ -49,31 +51,45 @@ namespace CSPN.control
                 tabControl1.TabPages.Remove(UserSet);
                 tabControl1.TabPages.Remove(SysSetTab);
             }
-            PortName.SelectedItem = ReadWriteConfig.ReadConfig("PortName");
-            BaudRate.SelectedItem = ReadWriteConfig.ReadConfig("BaudRate");
+            PortName.SelectedItem = ReadWriteXml.ReadXml("PortName");
+            BaudRate.SelectedItem = ReadWriteXml.ReadXml("BaudRate");
         }
 
         #region 系统设置
         private void btnSysSet_Click(object sender, EventArgs e)
         {
-            if (tbSysLogTime.Text.Trim() == "" && tbUserLogTime.Text.Trim() == "" && tbNotReportTimes.Text.Trim() == "" && tbRefreshTime.Text.Trim() == "")
+            if (tbSysLogTime.Text.Trim() == "" && tbUserLogTime.Text.Trim() == "" && tbNotReportTimes.Text.Trim() == "" && tbRefreshTime.Text.Trim() == "" && tbReportInterval.Text.Trim() == "")
             {
-                MessageBox.Show("请输入内容。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                UMessageBox.Show("请输入内容。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                if (IsNumber(tbSysLogTime.Text.Trim()) && IsNumber(tbUserLogTime.Text.Trim()) && IsNumber(tbNotReportTimes.Text.Trim()) && IsNumber(tbRefreshTime.Text.Trim()))
+                if (IsNumber(tbSysLogTime.Text.Trim()) && IsNumber(tbUserLogTime.Text.Trim()) && IsNumber(tbNotReportTimes.Text.Trim()) && IsNumber(tbRefreshTime.Text.Trim()) && IsNumber(tbReportInterval.Text.Trim()))
                 {
-                    ReadWriteConfig.WriteConfig("SysLogTime", tbSysLogTime.Text.Trim());
-                    ReadWriteConfig.WriteConfig("UserLogTime", tbUserLogTime.Text.Trim());
-                    ReadWriteConfig.WriteConfig("NotReportTimes", tbNotReportTimes.Text.Trim());
-                    ReadWriteConfig.WriteConfig("RefreshTime", tbRefreshTime.Text.Trim());
-                    MessageBox.Show("设置成功。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ReadWriteXml.WriteXml("SysLogTime", tbSysLogTime.Text.Trim());
+                    ReadWriteXml.WriteXml("UserLogTime", tbUserLogTime.Text.Trim());
+                    ReadWriteXml.WriteXml("NotReportTimes", tbNotReportTimes.Text.Trim());
+                    ReadWriteXml.WriteXml("RefreshTime", tbRefreshTime.Text.Trim());
+                    ReadWriteXml.WriteXml("ReportInterval", cbEnabled.Checked.ToString() + "-" + tbReportInterval.Text.Trim());
+                    UMessageBox.Show("设置成功。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("输入的值错误。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    UMessageBox.Show("输入的值错误。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+        private void cbEnabled_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbEnabled.Checked)
+            {
+                lbReportInterval.Enabled = true;
+                tbReportInterval.Enabled = true;
+            }
+            else
+            {
+                lbReportInterval.Enabled = false;
+                tbReportInterval.Enabled = false;
             }
         }
         private bool IsNumber(string str)
@@ -94,13 +110,13 @@ namespace CSPN.control
         {
             if (PortName.SelectedItem == null || BaudRate.SelectedItem == null)
             {
-                MessageBox.Show("请选择串口号和波特率！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("请选择串口号和波特率！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                ReadWriteConfig.WriteConfig("PortName", PortName.SelectedItem.ToString());
-                ReadWriteConfig.WriteConfig("BaudRate", BaudRate.SelectedItem.ToString());
-                MessageBox.Show("保存成功，请重启系统!", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ReadWriteXml.WriteXml("PortName", PortName.SelectedItem.ToString());
+                ReadWriteXml.WriteXml("BaudRate", BaudRate.SelectedItem.ToString());
+                UMessageBox.Show("保存成功，请重启系统!", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Process.GetCurrentProcess().CloseMainWindow();
             }
         }
@@ -108,7 +124,7 @@ namespace CSPN.control
         {
             if (PortName.SelectedItem == null || BaudRate.SelectedItem == null)
             {
-                MessageBox.Show("请选择串口号和波特率！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("请选择串口号和波特率！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -122,18 +138,18 @@ namespace CSPN.control
                     if (TSX.Length == 14 && production_Name.IndexOf("MC323") != -1)
                     {
                         WaitWin.Close();
-                        MessageBox.Show("测试通过，请保存后重启系统。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        UMessageBox.Show("测试通过，请保存后重启系统。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
                         WaitWin.Close();
-                        MessageBox.Show("测试未通过，请重试！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        UMessageBox.Show("测试未通过，请重试！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 else
                 {
                     WaitWin.Close();
-                    MessageBox.Show("测试未通过，请重试！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    UMessageBox.Show("测试未通过，请重试！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -164,7 +180,7 @@ namespace CSPN.control
         {
             if (userGrid.SelectedRows.Count == 0)
             {
-                MessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             work_ID = userGrid.CurrentRow.Cells[0].Value.ToString();
@@ -175,19 +191,19 @@ namespace CSPN.control
         {
             if (userGrid.SelectedRows.Count == 0)
             {
-                MessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            if (MessageBox.Show("是否删除？", "人井监控管理系统", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (UMessageBox.Show("是否删除？", "人井监控管理系统", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 work_ID = userGrid.CurrentRow.Cells[0].Value.ToString();
                 if (userservice.DeleteUserInfo(work_ID) > 0)
                 {
-                    MessageBox.Show("数据删除成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UMessageBox.Show("数据删除成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("数据删除失败！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    UMessageBox.Show("数据删除失败！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 DataLoade(CSPNType.UserInfo);
             }
@@ -214,7 +230,7 @@ namespace CSPN.control
         {
             if (operatorGrid.SelectedRows.Count == 0)
             {
-                MessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             work_ID = operatorGrid.CurrentRow.Cells[0].Value.ToString();
@@ -227,19 +243,19 @@ namespace CSPN.control
         {
             if (operatorGrid.SelectedRows.Count == 0)
             {
-                MessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UMessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            if (MessageBox.Show("是否删除？", "人井监控管理系统", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (UMessageBox.Show("是否删除？", "人井监控管理系统", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 work_ID = operatorGrid.CurrentRow.Cells[0].Value.ToString();
                 if (userservice.DeleteOperatorInfo(work_ID) > 0)
                 {
-                    MessageBox.Show("数据删除成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UMessageBox.Show("数据删除成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("数据删除失败！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    UMessageBox.Show("数据删除失败！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 DataLoade(CSPNType.OperatorInfo);
             }
@@ -266,7 +282,7 @@ namespace CSPN.control
         }
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("导入成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            UMessageBox.Show("导入成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {

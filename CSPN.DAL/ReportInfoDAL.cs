@@ -25,13 +25,13 @@ namespace CSPN.DAL
         #endregion
 
         private const string SELECT_ReportInfo_Pending = "select Report_Time,b.Terminal_ID,Name,Well_State_ID_Pending,Place,Icon,Telephone from ((CSPN_Well_Info as a inner join CSPN_Report_Info as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Dic_Well_State_Info as c on b.Well_State_ID_Pending=c.ID) inner join CSPN_Operator_Info as d on a.Operator_ID=d.ID where b.Well_State_ID_Pending=2 or b.Well_State_ID_Pending=3 or b.Well_State_ID_Pending=4 or b.Well_State_ID_Pending=5 order by Report_Time desc,Well_State_ID_Pending asc";
-        private const string SELECT_ReportInfo_Send = "select Report_Time,b.Terminal_ID,Name,Well_State_ID_Send,Place,Icon from ((CSPN_Well_Info as a inner join CSPN_Report_Info as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Dic_Well_State_Info as c on b.Well_State_ID_Send=c.ID) inner join CSPN_Operator_Info as d on a.Operator_ID=d.ID where b.Well_State_ID_Send=7 order by Report_Time desc";
+        private const string SELECT_ReportInfo_Send = "select Report_Time,b.Terminal_ID,Name,Well_State_ID_Send,Place,Icon,RealName from ((CSPN_Well_Info as a inner join CSPN_Report_Info as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Dic_Well_State_Info as c on b.Well_State_ID_Send=c.ID) inner join CSPN_Operator_Info as d on a.Operator_ID=d.ID where b.Well_State_ID_Send=7 order by Report_Time desc";
         private const string SELECT_ReportInfo_Terminal_ID = "select Report_Time,Place,RealName,Telephone from (CSPN_Well_Info as a inner join CSPN_Well_Current_State_Info as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Operator_Info as c on a.Operator_ID=c.ID where b.Well_State_ID=@Well_State_ID and a.Terminal_ID=@Terminal_ID";
         private const string UPDATE_ReportInfo_Pending1 = "update CSPN_Report_Info set Well_State_ID_Pending=@Well_State_ID_Pending where Terminal_ID=@Terminal_ID";
         private const string UPDATE_ReportInfo_Pending2 = "update CSPN_Report_Info set Well_State_ID_Pending=@Well_State_ID_Pending,Report_Time=@Report_Time where Terminal_ID=@Terminal_ID";
         private const string UPDATE_ReportInfo_Send = "update CSPN_Report_Info set Well_State_ID_Send=@Well_State_ID_Send where Terminal_ID=@Terminal_ID";
         private const string SELECT_ReportInfo = "select a.ReportInterval,b.Terminal_ID,b.Report_Time from CSPN_Report_Info as a inner join CSPN_Well_Current_State_Info as b on a.Terminal_ID=b.Terminal_ID";
-        private const string SELECT_ReportNumInfo_ReportTimes = "select a.Terminal_ID,Name,Longitude,Latitude,Place,Telephone from (CSPN_Well_Info as a inner join CSPN_Report_Info as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Operator_Info as c on a.Operator_ID=c.ID where ReportTimes>=@ReportTimes";
+        private const string SELECT_ReportNumInfo_NotReportTimes = "select a.Terminal_ID,Name,Longitude,Latitude,Place,Telephone from (CSPN_Well_Info as a inner join CSPN_Report_Info as b on a.Terminal_ID=b.Terminal_ID) inner join CSPN_Operator_Info as c on a.Operator_ID=c.ID where NotReportTimes>=@NotReportTimes";
         private const string Update_ReportNumInfo_ReportTimes = "update CSPN_Report_Info set ReportTimes=ReportTimes+1 where Terminal_ID=@Terminal_ID";
         private const string Update_NotReportNumInfo_ReportTimes = "update CSPN_Report_Info set NotReportTimes=NotReportTimes+1 where Terminal_ID=@Terminal_ID";
         private const string Empty_ReportNumInfo_ReportTimes = "update CSPN_Report_Info set ReportTimes=0";
@@ -130,13 +130,13 @@ namespace CSPN.DAL
         /// <summary>
         /// 查询未上报人井信息
         /// </summary>
-        public DataTable GetNotReportNumInfo(int reportTimes)
+        public DataTable GetNotReportNumInfo(int notReportTimes)
         {
             using (DataTable table = new DataTable())
             {
                 using (Conn)
                 {
-                    table.Load(Conn.ExecuteReader(SELECT_ReportNumInfo_ReportTimes, new { ReportTimes = reportTimes }));
+                    table.Load(Conn.ExecuteReader(SELECT_ReportNumInfo_NotReportTimes, new { NotReportTimes = notReportTimes }));
                 }
                 return table;
             }
