@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSPN.Model
 {
@@ -22,6 +18,7 @@ namespace CSPN.Model
         private string _loginTime;//最后一次登录时间
 
         #region 属性
+
         /// <summary>
         /// ID
         /// </summary>
@@ -30,6 +27,7 @@ namespace CSPN.Model
             get { return _id; }
             set { _id = value; }
         }
+
         /// <summary>
         /// 用户名
         /// </summary>
@@ -38,6 +36,7 @@ namespace CSPN.Model
             get { return _userName; }
             set { _userName = value; }
         }
+
         /// <summary>
         /// 密码
         /// </summary>
@@ -46,6 +45,7 @@ namespace CSPN.Model
             get { return _passWord; }
             set { _passWord = value; }
         }
+
         /// <summary>
         /// 工号
         /// </summary>
@@ -54,6 +54,7 @@ namespace CSPN.Model
             get { return _work_ID; }
             set { _work_ID = value; }
         }
+
         /// <summary>
         /// 真实姓名
         /// </summary>
@@ -62,6 +63,7 @@ namespace CSPN.Model
             get { return _realName; }
             set { _realName = value; }
         }
+
         /// <summary>
         /// 用户性别
         /// </summary>
@@ -70,6 +72,7 @@ namespace CSPN.Model
             get { return _gender; }
             set { _gender = value; }
         }
+
         /// <summary>
         /// 电话
         /// </summary>
@@ -78,6 +81,7 @@ namespace CSPN.Model
             get { return _telephone; }
             set { _telephone = value; }
         }
+
         /// <summary>
         /// 最后一次登录时间
         /// </summary>
@@ -86,6 +90,7 @@ namespace CSPN.Model
             get { return _loginTime; }
             set { _loginTime = value; }
         }
-        #endregion
+
+        #endregion 属性
     }
 }

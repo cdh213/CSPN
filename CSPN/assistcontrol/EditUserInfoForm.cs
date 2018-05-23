@@ -11,12 +11,12 @@ namespace CSPN.assistcontrol
 {
     public partial class EditUserInfoForm : Form
     {
-        IUsersService userService = new UsersService();
-        UsersInfo usersInfo = null;
-        UserLogHelper userLogHelper = new UserLogHelper();
+        private IUsersService userService = new UsersService();
+        private UsersInfo usersInfo = null;
+        private UserLogHelper userLogHelper = new UserLogHelper();
 
-        bool _isInsert = false;
-        string _work_ID = null;
+        private bool _isInsert = false;
+        private string _work_ID = null;
 
         //编辑时将选中信息加载到窗体上
         public EditUserInfoForm(bool isInsert, string work_ID)
@@ -25,10 +25,11 @@ namespace CSPN.assistcontrol
             _isInsert = isInsert;
             _work_ID = work_ID;
         }
+
         private void EditUserInfoForm_Load(object sender, EventArgs e)
         {
             usersInfo = new UsersInfo();
-            if (_isInsert == true)
+            if (_isInsert)
             {
                 this.Text = "添加数据";
                 this.Icon = new Icon("resource/images/add.ico");
@@ -55,9 +56,9 @@ namespace CSPN.assistcontrol
                 }
                 txtTelephone.Text = usersInfo.Telephone.Trim();
                 txtUserName.Text = usersInfo.UserName.Trim();
-                txtPassWord.Text = usersInfo.PassWord.Trim();
             }
         }
+
         //确定添加/更新
         private void btnSure_Click(object sender, EventArgs e)
         {
@@ -67,8 +68,7 @@ namespace CSPN.assistcontrol
                 RealName = txtRealName.Text.Trim(),//姓名
                 Gender = cmbGender.SelectedItem.ToString().Trim(),//性别
                 Telephone = txtTelephone.Text.Trim(),//联系方式
-                UserName = txtUserName.Text.Trim(),//用户名
-                PassWord = txtPassWord.Text.Trim()//密码
+                UserName = txtUserName.Text.Trim()//用户名
             };
 
             if (txtWorkID.Text.Trim() == "")
@@ -86,11 +86,6 @@ namespace CSPN.assistcontrol
                 UMessageBox.Show("请输入人员手机号！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            if (userService.GetUsersByUserName(txtUserName.Text.Trim()) != null)
-            {
-                UMessageBox.Show("该用户名已存在，请修改！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
             //添加
             if (_isInsert)
             {
@@ -105,7 +100,7 @@ namespace CSPN.assistcontrol
                     if (a > 0)
                     {
                         UMessageBox.Show("数据添加成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "添加用户信息。", CommonClass.UserName, null, null);
+                        userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "添加用户信息。", CommonClass.UserName, null, null, null);
                         this.Close();
                     }
                     else
@@ -121,7 +116,7 @@ namespace CSPN.assistcontrol
                 if (a > 0)
                 {
                     UMessageBox.Show("数据修改成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "更新用户信息。", CommonClass.UserName, null, null);
+                    userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "更新用户信息。", CommonClass.UserName, null, null, null);
                     this.Close();
                 }
                 else

@@ -32,8 +32,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MaintainControl));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.maintainGrid = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.txtTerminal_ID = new System.Windows.Forms.TextBox();
             this.labState = new System.Windows.Forms.Label();
@@ -41,14 +43,6 @@
             this.dtpStartDateTime = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.dtpEndDateTime = new System.Windows.Forms.DateTimePicker();
-            this.maintainGrid = new System.Windows.Forms.DataGridView();
-            this.Terminal_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Terminal_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Place = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Icon = new System.Windows.Forms.DataGridViewImageColumn();
-            this.State = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Maintain_StartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Maintain_EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maintainPage = new CSPN.assistcontrol.DataGridPage();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -56,8 +50,17 @@
             this.txtPlace = new System.Windows.Forms.TextBox();
             this.txtState = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnSet = new System.Windows.Forms.Button();
+            this.TerminalID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Terminal_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Place = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Icon = new System.Windows.Forms.DataGridViewImageColumn();
+            this.State = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Maintain_StartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Maintain_EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Maintain_State = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maintainGrid)).BeginInit();
             this.panel1.SuspendLayout();
@@ -66,27 +69,26 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.AutoScroll = true;
-            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.ColumnCount = 4;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtTerminal_ID, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.labState, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(this.labdate, 2, 5);
-            this.tableLayoutPanel1.Controls.Add(this.dtpStartDateTime, 3, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 2, 6);
-            this.tableLayoutPanel1.Controls.Add(this.dtpEndDateTime, 3, 6);
             this.tableLayoutPanel1.Controls.Add(this.maintainGrid, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txtTerminal_ID, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.labState, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.labdate, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.dtpStartDateTime, 2, 5);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.dtpEndDateTime, 2, 6);
             this.tableLayoutPanel1.Controls.Add(this.maintainPage, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.txtTerminal_Name, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtPlace, 3, 3);
-            this.tableLayoutPanel1.Controls.Add(this.txtState, 3, 4);
-            this.tableLayoutPanel1.Controls.Add(this.panel1, 2, 7);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.txtTerminal_Name, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.txtPlace, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.txtState, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 7);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -100,8 +102,72 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1052, 475);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // maintainGrid
+            // 
+            this.maintainGrid.AllowUserToAddRows = false;
+            this.maintainGrid.AllowUserToDeleteRows = false;
+            this.maintainGrid.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.maintainGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.maintainGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.maintainGrid.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.maintainGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.maintainGrid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.maintainGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.maintainGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.maintainGrid.ColumnHeadersHeight = 30;
+            this.maintainGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TerminalID,
+            this.Terminal_Name,
+            this.Place,
+            this.Icon,
+            this.State,
+            this.Maintain_StartTime,
+            this.Maintain_EndTime,
+            this.Maintain_State});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.maintainGrid.DefaultCellStyle = dataGridViewCellStyle3;
+            this.maintainGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.maintainGrid.GridColor = System.Drawing.Color.Blue;
+            this.maintainGrid.Location = new System.Drawing.Point(3, 3);
+            this.maintainGrid.MultiSelect = false;
+            this.maintainGrid.Name = "maintainGrid";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.maintainGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.maintainGrid.RowHeadersVisible = false;
+            this.maintainGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.maintainGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.tableLayoutPanel1.SetRowSpan(this.maintainGrid, 8);
+            this.maintainGrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.maintainGrid.RowTemplate.Height = 35;
+            this.maintainGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.maintainGrid.Size = new System.Drawing.Size(776, 429);
+            this.maintainGrid.TabIndex = 46;
+            this.maintainGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.maintainGrid_CellClick);
+            this.maintainGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.maintainGrid_CellFormatting);
             // 
             // label1
             // 
@@ -181,110 +247,6 @@
             this.dtpEndDateTime.Size = new System.Drawing.Size(164, 26);
             this.dtpEndDateTime.TabIndex = 35;
             // 
-            // maintainGrid
-            // 
-            this.maintainGrid.AllowUserToAddRows = false;
-            this.maintainGrid.AllowUserToDeleteRows = false;
-            this.maintainGrid.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.maintainGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.maintainGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.maintainGrid.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.maintainGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.maintainGrid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            this.maintainGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.maintainGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.maintainGrid.ColumnHeadersHeight = 30;
-            this.maintainGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Terminal_ID,
-            this.Terminal_Name,
-            this.Place,
-            this.Icon,
-            this.State,
-            this.Maintain_StartTime,
-            this.Maintain_EndTime});
-            this.maintainGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.maintainGrid.GridColor = System.Drawing.Color.Blue;
-            this.maintainGrid.Location = new System.Drawing.Point(3, 3);
-            this.maintainGrid.MultiSelect = false;
-            this.maintainGrid.Name = "maintainGrid";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.maintainGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.maintainGrid.RowHeadersVisible = false;
-            this.maintainGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.maintainGrid.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.tableLayoutPanel1.SetRowSpan(this.maintainGrid, 8);
-            this.maintainGrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.maintainGrid.RowTemplate.Height = 35;
-            this.maintainGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.maintainGrid.Size = new System.Drawing.Size(756, 429);
-            this.maintainGrid.TabIndex = 37;
-            this.maintainGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.maintainGrid_CellClick);
-            this.maintainGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.maintainGrid_CellFormatting);
-            // 
-            // Terminal_ID
-            // 
-            this.Terminal_ID.DataPropertyName = "a.Terminal_ID";
-            this.Terminal_ID.HeaderText = "人井编号";
-            this.Terminal_ID.Name = "Terminal_ID";
-            this.Terminal_ID.ReadOnly = true;
-            // 
-            // Terminal_Name
-            // 
-            this.Terminal_Name.DataPropertyName = "Name";
-            this.Terminal_Name.HeaderText = "人井名称";
-            this.Terminal_Name.Name = "Terminal_Name";
-            this.Terminal_Name.ReadOnly = true;
-            // 
-            // Place
-            // 
-            this.Place.DataPropertyName = "Place";
-            this.Place.HeaderText = "地点";
-            this.Place.Name = "Place";
-            this.Place.ReadOnly = true;
-            // 
-            // Icon
-            // 
-            this.Icon.DataPropertyName = "Icon";
-            this.Icon.HeaderText = "当前状态";
-            this.Icon.Name = "Icon";
-            this.Icon.ReadOnly = true;
-            this.Icon.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Icon.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // State
-            // 
-            this.State.DataPropertyName = "State";
-            this.State.HeaderText = "说明";
-            this.State.Name = "State";
-            this.State.ReadOnly = true;
-            // 
-            // Maintain_StartTime
-            // 
-            this.Maintain_StartTime.DataPropertyName = "Maintain_StartTime";
-            this.Maintain_StartTime.HeaderText = "维护开始时间";
-            this.Maintain_StartTime.Name = "Maintain_StartTime";
-            this.Maintain_StartTime.ReadOnly = true;
-            // 
-            // Maintain_EndTime
-            // 
-            this.Maintain_EndTime.DataPropertyName = "Maintain_EndTime";
-            this.Maintain_EndTime.HeaderText = "维护结束时间";
-            this.Maintain_EndTime.Name = "Maintain_EndTime";
-            this.Maintain_EndTime.ReadOnly = true;
-            // 
             // maintainPage
             // 
             this.maintainPage.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -292,7 +254,7 @@
             this.maintainPage.Location = new System.Drawing.Point(3, 438);
             this.maintainPage.Name = "maintainPage";
             this.maintainPage.PageSize = 50;
-            this.maintainPage.Size = new System.Drawing.Size(756, 34);
+            this.maintainPage.Size = new System.Drawing.Size(776, 34);
             this.maintainPage.TabIndex = 38;
             // 
             // label2
@@ -329,12 +291,13 @@
             // 
             // txtPlace
             // 
-            this.txtPlace.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPlace.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtPlace.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtPlace.Location = new System.Drawing.Point(865, 157);
+            this.txtPlace.Location = new System.Drawing.Point(865, 143);
+            this.txtPlace.Multiline = true;
             this.txtPlace.Name = "txtPlace";
             this.txtPlace.ReadOnly = true;
-            this.txtPlace.Size = new System.Drawing.Size(164, 26);
+            this.txtPlace.Size = new System.Drawing.Size(164, 54);
             this.txtPlace.TabIndex = 42;
             // 
             // txtState
@@ -350,6 +313,7 @@
             // panel1
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.panel1, 2);
+            this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnRefresh);
             this.panel1.Controls.Add(this.btnSet);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -357,6 +321,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(244, 49);
             this.panel1.TabIndex = 45;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnCancel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCancel.BackgroundImage")));
+            this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(165, 11);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 26);
+            this.btnCancel.TabIndex = 45;
+            this.btnCancel.Text = "取消";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnRefresh
             // 
@@ -370,7 +354,7 @@
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(26, 11);
+            this.btnRefresh.Location = new System.Drawing.Point(4, 11);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(74, 26);
             this.btnRefresh.TabIndex = 44;
@@ -390,13 +374,70 @@
             this.btnSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSet.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnSet.ForeColor = System.Drawing.Color.White;
-            this.btnSet.Location = new System.Drawing.Point(144, 11);
+            this.btnSet.Location = new System.Drawing.Point(84, 11);
             this.btnSet.Name = "btnSet";
             this.btnSet.Size = new System.Drawing.Size(75, 26);
             this.btnSet.TabIndex = 36;
             this.btnSet.Text = "设定";
             this.btnSet.UseVisualStyleBackColor = true;
             this.btnSet.Click += new System.EventHandler(this.btnSet_Click);
+            // 
+            // TerminalID
+            // 
+            this.TerminalID.DataPropertyName = "Terminal_ID";
+            this.TerminalID.HeaderText = "人井编号";
+            this.TerminalID.Name = "TerminalID";
+            this.TerminalID.ReadOnly = true;
+            // 
+            // Terminal_Name
+            // 
+            this.Terminal_Name.DataPropertyName = "Name";
+            this.Terminal_Name.HeaderText = "人井名称";
+            this.Terminal_Name.Name = "Terminal_Name";
+            this.Terminal_Name.ReadOnly = true;
+            // 
+            // Place
+            // 
+            this.Place.DataPropertyName = "Place";
+            this.Place.HeaderText = "地点";
+            this.Place.Name = "Place";
+            this.Place.ReadOnly = true;
+            // 
+            // Icon
+            // 
+            this.Icon.DataPropertyName = "Icon";
+            this.Icon.HeaderText = "当前状态";
+            this.Icon.Name = "Icon";
+            this.Icon.ReadOnly = true;
+            this.Icon.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // State
+            // 
+            this.State.DataPropertyName = "State";
+            this.State.HeaderText = "说明";
+            this.State.Name = "State";
+            this.State.ReadOnly = true;
+            // 
+            // Maintain_StartTime
+            // 
+            this.Maintain_StartTime.DataPropertyName = "Maintain_StartTime";
+            this.Maintain_StartTime.HeaderText = "维护开始时间";
+            this.Maintain_StartTime.Name = "Maintain_StartTime";
+            this.Maintain_StartTime.ReadOnly = true;
+            // 
+            // Maintain_EndTime
+            // 
+            this.Maintain_EndTime.DataPropertyName = "Maintain_EndTime";
+            this.Maintain_EndTime.HeaderText = "维护结束时间";
+            this.Maintain_EndTime.Name = "Maintain_EndTime";
+            this.Maintain_EndTime.ReadOnly = true;
+            // 
+            // Maintain_State
+            // 
+            this.Maintain_State.DataPropertyName = "aMaintain_State";
+            this.Maintain_State.HeaderText = "维护状态";
+            this.Maintain_State.Name = "Maintain_State";
+            this.Maintain_State.ReadOnly = true;
             // 
             // MaintainControl
             // 
@@ -434,15 +475,17 @@
         private System.Windows.Forms.TextBox txtTerminal_Name;
         private System.Windows.Forms.TextBox txtPlace;
         private System.Windows.Forms.TextBox txtState;
+        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.DataGridView maintainGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Terminal_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TerminalID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Terminal_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Place;
         private System.Windows.Forms.DataGridViewImageColumn Icon;
         private System.Windows.Forms.DataGridViewTextBoxColumn State;
         private System.Windows.Forms.DataGridViewTextBoxColumn Maintain_StartTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn Maintain_EndTime;
-        private System.Windows.Forms.Button btnRefresh;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Maintain_State;
     }
 }

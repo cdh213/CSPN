@@ -34,7 +34,7 @@
             this.btnPendingMsg = new System.Windows.Forms.ToolStripButton();
             this.btnMessagelog = new System.Windows.Forms.ToolStripButton();
             this.btnMaintain = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.btnStatementManage = new System.Windows.Forms.ToolStripButton();
             this.btnSystemSettings = new System.Windows.Forms.ToolStripButton();
             this.lbUserName = new System.Windows.Forms.ToolStripLabel();
             this.panelMain = new System.Windows.Forms.Panel();
@@ -52,7 +52,7 @@
             this.btnPendingMsg,
             this.btnMessagelog,
             this.btnMaintain,
-            this.toolStripButton4,
+            this.btnStatementManage,
             this.btnSystemSettings,
             this.lbUserName});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -112,18 +112,18 @@
             this.btnMaintain.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnMaintain.Click += new System.EventHandler(this.btnMaintain_Click);
             // 
-            // toolStripButton4
+            // btnStatementManage
             // 
-            this.toolStripButton4.Enabled = false;
-            this.toolStripButton4.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Margin = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(65, 72);
-            this.toolStripButton4.Text = "报表管理";
-            this.toolStripButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnStatementManage.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnStatementManage.Image = ((System.Drawing.Image)(resources.GetObject("btnStatementManage.Image")));
+            this.btnStatementManage.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnStatementManage.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnStatementManage.Margin = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.btnStatementManage.Name = "btnStatementManage";
+            this.btnStatementManage.Size = new System.Drawing.Size(65, 72);
+            this.btnStatementManage.Text = "报表管理";
+            this.btnStatementManage.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnStatementManage.Click += new System.EventHandler(this.btnStatementManage_Click);
             // 
             // btnSystemSettings
             // 
@@ -186,7 +186,7 @@
         private System.Windows.Forms.ToolStripButton btnPendingMsg;
         private System.Windows.Forms.ToolStripButton btnMessagelog;
         private System.Windows.Forms.ToolStripButton btnMaintain;
-        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ToolStripButton btnStatementManage;
         private System.Windows.Forms.ToolStripButton btnSystemSettings;
         private System.Windows.Forms.ToolStripButton btnMsgShow;
         private System.Windows.Forms.ToolStripLabel lbUserName;

@@ -16,12 +16,13 @@ namespace CSPN.assistcontrol
             this._backgroundWorker.ProgressChanged += _backgroundWorker_ProgressChanged;
             this._backgroundWorker.RunWorkerCompleted += _backgroundWorker_RunWorkerCompleted;
         }
-        void _backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+
+        private void _backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             this.Close();//执行完之后，直接关闭页面
         }
 
-        void _backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void _backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             this.progressBar.Value = e.ProgressPercentage;
             this.progressBar.Maximum = (int)e.UserState;

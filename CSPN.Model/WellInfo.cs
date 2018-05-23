@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSPN.Model
+﻿namespace CSPN.Model
 {
     /// <summary>
     /// 人井基本信息
@@ -24,8 +18,8 @@ namespace CSPN.Model
         private SystemLogInfo _systemLogInfo;
         private ReportInfo _reportNumInfo;
 
-
         #region 属性
+
         /// <summary>
         /// 人井编号
         /// </summary>
@@ -34,6 +28,7 @@ namespace CSPN.Model
             get { return _terminal_ID; }
             set { _terminal_ID = value; }
         }
+
         /// <summary>
         /// 人井名称
         /// </summary>
@@ -42,6 +37,7 @@ namespace CSPN.Model
             get { return _name; }
             set { _name = value; }
         }
+
         /// <summary>
         /// 经度
         /// </summary>
@@ -50,6 +46,7 @@ namespace CSPN.Model
             get { return _longitude; }
             set { _longitude = value; }
         }
+
         /// <summary>
         /// 纬度
         /// </summary>
@@ -58,6 +55,7 @@ namespace CSPN.Model
             get { return _latitude; }
             set { _latitude = value; }
         }
+
         /// <summary>
         /// 地点
         /// </summary>
@@ -66,6 +64,7 @@ namespace CSPN.Model
             get { return _place; }
             set { _place = value; }
         }
+
         /// <summary>
         /// 值班人员ID
         /// </summary>
@@ -74,6 +73,7 @@ namespace CSPN.Model
             get { return _operator_ID; }
             set { _operator_ID = value; }
         }
+
         /// <summary>
         /// 终端手机号
         /// </summary>
@@ -82,31 +82,37 @@ namespace CSPN.Model
             get { return _terminal_Phone; }
             set { _terminal_Phone = value; }
         }
+
         public WellCurrentStateInfo WellCurrentStateInfo
         {
             get { return _wellCurrentStateInfo; }
             set { _wellCurrentStateInfo = value; }
         }
+
         public WellStateInfo WellStateInfo
         {
             get { return _wellStateInfo; }
             set { _wellStateInfo = value; }
         }
+
         public OperatorInfo OperatorInfo
         {
             get { return _operatorInfo; }
             set { _operatorInfo = value; }
         }
+
         public SystemLogInfo SystemLogInfo
         {
             get { return _systemLogInfo; }
             set { _systemLogInfo = value; }
         }
+
         public ReportInfo ReportNumInfo
         {
             get { return _reportNumInfo; }
             set { _reportNumInfo = value; }
         }
-        #endregion
+
+        #endregion 属性
     }
 }

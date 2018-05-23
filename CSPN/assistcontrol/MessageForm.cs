@@ -1,18 +1,18 @@
-﻿using CSPN.BLL;
+﻿using CefSharp;
+using CSPN.BLL;
 using CSPN.control;
 using CSPN.helper;
 using CSPN.IBLL;
+using CSPN.job;
 using CSPN.Model;
 using CSPN.sms;
 using CSPN.webbrower;
-using CefSharp;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Windows.Forms;
 using System.Threading.Tasks;
-using CSPN.job;
+using System.Windows.Forms;
 
 namespace CSPN.assistcontrol
 {
@@ -20,10 +20,11 @@ namespace CSPN.assistcontrol
     {
         private static MessageForm messageForm;
         private static object obj = new object();
-        IWellInfoService wellInfoService = new WellInfoService();
-        string terminal_ID = null;
-        List<WellInfo> list = null;
-        string json = null;
+        private IWellInfoService wellInfoService = new WellInfoService();
+        private IWellStateService wellStateService = new WellStateService();
+        private string terminal_ID = null;
+        private List<WellInfo> list = null;
+        private string json = null;
 
         private MessageForm()
         {
@@ -60,6 +61,7 @@ namespace CSPN.assistcontrol
             json = JsonConvert.SerializeObject(list);
             WebBrower.webBrower.ExecuteScriptAsync("searchData", json);
         }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -74,6 +76,7 @@ namespace CSPN.assistcontrol
         {
             btnClose.BackColor = Color.FromArgb(83, 143, 198);
         }
+
         //显示信息
         private void ShowAlarmMsg()
         {
@@ -86,6 +89,7 @@ namespace CSPN.assistcontrol
                 AlarmDataLoade();
             }
         }
+
         //自动刷新
         private void RefreshInfo()
         {
@@ -98,10 +102,11 @@ namespace CSPN.assistcontrol
                 AlarmDataLoade();
             }
         }
+
         private void AlarmDataLoade()
         {
             dgvAlarm.AutoGenerateColumns = false;
-            dgvAlarm.DataSource = wellInfoService.GetReportInfo_Pending();
+            dgvAlarm.DataSource = wellStateService.GetAlarmInfo();
         }
 
         private void dgvAlarm_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -112,11 +117,13 @@ namespace CSPN.assistcontrol
             }
         }
     }
+
     public class ShowMessageForm
     {
         public static void ShowForm()
         {
-            Task.Run(()=> {
+            Task.Run(() =>
+            {
                 MessageForm messageForm = MessageForm.GetMessageForm();
                 Point p = new Point(Screen.PrimaryScreen.WorkingArea.Width - messageForm.Width, Screen.PrimaryScreen.WorkingArea.Height - messageForm.Height);
                 messageForm.PointToScreen(p);

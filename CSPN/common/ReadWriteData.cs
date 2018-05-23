@@ -7,7 +7,8 @@ namespace CSPN.common
 {
     public class ReadWriteData
     {
-        Dictionary<string, UsersInfo> users = new Dictionary<string, UsersInfo>();
+        private Dictionary<string, UsersInfo> users = new Dictionary<string, UsersInfo>();
+
         /// <summary>
         /// 读取数据
         /// </summary>
@@ -26,6 +27,7 @@ namespace CSPN.common
                 return users;
             }
         }
+
         /// <summary>
         /// 写入数据
         /// </summary>
@@ -35,7 +37,7 @@ namespace CSPN.common
             using (FileStream fs = new FileStream("Database/data.bin", FileMode.OpenOrCreate))
             {
                 BinaryFormatter bf = new BinaryFormatter();
-                //选在集合中是否存在用户名 
+                //选在集合中是否存在用户名
                 if (users.ContainsKey(usersInfo.UserName))
                 {
                     //如果有清掉

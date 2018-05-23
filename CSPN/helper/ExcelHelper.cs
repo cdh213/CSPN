@@ -15,16 +15,15 @@ namespace CSPN.helper
         /// 读入Excel的数据 在DataGridView中显示
         /// </summary>
         /// <param name="dgv">显示内容的DataTable的名称</param>
-        public void setExcel(DataTable dt)
+        public void setExcel(DataTable dt, string fileName)
         {
             //选择创建文件的路径
             SaveFileDialog save = new SaveFileDialog();
             save.Filter = "Excel 97-2003工作簿|*.xls|Excel 工作簿|*.xlsx";
             save.Title = "请选择要导出数据的位置";
-            save.FileName = "";
+            save.FileName = fileName;
             if (save.ShowDialog() == DialogResult.OK)
             {
-                string fileName = save.FileName;
                 //把读取到的数据写入到Excel中
                 //创建workbook对象
                 IWorkbook wk = null;
@@ -81,6 +80,7 @@ namespace CSPN.helper
                 }
                 finally
                 {
+                    ms.Dispose();
                     ms.Close();
                 }
             }

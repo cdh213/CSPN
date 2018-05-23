@@ -23,9 +23,11 @@ namespace CSPN.Factory
                     case "SQLServer":
                         conn = new SqlConnection(connStr);
                         break;
+
                     case "Access":
                         conn = new OleDbConnection(connStr);
                         break;
+
                     default:
                         conn = new SqlConnection(connStr);
                         break;

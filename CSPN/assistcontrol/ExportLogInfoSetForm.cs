@@ -12,143 +12,147 @@ namespace CSPN.assistcontrol
 {
     public partial class ExportLogInfoSetForm : Form
     {
-        ILogService logService = new LogService();
-        ExcelHelper ex = new ExcelHelper();
-        DataTable dt = new DataTable();
-        DataView dv = new DataView();
-        List<Items> list = new List<Items>();
-        List<string> timelist = new List<string>();
-        CSPNType _type;
+        private BindingSource bs = new BindingSource();
+        private ILogService logService = new LogService();
+        private ExcelHelper ex = new ExcelHelper();
+        private DataTable dt = new DataTable();
+        private DataView dv = new DataView();
+        private Dictionary<string, string> dic = null;
+        private int j = 0;
+        private CSPNType _type;
+        private string fileName = "";
 
-        public ExportLogInfoSetForm(DataGridView dgv, CSPNType type)
+        public ExportLogInfoSetForm(CSPNType type)
         {
             InitializeComponent();
             _type = type;
-            for (int i = 0; i < dgv.ColumnCount; i++)
-            {
-                ExportLogInfoSetForm.Items items = new ExportLogInfoSetForm.Items();
-                items.HeaderText = dgv.Columns[i].HeaderText;
-                items.DataPropertyName = dgv.Columns[i].DataPropertyName;
-                list.Add(items);
-            }
-            dt = dgv.DataSource as DataTable;
         }
 
         private void ExportLogInfoSetForm_Load(object sender, EventArgs e)
         {
-            clbItems.DataSource = list;
-            clbItems.DisplayMember = "HeaderText";
-            clbItems.ValueMember = "DataPropertyName";
-            for (int i = 0; i < list.Count; i++)
+            switch (_type)
             {
-                clbItems.SetItemChecked(i, true);
+                case CSPNType.SysLogInfo:
+                    dic = new Dictionary<string, string>() { { "Happen_Time", "发生时间" }, { "Terminal_ID", "人井编号" }, { "Name", "人井名称" }, { "Place", "地点" }, { "State", "人井状态" }, { "Electricity", "电量" }, { "Temperature", "温度" }, { "Humidity", "湿度" }, { "Smoke_Detector", "烟感" }, { "Smoke_Power", "烟感电量" }, { "Signal_Strength", "信号强度" } };
+                    bs.DataSource = dic;
+                    clbItems.DataSource = bs;
+                    clbItems.DisplayMember = "Value";
+                    clbItems.ValueMember = "Key";
+                    for (int i = 0; i < dic.Count; i++)
+                    {
+                        clbItems.SetItemChecked(i, true);
+                    }
+                    dt = logService.GetSystemLogInfo();
+                    fileName = "系统日志" + DateTime.Now.ToString("yyyy-MM-dd");
+                    clbItems.SetItemCheckState(0, CheckState.Indeterminate);
+                    SetTime();
+                    break;
+
+                case CSPNType.UserLogInfo_WellInfo:
+                    dic = new Dictionary<string, string>() { { "Happen_Time", "发生时间" }, { "Terminal_ID", "人井编号" }, { "Name", "人井名称" }, { "Place", "地点" }, { "The_Operator", "操作者" }, { "Operation_Content", "操作内容" }, { "Receive_People", "接收者" }, { "Notice_time", "通知时间" }, { "Processor", "处理人" }, { "Process_Content", "处理内容" }, { "Process_Time", "处理时间" }, { "Current_State", "是否已处理" } };
+                    bs.DataSource = dic;
+                    clbItems.DataSource = bs;
+                    clbItems.DisplayMember = "Value";
+                    clbItems.ValueMember = "Key";
+                    for (int i = 0; i < dic.Count; i++)
+                    {
+                        clbItems.SetItemChecked(i, true);
+                    }
+                    dt = logService.GetUserLogInfo_WellInfo();
+                    fileName = "人井操作日志" + DateTime.Now.ToString("yyyy-MM-dd");
+                    clbItems.SetItemCheckState(0, CheckState.Indeterminate);
+                    SetTime();
+                    break;
+
+                case CSPNType.UserLogInfo_GeneralInfo:
+                    dic = new Dictionary<string, string>() { { "Happen_Time", "发生时间" }, { "The_Operator", "操作者" }, { "Operation_Content", "操作内容" } };
+                    bs.DataSource = dic;
+                    clbItems.DataSource = bs;
+                    clbItems.DisplayMember = "Value";
+                    clbItems.ValueMember = "Key";
+                    for (int i = 0; i < dic.Count; i++)
+                    {
+                        clbItems.SetItemChecked(i, true);
+                    }
+                    dt = logService.GetUserLogInfo_GeneralInfo();
+                    fileName = "一般用户日志" + DateTime.Now.ToString("yyyy-MM-dd");
+                    clbItems.SetItemCheckState(0, CheckState.Indeterminate);
+                    SetTime();
+                    break;
             }
-            clbItems.SetItemCheckState(0, CheckState.Indeterminate);
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                timelist.Add(dt.Rows[i][0].ToString());
-            }
-            SetTime();
         }
-        private void rbCurrent_CheckedChanged(object sender, EventArgs e)
-        {
-            SetTime();
-        }
-        private void rbAll_CheckedChanged(object sender, EventArgs e)
-        {
-            SetTime();
-        }
-        private void btnSure_Click(object sender, EventArgs e)
+
+        private void btnOut_Click(object sender, EventArgs e)
         {
             WaitWin.Show(this, "正在导出，请稍后。。。。。。");
-            //导出当前页
-            if (rbCurrent.Checked)
+            SetData();
+            if (dt.Rows.Count == 0)
             {
-                SetData();
+                UMessageBox.Show("当前没有数据。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                WaitWin.Close();
+                return;
             }
-            else//导出全部
-            {
-                switch (_type)
-                {
-                    case CSPNType.SysLogInfo:
-                        dt = logService.GetSystemLogInfo();
-                        break;
-                    case CSPNType.UserLogInfo_WellInfo:
-                        dt = logService.GetUserLogInfo_WellInfo();
-                        break;
-                    case CSPNType.UserLogInfo_GeneralInfo:
-                        dt = logService.GetUserLogInfo_GeneralInfo();
-                        break;
-                }
-                SetData();
-            }
-            ex.setExcel(dt);
+            ex.setExcel(dt, fileName);
             WaitWin.Close();
-            this.Close();
+            Close();
         }
+
         private void SetData()
         {
             dv = dt.DefaultView;
-            dv.RowFilter = string.Format("{0}>=#{1}# and {0}<=#{2}#", list[0].DataPropertyName, dtpStartTime.Value.Date.ToString(), dtpEndTime.Value.Date.ToString());
+            dv.RowFilter = string.Format("{0}>=#{1}# and {0}<=#{2}#", "Happen_Time", dtpStartTime.Value.ToString("yyyy/MM/dd 00:00:00"), dtpEndTime.Value.ToString("yyyy/MM/dd 23:59:59"));
             dt = dv.ToTable();
 
-            for (int i = 0; i < list.Count; i++)
+            foreach (KeyValuePair<string, string> item in dic)
             {
-                if (dt.Columns[i].ColumnName == list[i].DataPropertyName)
+                if (dt.Columns[j].ColumnName == item.Key)
                 {
-                    dt.Columns[i].ColumnName = list[i].HeaderText;
+                    dt.Columns[j].ColumnName = item.Value;
                 }
+                j++;
             }
+
             for (int i = 0; i < clbItems.Items.Count; i++)
             {
                 if (!clbItems.GetItemChecked(i))
                 {
-                    dt.Columns.Remove(list[i].HeaderText);
+                    dt.Columns.RemoveAt(i);
                 }
             }
         }
+
         private void SetTime()
         {
-            dtpEndTime.MaxDate = DateTime.Now;
-            dtpStartTime.MaxDate = DateTime.Now;
-            if (rbCurrent.Checked)
+            dtpEndTime.MaxDate = DateTime.Now.Date;
+            dtpStartTime.MaxDate = DateTime.Now.Date;
+            if (dt.Rows.Count == 0)
             {
-                dtpStartTime.MinDate = DateTime.Parse(timelist.Min());
-                dtpEndTime.MinDate= DateTime.Parse(timelist.Min());
-                dtpStartTime.Value = DateTime.Parse(timelist.Min());
+                dtpStartTime.MinDate = DateTime.Now.Date;
+                dtpEndTime.MinDate = DateTime.Now.Date;
+                dtpStartTime.Value = DateTime.Now.Date;
             }
             else
             {
-                if (_type == CSPNType.SysLogInfo)
-                {
-                    dtpStartTime.MinDate = logService.GetMinHappen_Time_SysLog();
-                    dtpEndTime.MinDate = logService.GetMinHappen_Time_SysLog();
-                    dtpStartTime.Value = logService.GetMinHappen_Time_SysLog();
-                }
-                else
-                {
-                    dtpStartTime.MinDate = logService.GetMinHappen_Time_UserLog();
-                    dtpEndTime.MinDate = logService.GetMinHappen_Time_UserLog();
-                    dtpStartTime.Value = logService.GetMinHappen_Time_UserLog();
-                }
+                DateTime minTime = dt.AsEnumerable().Select(t => t.Field<DateTime>("Happen_Time")).Min();
+
+                dtpStartTime.MinDate = minTime;
+                dtpEndTime.MinDate = minTime;
+                dtpStartTime.Value = minTime;
             }
         }
-         private void ExportLogInfoSetForm_FormClosing(object sender, FormClosingEventArgs e)
+
+        private void ExportLogInfoSetForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             dv.Dispose();
             dt.Dispose();
         }
+
         private void clbItems_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             if (e.CurrentValue == CheckState.Indeterminate)
             {
                 e.NewValue = CheckState.Indeterminate;
             }
-        }
-        class Items
-        {
-            public string HeaderText { get; set; }
-            public string DataPropertyName { get; set; }
         }
     }
 }

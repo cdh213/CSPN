@@ -10,12 +10,13 @@ namespace CSPN
 {
     public partial class MainForm : Form
     {
-        static MsgShowControl msc = null;
-        PendingMsgControl pmc = new PendingMsgControl();
-        SystemSettingsControl ssc = new SystemSettingsControl();
-        MaintainControl amc = new MaintainControl();
-        LogInfoControl lil = new LogInfoControl();
-        bool? _isOpen = true;
+        private static MsgShowControl msc = null;
+        private PendingMsgControl pmc = new PendingMsgControl();
+        private SystemSettingsControl ssc = new SystemSettingsControl();
+        private MaintainControl amc = new MaintainControl();
+        private LogInfoControl lil = new LogInfoControl();
+        private StatementManageControl smc = new StatementManageControl();
+        private bool? _isOpen = true;
 
         public MainForm(bool? isOpen)
         {
@@ -24,6 +25,7 @@ namespace CSPN
             lbUserName.Text += CommonClass.UserName;
             new QuartzInit().Quartz();
         }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             switch (_isOpen)
@@ -35,6 +37,7 @@ namespace CSPN
                     msc.Dock = DockStyle.Fill;
                     panelMain.Controls.Add(msc);
                     break;
+
                 case false:
                     ssc.isOpen = false;
                     WaitWin.Show(this, "正在打开，请稍后。。。。。。");
@@ -43,12 +46,14 @@ namespace CSPN
                     btnPendingMsg.Enabled = false;
                     btnMessagelog.Enabled = false;
                     btnMaintain.Enabled = false;
+                    btnStatementManage.Enabled = false;
 
                     panelMain.Controls.Clear();
                     ssc.Dock = DockStyle.Fill;
                     panelMain.Controls.Add(ssc);
                     WaitWin.Close();
                     break;
+
                 case null:
                     WaitWin.Show(this, "正在打开，请稍后。。。。。。");
 
@@ -57,6 +62,7 @@ namespace CSPN
                     btnMessagelog.Enabled = false;
                     btnPendingMsg.Enabled = false;
                     btnMaintain.Enabled = false;
+                    btnStatementManage.Enabled = false;
 
                     pmc.Enabled = false;
                     WaitWin.Close();
@@ -64,6 +70,7 @@ namespace CSPN
                     break;
             }
         }
+
         private void btnMsgShow_Click(object sender, EventArgs e)
         {
             WaitWin.Show(this, "正在打开，请稍后。。。。。。");
@@ -86,12 +93,13 @@ namespace CSPN
         private void btnMessagelog_Click(object sender, EventArgs e)
         {
             WaitWin.Show(this, "正在打开，请稍后。。。。。。");
-            
+
             panelMain.Controls.Clear();
             lil.Dock = DockStyle.Fill;
             panelMain.Controls.Add(lil);
             WaitWin.Close();
         }
+
         private void btnMaintain_Click(object sender, EventArgs e)
         {
             WaitWin.Show(this, "正在打开，请稍后。。。。。。");
@@ -100,6 +108,16 @@ namespace CSPN
             panelMain.Controls.Add(amc);
             WaitWin.Close();
         }
+
+        private void btnStatementManage_Click(object sender, EventArgs e)
+        {
+            WaitWin.Show(this, "正在打开，请稍后。。。。。。");
+            panelMain.Controls.Clear();
+            smc.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(smc);
+            WaitWin.Close();
+        }
+
         private void btnSystemSettings_Click(object sender, EventArgs e)
         {
             WaitWin.Show(this, "正在打开，请稍后。。。。。。");

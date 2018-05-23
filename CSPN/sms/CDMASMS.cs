@@ -12,8 +12,10 @@ namespace CSPN.sms
     public class CDMASMS
     {
         //私有字段 串口对象
-        static SerialPort sp = null;
+        private static SerialPort sp = null;
+
         public static Queue<int> queue = new Queue<int>();
+        private static StringBuilder temp = new StringBuilder();
 
         /// <summary>
         /// 设置串口号和波特率
@@ -27,13 +29,13 @@ namespace CSPN.sms
                 sp = new SerialPort();
                 sp.PortName = comPort;      //串口号
                 sp.BaudRate = baudRate;     //波特率
-                sp.ReadTimeout = 5000;      //读超时时间 发送短信时间的需要
+                sp.ReadTimeout = 3000;      //读超时时间 发送短信时间的需要
                 sp.RtsEnable = true;        //必须为true 这样串口才能接收到数据
                 sp.ReceivedBytesThreshold = 1; //接收缓冲区当中如果有一个字节的话就出发接收函数
                 //收到短信息事件
                 sp.DataReceived += sp_DataReceived;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogHelper.WriteLog(ex.Message, ex);
                 throw new Exception("串口设置错误！");
@@ -41,22 +43,25 @@ namespace CSPN.sms
         }
 
         //从串口收到数据,串口事件。
-        static void sp_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        private static void sp_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             try
             {
-                string temp = sp.ReadLine();
+                //"\r\n+CMTI:\"ME\",21\r\n"
+                Thread.Sleep(500);
+                temp.Append(sp.ReadExisting());
                 if (temp.Length > 8)
                 {
-                    if (temp.IndexOf("+CMTI:") != -1)
+                    if (temp.ToString().IndexOf("+CMTI:") != -1)
                     {
-                        queue.Enqueue(Convert.ToInt32(temp.Split(',')[1]));
+                        queue.Enqueue(Convert.ToInt32(temp.ToString().Split(',')[1].Replace("\r\n", "")));
                     }
-                    if (temp.IndexOf("^SMMEMFULL:") != -1)
+                    if (temp.ToString().IndexOf("^SMMEMFULL:") != -1)
                     {
                         DeleteAllMsg();
                     }
                 }
+                temp.Clear();
             }
             catch (Exception ex)
             {
@@ -98,6 +103,7 @@ namespace CSPN.sms
                 return false;
             }
         }
+
         /// <summary>
         /// 设备关闭
         /// </summary>
@@ -122,6 +128,7 @@ namespace CSPN.sms
         /// <returns>发送指令后返回的字符串</returns>
         public static string SendAT(string ATCom)
         {
+            int n = 0;
             string result = "";
             //忽略接收缓冲区内容，准备发送
             sp.DiscardInBuffer();
@@ -133,13 +140,9 @@ namespace CSPN.sms
                 byte[] data = Encoding.ASCII.GetBytes(ATCom + "\r");
                 sp.Write(data, 0, data.Length);
                 Thread.Sleep(500);
-                DateTime startTime = DateTime.Now;
                 while (true)
                 {
-                    TimeSpan timespan = DateTime.Now - startTime;
-                    if (timespan.Milliseconds > 3000)
-                        return null;
-                    int n = sp.BytesToRead;//先记录下来，避免某种原因，人为的原因，操作几次之间时间长，缓存不一致
+                    n = sp.BytesToRead;//先记录下来，避免某种原因，人为的原因，操作几次之间时间长，缓存不一致
                     if (n != 0)
                     {
                         byte[] buffer = new byte[n];
@@ -164,6 +167,7 @@ namespace CSPN.sms
             }
             return result;
         }
+
         /// <summary>
         /// 获取设备信息
         /// </summary>
@@ -187,6 +191,7 @@ namespace CSPN.sms
             }
             return null;
         }
+
         /// <summary>
         /// 按序号读取短信
         /// </summary>
@@ -213,13 +218,15 @@ namespace CSPN.sms
             }
             return sms;
         }
+
         /// <summary>
         /// 删除首选存储器上所有的已读短信和已发送短信，保留未读短信和未发送短信
         /// </summary>
-        static void DeleteAllMsg()
+        public static void DeleteAllMsg()
         {
             SendAT("AT+CMGD=0,2");
         }
+
         /// <summary>
         /// 按序号删除短信
         /// </summary>
@@ -228,6 +235,7 @@ namespace CSPN.sms
         {
             SendAT("AT+CMGD=" + index);
         }
+
         /// <summary>
         /// 发送中文短信
         /// </summary>
@@ -235,9 +243,9 @@ namespace CSPN.sms
         /// <param name="phone">手机号</param>
         public static void SendCHNSms(string content, string phone)
         {
-            //中文CDMA发送，UNICODE编码字节   
+            //中文CDMA发送，UNICODE编码字节
             byte[] b = Encoding.BigEndianUnicode.GetBytes(content);
-            //CDMA的AT命令手机号码前面不能加86，否则虽然显示成功发送，但短信中心回应错误代码5   
+            //CDMA的AT命令手机号码前面不能加86，否则虽然显示成功发送，但短信中心回应错误代码5
             if (phone.IndexOf("86") == 0)
             {
                 phone = phone.Substring(2);
@@ -248,13 +256,13 @@ namespace CSPN.sms
                 sp.DiscardInBuffer();
                 //注销事件关联，为发送做准备
                 sp.DataReceived -= sp_DataReceived;
-                //设置发送的号码和发送内容字节长度   
+                //设置发送的号码和发送内容字节长度
                 sp.Write("AT^HCMGS=\"" + phone + "\"" + "\r");
                 Thread.Sleep(500);
-                //写入   
+                //写入
                 sp.Write(b, 0, b.Length);
                 Thread.Sleep(500);
-                //写入CTRL+Z结束短信内容，注意在UNICODE模式下需要两个字节，这个也是不能在超级终端下操作的原因   
+                //写入CTRL+Z结束短信内容，注意在UNICODE模式下需要两个字节，这个也是不能在超级终端下操作的原因
                 byte[] b2 = new byte[] { 0x00, 0x1a };
                 sp.Write(b2, 0, b2.Length);
             }
@@ -268,6 +276,7 @@ namespace CSPN.sms
                 sp.DataReceived += sp_DataReceived;
             }
         }
+
         /// <summary>
         /// 设备初始化
         /// </summary>
@@ -279,8 +288,9 @@ namespace CSPN.sms
             SendAT("AT+CNMI=1,1,0,2,0");
             SendAT("AT^HSMSSS=0,0,6,0");
         }
+
         //格式化信息
-        static string RMessage(string msg)
+        private static string RMessage(string msg)
         {
             Regex regex = new Regex("^[\x21-\x7e]*$");
             string phone, datetime = null, message;

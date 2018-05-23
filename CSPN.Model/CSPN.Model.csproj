@@ -52,6 +52,7 @@
     <Compile Include="UsersInfo.cs" />
     <Compile Include="WellCurrentStateInfo.cs" />
     <Compile Include="WellInfo.cs" />
+    <Compile Include="WellMaintainInfo.cs" />
     <Compile Include="WellStateInfo.cs" />
   </ItemGroup>
   <ItemGroup>

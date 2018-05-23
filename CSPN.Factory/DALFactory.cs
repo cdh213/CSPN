@@ -11,47 +11,62 @@ namespace CSPN.Factory
     {
         private static readonly string path = "CSPN.DAL";
 
-        public DALFactory() { }
+        public DALFactory()
+        {
+        }
 
         public static IOperatorDAL CreateOperatorDAL()
         {
             string className = path + ".OperatorDAL";
             return (IOperatorDAL)Assembly.Load(path).CreateInstance(className);
         }
+
         public static ISystemLogDAL CreateSystemLogDAL()
         {
             string className = path + ".SystemLogDAL";
             return (ISystemLogDAL)Assembly.Load(path).CreateInstance(className);
         }
+
         public static IUserLogDAL CreateUserLogDAL()
         {
             string className = path + ".UserLogDAL";
             return (IUserLogDAL)Assembly.Load(path).CreateInstance(className);
         }
-        public static IUsersManageDAL CreateUsersManagDAL()
+
+        public static IUsersDAL CreateUsersDAL()
         {
-            string className = path + ".UsersManageDAL";
-            return (IUsersManageDAL)Assembly.Load(path).CreateInstance(className);
+            string className = path + ".UsersDAL";
+            return (IUsersDAL)Assembly.Load(path).CreateInstance(className);
         }
+
         public static IWellCurrentStateDAL CreateWellCurrentStateDAL()
         {
             string className = path + ".WellCurrentStateDAL";
             return (IWellCurrentStateDAL)Assembly.Load(path).CreateInstance(className);
         }
+
         public static IWellInfoDAL CreateWellInfoDAL()
         {
             string className = path + ".WellInfoDAL";
             return (IWellInfoDAL)Assembly.Load(path).CreateInstance(className);
         }
-        public static IWellStateInfoDAL CreateWellStateInfoDAL()
+
+        public static IWellStateDAL CreateWellStateDAL()
         {
-            string className = path + ".WellStateInfoDAL";
-            return (IWellStateInfoDAL)Assembly.Load(path).CreateInstance(className);
+            string className = path + ".WellStateDAL";
+            return (IWellStateDAL)Assembly.Load(path).CreateInstance(className);
         }
-        public static IReportInfoDAL CreateReportNumInfoDAL()
+
+        public static IReportDAL CreateReportDAL()
         {
-            string className = path + ".ReportInfoDAL";
-            return (IReportInfoDAL)Assembly.Load(path).CreateInstance(className);
+            string className = path + ".ReportDAL";
+            return (IReportDAL)Assembly.Load(path).CreateInstance(className);
+        }
+
+        public static IWellMaintainDAL CreateWellMaintainDAL()
+        {
+            string className = path + ".WellMaintainDAL";
+            return (IWellMaintainDAL)Assembly.Load(path).CreateInstance(className);
         }
     }
 }

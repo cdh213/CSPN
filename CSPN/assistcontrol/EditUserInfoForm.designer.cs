@@ -35,7 +35,6 @@
             this.txtTelephone = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSure = new System.Windows.Forms.Button();
-            this.lbPassWord = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtRealName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,7 +42,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
-            this.txtPassWord = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -54,14 +52,13 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 163F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 163F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.txtWorkID, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtTelephone, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.lbPassWord, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.label4, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtRealName, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.label3, 3, 0);
@@ -69,7 +66,6 @@
             this.tableLayoutPanel1.Controls.Add(this.label8, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label2, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtUserName, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtPassWord, 4, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -85,7 +81,7 @@
             // 
             this.txtWorkID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtWorkID.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtWorkID.Location = new System.Drawing.Point(120, 22);
+            this.txtWorkID.Location = new System.Drawing.Point(115, 22);
             this.txtWorkID.Name = "txtWorkID";
             this.txtWorkID.Size = new System.Drawing.Size(157, 26);
             this.txtWorkID.TabIndex = 1;
@@ -94,7 +90,7 @@
             // 
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(40, 0);
+            this.label1.Location = new System.Drawing.Point(35, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 70);
             this.label1.TabIndex = 0;
@@ -105,7 +101,7 @@
             // 
             this.txtTelephone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTelephone.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtTelephone.Location = new System.Drawing.Point(363, 92);
+            this.txtTelephone.Location = new System.Drawing.Point(368, 92);
             this.txtTelephone.Name = "txtTelephone";
             this.txtTelephone.Size = new System.Drawing.Size(157, 26);
             this.txtTelephone.TabIndex = 4;
@@ -115,9 +111,9 @@
             this.tableLayoutPanel1.SetColumnSpan(this.panel1, 2);
             this.panel1.Controls.Add(this.btnSure);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(120, 213);
+            this.panel1.Location = new System.Drawing.Point(115, 213);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(237, 65);
+            this.panel1.Size = new System.Drawing.Size(247, 65);
             this.panel1.TabIndex = 34;
             // 
             // btnSure
@@ -132,7 +128,7 @@
             this.btnSure.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSure.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnSure.ForeColor = System.Drawing.Color.White;
-            this.btnSure.Location = new System.Drawing.Point(125, 20);
+            this.btnSure.Location = new System.Drawing.Point(130, 20);
             this.btnSure.Name = "btnSure";
             this.btnSure.Size = new System.Drawing.Size(86, 26);
             this.btnSure.TabIndex = 7;
@@ -140,24 +136,13 @@
             this.btnSure.UseVisualStyleBackColor = true;
             this.btnSure.Click += new System.EventHandler(this.btnSure_Click);
             // 
-            // lbPassWord
-            // 
-            this.lbPassWord.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbPassWord.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbPassWord.Location = new System.Drawing.Point(283, 140);
-            this.lbPassWord.Name = "lbPassWord";
-            this.lbPassWord.Size = new System.Drawing.Size(74, 70);
-            this.lbPassWord.TabIndex = 10;
-            this.lbPassWord.Text = "密码";
-            this.lbPassWord.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // label4
             // 
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(283, 70);
+            this.label4.Location = new System.Drawing.Point(278, 70);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 70);
+            this.label4.Size = new System.Drawing.Size(84, 70);
             this.label4.TabIndex = 36;
             this.label4.Text = "联系方式";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -166,7 +151,7 @@
             // 
             this.txtRealName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRealName.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtRealName.Location = new System.Drawing.Point(363, 22);
+            this.txtRealName.Location = new System.Drawing.Point(368, 22);
             this.txtRealName.Name = "txtRealName";
             this.txtRealName.Size = new System.Drawing.Size(157, 26);
             this.txtRealName.TabIndex = 2;
@@ -175,9 +160,9 @@
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(283, 0);
+            this.label3.Location = new System.Drawing.Point(278, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 70);
+            this.label3.Size = new System.Drawing.Size(84, 70);
             this.label3.TabIndex = 35;
             this.label3.Text = "姓名";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -191,7 +176,7 @@
             this.cmbGender.Items.AddRange(new object[] {
             "男",
             "女"});
-            this.cmbGender.Location = new System.Drawing.Point(120, 91);
+            this.cmbGender.Location = new System.Drawing.Point(115, 91);
             this.cmbGender.Name = "cmbGender";
             this.cmbGender.Size = new System.Drawing.Size(157, 28);
             this.cmbGender.TabIndex = 3;
@@ -200,7 +185,7 @@
             // 
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label8.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label8.Location = new System.Drawing.Point(40, 70);
+            this.label8.Location = new System.Drawing.Point(35, 70);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(74, 70);
             this.label8.TabIndex = 8;
@@ -211,7 +196,7 @@
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(40, 140);
+            this.label2.Location = new System.Drawing.Point(35, 140);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 70);
             this.label2.TabIndex = 2;
@@ -221,21 +206,10 @@
             // txtUserName
             // 
             this.txtUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUserName.Location = new System.Drawing.Point(120, 163);
+            this.txtUserName.Location = new System.Drawing.Point(115, 163);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(157, 23);
             this.txtUserName.TabIndex = 5;
-            // 
-            // txtPassWord
-            // 
-            this.txtPassWord.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPassWord.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtPassWord.Location = new System.Drawing.Point(363, 162);
-            this.txtPassWord.Name = "txtPassWord";
-            this.txtPassWord.PasswordChar = '*';
-            this.txtPassWord.Size = new System.Drawing.Size(157, 26);
-            this.txtPassWord.TabIndex = 37;
-            this.txtPassWord.UseSystemPasswordChar = true;
             // 
             // EditUserInfoForm
             // 
@@ -263,7 +237,6 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TextBox txtTelephone;
-        private System.Windows.Forms.Label lbPassWord;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -275,6 +248,5 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtPassWord;
     }
 }

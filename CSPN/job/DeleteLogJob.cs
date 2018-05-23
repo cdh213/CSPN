@@ -9,8 +9,8 @@ namespace CSPN.job
 {
     public class DeleteLogJob : IJob
     {
-        ILogService logService = new LogService();
-        int sysSave_Day, userSave_Day;
+        private ILogService logService = new LogService();
+        private int sysSave_Day, userSave_Day;
 
         public void Execute(IJobExecutionContext context)
         {

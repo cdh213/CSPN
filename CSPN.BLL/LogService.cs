@@ -2,7 +2,6 @@
 using CSPN.IBLL;
 using CSPN.IDAL;
 using CSPN.Model;
-using System;
 using System.Data;
 
 namespace CSPN.BLL
@@ -12,18 +11,20 @@ namespace CSPN.BLL
     /// </summary>
     public class LogService : ILogService
     {
-        private static readonly IUserLogDAL userlogdal = DALFactory.CreateUserLogDAL();
-        private static readonly ISystemLogDAL syslogdal = DALFactory.CreateSystemLogDAL();
+        private static readonly IUserLogDAL userLogDAL = DALFactory.CreateUserLogDAL();
+        private static readonly ISystemLogDAL systemLogDAL = DALFactory.CreateSystemLogDAL();
 
         #region 用户日志
+
         /// <summary>
         /// 查询用户日志信息
         /// </summary>
         /// <returns></returns>
         public DataTable GetUserLogInfo_WellInfo()
         {
-            return userlogdal.GetUserLogInfo_WellInfo();
+            return userLogDAL.GetUserLogInfo_WellInfo();
         }
+
         /// <summary>
         /// 查询用户日志信息
         /// </summary>
@@ -32,16 +33,18 @@ namespace CSPN.BLL
         {
             int fSize = pageSize * (pageIndex - 1) + 1;
             int sSize = fSize + (pageSize - 1);
-            return userlogdal.GetUserLogInfo_WellInfo(fSize, sSize, out pageCount);
+            return userLogDAL.GetUserLogInfo_WellInfo(fSize, sSize, out pageCount);
         }
+
         /// <summary>
         /// 查询用户日志信息
         /// </summary>
         /// <returns></returns>
         public DataTable GetUserLogInfo_GeneralInfo()
         {
-            return userlogdal.GetUserLogInfo_GeneralInfo();
+            return userLogDAL.GetUserLogInfo_GeneralInfo();
         }
+
         /// <summary>
         /// 查询用户日志信息
         /// </summary>
@@ -50,54 +53,50 @@ namespace CSPN.BLL
         {
             int fSize = pageSize * (pageIndex - 1) + 1;
             int sSize = fSize + (pageSize - 1);
-            return userlogdal.GetUserLogInfo_GeneralInfo(fSize, sSize, out pageCount);
+            return userLogDAL.GetUserLogInfo_GeneralInfo(fSize, sSize, out pageCount);
         }
-        /// <summary>
-        /// 查询发生时间的最小值
-        /// </summary>
-        public DateTime GetMinHappen_Time_UserLog()
-        {
-            return userlogdal.GetMinHappen_Time_UserLog();
-        }
+
         /// <summary>
         /// 添加用户日志信息
         /// </summary>
-        /// <param name="UserLog">日志信息</param>
+        /// <param name="userLogInfo">Happen_Time,Operation_Content,The_Operator,Terminal_ID,Notice_time,Receive_People,Current_State</param>
         /// <returns></returns>
-        public int InsertUserLogInfo(UserLogInfo userLog)
+        public int InsertUserLogInfo(UserLogInfo userLogInfo)
         {
-            return userlogdal.InsertUserLogInfo(userLog);
+            return userLogDAL.InsertUserLogInfo(userLogInfo);
         }
 
         /// <summary>
         /// 删除用户日志信息
         /// </summary>
-        /// <param name="UserLog">日志信息</param>
-        /// <returns></returns>
         public int DeleteUserLogInfo(string nowTime, int save_Day)
         {
-            return userlogdal.DeleteUserLogInfo(nowTime, save_Day);
+            return userLogDAL.DeleteUserLogInfo(nowTime, save_Day);
         }
+
         /// <summary>
         /// 更新用户日志信息
         /// </summary>
-        /// <param name="UserLog">日志信息</param>
+        /// <param name="userLogInfo">Processor,Process_Content,Process_Time,Current_State,Happen_Time</param>
         /// <returns></returns>
-        public int UpdateUserLogInfo(UserLogInfo userLog)
+        public int UpdateUserLogInfo(UserLogInfo userLogInfo)
         {
-            return userlogdal.UpdateUserLogInfo(userLog);
+            return userLogDAL.UpdateUserLogInfo(userLogInfo);
         }
-        #endregion
+
+        #endregion 用户日志
 
         #region 系统日志
+
         /// <summary>
         /// 查询系统日志信息
         /// </summary>
         /// <returns></returns>
         public DataTable GetSystemLogInfo()
         {
-            return syslogdal.GetSystemLogInfo();
+            return systemLogDAL.GetSystemLogInfo();
         }
+
         /// <summary>
         /// 查询系统日志信息
         /// </summary>
@@ -106,24 +105,19 @@ namespace CSPN.BLL
         {
             int fSize = pageSize * (pageIndex - 1) + 1;
             int sSize = fSize + (pageSize - 1);
-            return syslogdal.GetSystemLogInfo(fSize, sSize, out pageCount);
+            return systemLogDAL.GetSystemLogInfo(fSize, sSize, out pageCount);
         }
-        /// <summary>
-        /// 查询发生时间的最小值
-        /// </summary>
-        public DateTime GetMinHappen_Time_SysLog()
-        {
-            return syslogdal.GetMinHappen_Time_SysLog();
-        }
+
         /// <summary>
         /// 添加系统日志信息
         /// </summary>
-        /// <param name="UserLog">日志信息</param>
+        /// <param name="systemLogInfo">Happen_Time,Terminal_ID,Well_State_ID,Electricity,Temperature,Humidity,Smoke_Detector,Smoke_Power,Signal_Strength</param>
         /// <returns></returns>
-        public int InsertSystemLogInfo(SystemLogInfo sysLog)
+        public int InsertSystemLogInfo(SystemLogInfo systemLogInfo)
         {
-            return syslogdal.InsertSystemLogInfo(sysLog);
+            return systemLogDAL.InsertSystemLogInfo(systemLogInfo);
         }
+
         /// <summary>
         /// 删除系统日志信息
         /// </summary>
@@ -131,8 +125,9 @@ namespace CSPN.BLL
         /// <returns></returns>
         public int DeleteSystemLogInfo(string nowTime, int save_Day)
         {
-            return syslogdal.DeleteSystemLogInfo(nowTime, save_Day);
+            return systemLogDAL.DeleteSystemLogInfo(nowTime, save_Day);
         }
-        #endregion
+
+        #endregion 系统日志
     }
 }

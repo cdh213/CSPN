@@ -333,7 +333,7 @@
             this.tbReportInterval.Name = "tbReportInterval";
             this.tbReportInterval.Size = new System.Drawing.Size(107, 26);
             this.tbReportInterval.TabIndex = 30;
-            this.tbReportInterval.Text = "1";
+            this.tbReportInterval.Text = "3";
             this.tbReportInterval.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label7

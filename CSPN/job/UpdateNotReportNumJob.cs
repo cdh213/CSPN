@@ -12,11 +12,11 @@ namespace CSPN.job
 {
     public class UpdateNotReportNumJob : IJob
     {
-        IWellInfoService wellInfoService = new WellInfoService();
-        List<ReportInfo> list = new List<ReportInfo>();
-        string dateTime = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-        bool isEnabled = Convert.ToBoolean(ReadWriteXml.ReadXml("ReportInterval").Split('-')[0]);
-        int reportInterval = int.Parse(ReadWriteXml.ReadXml("ReportInterval").Split('-')[1]);
+        private IWellInfoService wellInfoService = new WellInfoService();
+        private List<ReportInfo> list = new List<ReportInfo>();
+        private string dateTime = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+        private bool isEnabled = Convert.ToBoolean(ReadWriteXml.ReadXml("ReportInterval").Split('-')[0]);
+        private int reportInterval = int.Parse(ReadWriteXml.ReadXml("ReportInterval").Split('-')[1]);
 
         public void Execute(IJobExecutionContext context)
         {

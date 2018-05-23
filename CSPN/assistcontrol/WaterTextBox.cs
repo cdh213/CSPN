@@ -8,6 +8,7 @@ namespace CSPN.assistcontrol
     public partial class WaterTextBox : TextBox
     {
         private string mWaterText;
+
         [Category("扩展属性"), Description("TextBox水印")]
         public string WaterText
         {
@@ -18,6 +19,7 @@ namespace CSPN.assistcontrol
                 UpdateWaterText();
             }
         }
+
         private void UpdateWaterText()
         {
             if (this.IsHandleCreated && mWaterText != null)
@@ -25,6 +27,7 @@ namespace CSPN.assistcontrol
                 NativeMethods.SendMessage(this.Handle, 0x1501, (IntPtr)0, mWaterText);
             }
         }
+
         protected override void OnHandleCreated(EventArgs e)
         {
             base.OnHandleCreated(e);

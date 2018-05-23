@@ -11,12 +11,12 @@ namespace CSPN.assistcontrol
 {
     public partial class EditOperatorInfoForm : Form
     {
-        IUsersService userService = new UsersService();
-        OperatorInfo operatorInfo = null;
-        UserLogHelper userLogHelper = new UserLogHelper();
+        private IUsersService userService = new UsersService();
+        private OperatorInfo operatorInfo = null;
+        private UserLogHelper userLogHelper = new UserLogHelper();
 
-        bool _isInsert = false;
-        string _work_ID = null;
+        private bool _isInsert = false;
+        private string _work_ID = null;
 
         //编辑时将选中信息加载到窗体上
         public EditOperatorInfoForm(bool isInsert, string work_ID)
@@ -25,6 +25,7 @@ namespace CSPN.assistcontrol
             _isInsert = isInsert;
             _work_ID = work_ID;
         }
+
         private void EditUserInfoForm_Load(object sender, EventArgs e)
         {
             operatorInfo = new OperatorInfo();
@@ -66,12 +67,13 @@ namespace CSPN.assistcontrol
                 }
             }
         }
+
         //确定添加/更新
         private void btnSure_Click(object sender, EventArgs e)
         {
             operatorInfo = new OperatorInfo()
             {
-                Area = txtArea.Text.Trim(),//区域    
+                Area = txtArea.Text.Trim(),//区域
                 Work_ID = txtWorkID.Text.Trim(),//工号
                 RealName = txtName.Text.Trim(),//姓名
                 Telephone = txtTelephone.Text.Trim(),//联系方式
@@ -108,7 +110,7 @@ namespace CSPN.assistcontrol
                     if (a > 0)
                     {
                         UMessageBox.Show("数据添加成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "添加值班人员。", CommonClass.UserName, null, null);
+                        userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "添加值班人员。", CommonClass.UserName, null, null, null);
                         this.Close();
                     }
                     else
@@ -124,7 +126,7 @@ namespace CSPN.assistcontrol
                 if (a > 0)
                 {
                     UMessageBox.Show("数据修改成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "更新值班人员信息。", CommonClass.UserName, null, null);
+                    userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "更新值班人员信息。", CommonClass.UserName, null, null, null);
                     this.Close();
                 }
                 else

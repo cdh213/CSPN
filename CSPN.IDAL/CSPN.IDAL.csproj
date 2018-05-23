@@ -45,13 +45,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IOperatorDAL.cs" />
-    <Compile Include="IReportInfoDAL.cs" />
+    <Compile Include="IReportDAL.cs" />
     <Compile Include="IWellInfoDAL.cs" />
-    <Compile Include="IWellStateInfoDAL.cs" />
+    <Compile Include="IWellMaintainDAL.cs" />
+    <Compile Include="IWellStateDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ISystemLogDAL.cs" />
     <Compile Include="IUserLogDAL.cs" />
-    <Compile Include="IUsersManageDAL.cs" />
+    <Compile Include="IUsersDAL.cs" />
     <Compile Include="IWellCurrentStateDAL.cs" />
   </ItemGroup>
   <ItemGroup>

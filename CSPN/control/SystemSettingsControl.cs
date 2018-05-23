@@ -1,36 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Windows.Forms;
-using System.IO.Ports;
-using System.Diagnostics;
+﻿using CSPN.assistcontrol;
+using CSPN.BLL;
 using CSPN.common;
 using CSPN.IBLL;
-using CSPN.BLL;
 using CSPN.Model;
-using CSPN.assistcontrol;
-using NPOI.SS.UserModel;
-using NPOI.HSSF.UserModel;
-using NPOI.XSSF.UserModel;
-using System.IO;
 using CSPN.sms;
 using CSPN.webbrower;
+using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
+using System.IO.Ports;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace CSPN.control
 {
     public partial class SystemSettingsControl : UserControl
     {
-        IUsersService userservice = new UsersService();
-        UsersInfo userinfo = new UsersInfo();
+        private IUsersService userservice = new UsersService();
+        private UsersInfo userinfo = new UsersInfo();
 
         public bool isOpen { get; set; }
-        string work_ID;
+        private string work_ID;
 
         public SystemSettingsControl()
         {
             InitializeComponent();
         }
+
         private void SystemSettingsControl_Load(object sender, EventArgs e)
         {
             if (isOpen)
@@ -56,6 +57,7 @@ namespace CSPN.control
         }
 
         #region 系统设置
+
         private void btnSysSet_Click(object sender, EventArgs e)
         {
             if (tbSysLogTime.Text.Trim() == "" && tbUserLogTime.Text.Trim() == "" && tbNotReportTimes.Text.Trim() == "" && tbRefreshTime.Text.Trim() == "" && tbReportInterval.Text.Trim() == "")
@@ -79,6 +81,7 @@ namespace CSPN.control
                 }
             }
         }
+
         private void cbEnabled_CheckedChanged(object sender, EventArgs e)
         {
             if (cbEnabled.Checked)
@@ -92,6 +95,7 @@ namespace CSPN.control
                 tbReportInterval.Enabled = false;
             }
         }
+
         private bool IsNumber(string str)
         {
             if ((Regex.IsMatch(str, "^[1-9]*[1-9][0-9]*$")))
@@ -99,13 +103,16 @@ namespace CSPN.control
             else
                 return false;
         }
-        #endregion
+
+        #endregion 系统设置
 
         #region 短信猫相关设置
+
         private void DeviceLoad()
         {
             PortName.DataSource = SerialPort.GetPortNames();
         }
+
         private void btnSet_Click(object sender, EventArgs e)
         {
             if (PortName.SelectedItem == null || BaudRate.SelectedItem == null)
@@ -120,6 +127,7 @@ namespace CSPN.control
                 Process.GetCurrentProcess().CloseMainWindow();
             }
         }
+
         private void btnTest_Click(object sender, EventArgs e)
         {
             if (PortName.SelectedItem == null || BaudRate.SelectedItem == null)
@@ -168,14 +176,17 @@ namespace CSPN.control
                 Signal.Text = str[10].Replace("+CSQ:", "").Split(',')[0];
             }
         }
-        #endregion
+
+        #endregion 短信猫相关设置
 
         #region 系统用户
+
         private void btnAddUser_Click(object sender, EventArgs e)
         {
             new EditUserInfoForm(true, null).ShowDialog();
             DataLoade(CSPNType.UserInfo);
         }
+
         private void btnUpdateUser_Click(object sender, EventArgs e)
         {
             if (userGrid.SelectedRows.Count == 0)
@@ -187,6 +198,7 @@ namespace CSPN.control
             new EditUserInfoForm(false, work_ID).ShowDialog();
             DataLoade(CSPNType.UserInfo);
         }
+
         private void btnDeleteUser_Click(object sender, EventArgs e)
         {
             if (userGrid.SelectedRows.Count == 0)
@@ -208,23 +220,27 @@ namespace CSPN.control
                 DataLoade(CSPNType.UserInfo);
             }
         }
+
         private void btnRefreshUser_Click(object sender, EventArgs e)
         {
             DataLoade(CSPNType.UserInfo);
         }
-        #endregion
+
+        #endregion 系统用户
 
         #region 值班人员
-        IUsersService userService = new UsersService();
-        UsersInfo user = new UsersInfo();
-        OperatorInfo operatorInfo = new OperatorInfo();
-        
+
+        private IUsersService userService = new UsersService();
+        private UsersInfo user = new UsersInfo();
+        private OperatorInfo operatorInfo = new OperatorInfo();
+
         //添加值班人员
         private void btnAddOperator_Click(object sender, EventArgs e)
         {
             new EditOperatorInfoForm(true, null).ShowDialog();
             DataLoade(CSPNType.OperatorInfo);
         }
+
         //修改值班人员
         private void btnUpdateOperator_Click(object sender, EventArgs e)
         {
@@ -238,6 +254,7 @@ namespace CSPN.control
             DataLoade(CSPNType.OperatorInfo);
             WebBrower.Reload();
         }
+
         //删除值班人员
         private void btnDeleteOperator_Click(object sender, EventArgs e)
         {
@@ -260,13 +277,16 @@ namespace CSPN.control
                 DataLoade(CSPNType.OperatorInfo);
             }
         }
+
         //刷新值班人员
         private void btnRefreshOperator_Click(object sender, EventArgs e)
         {
             DataLoade(CSPNType.OperatorInfo);
         }
+
         //值班人员信息导入
-        string path = "";
+        private string path = "";
+
         private void btnIntoOperator_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -280,10 +300,12 @@ namespace CSPN.control
                 DataLoade(CSPNType.OperatorInfo);
             }
         }
+
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             UMessageBox.Show("导入成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
@@ -291,13 +313,13 @@ namespace CSPN.control
             using (FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
                 IWorkbook workbook = null;  //新建IWorkbook对象
-                if (path.IndexOf(".xlsx") > 0) // 2007版本  
+                if (path.IndexOf(".xlsx") > 0) // 2007版本
                 {
-                    workbook = new XSSFWorkbook(fileStream);  //xlsx数据读入workbook  
+                    workbook = new XSSFWorkbook(fileStream);  //xlsx数据读入workbook
                 }
-                else if (path.IndexOf(".xls") > 0) // 2003版本  
+                else if (path.IndexOf(".xls") > 0) // 2003版本
                 {
-                    workbook = new HSSFWorkbook(fileStream);  //xls数据读入workbook  
+                    workbook = new HSSFWorkbook(fileStream);  //xls数据读入workbook
                 }
                 //获取wk中的sheet
                 ISheet sheet = workbook.GetSheetAt(0);
@@ -322,7 +344,8 @@ namespace CSPN.control
                 }
             }
         }
-        #endregion
+
+        #endregion 值班人员
 
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
@@ -335,6 +358,7 @@ namespace CSPN.control
                 DataLoade(CSPNType.OperatorInfo);
             }
         }
+
         //加载信息
         private void DataLoade(CSPNType type)
         {
@@ -353,7 +377,13 @@ namespace CSPN.control
                 userGrid.DataSource = null;
                 pageUser.PageSize = 50;
                 pageUser.ShowPages(userGrid, null, CSPNType.UserInfo);
-            } 
+            }
+        }
+
+        private void btnDeleteAllMsg_Click(object sender, EventArgs e)
+        {
+            CDMASMS.DeleteAllMsg();
+            UMessageBox.Show("清除成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

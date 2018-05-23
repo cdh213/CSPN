@@ -15,8 +15,8 @@ namespace CSPN.assistcontrol
             InitializeComponent();
         }
 
-        FileHelper file = new FileHelper();
-        string tsx= ConfigurationManager.AppSettings["TSX"];
+        private FileHelper file = new FileHelper();
+        private string tsx = ConfigurationManager.AppSettings["TSX"];
 
         private void WelcomeForm_Load(object sender, EventArgs e)
         {
@@ -67,7 +67,7 @@ namespace CSPN.assistcontrol
                             }
                             else
                             {
-                                UMessageBox.Show("未注册到本地网络！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                UMessageBox.Show("未注册到本地网络，请确认硬件设备连接正确。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 CDMASMS.Close();
                                 this.Close();
                             }
@@ -95,7 +95,7 @@ namespace CSPN.assistcontrol
             }
             else
             {
-                UMessageBox.Show("读取硬件信息失败！请确认硬件设备连接正确。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                UMessageBox.Show("读取硬件信息失败，请确认硬件设备连接正确。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 CDMASMS.Close();
                 this.Close();
             }

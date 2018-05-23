@@ -1,22 +1,22 @@
-﻿using System;
+﻿using CSPN.BLL;
+using CSPN.common;
+using CSPN.IBLL;
+using System;
 using System.Data;
 using System.Windows.Forms;
-using CSPN.IBLL;
-using CSPN.BLL;
-using CSPN.common;
 
 namespace CSPN.assistcontrol
 {
     public partial class DataGridPage : UserControl
     {
-        IWellInfoService wellInfoService = new WellInfoService();
-        IWellStateService wellStateService = new WellStateService();
-        ILogService logservice = new LogService();
-        IUsersService userservice = new UsersService();
-        DataTable table = new DataTable();
-        DataGridView _grid = new DataGridView();
-        string _info = null;
-        CSPNType _type;
+        private IWellInfoService wellInfoService = new WellInfoService();
+        private IWellStateService wellStateService = new WellStateService();
+        private ILogService logservice = new LogService();
+        private IUsersService userservice = new UsersService();
+        private DataTable table = new DataTable();
+        private DataGridView _grid = new DataGridView();
+        private string _info = null;
+        private CSPNType _type;
 
         public DataGridPage()
         {
@@ -44,21 +44,27 @@ namespace CSPN.assistcontrol
                 case CSPNType.WellInfo:
                     table = wellInfoService.GetWellInfo_Table(_info, pageSize, pageIndex, out recorderCount);
                     break;
+
                 case CSPNType.SysLogInfo:
                     table = logservice.GetSystemLogInfo(pageSize, pageIndex, out recorderCount);
                     break;
+
                 case CSPNType.UserLogInfo_WellInfo:
                     table = logservice.GetUserLogInfo_WellInfo(pageSize, pageIndex, out recorderCount);
                     break;
+
                 case CSPNType.UserLogInfo_GeneralInfo:
                     table = logservice.GetUserLogInfo_GeneralInfo(pageSize, pageIndex, out recorderCount);
                     break;
+
                 case CSPNType.MaintainInfo:
                     table = wellStateService.GetMaintainInfo(pageSize, pageIndex, out recorderCount);
                     break;
+
                 case CSPNType.OperatorInfo:
                     table = userservice.GetOperator_Table(pageSize, pageIndex, out recorderCount);
                     break;
+
                 case CSPNType.UserInfo:
                     table = userservice.GetUserInfo_Table(pageSize, pageIndex, out recorderCount);
                     break;
@@ -102,6 +108,7 @@ namespace CSPN.assistcontrol
             pageIndex = 1;
             ReadDataTable();
         }
+
         /// <summary>
         /// 上一页
         /// </summary>
@@ -110,6 +117,7 @@ namespace CSPN.assistcontrol
             pageIndex--;
             ReadDataTable();
         }
+
         /// <summary>
         /// 下一页
         /// </summary>
@@ -118,6 +126,7 @@ namespace CSPN.assistcontrol
             pageIndex++;
             ReadDataTable();
         }
+
         /// <summary>
         /// 末页
         /// </summary>
@@ -126,6 +135,7 @@ namespace CSPN.assistcontrol
             pageIndex = (int)btnLast.Tag;
             ReadDataTable();
         }
+
         /// <summary>
         /// 确定导航
         /// </summary>
@@ -139,14 +149,17 @@ namespace CSPN.assistcontrol
         /// 当前页，默认第一页
         /// </summary>
         private int pageIndex = 1;
+
         /// <summary>
         /// 页大小，默认50条目
         /// </summary>
         private int pageSize = 50;
+
         /// <summary>
         /// 总共页
         /// </summary>
         private int pageCount;
+
         /// <summary>
         /// 总共条目
         /// </summary>
@@ -160,6 +173,7 @@ namespace CSPN.assistcontrol
             get { return pageSize; }
             set { pageSize = value; }
         }
+
         /// <summary>
         /// 总共页
         /// </summary>

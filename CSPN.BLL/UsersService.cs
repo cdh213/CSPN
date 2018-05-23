@@ -12,10 +12,11 @@ namespace CSPN.BLL
     /// </summary>
     public class UsersService : IUsersService
     {
-        private static readonly IUsersManageDAL managdal = DALFactory.CreateUsersManagDAL();
-        private static readonly IOperatorDAL operatordal = DALFactory.CreateOperatorDAL();
+        private static readonly IUsersDAL usersDAL = DALFactory.CreateUsersDAL();
+        private static readonly IOperatorDAL operatorDAL = DALFactory.CreateOperatorDAL();
 
         #region 用户信息管理
+
         /// <summary>
         /// 查询系统用户信息
         /// </summary>
@@ -23,53 +24,65 @@ namespace CSPN.BLL
         {
             int fSize = pageSize * (pageIndex - 1) + 1;
             int sSize = fSize + (pageSize - 1);
-            return managdal.GetUserInfo_Table(fSize, sSize, out pageCount);
+            return usersDAL.GetUserInfo_Table(fSize, sSize, out pageCount);
         }
+
         /// <summary>
         /// 查询系统用户信息
         /// </summary>
         public UsersInfo GetUsersByWork_ID(string work_Id)
         {
-            return managdal.GetUsersByWork_ID(work_Id);
+            return usersDAL.GetUsersByWork_ID(work_Id);
         }
+
         /// <summary>
         /// 查询登录用户信息
         /// </summary>
         public UsersInfo GetUsersByUserName(string username)
         {
-            return managdal.GetUsersByUserName(username);
+            return usersDAL.GetUsersByUserName(username);
         }
+
         /// <summary>
         /// 更新登录时间
         /// </summary>
         public int UpdateLoginTimeByWork_ID(string loginTime, string work_ID)
         {
-            return managdal.UpdateLoginTimeByWork_ID(loginTime, work_ID);
+            return usersDAL.UpdateLoginTimeByWork_ID(loginTime, work_ID);
         }
+
         /// <summary>
         /// 更新系统用户信息
         /// </summary>
+        /// <param name="usersInfo">RealName,Gender,Telephone,UserName,Work_ID</param>
+        /// <returns></returns>
         public int UpdateUserInfo(UsersInfo usersInfo)
         {
-            return managdal.UpdateUserInfo(usersInfo);
+            return usersDAL.UpdateUserInfo(usersInfo);
         }
+
         /// <summary>
         /// 增加系统用户信息
         /// </summary>
+        /// <param name="usersInfo">Work_ID,UserName,PassWord,RealName,Gender,Telephone</param>
+        /// <returns></returns>
         public int InsertUserInfo(UsersInfo usersInfo)
         {
-            return managdal.InsertUserInfo(usersInfo);
+            return usersDAL.InsertUserInfo(usersInfo);
         }
+
         /// <summary>
         /// 删除系统用户信息
         /// </summary>
         public int DeleteUserInfo(string work_Id)
         {
-            return managdal.DeleteUserInfo(work_Id);
+            return usersDAL.DeleteUserInfo(work_Id);
         }
-        #endregion
+
+        #endregion 用户信息管理
 
         #region 值班人员管理
+
         /// <summary>
         /// 加载值班人员信息
         /// </summary>
@@ -78,48 +91,56 @@ namespace CSPN.BLL
         {
             int fSize = pageSize * (pageIndex - 1) + 1;
             int sSize = fSize + (pageSize - 1);
-            return operatordal.GetOperator_Table(fSize, sSize, out pageCount);
+            return operatorDAL.GetOperator_Table(fSize, sSize, out pageCount);
         }
+
         /// <summary>
         /// 加载值班人员信息
         /// </summary>
         /// <returns></returns>
         public List<OperatorInfo> GetOperator()
         {
-            return operatordal.GetOperator();
+            return operatorDAL.GetOperator();
         }
+
         /// <summary>
         /// 查询人员信息
         /// </summary>
         /// <returns></returns>
         public OperatorInfo GetOperatorByWork_ID(string work_ID)
         {
-            return operatordal.GetOperatorByWork_ID(work_ID);
+            return operatorDAL.GetOperatorByWork_ID(work_ID);
         }
+
         /// <summary>
         /// 增加值班人员信息
         /// </summary>
+        /// <param name="operatorInfo">Work_ID,RealName,Gender,Telephone,Area,ReceiveMsg</param>
         /// <returns></returns>
-        public int InsertOperatorInfo(OperatorInfo oper)
+        public int InsertOperatorInfo(OperatorInfo operatorInfo)
         {
-            return operatordal.InsertOperatorInfo(oper);
+            return operatorDAL.InsertOperatorInfo(operatorInfo);
         }
+
         /// <summary>
         /// 修改值班人员信息
         /// </summary>
+        /// <param name="operatorInfo">Work_ID,RealName,Gender,Telephone,Area,ReceiveMsg</param>
         /// <returns></returns>
-        public int UpdateOperatorInfo(OperatorInfo oper)
+        public int UpdateOperatorInfo(OperatorInfo operatorInfo)
         {
-            return operatordal.UpdateOperatorInfo(oper);
+            return operatorDAL.UpdateOperatorInfo(operatorInfo);
         }
+
         /// <summary>
         /// 删除值班人员信息
         /// </summary>
         /// <returns></returns>
         public int DeleteOperatorInfo(string workid)
         {
-            return operatordal.DeleteOperatorInfo(workid);
+            return operatorDAL.DeleteOperatorInfo(workid);
         }
-        #endregion
+
+        #endregion 值班人员管理
     }
 }

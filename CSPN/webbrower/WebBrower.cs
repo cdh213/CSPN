@@ -54,7 +54,8 @@ namespace CSPN.webbrower
             webBrower.MenuHandler = new MenuHandler();
             webBrower.JsDialogHandler = new JsDialogHandler();
 
-            Task.Run(()=> {
+            Task.Run(() =>
+            {
                 wellInfoService = new WellInfoService();
                 StringBuilder html = new StringBuilder();
                 string location = ReadWriteXml.ReadXml("DefaultLocation");
@@ -65,6 +66,7 @@ namespace CSPN.webbrower
                 webBrower.LoadHtml(html.ToString(), "http://rendering/");
             });
         }
+
         public static void Reload()
         {
             if (webBrower.IsBrowserInitialized)

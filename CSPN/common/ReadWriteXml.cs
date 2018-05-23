@@ -26,6 +26,7 @@ namespace CSPN.common
             }
             return value;
         }
+
         /// <summary>
         /// 写入Xml文件
         /// </summary>
