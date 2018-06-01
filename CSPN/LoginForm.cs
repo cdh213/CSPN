@@ -50,7 +50,7 @@ namespace CSPN
                 usersInfo = userService.GetUsersByUserName(cbUserName.Text.Trim());
                 if (usersInfo != null)
                 {
-                    if (usersInfo.PassWord.Trim() == txtPWD.Text.Trim() || usersInfo.PassWord.Trim() == SysFunction.GetSecurit(txtPWD.Text.Trim()))
+                    if (usersInfo.PassWord.Trim() == txtPWD.Text.Trim() || usersInfo.PassWord.Trim() == SysFunction.GetSecurit(txtPWD.Text.Trim() + "CSPN" + cbUserName.Text.Trim()))
                     {
                         UMessageBox.Show("登录成功。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         if (cbRemember.Checked)
@@ -101,6 +101,11 @@ namespace CSPN
             {
                 txtPWD.Text = users[cbUserName.SelectedItem.ToString().Trim()].PassWord;
             }
+        }
+
+        private void lbForgotPWD_Click(object sender, EventArgs e)
+        {
+            new ForgotPWD("").ShowDialog(this);
         }
     }
 }

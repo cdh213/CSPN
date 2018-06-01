@@ -22,6 +22,7 @@ namespace CSPN.control
         private IWellStateService wellStateService = new WellStateService();
         private IWellInfoService wellInfoService = new WellInfoService();
         private UserLogHelper userLogHelper = new UserLogHelper();
+        private static bool isUse = false;
         private string terminal_ID, phone, place, time, terminal_Name, realName;
         private int well_State_ID = 0;
         private List<int> msgList = new List<int>();
@@ -40,6 +41,7 @@ namespace CSPN.control
         //报警信息处理
         private void btnAlarm_Click(object sender, EventArgs e)
         {
+            isUse = true;
             msgList.Clear();
             for (int i = 0; i < dgvAlarm.Rows.Count; i++)
             {
@@ -71,12 +73,13 @@ namespace CSPN.control
                     phone = dgvAlarm.Rows[msgList[i]].Cells[7].Value.ToString();
                     realName = dgvAlarm.Rows[msgList[i]].Cells[8].Value.ToString();
                     DisposeMsg(CSPNType.AlarmInfo);
-                    Thread.Sleep(1000);
+                    Thread.Sleep(2000);
                 }
                 AlarmDataLoade();
                 WaitWin.Close();
                 UMessageBox.Show("处理成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            isUse = false;
         }
 
         //报警信息处理完成
@@ -110,7 +113,7 @@ namespace CSPN.control
                     well_State_ID = int.Parse(dgvDispose.Rows[msgList[i]].Cells[3].Value.ToString());
                     realName = dgvDispose.Rows[msgList[i]].Cells[7].Value.ToString();
                     DisposeMsg(CSPNType.DisposeInfo);
-                    Thread.Sleep(500);
+                    Thread.Sleep(1000);
                 }
                 DisposeDataLoade();
                 WaitWin.Close();
@@ -150,7 +153,7 @@ namespace CSPN.control
                     phone = dgvNotReport.Rows[msgList[i]].Cells[6].Value.ToString();
                     realName = dgvNotReport.Rows[msgList[i]].Cells[7].Value.ToString();
                     DisposeMsg(CSPNType.NotReportInfo);
-                    Thread.Sleep(500);
+                    Thread.Sleep(2000);
                 }
                 NotReportDataLoade();
                 WaitWin.Close();
@@ -181,21 +184,25 @@ namespace CSPN.control
         private void AutoAutoSendSMS(List<WellCurrentStateInfo> list)
         {
             btnAlarm.Enabled = false;
-            for (int i = 0; i < list.Count; i++)
+            if (!isUse)
             {
-                if (list[i].OperatorInfo.ReceiveMsg.Trim() == "是")
+                for (int i = 0; i < list.Count; i++)
                 {
-                    time = list[i].Report_Time.TrimEnd();
-                    terminal_ID = list[i].Terminal_ID.TrimEnd();
-                    well_State_ID = list[i].Well_State_ID;
-                    terminal_Name = list[i].WellInfo.Name.TrimEnd();
-                    place = list[i].WellInfo.Place.TrimEnd();
-                    phone = list[i].OperatorInfo.Telephone.TrimEnd();
-                    realName = list[i].OperatorInfo.RealName.TrimEnd();
-                    DisposeMsg(CSPNType.AlarmInfo);
+                    if (list[i].OperatorInfo.ReceiveMsg.Trim() == "是")
+                    {
+                        time = list[i].Report_Time.TrimEnd();
+                        terminal_ID = list[i].Terminal_ID.TrimEnd();
+                        well_State_ID = list[i].Well_State_ID;
+                        terminal_Name = list[i].WellInfo.Name.TrimEnd();
+                        place = list[i].WellInfo.Place.TrimEnd();
+                        phone = list[i].OperatorInfo.Telephone.TrimEnd();
+                        realName = list[i].OperatorInfo.RealName.TrimEnd();
+                        DisposeMsg(CSPNType.AlarmInfo);
+                        Thread.Sleep(2000);
+                    }
                 }
+                ShowAlarmMsg();
             }
-            ShowAlarmMsg();
             btnAlarm.Enabled = true;
         }
 
@@ -209,22 +216,25 @@ namespace CSPN.control
                 switch (well_State_ID)
                 {
                     case 2:
-                        SenAlarmMsg("报警信息");
+                        SenAlarmMsg("报警信息(井盖打开)");
+                        wellStateService.UpdateWellCurrentStateInfo(7, terminal_ID);
                         break;
 
                     case 3:
-                        SenAlarmMsg("状态信息（低电量报警）");
+                        SenAlarmMsg("报警信息(低电量报警)");
+                        wellStateService.UpdateWellCurrentStateInfo(8, terminal_ID);
                         break;
 
                     case 4:
-                        SenAlarmMsg("状态信息（烟感报警）");
+                        SenAlarmMsg("报警信息(烟感报警)");
+                        wellStateService.UpdateWellCurrentStateInfo(8, terminal_ID);
                         break;
 
                     case 5:
-                        SenAlarmMsg("状态信息（烟感低电量报警）");
+                        SenAlarmMsg("报警信息(烟感低电量报警)");
+                        wellStateService.UpdateWellCurrentStateInfo(8, terminal_ID);
                         break;
                 }
-                wellStateService.UpdateWellCurrentStateInfo(7, terminal_ID);
                 GetSMS.UpdateMap(terminal_ID);
                 if (refreshMessageDelegate != null)
                 {
@@ -235,19 +245,23 @@ namespace CSPN.control
             {
                 switch (well_State_ID)
                 {
-                    //case 2:
-                    //    UpdateDisposeMsg("报警信息");
-                    //    break;
-                    //case 3:
-                    //    UpdateDisposeMsg("状态信息（低电量报警）");
-                    //    break;
-                    //case 4:
-                    //    UpdateDisposeMsg("状态信息（烟感报警）");
-                    //    break;
-                    //case 5:
-                    //    UpdateDisposeMsg("状态信息（烟感低电量报警）");
-                    //    break;
-                    case 7:
+                    case 2:
+                        UpdateDisposeMsg("报警信息(井盖打开)");
+                        break;
+
+                    case 3:
+                        UpdateDisposeMsg("报警信息(低电量报警)");
+                        break;
+
+                    case 4:
+                        UpdateDisposeMsg("报警信息(烟感报警)");
+                        break;
+
+                    case 5:
+                        UpdateDisposeMsg("报警信息(烟感低电量报警)");
+                        break;
+
+                    default:
                         UpdateDisposeMsg("报警信息");
                         break;
                 }
@@ -256,7 +270,7 @@ namespace CSPN.control
             }
             else
             {
-                CDMASMS.SendCHNSms($"位于：{place}的{terminal_Name}已经{ReadWriteXml.ReadXml("NotReportTimes")}天或超过{ReadWriteXml.ReadXml("NotReportTimes")}天未发送信息。", phone);
+                CDMASMS.SendCHNSms($"位于:{place}的{terminal_Name}已经{ReadWriteXml.ReadXml("NotReportTimes")}天或超过{ReadWriteXml.ReadXml("NotReportTimes")}天未发送信息", phone);
                 wellInfoService.Empty_NotReportNumInfo(terminal_ID);
                 userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "处理未上报信息。", CommonClass.UserName, terminal_ID, DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), realName);
             }
@@ -264,7 +278,7 @@ namespace CSPN.control
 
         private void SenAlarmMsg(string msg)
         {
-            CDMASMS.SendCHNSms($"{msg}---人井编号：{terminal_ID}，人井名称：{terminal_Name}, 地点：{place}，发生时间：{time}", phone);
+            CDMASMS.SendCHNSms($"{msg}--编号:{terminal_ID},名称:{terminal_Name},地点:{place},时间：{time}", phone);
             userLogHelper.InsertUserLog(time, "处理" + msg, CommonClass.UserName, terminal_ID, DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), realName);
         }
 

@@ -11,7 +11,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CSPN.assistcontrol
@@ -29,6 +28,7 @@ namespace CSPN.assistcontrol
         private MessageForm()
         {
             InitializeComponent();
+            Visible = false;
             GetSMS.getSMSDelegate += new GetSMSDelegate(ShowAlarmMsg);
             PendingMsgControl.refreshMessageDelegate += new RefreshMessageDelegate(ShowAlarmMsg);
             RefreshWellInfoJob.refreshDelegate += new RefreshDelegate(RefreshInfo);
@@ -43,6 +43,9 @@ namespace CSPN.assistcontrol
                     if (messageForm == null)
                     {
                         messageForm = new MessageForm();
+                        Point p = new Point(Screen.PrimaryScreen.WorkingArea.Width - messageForm.Width, Screen.PrimaryScreen.WorkingArea.Height - messageForm.Height);
+                        messageForm.PointToScreen(p);
+                        messageForm.Location = p;
                     }
                 }
             }
@@ -64,7 +67,12 @@ namespace CSPN.assistcontrol
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Visible = false;
+        }
+
+        public void ShowForm()
+        {
+            Visible = true;
         }
 
         private void btnClose_MouseEnter(object sender, EventArgs e)
@@ -115,21 +123,6 @@ namespace CSPN.assistcontrol
             {
                 e.Value = ImageHelper.ToImage(e.Value.ToString());
             }
-        }
-    }
-
-    public class ShowMessageForm
-    {
-        public static void ShowForm()
-        {
-            Task.Run(() =>
-            {
-                MessageForm messageForm = MessageForm.GetMessageForm();
-                Point p = new Point(Screen.PrimaryScreen.WorkingArea.Width - messageForm.Width, Screen.PrimaryScreen.WorkingArea.Height - messageForm.Height);
-                messageForm.PointToScreen(p);
-                messageForm.Location = p;
-                Application.Run(messageForm);
-            });
         }
     }
 }

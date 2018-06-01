@@ -68,7 +68,8 @@ namespace CSPN.assistcontrol
                 RealName = txtRealName.Text.Trim(),//姓名
                 Gender = cmbGender.SelectedItem.ToString().Trim(),//性别
                 Telephone = txtTelephone.Text.Trim(),//联系方式
-                UserName = txtUserName.Text.Trim()//用户名
+                UserName = txtUserName.Text.Trim(),//用户名
+                PassWord = SysFunction.GetSecurit("123456CSPN" + txtUserName.Text.Trim())
             };
 
             if (txtWorkID.Text.Trim() == "")

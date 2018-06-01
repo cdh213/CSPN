@@ -68,11 +68,11 @@
             this.btnUserWellInfoOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUserWellInfoOut.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnUserWellInfoOut.ForeColor = System.Drawing.Color.White;
-            this.btnUserWellInfoOut.Location = new System.Drawing.Point(209, 37);
+            this.btnUserWellInfoOut.Location = new System.Drawing.Point(210, 37);
             this.btnUserWellInfoOut.Name = "btnUserWellInfoOut";
             this.btnUserWellInfoOut.Size = new System.Drawing.Size(179, 26);
             this.btnUserWellInfoOut.TabIndex = 16;
-            this.btnUserWellInfoOut.Text = "人井操作日志导出(Excel)";
+            this.btnUserWellInfoOut.Text = "人井处理日志导出(Excel)";
             this.btnUserWellInfoOut.UseVisualStyleBackColor = true;
             this.btnUserWellInfoOut.Click += new System.EventHandler(this.btnUserWellInfoOut_Click);
             // 
@@ -88,11 +88,11 @@
             this.btnUserGeneralInfoOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUserGeneralInfoOut.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnUserGeneralInfoOut.ForeColor = System.Drawing.Color.White;
-            this.btnUserGeneralInfoOut.Location = new System.Drawing.Point(409, 37);
+            this.btnUserGeneralInfoOut.Location = new System.Drawing.Point(410, 37);
             this.btnUserGeneralInfoOut.Name = "btnUserGeneralInfoOut";
             this.btnUserGeneralInfoOut.Size = new System.Drawing.Size(179, 26);
             this.btnUserGeneralInfoOut.TabIndex = 17;
-            this.btnUserGeneralInfoOut.Text = "一般用户日志导出(Excel)";
+            this.btnUserGeneralInfoOut.Text = "用户日志导出(Excel)";
             this.btnUserGeneralInfoOut.UseVisualStyleBackColor = true;
             this.btnUserGeneralInfoOut.Click += new System.EventHandler(this.btnUserGeneralInfoOut_Click);
             // 

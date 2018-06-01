@@ -33,12 +33,13 @@ namespace CSPN.sms
         {
             Task.Run(() =>
             {
+                string num, sms;
                 while (true)
                 {
                     if (CDMASMS.queue.Count > 0)
                     {
-                        int num = CDMASMS.queue.Dequeue();
-                        string sms = CDMASMS.ReadMsgByIndex(num);
+                        num = CDMASMS.queue.Dequeue();
+                        sms = CDMASMS.ReadMsgByIndex(num);
                         if (sms != null)
                         {
                             string[] str = sms.Split(';');
@@ -65,12 +66,12 @@ namespace CSPN.sms
                                         wellCurrentStateInfo.Well_State_ID = 3;
                                     }
                                     //烟感报警
-                                    if (SMSAnalysis.IsSmokeAlarm)
+                                    else if (SMSAnalysis.IsSmokeAlarm)
                                     {
                                         wellCurrentStateInfo.Well_State_ID = 4;
                                     }
                                     //烟感电量报警
-                                    if (SMSAnalysis.IsSmoke_PowerAlarm)
+                                    else if (SMSAnalysis.IsSmoke_PowerAlarm)
                                     {
                                         wellCurrentStateInfo.Well_State_ID = 5;
                                     }
@@ -83,7 +84,7 @@ namespace CSPN.sms
                                 UpdateReportNum();
                                 if (wellInfo.WellCurrentStateInfo.Well_State_ID == 1)
                                 {
-                                    ShowMessageForm.ShowForm();
+                                    MessageForm.GetMessageForm().ShowForm();
                                     if (wellCurrentStateInfo.Well_State_ID == 2 || wellCurrentStateInfo.Well_State_ID == 3 || wellCurrentStateInfo.Well_State_ID == 4 || wellCurrentStateInfo.Well_State_ID == 5)
                                     {
                                         UpdateWellCurrentState();

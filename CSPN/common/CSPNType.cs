@@ -13,12 +13,12 @@
         SysLogInfo = 1,
 
         /// <summary>
-        /// 用户日志_人井日志
+        /// 用户日志_人井处理日志
         /// </summary>
         UserLogInfo_WellInfo = 2,
 
         /// <summary>
-        /// 用户日志_一般
+        /// 用户日志
         /// </summary>
         UserLogInfo_GeneralInfo = 3,
 

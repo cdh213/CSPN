@@ -211,8 +211,8 @@
             this.cbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbType.FormattingEnabled = true;
             this.cbType.Items.AddRange(new object[] {
-            "人井操作日志",
-            "一般用户日志"});
+            "人井处理日志",
+            "用户日志"});
             this.cbType.Location = new System.Drawing.Point(103, 10);
             this.cbType.Name = "cbType";
             this.cbType.Size = new System.Drawing.Size(167, 28);
@@ -345,7 +345,7 @@
             // 
             // Well_State
             // 
-            Well_State.DataPropertyName = "Well_State";
+            Well_State.DataPropertyName = "cState";
             Well_State.HeaderText = "人井状态";
             Well_State.Name = "Well_State";
             Well_State.ReadOnly = true;

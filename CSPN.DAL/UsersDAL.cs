@@ -32,6 +32,7 @@ namespace CSPN.DAL
         private const string SELECT_USER_USERNAME = "select * from CSPN_Users_Info where UserName=@username";
         private const string SELECT_User_Work_Id = "select * from CSPN_Users_Info where Work_Id=@Work_Id";
         private const string UPDATE_LOGINTIME_ID = "update CSPN_Users_Info set LoginTime=@LoginTime where Work_ID=@Work_ID";
+        private const string UPDATE_PWD = "update CSPN_Users_Info set [PassWord]=@PassWord where Work_ID=@Work_ID";
         private const string UPDATE_UsersInfo = "update CSPN_Users_Info set RealName=@RealName,Gender=@Gender,Telephone=@Telephone,UserName=@UserName where Work_ID=@Work_ID";
         private const string INSERT_UsersInfo = "insert into CSPN_Users_Info(Work_ID,UserName,[PassWord],RealName,Gender,Telephone) values(@Work_ID,@UserName,@PassWord,@RealName,@Gender,@Telephone)";
         private const string DELETE_UsersInfo = "delete from CSPN_Users_Info where Work_ID=@Work_ID";
@@ -90,6 +91,17 @@ namespace CSPN.DAL
             using (Conn)
             {
                 return Conn.Execute(UPDATE_LOGINTIME_ID, param);
+            }
+        }
+
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        public int UpdatePassWordByWork_ID(string passWord, string work_ID)
+        {
+            using (Conn)
+            {
+                return Conn.Execute(UPDATE_PWD, new { PassWord = passWord, Work_ID = work_ID });
             }
         }
 

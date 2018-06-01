@@ -110,6 +110,7 @@
             this.pageOperator = new CSPN.assistcontrol.DataGridPage();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnForgotPWD = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.SysSetTab.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
@@ -724,12 +725,13 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Controls.Add(this.btnAddUser, 5, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnRefreshUser, 8, 0);
             this.tableLayoutPanel4.Controls.Add(this.pageUser, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.userGrid, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.btnUpdateUser, 6, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnDeleteUser, 7, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnAddUser, 4, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnUpdateUser, 5, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnDeleteUser, 6, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnRefreshUser, 7, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnForgotPWD, 8, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -737,6 +739,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(1151, 580);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
@@ -752,7 +755,7 @@
             this.btnAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddUser.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnAddUser.ForeColor = System.Drawing.Color.White;
-            this.btnAddUser.Location = new System.Drawing.Point(702, 7);
+            this.btnAddUser.Location = new System.Drawing.Point(602, 7);
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(70, 26);
             this.btnAddUser.TabIndex = 21;
@@ -772,7 +775,7 @@
             this.btnRefreshUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefreshUser.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnRefreshUser.ForeColor = System.Drawing.Color.White;
-            this.btnRefreshUser.Location = new System.Drawing.Point(1002, 7);
+            this.btnRefreshUser.Location = new System.Drawing.Point(902, 7);
             this.btnRefreshUser.Name = "btnRefreshUser";
             this.btnRefreshUser.Size = new System.Drawing.Size(70, 26);
             this.btnRefreshUser.TabIndex = 17;
@@ -785,7 +788,7 @@
             this.tableLayoutPanel4.SetColumnSpan(this.pageUser, 10);
             this.pageUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageUser.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.pageUser.Location = new System.Drawing.Point(3, 543);
+            this.pageUser.Location = new System.Drawing.Point(3, 583);
             this.pageUser.Name = "pageUser";
             this.pageUser.PageSize = 50;
             this.pageUser.Size = new System.Drawing.Size(1145, 34);
@@ -838,7 +841,7 @@
             this.userGrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.userGrid.RowTemplate.Height = 35;
             this.userGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.userGrid.Size = new System.Drawing.Size(1145, 494);
+            this.userGrid.Size = new System.Drawing.Size(1145, 534);
             this.userGrid.TabIndex = 15;
             // 
             // dataGridViewTextBoxColumn1
@@ -888,7 +891,7 @@
             this.btnUpdateUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdateUser.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnUpdateUser.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateUser.Location = new System.Drawing.Point(802, 7);
+            this.btnUpdateUser.Location = new System.Drawing.Point(702, 7);
             this.btnUpdateUser.Name = "btnUpdateUser";
             this.btnUpdateUser.Size = new System.Drawing.Size(70, 26);
             this.btnUpdateUser.TabIndex = 20;
@@ -908,7 +911,7 @@
             this.btnDeleteUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteUser.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnDeleteUser.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteUser.Location = new System.Drawing.Point(902, 7);
+            this.btnDeleteUser.Location = new System.Drawing.Point(802, 7);
             this.btnDeleteUser.Name = "btnDeleteUser";
             this.btnDeleteUser.Size = new System.Drawing.Size(70, 26);
             this.btnDeleteUser.TabIndex = 19;
@@ -1175,6 +1178,26 @@
             this.toolTip1.InitialDelay = 50;
             this.toolTip1.ReshowDelay = 100;
             // 
+            // btnForgotPWD
+            // 
+            this.btnForgotPWD.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnForgotPWD.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnForgotPWD.BackgroundImage")));
+            this.btnForgotPWD.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnForgotPWD.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnForgotPWD.FlatAppearance.BorderSize = 0;
+            this.btnForgotPWD.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnForgotPWD.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnForgotPWD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnForgotPWD.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnForgotPWD.ForeColor = System.Drawing.Color.White;
+            this.btnForgotPWD.Location = new System.Drawing.Point(1002, 7);
+            this.btnForgotPWD.Name = "btnForgotPWD";
+            this.btnForgotPWD.Size = new System.Drawing.Size(70, 26);
+            this.btnForgotPWD.TabIndex = 22;
+            this.btnForgotPWD.Text = "修改密码";
+            this.btnForgotPWD.UseVisualStyleBackColor = true;
+            this.btnForgotPWD.Click += new System.EventHandler(this.btnForgotPWD_Click);
+            // 
             // SystemSettingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -1283,5 +1306,6 @@
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.ComboBox BaudRate;
         private System.Windows.Forms.ComboBox PortName;
+        private System.Windows.Forms.Button btnForgotPWD;
     }
 }

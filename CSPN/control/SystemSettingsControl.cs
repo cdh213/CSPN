@@ -221,6 +221,17 @@ namespace CSPN.control
             }
         }
 
+        private void btnForgotPWD_Click(object sender, EventArgs e)
+        {
+            if (userGrid.SelectedRows.Count == 0)
+            {
+                UMessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            work_ID = userGrid.CurrentRow.Cells[0].Value.ToString();
+            new ForgotPWD(work_ID).ShowDialog(this);
+        }
+
         private void btnRefreshUser_Click(object sender, EventArgs e)
         {
             DataLoade(CSPNType.UserInfo);

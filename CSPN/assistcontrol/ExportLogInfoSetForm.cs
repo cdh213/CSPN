@@ -59,7 +59,7 @@ namespace CSPN.assistcontrol
                         clbItems.SetItemChecked(i, true);
                     }
                     dt = logService.GetUserLogInfo_WellInfo();
-                    fileName = "人井操作日志" + DateTime.Now.ToString("yyyy-MM-dd");
+                    fileName = "人井处理日志" + DateTime.Now.ToString("yyyy-MM-dd");
                     clbItems.SetItemCheckState(0, CheckState.Indeterminate);
                     SetTime();
                     break;
@@ -75,7 +75,7 @@ namespace CSPN.assistcontrol
                         clbItems.SetItemChecked(i, true);
                     }
                     dt = logService.GetUserLogInfo_GeneralInfo();
-                    fileName = "一般用户日志" + DateTime.Now.ToString("yyyy-MM-dd");
+                    fileName = "用户日志" + DateTime.Now.ToString("yyyy-MM-dd");
                     clbItems.SetItemCheckState(0, CheckState.Indeterminate);
                     SetTime();
                     break;
@@ -123,8 +123,8 @@ namespace CSPN.assistcontrol
 
         private void SetTime()
         {
-            dtpEndTime.MaxDate = DateTime.Now.Date;
-            dtpStartTime.MaxDate = DateTime.Now.Date;
+            dtpEndTime.MaxDate = DateTime.Parse(DateTime.Now.ToString("yyyy/MM/dd 23:59:59"));
+            dtpStartTime.MaxDate = DateTime.Parse(DateTime.Now.ToString("yyyy/MM/dd 23:59:59"));
             if (dt.Rows.Count == 0)
             {
                 dtpStartTime.MinDate = DateTime.Now.Date;
@@ -133,7 +133,7 @@ namespace CSPN.assistcontrol
             }
             else
             {
-                DateTime minTime = dt.AsEnumerable().Select(t => t.Field<DateTime>("Happen_Time")).Min();
+                DateTime minTime = DateTime.Parse(dt.AsEnumerable().Select(t => t.Field<DateTime>("Happen_Time")).Min().ToString("yyyy/MM/dd 23:59:59"));
 
                 dtpStartTime.MinDate = minTime;
                 dtpEndTime.MinDate = minTime;

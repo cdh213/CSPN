@@ -9,13 +9,13 @@ using System.Threading;
 
 namespace CSPN.sms
 {
-    public class CDMASMS
+    public static class CDMASMS
     {
         //私有字段 串口对象
         private static SerialPort sp = null;
 
-        public static Queue<int> queue = new Queue<int>();
-        private static StringBuilder temp = new StringBuilder();
+        public static Queue<string> queue = new Queue<string>();
+        private static StringBuilder temp = new StringBuilder(50);
 
         /// <summary>
         /// 设置串口号和波特率
@@ -29,7 +29,9 @@ namespace CSPN.sms
                 sp = new SerialPort();
                 sp.PortName = comPort;      //串口号
                 sp.BaudRate = baudRate;     //波特率
-                sp.ReadTimeout = 3000;      //读超时时间 发送短信时间的需要
+                sp.ReadTimeout = 5000;      //读超时时间 发送短信时间的需要
+                sp.ReadTimeout = 5000;
+                sp.WriteTimeout = 5000;
                 sp.RtsEnable = true;        //必须为true 这样串口才能接收到数据
                 sp.ReceivedBytesThreshold = 1; //接收缓冲区当中如果有一个字节的话就出发接收函数
                 //收到短信息事件
@@ -54,7 +56,7 @@ namespace CSPN.sms
                 {
                     if (temp.ToString().IndexOf("+CMTI:") != -1)
                     {
-                        queue.Enqueue(Convert.ToInt32(temp.ToString().Split(',')[1].Replace("\r\n", "")));
+                        queue.Enqueue(temp.ToString().Split(',')[1].Replace("\r\n", ""));
                     }
                     if (temp.ToString().IndexOf("^SMMEMFULL:") != -1)
                     {
@@ -197,7 +199,7 @@ namespace CSPN.sms
         /// </summary>
         /// <param name="index">序号</param>
         /// <returns>短信</returns>
-        public static string ReadMsgByIndex(int index)
+        public static string ReadMsgByIndex(string index)
         {
             string msg = SendAT(@"AT^HCMGR=" + index);
             string sms = null;
@@ -231,7 +233,7 @@ namespace CSPN.sms
         /// 按序号删除短信
         /// </summary>
         /// <param name="index">序号</param>
-        public static void DeleteMsgByIndex(int index)
+        public static void DeleteMsgByIndex(string index)
         {
             SendAT("AT+CMGD=" + index);
         }
@@ -243,6 +245,27 @@ namespace CSPN.sms
         /// <param name="phone">手机号</param>
         public static void SendCHNSms(string content, string phone)
         {
+            int n = content.Length;
+            if (n <= 70)
+            {
+                SendSMS(content, phone);
+            }
+            else if (n > 70 && n <= 140)
+            {
+                SendSMS(content.Substring(0, 70), phone);
+                SendSMS(content.Substring(70, 70), phone);
+            }
+            else
+            {
+                SendSMS(content.Substring(0, 70), phone);
+                SendSMS(content.Substring(70, 70), phone);
+                SendSMS(content.Substring(140, 70), phone);
+            }
+        }
+
+        private static void SendSMS(string content, string phone)
+        {
+            string temp = "";
             //中文CDMA发送，UNICODE编码字节
             byte[] b = Encoding.BigEndianUnicode.GetBytes(content);
             //CDMA的AT命令手机号码前面不能加86，否则虽然显示成功发送，但短信中心回应错误代码5
@@ -258,13 +281,18 @@ namespace CSPN.sms
                 sp.DataReceived -= sp_DataReceived;
                 //设置发送的号码和发送内容字节长度
                 sp.Write("AT^HCMGS=\"" + phone + "\"" + "\r");
-                Thread.Sleep(500);
+                sp.ReadTo(">");
+                sp.DiscardInBuffer();
                 //写入
                 sp.Write(b, 0, b.Length);
                 Thread.Sleep(500);
                 //写入CTRL+Z结束短信内容，注意在UNICODE模式下需要两个字节，这个也是不能在超级终端下操作的原因
                 byte[] b2 = new byte[] { 0x00, 0x1a };
                 sp.Write(b2, 0, b2.Length);
+                while (temp.Trim().IndexOf("^HCMGSS:") == -1 && temp.Trim().IndexOf("^HCMGSF:") == -1)
+                {
+                    temp = sp.ReadLine();
+                }
             }
             catch (Exception ex)
             {

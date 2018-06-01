@@ -2,7 +2,7 @@
 
 namespace CSPN.sms
 {
-    public class SMSAnalysis
+    public static class SMSAnalysis
     {
         #region 属性
 

@@ -52,6 +52,14 @@ namespace CSPN.BLL
         }
 
         /// <summary>
+        /// 修改密码
+        /// </summary>
+        public int UpdatePassWordByWork_ID(string passWord, string work_ID)
+        {
+            return usersDAL.UpdatePassWordByWork_ID(passWord, work_ID);
+        }
+
+        /// <summary>
         /// 更新系统用户信息
         /// </summary>
         /// <param name="usersInfo">RealName,Gender,Telephone,UserName,Work_ID</param>
