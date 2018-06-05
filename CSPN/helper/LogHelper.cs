@@ -10,7 +10,7 @@ namespace CSPN.helper
 
         public static void WriteLog(string info)
         {
-            if (logerror.IsErrorEnabled)
+            if (logerror.IsInfoEnabled)
             {
                 logerror.Info(info);
             }
@@ -26,7 +26,7 @@ namespace CSPN.helper
 
         public static void WriteQuartzLog(string info)
         {
-            if (quartzLog.IsErrorEnabled)
+            if (quartzLog.IsInfoEnabled)
             {
                 quartzLog.Info(info);
             }

@@ -17,8 +17,7 @@ namespace CSPN.assistcontrol
 {
     public partial class MessageForm : Form
     {
-        private static MessageForm messageForm;
-        private static object obj = new object();
+        private static MessageForm messageForm = null;
         private IWellInfoService wellInfoService = new WellInfoService();
         private IWellStateService wellStateService = new WellStateService();
         private string terminal_ID = null;
@@ -28,7 +27,10 @@ namespace CSPN.assistcontrol
         private MessageForm()
         {
             InitializeComponent();
-            Visible = false;
+            Point p = new Point(Screen.PrimaryScreen.WorkingArea.Width - Width, Screen.PrimaryScreen.WorkingArea.Height - Height);
+            PointToScreen(p);
+            Location = p;
+
             GetSMS.getSMSDelegate += new GetSMSDelegate(ShowAlarmMsg);
             PendingMsgControl.refreshMessageDelegate += new RefreshMessageDelegate(ShowAlarmMsg);
             RefreshWellInfoJob.refreshDelegate += new RefreshDelegate(RefreshInfo);
@@ -36,18 +38,9 @@ namespace CSPN.assistcontrol
 
         public static MessageForm GetMessageForm()
         {
-            if (messageForm == null)
+            if (messageForm == null || messageForm.IsDisposed)
             {
-                lock (obj)
-                {
-                    if (messageForm == null)
-                    {
-                        messageForm = new MessageForm();
-                        Point p = new Point(Screen.PrimaryScreen.WorkingArea.Width - messageForm.Width, Screen.PrimaryScreen.WorkingArea.Height - messageForm.Height);
-                        messageForm.PointToScreen(p);
-                        messageForm.Location = p;
-                    }
-                }
+                messageForm = new MessageForm();
             }
             return messageForm;
         }
@@ -68,11 +61,6 @@ namespace CSPN.assistcontrol
         private void btnClose_Click(object sender, EventArgs e)
         {
             Visible = false;
-        }
-
-        public void ShowForm()
-        {
-            Visible = true;
         }
 
         private void btnClose_MouseEnter(object sender, EventArgs e)
@@ -103,7 +91,7 @@ namespace CSPN.assistcontrol
         {
             if (dgvAlarm.InvokeRequired)
             {
-                dgvAlarm.Invoke(new job.RefreshDelegate(RefreshInfo));
+                dgvAlarm.Invoke(new RefreshDelegate(RefreshInfo));
             }
             else
             {
@@ -115,6 +103,17 @@ namespace CSPN.assistcontrol
         {
             dgvAlarm.AutoGenerateColumns = false;
             dgvAlarm.DataSource = wellStateService.GetAlarmInfo();
+            if (dgvAlarm.Rows.Count == 0)
+            {
+                if (GetMessageForm().InvokeRequired)
+                {
+                    GetMessageForm().Invoke(new Action(() => { GetMessageForm().Visible = false; }));
+                }
+                else
+                {
+                    GetMessageForm().Visible = false;
+                }
+            }
         }
 
         private void dgvAlarm_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

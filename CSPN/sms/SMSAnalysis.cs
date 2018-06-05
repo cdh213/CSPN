@@ -58,13 +58,15 @@ namespace CSPN.sms
 
         #endregion 属性
 
+        private static string[] s = null;
+
         /// <summary>
         /// 信息分析结果
         /// </summary>
         /// <param name="smsMsg"></param>
         public static void MsgResult(string smsMsg)
         {
-            string[] s = new string[smsMsg.Length];
+            s = new string[smsMsg.Length];
             for (int i = 0; i < smsMsg.Length - 1; i++)
             {
                 s[i] = smsMsg.Substring(i, 1);

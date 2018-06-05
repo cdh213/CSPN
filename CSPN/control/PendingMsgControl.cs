@@ -272,7 +272,7 @@ namespace CSPN.control
             {
                 CDMASMS.SendCHNSms($"位于:{place}的{terminal_Name}已经{ReadWriteXml.ReadXml("NotReportTimes")}天或超过{ReadWriteXml.ReadXml("NotReportTimes")}天未发送信息", phone);
                 wellInfoService.Empty_NotReportNumInfo(terminal_ID);
-                userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "处理未上报信息。", CommonClass.UserName, terminal_ID, DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), realName);
+                userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "处理未上报信息", CommonClass.UserName, terminal_ID, DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), realName);
             }
         }
 
@@ -284,7 +284,7 @@ namespace CSPN.control
 
         private void UpdateDisposeMsg(string msg)
         {
-            userLogHelper.UpdateUserLog(realName, "完成" + msg + "处理。", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), time);
+            userLogHelper.UpdateUserLog(realName, "完成" + msg + "处理", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), time);
         }
 
         #endregion 处理信息

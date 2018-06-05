@@ -345,7 +345,7 @@
             // 
             // Well_State
             // 
-            Well_State.DataPropertyName = "cState";
+            Well_State.DataPropertyName = "State";
             Well_State.HeaderText = "人井状态";
             Well_State.Name = "Well_State";
             Well_State.ReadOnly = true;

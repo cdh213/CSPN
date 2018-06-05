@@ -293,6 +293,7 @@ namespace CSPN.sms
                 {
                     temp = sp.ReadLine();
                 }
+                LogHelper.WriteLog(temp);
             }
             catch (Exception ex)
             {
@@ -314,7 +315,7 @@ namespace CSPN.sms
             SendAT("AT+WSCL=6,4");
             SendAT("AT+CPMS=\"ME\",\"ME\",\"ME\"");
             SendAT("AT+CNMI=1,1,0,2,0");
-            SendAT("AT^HSMSSS=0,0,6,0");
+            SendAT("AT^HSMSSS=1,0,6,0");
         }
 
         //格式化信息

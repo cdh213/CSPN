@@ -31,6 +31,7 @@ namespace CSPN.sms
 
         public static void GetSMSHandle()
         {
+            MessageForm messageForm = MessageForm.GetMessageForm();
             Task.Run(() =>
             {
                 string num, sms;
@@ -84,9 +85,16 @@ namespace CSPN.sms
                                 UpdateReportNum();
                                 if (wellInfo.WellCurrentStateInfo.Well_State_ID == 1)
                                 {
-                                    MessageForm.GetMessageForm().ShowForm();
                                     if (wellCurrentStateInfo.Well_State_ID == 2 || wellCurrentStateInfo.Well_State_ID == 3 || wellCurrentStateInfo.Well_State_ID == 4 || wellCurrentStateInfo.Well_State_ID == 5)
                                     {
+                                        if (messageForm.InvokeRequired)
+                                        {
+                                            messageForm.Invoke(new Action(() => { messageForm.Visible = true; }));
+                                        }
+                                        else
+                                        {
+                                            messageForm.Visible = true;
+                                        }
                                         UpdateWellCurrentState();
                                         if (getSMSDelegate != null)
                                         {
