@@ -27,7 +27,7 @@ namespace CSPN.DAL
 
         #endregion Conn
 
-        private const string SELECT = "select * from CSPN_Users_Info where ID between (select max(ID) from (select top {0} ID from CSPN_Users_Info order by ID asc)) and (select max(ID) from (select top {1} ID from CSPN_Users_Info order by ID asc)) order by ID asc";
+        private const string SELECT = "select * from CSPN_Users_Info where Work_Id between (select max(Work_Id) from (select top {0} Work_Id from CSPN_Users_Info order by Work_Id asc)) and (select max(Work_Id) from (select top {1} Work_Id from CSPN_Users_Info order by Work_Id asc)) order by Work_Id asc";
         private const string SELECT_Count = "select count(*) from CSPN_Users_Info";
         private const string SELECT_USER_USERNAME = "select * from CSPN_Users_Info where UserName=@username";
         private const string SELECT_User_Work_Id = "select * from CSPN_Users_Info where Work_Id=@Work_Id";

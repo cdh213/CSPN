@@ -8,7 +8,6 @@ namespace CSPN.Model
     [Serializable]
     public class UsersInfo
     {
-        private string _id;//ID
         private string _work_ID;//工号
         private string _userName;//用户名
         private string _passWord;//密码
@@ -18,15 +17,6 @@ namespace CSPN.Model
         private string _loginTime;//最后一次登录时间
 
         #region 属性
-
-        /// <summary>
-        /// ID
-        /// </summary>
-        public string ID
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
 
         /// <summary>
         /// 用户名

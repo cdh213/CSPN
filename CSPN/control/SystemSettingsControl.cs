@@ -23,7 +23,6 @@ namespace CSPN.control
     {
         private IUsersService userservice = new UsersService();
         private UsersInfo userinfo = new UsersInfo();
-
         public bool isOpen { get; set; }
         private string work_ID;
 
@@ -192,11 +191,13 @@ namespace CSPN.control
             if (userGrid.SelectedRows.Count == 0)
             {
                 UMessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
             }
-            work_ID = userGrid.CurrentRow.Cells[0].Value.ToString();
-            new EditUserInfoForm(false, work_ID).ShowDialog();
-            DataLoade(CSPNType.UserInfo);
+            else
+            {
+                work_ID = userGrid.CurrentRow.Cells[0].Value.ToString();
+                new EditUserInfoForm(false, work_ID).ShowDialog();
+                DataLoade(CSPNType.UserInfo);
+            }
         }
 
         private void btnDeleteUser_Click(object sender, EventArgs e)
@@ -204,20 +205,22 @@ namespace CSPN.control
             if (userGrid.SelectedRows.Count == 0)
             {
                 UMessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
             }
-            if (UMessageBox.Show("是否删除？", "人井监控管理系统", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            else
             {
-                work_ID = userGrid.CurrentRow.Cells[0].Value.ToString();
-                if (userservice.DeleteUserInfo(work_ID) > 0)
+                if (UMessageBox.Show("是否删除？", "人井监控管理系统", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    UMessageBox.Show("数据删除成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    work_ID = userGrid.CurrentRow.Cells[0].Value.ToString();
+                    if (userservice.DeleteUserInfo(work_ID) > 0)
+                    {
+                        UMessageBox.Show("数据删除成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        UMessageBox.Show("数据删除失败！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    DataLoade(CSPNType.UserInfo);
                 }
-                else
-                {
-                    UMessageBox.Show("数据删除失败！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                DataLoade(CSPNType.UserInfo);
             }
         }
 
@@ -226,10 +229,12 @@ namespace CSPN.control
             if (userGrid.SelectedRows.Count == 0)
             {
                 UMessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
             }
-            work_ID = userGrid.CurrentRow.Cells[0].Value.ToString();
-            new ForgotPWD(work_ID).ShowDialog(this);
+            else
+            {
+                work_ID = userGrid.CurrentRow.Cells[0].Value.ToString();
+                new ForgotPWD(work_ID).ShowDialog(this);
+            }
         }
 
         private void btnRefreshUser_Click(object sender, EventArgs e)
@@ -258,12 +263,14 @@ namespace CSPN.control
             if (operatorGrid.SelectedRows.Count == 0)
             {
                 UMessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
             }
-            work_ID = operatorGrid.CurrentRow.Cells[0].Value.ToString();
-            new EditOperatorInfoForm(false, work_ID).ShowDialog();
-            DataLoade(CSPNType.OperatorInfo);
-            WebBrower.Reload();
+            else
+            {
+                work_ID = operatorGrid.CurrentRow.Cells[0].Value.ToString();
+                new EditOperatorInfoForm(false, work_ID).ShowDialog();
+                DataLoade(CSPNType.OperatorInfo);
+                WebBrower.Reload();
+            }
         }
 
         //删除值班人员
@@ -272,20 +279,23 @@ namespace CSPN.control
             if (operatorGrid.SelectedRows.Count == 0)
             {
                 UMessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
             }
-            if (UMessageBox.Show("是否删除？", "人井监控管理系统", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            else
             {
-                work_ID = operatorGrid.CurrentRow.Cells[0].Value.ToString();
-                if (userservice.DeleteOperatorInfo(work_ID) > 0)
+                if (UMessageBox.Show("是否删除？", "人井监控管理系统", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    UMessageBox.Show("数据删除成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    work_ID = operatorGrid.CurrentRow.Cells[0].Value.ToString();
+                    if (userservice.GetWellInfoByWork_ID(work_ID) == 0)
+                    {
+                        userservice.DeleteOperatorInfo(work_ID);
+                        UMessageBox.Show("数据删除成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DataLoade(CSPNType.OperatorInfo);
+                    }
+                    else
+                    {
+                        UMessageBox.Show("数据删除失败，当前人员与人井有关联！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
-                {
-                    UMessageBox.Show("数据删除失败！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                DataLoade(CSPNType.OperatorInfo);
             }
         }
 
@@ -305,8 +315,8 @@ namespace CSPN.control
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 path = openFileDialog.FileName;
-                this.backgroundWorker.RunWorkerAsync(); // 运行 backgroundWorker 组件
-                ImportProgressBarForm form = new ImportProgressBarForm(this.backgroundWorker, this.ParentForm.Width);// 显示进度条窗体
+                backgroundWorker.RunWorkerAsync(); // 运行 backgroundWorker 组件
+                ImportProgressBarForm form = new ImportProgressBarForm(backgroundWorker, ParentForm.Width);// 显示进度条窗体
                 form.ShowDialog(this);
                 DataLoade(CSPNType.OperatorInfo);
             }
@@ -314,11 +324,19 @@ namespace CSPN.control
 
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            UMessageBox.Show("导入成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (Convert.ToInt32(e.Result) == 0)
+            {
+                UMessageBox.Show("导入成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                UMessageBox.Show("有" + Convert.ToInt32(e.Result) + "条数据导入失败", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
+            int count = 0;
             BackgroundWorker worker = sender as BackgroundWorker;
             //从Excel中读取数据
             using (FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read))
@@ -342,18 +360,26 @@ namespace CSPN.control
                 {
                     //获取每一行
                     currentRow = sheet.GetRow(r);
-                    operatorInfo.Work_ID = currentRow.GetCell(0) == null ? "" : currentRow.GetCell(0).ToString();
-                    operatorInfo.RealName = currentRow.GetCell(1) == null ? "" : currentRow.GetCell(1).ToString();
-                    operatorInfo.Gender = currentRow.GetCell(2) == null ? "" : currentRow.GetCell(2).ToString();
-                    operatorInfo.Telephone = currentRow.GetCell(3) == null ? "" : currentRow.GetCell(3).ToString();
+                    operatorInfo.Work_ID = currentRow.GetCell(0).ToString();
+                    operatorInfo.RealName = currentRow.GetCell(1).ToString();
+                    operatorInfo.Gender = currentRow.GetCell(2).ToString();
+                    operatorInfo.Telephone = currentRow.GetCell(3).ToString();
                     operatorInfo.Area = currentRow.GetCell(4) == null ? "" : currentRow.GetCell(4).ToString();
-                    operatorInfo.ReceiveMsg = currentRow.GetCell(5) == null ? "" : currentRow.GetCell(5).ToString();
+                    operatorInfo.ReceiveMsg = currentRow.GetCell(5).ToString();
 
-                    //执行sql语句
-                    userService.InsertOperatorInfo(operatorInfo);
+                    if (userService.GetOperatorByWork_ID(operatorInfo.Work_ID) == null)
+                    {
+                        //执行sql语句
+                        userService.InsertOperatorInfo(operatorInfo);
+                    }
+                    else
+                    {
+                        count++;
+                    }
                     worker.ReportProgress(r, sheet.LastRowNum);
                 }
             }
+            e.Result = count;
         }
 
         #endregion 值班人员

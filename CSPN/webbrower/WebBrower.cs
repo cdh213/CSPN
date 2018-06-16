@@ -23,7 +23,7 @@ namespace CSPN.webbrower
 
         public WebBrower()
         {
-            RefreshWellInfoJob.refreshDelegate += new RefreshDelegate(Reload);
+            RefreshWellInfoJob.refreshEvent += new RefreshDelegate(Reload);
         }
 
         public void Init()

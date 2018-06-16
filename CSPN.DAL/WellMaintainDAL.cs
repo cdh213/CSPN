@@ -27,10 +27,10 @@ namespace CSPN.DAL
         private const string select_Well_Maintain_Info_Count = "select count(*) from CSPN_Well_Info";
         private const string select_Maintain_StartTime = "select Terminal_ID,Maintain_State from CSPN_Well_Maintain_Info where Maintain_StartTime=@Maintain_StartTime";
         private const string select_Maintain_EndTime = "select Terminal_ID from CSPN_Well_Maintain_Info where Maintain_EndTime=@Maintain_EndTime";
-        private const string updade_Well_Maintain_Info1 = "update CSPN_Well_Maintain_Info set Maintain_StartTime=@Maintain_StartTime,Maintain_EndTime=@Maintain_EndTime where Terminal_ID=@Terminal_ID";
-        private const string updade_Well_Maintain_Info2 = "update CSPN_Well_Maintain_Info set Maintain_State=@Maintain_State where Terminal_ID=@Terminal_ID";
+        private const string updade_Well_Maintain_Info = "update CSPN_Well_Maintain_Info set Maintain_StartTime=@Maintain_StartTime,Maintain_EndTime=@Maintain_EndTime where Terminal_ID=@Terminal_ID";
+        private const string set_Well_Maintain_Info = "update CSPN_Well_Maintain_Info as a inner join CSPN_Well_Current_State_Info as b on a.Terminal_ID=b.Terminal_ID set Maintain_State=1,Well_State_ID=6 where a.Terminal_ID=@Terminal_ID";
         private const string insert_Well_Maintain_Info = "insert into CSPN_Well_Maintain_Info(Terminal_ID,Maintain_State) values(@Terminal_ID,@Maintain_State)";
-        private const string cancel_Well_Maintain_Info = "update CSPN_Well_Maintain_Info as a inner join CSPN_Well_Current_State_Info as b on a.Terminal_ID=b.Terminal_ID set Maintain_State=@Maintain_State,Well_State_ID=1 where a.Terminal_ID=@Terminal_ID";
+        private const string cancel_Well_Maintain_Info = "update CSPN_Well_Maintain_Info as a inner join CSPN_Well_Current_State_Info as b on a.Terminal_ID=b.Terminal_ID set Maintain_StartTime=NULL,Maintain_EndTime=NULL,Maintain_State=0,Well_State_ID=1 where a.Terminal_ID=@Terminal_ID";
         private const string Delete_Well_Maintain_Info = "delete from CSPN_Well_Maintain_Info where Terminal_ID=@Terminal_ID";
 
         private StringBuilder sb = null;
@@ -89,18 +89,29 @@ namespace CSPN.DAL
 
             using (Conn)
             {
-                return Conn.Execute(updade_Well_Maintain_Info1, parm);
+                return Conn.Execute(updade_Well_Maintain_Info, parm);
             }
         }
 
         /// <summary>
-        /// 维护信息更新
+        /// 设置维护
         /// </summary>
-        public int UpdateMaintainInfo(int maintain_State, string terminal_ID)
+        public int MaintainInfoSet(string terminal_ID)
         {
             using (Conn)
             {
-                return Conn.Execute(updade_Well_Maintain_Info2, new { Maintain_State = maintain_State, Terminal_ID = terminal_ID });
+                return Conn.Execute(set_Well_Maintain_Info, new { Terminal_ID = terminal_ID });
+            }
+        }
+
+        /// <summary>
+        /// 取消维护
+        /// </summary>
+        public int MaintainInfoCancel(string terminal_ID)
+        {
+            using (Conn)
+            {
+                return Conn.Execute(cancel_Well_Maintain_Info, new { Terminal_ID = terminal_ID });
             }
         }
 
@@ -112,17 +123,6 @@ namespace CSPN.DAL
             using (Conn)
             {
                 return Conn.Execute(insert_Well_Maintain_Info, new { Terminal_ID = terminal_ID, Maintain_State = maintain_State });
-            }
-        }
-
-        /// <summary>
-        /// 取消维护
-        /// </summary>
-        public int MaintainInfoCancel(int maintain_State, string terminal_ID)
-        {
-            using (Conn)
-            {
-                return Conn.Execute(cancel_Well_Maintain_Info, new { Maintain_State = maintain_State, Terminal_ID = terminal_ID });
             }
         }
 

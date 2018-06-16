@@ -1,5 +1,4 @@
 ﻿using CSPN.common;
-using CSPN.helper;
 using CSPN.job;
 using System;
 using System.Windows.Forms;
@@ -11,85 +10,79 @@ namespace CSPN.control
         public LogInfoControl()
         {
             InitializeComponent();
-            InitializeSysLogInfo();
-            InitializeUserLogInfo_WellInfo();
-            InitializeUserLogInfo_GeneralInfo();
-            RefreshWellInfoJob.refreshDelegate += new RefreshDelegate(RefreshInfo);
+            RefreshWellInfoJob.refreshEvent += new RefreshDelegate(AutoRefresh);
         }
 
         private void LogInfoControl_Load(object sender, EventArgs e)
         {
-            cbType.SelectedIndex = 0;
-            DataLoade(false, null);
-        }
-
-        private void cbType_DropDownClosed(object sender, EventArgs e)
-        {
-            DataLoade(false, null);
+            DataLoade(CSPNType.SysLogInfo);
+            DataLoade(CSPNType.UserLogInfo_WellInfo);
+            DataLoade(CSPNType.UserLogInfo_GeneralInfo);
         }
 
         //系统日志刷新
         private void btnSysRefresh_Click(object sender, EventArgs e)
         {
-            DataLoade(false, null);
+            DataLoade(CSPNType.SysLogInfo);
         }
 
         //用户日志刷新
-        private void btnUserRefresh_Click(object sender, EventArgs e)
+        private void btnWellInfoRefresh_Click(object sender, EventArgs e)
         {
-            DataLoade(false, null);
+            DataLoade(CSPNType.UserLogInfo_WellInfo);
         }
 
-        //自动刷新
-        private void RefreshInfo()
+        //用户日志刷新
+        private void btnGeneralInfoRefresh_Click(object sender, EventArgs e)
         {
-            if (Sysgrid.InvokeRequired)
+            DataLoade(CSPNType.UserLogInfo_GeneralInfo);
+        }
+
+        #region 自动刷新
+
+        private void AutoRefresh()
+        {
+            if (InvokeRequired)
             {
-                Sysgrid.Invoke(new RefreshDelegate(RefreshInfo));
+                Sysgrid.Invoke(new RefreshDelegate(AutoRefresh));
+                wellInfoGrid.Invoke(new RefreshDelegate(AutoRefresh));
+                generalInfoGrid.Invoke(new RefreshDelegate(AutoRefresh));
             }
             else
             {
-                DataLoade(false, null);
+                DataLoade(CSPNType.SysLogInfo);
+                DataLoade(CSPNType.UserLogInfo_WellInfo);
+                DataLoade(CSPNType.UserLogInfo_GeneralInfo);
             }
         }
+
+        #endregion 自动刷新
 
         //加载日志信息
-        private void DataLoade(bool strWhere, string info)
+        private void DataLoade(CSPNType type)
         {
-            //系统日志
-            panelSys.Controls.Clear();
-            panelSys.Controls.Add(Sysgrid);
-            Sysgrid.AutoGenerateColumns = false;
-            Sysgrid.DataSource = null;
-            Syspage.PageSize = 50;
-            Syspage.ShowPages(Sysgrid, info, CSPNType.SysLogInfo);
-            //用户日志
-            if (cbType.SelectedIndex == 0)
+            switch (type)
             {
-                panelUser.Controls.Clear();
-                panelUser.Controls.Add(gridUserLogInfo_WellInfo);
-                gridUserLogInfo_WellInfo.AutoGenerateColumns = false;
-                gridUserLogInfo_WellInfo.DataSource = null;
-                userpage.PageSize = 50;
-                userpage.ShowPages(gridUserLogInfo_WellInfo, null, CSPNType.UserLogInfo_WellInfo);
-            }
-            else
-            {
-                panelUser.Controls.Clear();
-                panelUser.Controls.Add(gridUserLogInfo_GeneralInfo);
-                gridUserLogInfo_GeneralInfo.AutoGenerateColumns = false;
-                gridUserLogInfo_GeneralInfo.DataSource = null;
-                userpage.PageSize = 50;
-                userpage.ShowPages(gridUserLogInfo_GeneralInfo, null, CSPNType.UserLogInfo_GeneralInfo);
-            }
-        }
+                case CSPNType.SysLogInfo:
+                    Sysgrid.AutoGenerateColumns = false;
+                    Sysgrid.DataSource = null;
+                    Syspage.PageSize = 50;
+                    Syspage.ShowPages(Sysgrid, null, type);
+                    break;
 
-        //显示图标
-        private void grid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (Sysgrid.Columns[e.ColumnIndex].Name.Equals("Icon"))
-            {
-                e.Value = ImageHelper.ToImage(e.Value.ToString());
+                case CSPNType.UserLogInfo_WellInfo:
+                    wellInfoGrid.AutoGenerateColumns = false;
+                    wellInfoGrid.DataSource = null;
+                    wellInfoPage.PageSize = 50;
+                    wellInfoPage.ShowPages(wellInfoGrid, null, type);
+                    break;
+
+                case CSPNType.UserLogInfo_GeneralInfo:
+                    generalInfoGrid.AutoGenerateColumns = false;
+                    generalInfoGrid.DataSource = null;
+                    generalInfoPage.PageSize = 50;
+                    generalInfoPage.ShowPages(generalInfoGrid, null, type);
+                    break;
             }
         }
 
@@ -101,8 +94,20 @@ namespace CSPN.control
             }
         }
 
-        private void btnSysRefresh_Click_1(object sender, EventArgs e)
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
+            if (e.TabPage == TabSys)
+            {
+                DataLoade(CSPNType.SysLogInfo);
+            }
+            else if (e.TabPage == TabWellInfo)
+            {
+                DataLoade(CSPNType.UserLogInfo_WellInfo);
+            }
+            else
+            {
+                DataLoade(CSPNType.UserLogInfo_GeneralInfo);
+            }
         }
     }
 }

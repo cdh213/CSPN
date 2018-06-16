@@ -15,7 +15,8 @@ namespace CSPN.webbrower
 
     public class JsEvent
     {
-        public static DisposeMsgDelegate disposeMsgDelegate;
+        public static event DisposeMsgDelegate disposeMsgEvent;
+
         private IWellInfoService wellInfoService = new WellInfoService();
         private IWellStateService wellStateService = new WellStateService();
         private WellInfo well = new WellInfo();
@@ -34,17 +35,19 @@ namespace CSPN.webbrower
             if (inputvalue == "")
             {
                 UMessageBox.Show("请输入内容！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
             }
-            Task.Run(async () =>
-           {
-               using (javascriptCallback)
-               {
-                   list = wellInfoService.GetWellInfo_List(inputvalue);
-                   json = JsonConvert.SerializeObject(list);
-                   await javascriptCallback.ExecuteAsync(json);
-               }
-           });
+            else
+            {
+                Task.Run(async () =>
+                {
+                    using (javascriptCallback)
+                    {
+                        list = wellInfoService.GetWellInfo_List(inputvalue);
+                        json = JsonConvert.SerializeObject(list);
+                        await javascriptCallback.ExecuteAsync(json);
+                    }
+                });
+            }
         }
 
         public void AddMaker(IJavascriptCallback javascriptCallback)
@@ -102,17 +105,17 @@ namespace CSPN.webbrower
 
         public void DisposeAlarmMsg()
         {
-            if (disposeMsgDelegate != null)
+            if (disposeMsgEvent != null)
             {
-                disposeMsgDelegate(well_State_ID, terminal_ID, CSPNType.AlarmInfo);
+                disposeMsgEvent(well_State_ID, terminal_ID, CSPNType.AlarmInfo);
             }
         }
 
         public void DisposeMsgFinish()
         {
-            if (disposeMsgDelegate != null)
+            if (disposeMsgEvent != null)
             {
-                disposeMsgDelegate(well_State_ID, terminal_ID, CSPNType.DisposeInfo);
+                disposeMsgEvent(well_State_ID, terminal_ID, CSPNType.DisposeInfo);
             }
         }
 

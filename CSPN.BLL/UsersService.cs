@@ -121,6 +121,15 @@ namespace CSPN.BLL
         }
 
         /// <summary>
+        /// 查询人井信息
+        /// </summary>
+        /// <returns></returns>
+        public int GetWellInfoByWork_ID(string work_ID)
+        {
+            return operatorDAL.GetWellInfoByWork_ID(work_ID);
+        }
+
+        /// <summary>
         /// 增加值班人员信息
         /// </summary>
         /// <param name="operatorInfo">Work_ID,RealName,Gender,Telephone,Area,ReceiveMsg</param>

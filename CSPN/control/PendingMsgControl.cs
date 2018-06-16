@@ -18,7 +18,8 @@ namespace CSPN.control
 
     public partial class PendingMsgControl : UserControl
     {
-        public static RefreshMessageDelegate refreshMessageDelegate;
+        public static event RefreshMessageDelegate refreshMessageEvent;
+
         private IWellStateService wellStateService = new WellStateService();
         private IWellInfoService wellInfoService = new WellInfoService();
         private UserLogHelper userLogHelper = new UserLogHelper();
@@ -31,9 +32,9 @@ namespace CSPN.control
         {
             InitializeComponent();
             GetSMS.GetSMSHandle();
-            GetSMS.getSMSDelegate += new GetSMSDelegate(ShowAlarmMsg);
-            JsEvent.disposeMsgDelegate += new DisposeMsgDelegate(DisposeMsg_Map);
-            AutoSendSMSJob.autoSendSMSDelegate += new AutoSendSMSDelegate(AutoAutoSendSMS);
+            GetSMS.getSMSEvent += new GetSMSDelegate(ShowAlarmMsg);
+            JsEvent.disposeMsgEvent += new DisposeMsgDelegate(DisposeMsg_Map);
+            AutoSendSMSJob.autoSendSMSEvent += new AutoSendSMSDelegate(AutoAutoSendSMS);
         }
 
         #region 列表信息处理
@@ -58,7 +59,6 @@ namespace CSPN.control
             if (msgList.Count == 0)
             {
                 UMessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
             }
             else
             {
@@ -70,8 +70,8 @@ namespace CSPN.control
                     well_State_ID = int.Parse(dgvAlarm.Rows[msgList[i]].Cells[3].Value.ToString());
                     terminal_Name = dgvAlarm.Rows[msgList[i]].Cells[4].Value.ToString();
                     place = dgvAlarm.Rows[msgList[i]].Cells[5].Value.ToString();
-                    phone = dgvAlarm.Rows[msgList[i]].Cells[7].Value.ToString();
-                    realName = dgvAlarm.Rows[msgList[i]].Cells[8].Value.ToString();
+                    phone = dgvAlarm.Rows[msgList[i]].Cells[8].Value.ToString();
+                    realName = dgvAlarm.Rows[msgList[i]].Cells[9].Value.ToString();
                     DisposeMsg(CSPNType.AlarmInfo);
                     Thread.Sleep(2000);
                 }
@@ -101,7 +101,6 @@ namespace CSPN.control
             if (msgList.Count == 0)
             {
                 UMessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
             }
             else
             {
@@ -140,7 +139,6 @@ namespace CSPN.control
             if (msgList.Count == 0)
             {
                 UMessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
             }
             else
             {
@@ -236,9 +234,9 @@ namespace CSPN.control
                         break;
                 }
                 GetSMS.UpdateMap(terminal_ID);
-                if (refreshMessageDelegate != null)
+                if (refreshMessageEvent != null)
                 {
-                    refreshMessageDelegate();
+                    refreshMessageEvent();
                 }
             }
             else if (type == CSPNType.DisposeInfo)

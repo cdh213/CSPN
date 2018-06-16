@@ -31,15 +31,15 @@ namespace CSPN.assistcontrol
             usersInfo = new UsersInfo();
             if (_isInsert)
             {
-                this.Text = "添加数据";
-                this.Icon = new Icon("resource/images/add.ico");
+                Text = "添加数据";
+                Icon = new Icon("resource/images/add.ico");
                 btnSure.Text = "确定添加";
                 cmbGender.SelectedIndex = 0;
             }
             else
             {
-                this.Text = "更新数据";
-                this.Icon = new Icon("resource/images/update.ico");
+                Text = "更新数据";
+                Icon = new Icon("resource/images/update.ico");
                 btnSure.Text = "确定修改";
                 txtWorkID.Enabled = false;
 
@@ -93,16 +93,14 @@ namespace CSPN.assistcontrol
                 if (userService.GetUsersByWork_ID(txtWorkID.Text.Trim()) != null)
                 {
                     UMessageBox.Show("该人员已存在，请勿重复添加！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
                 }
                 else
                 {
-                    int a = userService.InsertUserInfo(usersInfo);
-                    if (a > 0)
+                    if (userService.InsertUserInfo(usersInfo) > 0)
                     {
                         UMessageBox.Show("数据添加成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "添加用户信息。", CommonClass.UserName, null, null, null);
-                        this.Close();
+                        Close();
                     }
                     else
                     {
@@ -113,12 +111,11 @@ namespace CSPN.assistcontrol
             //更新
             else
             {
-                int a = userService.UpdateUserInfo(usersInfo);
-                if (a > 0)
+                if (userService.UpdateUserInfo(usersInfo) > 0)
                 {
                     UMessageBox.Show("数据修改成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "更新用户信息。", CommonClass.UserName, null, null, null);
-                    this.Close();
+                    Close();
                 }
                 else
                 {

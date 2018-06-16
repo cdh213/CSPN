@@ -32,27 +32,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MaintainControl));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.maintainGrid = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtTerminal_ID = new System.Windows.Forms.TextBox();
-            this.labState = new System.Windows.Forms.Label();
-            this.labdate = new System.Windows.Forms.Label();
-            this.dtpStartDateTime = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dtpEndDateTime = new System.Windows.Forms.DateTimePicker();
-            this.maintainPage = new CSPN.assistcontrol.DataGridPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtTerminal_Name = new System.Windows.Forms.TextBox();
-            this.txtPlace = new System.Windows.Forms.TextBox();
-            this.txtState = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.btnSet = new System.Windows.Forms.Button();
             this.TerminalID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Terminal_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Place = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,6 +43,23 @@
             this.Maintain_StartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Maintain_EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Maintain_State = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtTerminal_ID = new System.Windows.Forms.TextBox();
+            this.labState = new System.Windows.Forms.Label();
+            this.labdate = new System.Windows.Forms.Label();
+            this.dtpStartDateTime = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dtpEndDateTime = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtTerminal_Name = new System.Windows.Forms.TextBox();
+            this.txtPlace = new System.Windows.Forms.TextBox();
+            this.txtState = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnSet = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.maintainPage = new CSPN.assistcontrol.DataGridPage();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maintainGrid)).BeginInit();
             this.panel1.SuspendLayout();
@@ -103,7 +102,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1052, 475);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1100, 649);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // maintainGrid
@@ -120,7 +119,7 @@
             this.maintainGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -135,252 +134,31 @@
             this.Maintain_StartTime,
             this.Maintain_EndTime,
             this.Maintain_State});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.maintainGrid.DefaultCellStyle = dataGridViewCellStyle3;
             this.maintainGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.maintainGrid.GridColor = System.Drawing.Color.Blue;
             this.maintainGrid.Location = new System.Drawing.Point(3, 3);
             this.maintainGrid.MultiSelect = false;
             this.maintainGrid.Name = "maintainGrid";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.maintainGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.maintainGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.maintainGrid.RowHeadersVisible = false;
             this.maintainGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.maintainGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.maintainGrid.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.tableLayoutPanel1.SetRowSpan(this.maintainGrid, 8);
             this.maintainGrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.maintainGrid.RowTemplate.Height = 35;
             this.maintainGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.maintainGrid.Size = new System.Drawing.Size(776, 429);
+            this.maintainGrid.Size = new System.Drawing.Size(824, 603);
             this.maintainGrid.TabIndex = 46;
             this.maintainGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.maintainGrid_CellClick);
             this.maintainGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.maintainGrid_CellFormatting);
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(785, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 60);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "人井编号";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtTerminal_ID
-            // 
-            this.txtTerminal_ID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTerminal_ID.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtTerminal_ID.Location = new System.Drawing.Point(865, 37);
-            this.txtTerminal_ID.Name = "txtTerminal_ID";
-            this.txtTerminal_ID.ReadOnly = true;
-            this.txtTerminal_ID.Size = new System.Drawing.Size(164, 26);
-            this.txtTerminal_ID.TabIndex = 20;
-            // 
-            // labState
-            // 
-            this.labState.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labState.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labState.Location = new System.Drawing.Point(785, 200);
-            this.labState.Name = "labState";
-            this.labState.Size = new System.Drawing.Size(74, 60);
-            this.labState.TabIndex = 22;
-            this.labState.Text = "状态";
-            this.labState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // labdate
-            // 
-            this.labdate.AutoSize = true;
-            this.labdate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labdate.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labdate.Location = new System.Drawing.Point(785, 260);
-            this.labdate.Name = "labdate";
-            this.labdate.Size = new System.Drawing.Size(74, 60);
-            this.labdate.TabIndex = 32;
-            this.labdate.Text = "开始时间";
-            this.labdate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // dtpStartDateTime
-            // 
-            this.dtpStartDateTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpStartDateTime.CustomFormat = "yyyy/MM/dd HH:mm";
-            this.dtpStartDateTime.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dtpStartDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpStartDateTime.Location = new System.Drawing.Point(865, 277);
-            this.dtpStartDateTime.Name = "dtpStartDateTime";
-            this.dtpStartDateTime.Size = new System.Drawing.Size(164, 26);
-            this.dtpStartDateTime.TabIndex = 33;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(785, 320);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 60);
-            this.label4.TabIndex = 34;
-            this.label4.Text = "结束时间";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // dtpEndDateTime
-            // 
-            this.dtpEndDateTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpEndDateTime.CustomFormat = "yyyy/MM/dd HH:mm";
-            this.dtpEndDateTime.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dtpEndDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpEndDateTime.Location = new System.Drawing.Point(865, 337);
-            this.dtpEndDateTime.Name = "dtpEndDateTime";
-            this.dtpEndDateTime.Size = new System.Drawing.Size(164, 26);
-            this.dtpEndDateTime.TabIndex = 35;
-            // 
-            // maintainPage
-            // 
-            this.maintainPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.maintainPage.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.maintainPage.Location = new System.Drawing.Point(3, 438);
-            this.maintainPage.Name = "maintainPage";
-            this.maintainPage.PageSize = 50;
-            this.maintainPage.Size = new System.Drawing.Size(776, 34);
-            this.maintainPage.TabIndex = 38;
-            // 
-            // label2
-            // 
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(785, 80);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 60);
-            this.label2.TabIndex = 39;
-            this.label2.Text = "人井名称";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label3
-            // 
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(785, 140);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 60);
-            this.label3.TabIndex = 40;
-            this.label3.Text = "地点";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtTerminal_Name
-            // 
-            this.txtTerminal_Name.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTerminal_Name.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtTerminal_Name.Location = new System.Drawing.Point(865, 97);
-            this.txtTerminal_Name.Name = "txtTerminal_Name";
-            this.txtTerminal_Name.ReadOnly = true;
-            this.txtTerminal_Name.Size = new System.Drawing.Size(164, 26);
-            this.txtTerminal_Name.TabIndex = 41;
-            // 
-            // txtPlace
-            // 
-            this.txtPlace.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPlace.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtPlace.Location = new System.Drawing.Point(865, 143);
-            this.txtPlace.Multiline = true;
-            this.txtPlace.Name = "txtPlace";
-            this.txtPlace.ReadOnly = true;
-            this.txtPlace.Size = new System.Drawing.Size(164, 54);
-            this.txtPlace.TabIndex = 42;
-            // 
-            // txtState
-            // 
-            this.txtState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtState.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtState.Location = new System.Drawing.Point(865, 217);
-            this.txtState.Name = "txtState";
-            this.txtState.ReadOnly = true;
-            this.txtState.Size = new System.Drawing.Size(164, 26);
-            this.txtState.TabIndex = 43;
-            // 
-            // panel1
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.panel1, 2);
-            this.panel1.Controls.Add(this.btnCancel);
-            this.panel1.Controls.Add(this.btnRefresh);
-            this.panel1.Controls.Add(this.btnSet);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(785, 383);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(244, 49);
-            this.panel1.TabIndex = 45;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnCancel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCancel.BackgroundImage")));
-            this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.FlatAppearance.BorderSize = 0;
-            this.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(165, 11);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 26);
-            this.btnCancel.TabIndex = 45;
-            this.btnCancel.Text = "取消";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRefresh.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRefresh.BackgroundImage")));
-            this.btnRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRefresh.FlatAppearance.BorderSize = 0;
-            this.btnRefresh.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(4, 11);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(74, 26);
-            this.btnRefresh.TabIndex = 44;
-            this.btnRefresh.Text = "刷新";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // btnSet
-            // 
-            this.btnSet.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSet.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSet.BackgroundImage")));
-            this.btnSet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSet.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSet.FlatAppearance.BorderSize = 0;
-            this.btnSet.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnSet.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSet.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnSet.ForeColor = System.Drawing.Color.White;
-            this.btnSet.Location = new System.Drawing.Point(84, 11);
-            this.btnSet.Name = "btnSet";
-            this.btnSet.Size = new System.Drawing.Size(75, 26);
-            this.btnSet.TabIndex = 36;
-            this.btnSet.Text = "设定";
-            this.btnSet.UseVisualStyleBackColor = true;
-            this.btnSet.Click += new System.EventHandler(this.btnSet_Click);
             // 
             // TerminalID
             // 
@@ -439,6 +217,219 @@
             this.Maintain_State.Name = "Maintain_State";
             this.Maintain_State.ReadOnly = true;
             // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(833, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 60);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "人井编号";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtTerminal_ID
+            // 
+            this.txtTerminal_ID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTerminal_ID.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtTerminal_ID.Location = new System.Drawing.Point(913, 37);
+            this.txtTerminal_ID.Name = "txtTerminal_ID";
+            this.txtTerminal_ID.ReadOnly = true;
+            this.txtTerminal_ID.Size = new System.Drawing.Size(164, 26);
+            this.txtTerminal_ID.TabIndex = 20;
+            // 
+            // labState
+            // 
+            this.labState.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labState.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labState.Location = new System.Drawing.Point(833, 200);
+            this.labState.Name = "labState";
+            this.labState.Size = new System.Drawing.Size(74, 60);
+            this.labState.TabIndex = 22;
+            this.labState.Text = "状态";
+            this.labState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labdate
+            // 
+            this.labdate.AutoSize = true;
+            this.labdate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labdate.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labdate.Location = new System.Drawing.Point(833, 260);
+            this.labdate.Name = "labdate";
+            this.labdate.Size = new System.Drawing.Size(74, 60);
+            this.labdate.TabIndex = 32;
+            this.labdate.Text = "开始时间";
+            this.labdate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dtpStartDateTime
+            // 
+            this.dtpStartDateTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpStartDateTime.CustomFormat = "yyyy/MM/dd HH:mm";
+            this.dtpStartDateTime.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dtpStartDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpStartDateTime.Location = new System.Drawing.Point(913, 277);
+            this.dtpStartDateTime.Name = "dtpStartDateTime";
+            this.dtpStartDateTime.Size = new System.Drawing.Size(164, 26);
+            this.dtpStartDateTime.TabIndex = 33;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label4.Location = new System.Drawing.Point(833, 320);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(74, 60);
+            this.label4.TabIndex = 34;
+            this.label4.Text = "结束时间";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dtpEndDateTime
+            // 
+            this.dtpEndDateTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpEndDateTime.CustomFormat = "yyyy/MM/dd HH:mm";
+            this.dtpEndDateTime.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dtpEndDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpEndDateTime.Location = new System.Drawing.Point(913, 337);
+            this.dtpEndDateTime.Name = "dtpEndDateTime";
+            this.dtpEndDateTime.Size = new System.Drawing.Size(164, 26);
+            this.dtpEndDateTime.TabIndex = 35;
+            // 
+            // label2
+            // 
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Location = new System.Drawing.Point(833, 80);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(74, 60);
+            this.label2.TabIndex = 39;
+            this.label2.Text = "人井名称";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(833, 140);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(74, 60);
+            this.label3.TabIndex = 40;
+            this.label3.Text = "地点";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtTerminal_Name
+            // 
+            this.txtTerminal_Name.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTerminal_Name.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtTerminal_Name.Location = new System.Drawing.Point(913, 97);
+            this.txtTerminal_Name.Name = "txtTerminal_Name";
+            this.txtTerminal_Name.ReadOnly = true;
+            this.txtTerminal_Name.Size = new System.Drawing.Size(164, 26);
+            this.txtTerminal_Name.TabIndex = 41;
+            // 
+            // txtPlace
+            // 
+            this.txtPlace.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPlace.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtPlace.Location = new System.Drawing.Point(913, 143);
+            this.txtPlace.Multiline = true;
+            this.txtPlace.Name = "txtPlace";
+            this.txtPlace.ReadOnly = true;
+            this.txtPlace.Size = new System.Drawing.Size(164, 54);
+            this.txtPlace.TabIndex = 42;
+            // 
+            // txtState
+            // 
+            this.txtState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtState.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtState.Location = new System.Drawing.Point(913, 217);
+            this.txtState.Name = "txtState";
+            this.txtState.ReadOnly = true;
+            this.txtState.Size = new System.Drawing.Size(164, 26);
+            this.txtState.TabIndex = 43;
+            // 
+            // panel1
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.panel1, 2);
+            this.panel1.Controls.Add(this.btnCancel);
+            this.panel1.Controls.Add(this.btnSet);
+            this.panel1.Controls.Add(this.btnRefresh);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(833, 383);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(244, 223);
+            this.panel1.TabIndex = 45;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnCancel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCancel.BackgroundImage")));
+            this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(124, 77);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(105, 26);
+            this.btnCancel.TabIndex = 45;
+            this.btnCancel.Text = "取消预约/维护";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnSet
+            // 
+            this.btnSet.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnSet.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSet.BackgroundImage")));
+            this.btnSet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSet.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSet.FlatAppearance.BorderSize = 0;
+            this.btnSet.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSet.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSet.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnSet.ForeColor = System.Drawing.Color.White;
+            this.btnSet.Location = new System.Drawing.Point(16, 77);
+            this.btnSet.Name = "btnSet";
+            this.btnSet.Size = new System.Drawing.Size(58, 26);
+            this.btnSet.TabIndex = 36;
+            this.btnSet.Text = "设定";
+            this.btnSet.UseVisualStyleBackColor = true;
+            this.btnSet.Click += new System.EventHandler(this.btnSet_Click);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnRefresh.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRefresh.BackgroundImage")));
+            this.btnRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRefresh.FlatAppearance.BorderSize = 0;
+            this.btnRefresh.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnRefresh.ForeColor = System.Drawing.Color.White;
+            this.btnRefresh.Location = new System.Drawing.Point(16, 142);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(61, 26);
+            this.btnRefresh.TabIndex = 44;
+            this.btnRefresh.Text = "刷新";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // maintainPage
+            // 
+            this.maintainPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.maintainPage.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.maintainPage.Location = new System.Drawing.Point(3, 612);
+            this.maintainPage.Name = "maintainPage";
+            this.maintainPage.PageSize = 50;
+            this.maintainPage.Size = new System.Drawing.Size(824, 34);
+            this.maintainPage.TabIndex = 38;
+            // 
             // MaintainControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -448,7 +439,7 @@
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Name = "MaintainControl";
-            this.Size = new System.Drawing.Size(1052, 475);
+            this.Size = new System.Drawing.Size(1100, 649);
             this.Load += new System.EventHandler(this.MaintainControl_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

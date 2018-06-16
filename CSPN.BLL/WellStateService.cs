@@ -151,11 +151,19 @@ namespace CSPN.BLL
         }
 
         /// <summary>
-        /// 维护信息更新
+        /// 设置维护
         /// </summary>
-        public int UpdateMaintainInfo(int maintain_State, string terminal_ID)
+        public int MaintainInfoSet(string terminal_ID)
         {
-            return wellMaintainDAL.UpdateMaintainInfo(maintain_State, terminal_ID);
+            return wellMaintainDAL.MaintainInfoSet(terminal_ID);
+        }
+
+        /// <summary>
+        /// 取消维护
+        /// </summary>
+        public int MaintainInfoCancel(string terminal_ID)
+        {
+            return wellMaintainDAL.MaintainInfoCancel(terminal_ID);
         }
 
         /// <summary>
@@ -164,14 +172,6 @@ namespace CSPN.BLL
         public int InsertMaintainInfo(string terminal_ID, int maintain_State)
         {
             return wellMaintainDAL.InsertMaintainInfo(terminal_ID, maintain_State);
-        }
-
-        /// <summary>
-        /// 取消维护
-        /// </summary>
-        public int MaintainInfoCancel(int maintain_State, string terminal_ID)
-        {
-            return wellMaintainDAL.MaintainInfoCancel(maintain_State, terminal_ID);
         }
 
         /// <summary>

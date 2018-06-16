@@ -81,7 +81,6 @@ namespace CSPN.helper
                 finally
                 {
                     ms.Dispose();
-                    ms.Close();
                 }
             }
         }

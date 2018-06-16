@@ -25,7 +25,6 @@ namespace CSPN.control
         private IWellStateService wellStateService = new WellStateService();
         private WellInfo well = new WellInfo();
         private WellStateInfo stateInfo = new WellStateInfo();
-        private OperatorInfo operatorInfo = new OperatorInfo();
         private IUsersService user = new UsersService();
         private List<int> infoList = new List<int>();
         private string terminal_ID;
@@ -35,7 +34,7 @@ namespace CSPN.control
             InitializeComponent();
             WebBrower.webBrower.Dock = DockStyle.Fill;
             TabPagemap.Controls.Add(WebBrower.webBrower);
-            RefreshWellInfoJob.refreshDelegate += new RefreshDelegate(RefreshInfo);
+            RefreshWellInfoJob.refreshEvent += new RefreshDelegate(RefreshInfo);
         }
 
         private void MsgShowControl_Load(object sender, EventArgs e)
@@ -68,28 +67,14 @@ namespace CSPN.control
         //编辑
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            infoList.Clear();
-            for (int i = 0; i < grid.Rows.Count; i++)
-            {
-                //判断该行的复选框是否存在
-                if (grid.Rows[i].Cells[0].Value != null)
-                {
-                    //判断该复选框是否被选中
-                    if (Convert.ToBoolean(grid.Rows[i].Cells[0].Value))
-                    {
-                        infoList.Add(i);
-                    }
-                }
-            }
+            GetGrid();
             if (infoList.Count == 0)
             {
                 UMessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
             }
             else if (infoList.Count > 1)
             {
                 UMessageBox.Show("请选择一项！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
             }
             else
             {
@@ -105,23 +90,10 @@ namespace CSPN.control
         //删除
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            infoList.Clear();
-            for (int i = 0; i < grid.Rows.Count; i++)
-            {
-                //判断该行的复选框是否存在
-                if (grid.Rows[i].Cells[0].Value != null)
-                {
-                    //判断该复选框是否被选中
-                    if (Convert.ToBoolean(grid.Rows[i].Cells[0].Value))
-                    {
-                        infoList.Add(i);
-                    }
-                }
-            }
+            GetGrid();
             if (infoList.Count == 0)
             {
                 UMessageBox.Show("请选择数据！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
             }
             else
             {
@@ -142,6 +114,23 @@ namespace CSPN.control
             }
         }
 
+        private void GetGrid()
+        {
+            infoList.Clear();
+            for (int i = 0; i < grid.Rows.Count; i++)
+            {
+                //判断该行的复选框是否存在
+                if (grid.Rows[i].Cells[0].Value != null)
+                {
+                    //判断该复选框是否被选中
+                    if (Convert.ToBoolean(grid.Rows[i].Cells[0].Value))
+                    {
+                        infoList.Add(i);
+                    }
+                }
+            }
+        }
+
         //信息导入
         private string path = "";
 
@@ -152,8 +141,8 @@ namespace CSPN.control
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 path = openFileDialog.FileName;
-                this.backgroundWorker.RunWorkerAsync(); // 运行 backgroundWorker 组件
-                ImportProgressBarForm form = new ImportProgressBarForm(this.backgroundWorker, this.ParentForm.Width);// 显示进度条窗体
+                backgroundWorker.RunWorkerAsync(); // 运行 backgroundWorker 组件
+                ImportProgressBarForm form = new ImportProgressBarForm(backgroundWorker, ParentForm.Width);// 显示进度条窗体
                 form.ShowDialog(this);
                 DataLoade(null);
             }
@@ -161,12 +150,20 @@ namespace CSPN.control
 
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            UMessageBox.Show("导入成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (Convert.ToInt32(e.Result) == 0)
+            {
+                UMessageBox.Show("导入成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                UMessageBox.Show("有" + Convert.ToInt32(e.Result) + "条数据导入失败", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             WebBrower.Reload();
         }
 
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
+            int reportInterval = 3, count = 0;
             BackgroundWorker worker = sender as BackgroundWorker;
             //从Excel中读取数据
             using (FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read))
@@ -190,23 +187,31 @@ namespace CSPN.control
                     //获取每一行
                     currentRow = sheet.GetRow(r);
 
-                    well.Terminal_ID = currentRow.GetCell(0) == null ? "" : currentRow.GetCell(0).ToString();
+                    well.Terminal_ID = currentRow.GetCell(0).ToString();
                     well.Name = currentRow.GetCell(1) == null ? "" : currentRow.GetCell(1).ToString();
-                    well.Terminal_Phone = currentRow.GetCell(2) == null ? "" : currentRow.GetCell(2).ToString();
-                    well.Longitude = currentRow.GetCell(3) == null ? "" : currentRow.GetCell(3).ToString();
-                    well.Latitude = currentRow.GetCell(4) == null ? "" : currentRow.GetCell(4).ToString();
+                    well.Terminal_Phone = currentRow.GetCell(2).ToString();
+                    well.Longitude = currentRow.GetCell(3).ToString();
+                    well.Latitude = currentRow.GetCell(4).ToString();
                     well.Place = currentRow.GetCell(5) == null ? "" : currentRow.GetCell(5).ToString();
-                    operatorInfo.Work_ID = currentRow.GetCell(6).ToString();
-                    well.Operator_ID = user.GetOperatorByWork_ID(operatorInfo.Work_ID).ID;
+                    reportInterval = currentRow.GetCell(6) == null ? 3 : Convert.ToInt32(currentRow.GetCell(6).ToString());
+                    well.Operator_ID = currentRow.GetCell(7).ToString();
 
-                    //执行sql语句
-                    wellInfoService.InsertWellInfo(well);
-                    wellInfoService.InsertReportInfo(well.Terminal_ID, 3);
-                    wellStateService.InsertWellCurrentStateInfo(well.Terminal_ID, 1);
-                    wellStateService.InsertMaintainInfo(well.Terminal_ID, 0);
+                    if (wellInfoService.GetWellInfoByTerminal_ID(well.Terminal_ID) == null && wellInfoService.GetWellInfoByPhone(well.Terminal_Phone) == null)
+                    {
+                        //执行sql语句
+                        wellInfoService.InsertWellInfo(well);
+                        wellInfoService.InsertReportInfo(well.Terminal_ID, reportInterval);
+                        wellStateService.InsertWellCurrentStateInfo(well.Terminal_ID, 1);
+                        wellStateService.InsertMaintainInfo(well.Terminal_ID, 0);
+                    }
+                    else
+                    {
+                        count++;
+                    }
                     worker.ReportProgress(r, sheet.LastRowNum);
                 }
             }
+            e.Result = count;
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -241,7 +246,7 @@ namespace CSPN.control
         //自动刷新
         private void RefreshInfo()
         {
-            if (grid.InvokeRequired)
+            if (InvokeRequired)
             {
                 grid.Invoke(new RefreshDelegate(RefreshInfo));
             }

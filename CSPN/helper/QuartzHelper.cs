@@ -1,12 +1,18 @@
 ﻿using Quartz;
 using Quartz.Impl;
 using System;
+using System.Collections.Specialized;
 
 namespace CSPN.helper
 {
     public class QuartzHelper
     {
         private ISchedulerFactory factory = null;
+
+        private NameValueCollection props = new NameValueCollection
+        {
+            { "quartz.serializer.type", "binary" }
+        };
 
         /// <summary>
         /// 初始化定时器。
@@ -15,14 +21,14 @@ namespace CSPN.helper
         /// </summary>
         /// <param name="jobType">要执行的作业</param>
         /// <param name="second">触发时间</param>
-        public void WithIntervalInMinutes(Type jobType, int minutes)
+        public async void WithIntervalInMinutes(Type jobType, int minutes)
         {
             //工厂
-            factory = new StdSchedulerFactory();
+            factory = new StdSchedulerFactory(props);
             //创建scheduler
-            IScheduler scheduler = factory.GetScheduler();
+            IScheduler scheduler = await factory.GetScheduler();
             //启动
-            scheduler.Start();
+            await scheduler.Start();
             //描述工作
             IJobDetail job = JobBuilder.Create(jobType)
                                        .WithIdentity(jobType.Name, "myGroup")
@@ -36,7 +42,7 @@ namespace CSPN.helper
                                        .Build();
 
             //执行
-            scheduler.ScheduleJob(job, trigger);
+            await scheduler.ScheduleJob(job, trigger);
         }
 
         /// <summary>
@@ -46,14 +52,14 @@ namespace CSPN.helper
         /// </summary>
         /// <param name="jobType">要执行的作业</param>
         /// <param name="second">触发时间</param>
-        public void WithIntervalInHours(Type jobType, int hours)
+        public async void WithIntervalInHours(Type jobType, int hours)
         {
             //工厂
-            factory = new StdSchedulerFactory();
+            factory = new StdSchedulerFactory(props);
             //创建scheduler
-            IScheduler scheduler = factory.GetScheduler();
+            IScheduler scheduler = await factory.GetScheduler();
             //启动
-            scheduler.Start();
+            await scheduler.Start();
             //描述工作
             IJobDetail job = JobBuilder.Create(jobType)
                                        .WithIdentity(jobType.Name, "myGroup")
@@ -67,7 +73,7 @@ namespace CSPN.helper
                                        .Build();
 
             //执行
-            scheduler.ScheduleJob(job, trigger);
+            await scheduler.ScheduleJob(job, trigger);
         }
 
         /// <summary>
@@ -77,14 +83,14 @@ namespace CSPN.helper
         /// <param name="jobType">要执行的作业</param>
         /// <param name="hour">小时</param>
         /// <param name="minute">分钟</param>
-        public void init(Type jobType, int hour, int minute)
+        public async void Init(Type jobType, int hour, int minute)
         {
             //工厂
-            factory = new StdSchedulerFactory();
+            factory = new StdSchedulerFactory(props);
             //创建scheduler
-            IScheduler scheduler = factory.GetScheduler();
+            IScheduler scheduler = await factory.GetScheduler();
             //启动
-            scheduler.Start();
+            await scheduler.Start();
             //描述工作
             IJobDetail job = JobBuilder.Create(jobType)
                                        .WithIdentity(jobType.Name, "myGroup")
@@ -97,7 +103,7 @@ namespace CSPN.helper
                                     .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(hour, minute))
                                     .Build();
             //执行
-            scheduler.ScheduleJob(job, trigger);
+            await scheduler.ScheduleJob(job, trigger);
         }
 
         /// <summary>
@@ -108,14 +114,14 @@ namespace CSPN.helper
         /// <param name="weekday">星期几</param>
         /// <param name="hour">小时</param>
         /// <param name="minute">分钟</param>
-        public void init(Type jobType, DayOfWeek dayOfWeek, int hour, int minute)
+        public async void Init(Type jobType, DayOfWeek dayOfWeek, int hour, int minute)
         {
             //工厂
-            factory = new StdSchedulerFactory();
+            factory = new StdSchedulerFactory(props);
             //创建scheduler
-            IScheduler scheduler = factory.GetScheduler();
+            IScheduler scheduler = await factory.GetScheduler();
             //启动
-            scheduler.Start();
+            await scheduler.Start();
             //描述工作
             IJobDetail job = JobBuilder.Create(jobType).WithIdentity(jobType.Name, "myGroup").UsingJobData("name", "quartz").Build();
             //触发器
@@ -126,7 +132,7 @@ namespace CSPN.helper
             .WithSchedule(CronScheduleBuilder.WeeklyOnDayAndHourAndMinute(dayOfWeek, hour, minute))//每周相应时间执行
             .Build();
             //执行
-            scheduler.ScheduleJob(job, trigger);
+            await scheduler.ScheduleJob(job, trigger);
         }
 
         /// <summary>
@@ -134,14 +140,14 @@ namespace CSPN.helper
         /// 某年某月某日某时某分某秒定时执行。
         /// </summary>
         /// <param name="jobType">要执行的作业</param>
-        public void init(Type jobType, int year, int month, int day, int hour, int minute, int second)
+        public async void Init(Type jobType, int year, int month, int day, int hour, int minute, int second)
         {
             //工厂
-            factory = new StdSchedulerFactory();
+            factory = new StdSchedulerFactory(props);
             //创建scheduler
-            IScheduler scheduler = factory.GetScheduler();
+            IScheduler scheduler = await factory.GetScheduler();
             //启动
-            scheduler.Start();
+            await scheduler.Start();
             //描述工作
             IJobDetail job = JobBuilder.Create(jobType).WithIdentity(jobType.Name, "myGroup").UsingJobData("name", "quartz").Build();
             //job.JobDataMap.Put("test", val);
@@ -153,7 +159,7 @@ namespace CSPN.helper
             .WithSchedule(CronScheduleBuilder.CronSchedule("" + second + " " + minute + " " + hour + " " + day + " " + month + " ? " + year + ""))//具体时间执行
             .Build();
             //执行
-            scheduler.ScheduleJob(job, trigger);
+            await scheduler.ScheduleJob(job, trigger);
         }
     }
 }

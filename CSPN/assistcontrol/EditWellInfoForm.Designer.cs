@@ -272,7 +272,7 @@
             this.cbOperator.Name = "cbOperator";
             this.cbOperator.Size = new System.Drawing.Size(157, 28);
             this.cbOperator.TabIndex = 27;
-            this.cbOperator.ValueMember = "ID";
+            this.cbOperator.ValueMember = "Work_ID";
             // 
             // panel1
             // 

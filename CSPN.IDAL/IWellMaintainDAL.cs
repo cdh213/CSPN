@@ -29,19 +29,19 @@ namespace CSPN.IDAL
         int UpdateMaintainInfo(WellMaintainInfo wellMaintainInfo);
 
         /// <summary>
-        /// 维护信息更新
+        /// 设置维护
         /// </summary>
-        int UpdateMaintainInfo(int maintain_State, string terminal_ID);
+        int MaintainInfoSet(string terminal_ID);
+
+        /// <summary>
+        /// 取消维护
+        /// </summary>
+        int MaintainInfoCancel(string terminal_ID);
 
         /// <summary>
         /// 增加维护信息
         /// </summary>
         int InsertMaintainInfo(string terminal_ID, int maintain_State);
-
-        /// <summary>
-        /// 取消维护
-        /// </summary>
-        int MaintainInfoCancel(int maintain_State, string terminal_ID);
 
         /// <summary>
         /// 删除人井信息

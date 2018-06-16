@@ -31,7 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PendingMsgControl));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -42,18 +41,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.AlarmTab = new System.Windows.Forms.TabPage();
             this.dgvAlarm = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Icon = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Telephone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnAlarm = new System.Windows.Forms.Button();
             this.ProcessedTab = new System.Windows.Forms.TabPage();
@@ -70,6 +61,14 @@
             this.btnDispose = new System.Windows.Forms.Button();
             this.NotReportTab = new System.Windows.Forms.TabPage();
             this.dgvNotReport = new System.Windows.Forms.DataGridView();
+            this.Column3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Longitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Latitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ORealName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnInform = new System.Windows.Forms.Button();
             this.Report_Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -80,14 +79,16 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvIcon = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Longitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Latitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ORealName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Icon = new System.Windows.Forms.DataGridViewImageColumn();
+            this.State = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Telephone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.AlarmTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlarm)).BeginInit();
@@ -153,6 +154,7 @@
             this.dataGridViewTextBoxColumn13,
             this.dataGridViewTextBoxColumn14,
             this.Icon,
+            this.State,
             this.Telephone,
             this.Column5});
             this.dgvAlarm.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -170,81 +172,6 @@
             this.dgvAlarm.Size = new System.Drawing.Size(960, 375);
             this.dgvAlarm.TabIndex = 6;
             this.dgvAlarm.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAlarm_CellFormatting);
-            // 
-            // Column1
-            // 
-            this.Column1.FillWeight = 30F;
-            this.Column1.HeaderText = "选择";
-            this.Column1.Name = "Column1";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "Report_Time";
-            dataGridViewCellStyle3.Format = "G";
-            dataGridViewCellStyle3.NullValue = null;
-            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridViewTextBoxColumn7.FillWeight = 87.09049F;
-            this.dataGridViewTextBoxColumn7.HeaderText = "发生时间";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            this.dataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.DataPropertyName = "Terminal_ID";
-            this.dataGridViewTextBoxColumn10.FillWeight = 87.09049F;
-            this.dataGridViewTextBoxColumn10.HeaderText = "人井编号";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn12
-            // 
-            this.dataGridViewTextBoxColumn12.DataPropertyName = "Well_State_ID";
-            this.dataGridViewTextBoxColumn12.HeaderText = "Well_State_ID";
-            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            this.dataGridViewTextBoxColumn12.ReadOnly = true;
-            this.dataGridViewTextBoxColumn12.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn13
-            // 
-            this.dataGridViewTextBoxColumn13.DataPropertyName = "Name";
-            this.dataGridViewTextBoxColumn13.FillWeight = 87.09049F;
-            this.dataGridViewTextBoxColumn13.HeaderText = "人井名称";
-            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            this.dataGridViewTextBoxColumn13.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn14
-            // 
-            this.dataGridViewTextBoxColumn14.DataPropertyName = "Place";
-            this.dataGridViewTextBoxColumn14.FillWeight = 87.09049F;
-            this.dataGridViewTextBoxColumn14.HeaderText = "地点";
-            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            this.dataGridViewTextBoxColumn14.ReadOnly = true;
-            // 
-            // Icon
-            // 
-            this.Icon.DataPropertyName = "Icon";
-            this.Icon.FillWeight = 87.09049F;
-            this.Icon.HeaderText = "状态";
-            this.Icon.Name = "Icon";
-            this.Icon.ReadOnly = true;
-            this.Icon.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Telephone
-            // 
-            this.Telephone.DataPropertyName = "Telephone";
-            this.Telephone.HeaderText = "电话";
-            this.Telephone.Name = "Telephone";
-            this.Telephone.ReadOnly = true;
-            this.Telephone.Visible = false;
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "RealName";
-            this.Column5.HeaderText = "接收人";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Visible = false;
             // 
             // panel1
             // 
@@ -478,6 +405,63 @@
             this.dgvNotReport.Size = new System.Drawing.Size(960, 375);
             this.dgvNotReport.TabIndex = 6;
             // 
+            // Column3
+            // 
+            this.Column3.FillWeight = 40F;
+            this.Column3.HeaderText = "选择";
+            this.Column3.Name = "Column3";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Terminal_ID";
+            this.dataGridViewTextBoxColumn5.HeaderText = "人井编号";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn8.HeaderText = "人井名称";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            // 
+            // Longitude
+            // 
+            this.Longitude.DataPropertyName = "Longitude";
+            this.Longitude.HeaderText = "经度";
+            this.Longitude.Name = "Longitude";
+            this.Longitude.ReadOnly = true;
+            // 
+            // Latitude
+            // 
+            this.Latitude.DataPropertyName = "Latitude";
+            this.Latitude.HeaderText = "纬度";
+            this.Latitude.Name = "Latitude";
+            this.Latitude.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "Place";
+            this.dataGridViewTextBoxColumn9.HeaderText = "地点";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.DataPropertyName = "Telephone";
+            this.dataGridViewTextBoxColumn11.HeaderText = "值班人员电话";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.ReadOnly = true;
+            this.dataGridViewTextBoxColumn11.Visible = false;
+            // 
+            // ORealName
+            // 
+            this.ORealName.DataPropertyName = "RealName";
+            this.ORealName.HeaderText = "值班人员";
+            this.ORealName.Name = "ORealName";
+            this.ORealName.ReadOnly = true;
+            this.ORealName.Visible = false;
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.btnInform);
@@ -579,62 +563,87 @@
             this.dgvIcon.ReadOnly = true;
             this.dgvIcon.Width = 160;
             // 
-            // Column3
+            // Column1
             // 
-            this.Column3.FillWeight = 40F;
-            this.Column3.HeaderText = "选择";
-            this.Column3.Name = "Column3";
+            this.Column1.FillWeight = 30F;
+            this.Column1.HeaderText = "选择";
+            this.Column1.Name = "Column1";
             // 
-            // dataGridViewTextBoxColumn5
+            // dataGridViewTextBoxColumn7
             // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Terminal_ID";
-            this.dataGridViewTextBoxColumn5.HeaderText = "人井编号";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "Report_Time";
+            dataGridViewCellStyle3.Format = "G";
+            dataGridViewCellStyle3.NullValue = null;
+            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewTextBoxColumn7.FillWeight = 87.09049F;
+            this.dataGridViewTextBoxColumn7.HeaderText = "发生时间";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
-            // dataGridViewTextBoxColumn8
+            // dataGridViewTextBoxColumn10
             // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "Name";
-            this.dataGridViewTextBoxColumn8.HeaderText = "人井名称";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "Terminal_ID";
+            this.dataGridViewTextBoxColumn10.FillWeight = 87.09049F;
+            this.dataGridViewTextBoxColumn10.HeaderText = "人井编号";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
             // 
-            // Longitude
+            // dataGridViewTextBoxColumn12
             // 
-            this.Longitude.DataPropertyName = "Longitude";
-            this.Longitude.HeaderText = "经度";
-            this.Longitude.Name = "Longitude";
-            this.Longitude.ReadOnly = true;
+            this.dataGridViewTextBoxColumn12.DataPropertyName = "Well_State_ID";
+            this.dataGridViewTextBoxColumn12.HeaderText = "Well_State_ID";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.ReadOnly = true;
+            this.dataGridViewTextBoxColumn12.Visible = false;
             // 
-            // Latitude
+            // dataGridViewTextBoxColumn13
             // 
-            this.Latitude.DataPropertyName = "Latitude";
-            this.Latitude.HeaderText = "纬度";
-            this.Latitude.Name = "Latitude";
-            this.Latitude.ReadOnly = true;
+            this.dataGridViewTextBoxColumn13.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn13.FillWeight = 87.09049F;
+            this.dataGridViewTextBoxColumn13.HeaderText = "人井名称";
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn9
+            // dataGridViewTextBoxColumn14
             // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "Place";
-            this.dataGridViewTextBoxColumn9.HeaderText = "地点";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn14.DataPropertyName = "Place";
+            this.dataGridViewTextBoxColumn14.FillWeight = 87.09049F;
+            this.dataGridViewTextBoxColumn14.HeaderText = "地点";
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            this.dataGridViewTextBoxColumn14.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn11
+            // Icon
             // 
-            this.dataGridViewTextBoxColumn11.DataPropertyName = "Telephone";
-            this.dataGridViewTextBoxColumn11.HeaderText = "值班人员电话";
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.ReadOnly = true;
-            this.dataGridViewTextBoxColumn11.Visible = false;
+            this.Icon.DataPropertyName = "Icon";
+            this.Icon.FillWeight = 87.09049F;
+            this.Icon.HeaderText = "状态";
+            this.Icon.Name = "Icon";
+            this.Icon.ReadOnly = true;
+            this.Icon.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // ORealName
+            // State
             // 
-            this.ORealName.DataPropertyName = "RealName";
-            this.ORealName.HeaderText = "值班人员";
-            this.ORealName.Name = "ORealName";
-            this.ORealName.ReadOnly = true;
-            this.ORealName.Visible = false;
+            this.State.DataPropertyName = "State";
+            this.State.HeaderText = "说明";
+            this.State.Name = "State";
+            this.State.ReadOnly = true;
+            // 
+            // Telephone
+            // 
+            this.Telephone.DataPropertyName = "Telephone";
+            this.Telephone.HeaderText = "电话";
+            this.Telephone.Name = "Telephone";
+            this.Telephone.ReadOnly = true;
+            this.Telephone.Visible = false;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "RealName";
+            this.Column5.HeaderText = "接收人";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Visible = false;
             // 
             // PendingMsgControl
             // 
@@ -690,15 +699,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
         private System.Windows.Forms.DataGridViewImageColumn disposeIcon;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
-        private System.Windows.Forms.DataGridViewImageColumn Icon;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Telephone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
@@ -707,5 +707,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.DataGridViewTextBoxColumn ORealName;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
+        private System.Windows.Forms.DataGridViewImageColumn Icon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn State;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Telephone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
     }
 }

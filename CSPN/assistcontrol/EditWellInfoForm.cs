@@ -45,13 +45,13 @@ namespace CSPN.assistcontrol
                     txtLongitude.Text = menuPositon.Split(',')[0];
                     txtLatitude.Text = menuPositon.Split(',')[1];
                 }
-                this.Text = "添加数据";
-                this.Icon = new Icon("resource/images/add.ico");
+                Text = "添加数据";
+                Icon = new Icon("resource/images/add.ico");
             }
             else
             {
-                this.Text = "更新数据";
-                this.Icon = new Icon("resource/images/update.ico");
+                Text = "更新数据";
+                Icon = new Icon("resource/images/update.ico");
                 txtTerminal_ID.Enabled = false;
                 wellInfo = wellInfoService.GetWellInfoByTerminal_ID(wellInfo.Terminal_ID);
 
@@ -100,14 +100,14 @@ namespace CSPN.assistcontrol
                 return;
             }
 
-            this.DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;
             terminal_ID = wellInfo.Terminal_ID = txtTerminal_ID.Text.Trim();
             wellInfo.Name = txtName.Text.Trim();
             wellInfo.Longitude = txtLongitude.Text.Trim();
             wellInfo.Latitude = txtLatitude.Text.Trim();
             wellInfo.Place = txtPlace.Text.Trim();
             wellInfo.Terminal_Phone = txtTerminal_Phone.Text.Trim();
-            wellInfo.Operator_ID = (int)cbOperator.SelectedValue;
+            wellInfo.Operator_ID = cbOperator.SelectedValue.ToString();
             reportInterval = int.Parse(tbReportInterval.Text.Trim());
 
             if (_isInsert)
@@ -123,7 +123,6 @@ namespace CSPN.assistcontrol
                 else
                 {
                     UMessageBox.Show("当前人井已存在。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
                 }
             }
             else
@@ -135,7 +134,7 @@ namespace CSPN.assistcontrol
                 userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "更新人井信息。", CommonClass.UserName, null, null, null);
             }
             UMessageBox.Show(this.Text + "成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.Close();
+            Close();
         }
 
         private bool isNumber(string str)

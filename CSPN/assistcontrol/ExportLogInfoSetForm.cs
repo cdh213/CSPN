@@ -33,7 +33,7 @@ namespace CSPN.assistcontrol
             switch (_type)
             {
                 case CSPNType.SysLogInfo:
-                    dic = new Dictionary<string, string>() { { "Happen_Time", "发生时间" }, { "Terminal_ID", "人井编号" }, { "Name", "人井名称" }, { "Place", "地点" }, { "State", "人井状态" }, { "Electricity", "电量" }, { "Temperature", "温度" }, { "Humidity", "湿度" }, { "Smoke_Detector", "烟感" }, { "Smoke_Power", "烟感电量" }, { "Signal_Strength", "信号强度" } };
+                    dic = new Dictionary<string, string>() { { "Happen_Time", "发生时间" }, { "Terminal_ID", "人井编号" }, { "Name", "人井名称" }, { "Place", "地点" }, { "State", "人井状态" }, { "Electricity", "终端电量" }, { "Temperature", "温度" }, { "Humidity", "湿度" }, { "Smoke_Detector", "烟感" }, { "Smoke_Power", "烟感电量" }, { "Signal_Strength", "信号强度" }, { "Terminal_Phone", "终端手机号" } };
                     bs.DataSource = dic;
                     clbItems.DataSource = bs;
                     clbItems.DisplayMember = "Value";

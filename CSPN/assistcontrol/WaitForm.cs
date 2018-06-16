@@ -18,13 +18,13 @@ namespace CSPN.assistcontrol
 
         public void SetText(string msg)
         {
-            if (this.label1.InvokeRequired)
+            if (label1.InvokeRequired)
             {
-                this.Invoke(new SetTextDelegate(SetText), msg);
+                Invoke(new SetTextDelegate(SetText), msg);
             }
             else
             {
-                this.label1.Text = msg;
+                label1.Text = msg;
             }
         }
     }

@@ -1,12 +1,12 @@
 ﻿using CSPN.BLL;
 using CSPN.common;
-using CSPN.helper;
 using CSPN.IBLL;
 using CSPN.Model;
 using Quartz;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace CSPN.job
 {
@@ -18,7 +18,7 @@ namespace CSPN.job
         private bool isEnabled = Convert.ToBoolean(ReadWriteXml.ReadXml("ReportInterval").Split('-')[0]);
         private int reportInterval = int.Parse(ReadWriteXml.ReadXml("ReportInterval").Split('-')[1]);
 
-        public void Execute(IJobExecutionContext context)
+        Task IJob.Execute(IJobExecutionContext context)
         {
             list = wellInfoService.GetReportInfo();
             if (isEnabled)
@@ -44,7 +44,7 @@ namespace CSPN.job
                 }
             }
             wellInfoService.Empty_ReportNumInfo();
-            LogHelper.WriteQuartzLog("更新人井未上报次数。时间:" + dateTime);
+            return Task.FromResult(true);
         }
     }
 }

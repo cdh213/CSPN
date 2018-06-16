@@ -15,6 +15,10 @@ namespace CSPN.assistcontrol
         public ForgotPWD(string work_ID)
         {
             InitializeComponent();
+            if (work_ID != "")
+            {
+                tbWork_ID.Enabled = false;
+            }
             tbWork_ID.Text = work_ID;
         }
 

@@ -29,11 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StatementManageControl));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.btnSysOut = new System.Windows.Forms.Button();
             this.btnUserWellInfoOut = new System.Windows.Forms.Button();
             this.btnUserGeneralInfoOut = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.ct = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ct)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSysOut
@@ -48,7 +52,7 @@
             this.btnSysOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSysOut.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnSysOut.ForeColor = System.Drawing.Color.White;
-            this.btnSysOut.Location = new System.Drawing.Point(10, 37);
+            this.btnSysOut.Location = new System.Drawing.Point(10, 378);
             this.btnSysOut.Name = "btnSysOut";
             this.btnSysOut.Size = new System.Drawing.Size(179, 26);
             this.btnSysOut.TabIndex = 15;
@@ -68,7 +72,7 @@
             this.btnUserWellInfoOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUserWellInfoOut.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnUserWellInfoOut.ForeColor = System.Drawing.Color.White;
-            this.btnUserWellInfoOut.Location = new System.Drawing.Point(210, 37);
+            this.btnUserWellInfoOut.Location = new System.Drawing.Point(209, 378);
             this.btnUserWellInfoOut.Name = "btnUserWellInfoOut";
             this.btnUserWellInfoOut.Size = new System.Drawing.Size(179, 26);
             this.btnUserWellInfoOut.TabIndex = 16;
@@ -88,7 +92,7 @@
             this.btnUserGeneralInfoOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUserGeneralInfoOut.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnUserGeneralInfoOut.ForeColor = System.Drawing.Color.White;
-            this.btnUserGeneralInfoOut.Location = new System.Drawing.Point(410, 37);
+            this.btnUserGeneralInfoOut.Location = new System.Drawing.Point(410, 378);
             this.btnUserGeneralInfoOut.Name = "btnUserGeneralInfoOut";
             this.btnUserGeneralInfoOut.Size = new System.Drawing.Size(179, 26);
             this.btnUserGeneralInfoOut.TabIndex = 17;
@@ -100,21 +104,37 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Controls.Add(this.btnSysOut, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnUserWellInfoOut, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnUserGeneralInfoOut, 2, 0);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanel1.Controls.Add(this.btnSysOut, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnUserWellInfoOut, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnUserGeneralInfoOut, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.ct, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(600, 426);
             this.tableLayoutPanel1.TabIndex = 18;
+            // 
+            // ct
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.ct.ChartAreas.Add(chartArea1);
+            this.tableLayoutPanel1.SetColumnSpan(this.ct, 3);
+            this.ct.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ct.Location = new System.Drawing.Point(3, 23);
+            this.ct.Name = "ct";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Name = "Series1";
+            this.ct.Series.Add(series1);
+            this.ct.Size = new System.Drawing.Size(594, 330);
+            this.ct.TabIndex = 18;
+            this.ct.Text = "chart1";
             // 
             // StatementManageControl
             // 
@@ -125,7 +145,9 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Name = "StatementManageControl";
             this.Size = new System.Drawing.Size(600, 426);
+            this.Load += new System.EventHandler(this.StatementManageControl_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ct)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -186,5 +208,6 @@
         private System.Windows.Forms.Button btnUserWellInfoOut;
         private System.Windows.Forms.Button btnUserGeneralInfoOut;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart ct;
     }
 }

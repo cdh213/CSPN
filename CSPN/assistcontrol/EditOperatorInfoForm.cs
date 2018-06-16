@@ -31,16 +31,16 @@ namespace CSPN.assistcontrol
             operatorInfo = new OperatorInfo();
             if (_isInsert == true)
             {
-                this.Text = "添加数据";
-                this.Icon = new Icon("resource/images/add.ico");
+                Text = "添加数据";
+                Icon = new Icon("resource/images/add.ico");
                 btnSure.Text = "确定添加";
                 cmbGender.SelectedIndex = 0;
                 cmbreceive.SelectedIndex = 0;
             }
             else
             {
-                this.Text = "更新数据";
-                this.Icon = new Icon("resource/images/update.ico");
+                Text = "更新数据";
+                Icon = new Icon("resource/images/update.ico");
                 btnSure.Text = "确定修改";
                 txtWorkID.Enabled = false;
 
@@ -102,16 +102,14 @@ namespace CSPN.assistcontrol
                 if (userService.GetOperatorByWork_ID(txtWorkID.Text.Trim()) != null)
                 {
                     UMessageBox.Show("该值班人员已存在，请勿重复添加！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
                 }
                 else
                 {
-                    int a = userService.InsertOperatorInfo(operatorInfo);
-                    if (a > 0)
+                    if (userService.InsertOperatorInfo(operatorInfo) > 0)
                     {
                         UMessageBox.Show("数据添加成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "添加值班人员。", CommonClass.UserName, null, null, null);
-                        this.Close();
+                        Close();
                     }
                     else
                     {
@@ -122,12 +120,11 @@ namespace CSPN.assistcontrol
             //更新
             else
             {
-                int a = userService.UpdateOperatorInfo(operatorInfo);
-                if (a > 0)
+                if (userService.UpdateOperatorInfo(operatorInfo) > 0)
                 {
                     UMessageBox.Show("数据修改成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "更新值班人员信息。", CommonClass.UserName, null, null, null);
-                    this.Close();
+                    Close();
                 }
                 else
                 {

@@ -3,6 +3,7 @@ using CSPN.IBLL;
 using CSPN.Model;
 using Quartz;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CSPN.job
 {
@@ -10,21 +11,23 @@ namespace CSPN.job
 
     public class AutoSendSMSJob : IJob
     {
-        public static AutoSendSMSDelegate autoSendSMSDelegate;
+        public static event AutoSendSMSDelegate autoSendSMSEvent;
+
         private IWellStateService wellStateService = new WellStateService();
         private List<WellCurrentStateInfo> list = new List<WellCurrentStateInfo>();
 
-        public void Execute(IJobExecutionContext context)
+        Task IJob.Execute(IJobExecutionContext context)
         {
             list = wellStateService.GetAlarmInfoList();
 
             if (list.Count != 0)
             {
-                if (autoSendSMSDelegate != null)
+                if (autoSendSMSEvent != null)
                 {
-                    autoSendSMSDelegate(list);
+                    autoSendSMSEvent(list);
                 }
             }
+            return Task.FromResult(true);
         }
     }
 }

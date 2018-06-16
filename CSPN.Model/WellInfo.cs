@@ -10,7 +10,7 @@
         private string _longitude;//经度
         private string _latitude;//纬度
         private string _place;//地点
-        private int _operator_ID;//值班人员ID
+        private string _operator_ID;//值班人员ID
         private string _terminal_Phone;//终端手机号
         private WellCurrentStateInfo _wellCurrentStateInfo;
         private WellStateInfo _wellStateInfo;
@@ -68,7 +68,7 @@
         /// <summary>
         /// 值班人员ID
         /// </summary>
-        public int Operator_ID
+        public string Operator_ID
         {
             get { return _operator_ID; }
             set { _operator_ID = value; }

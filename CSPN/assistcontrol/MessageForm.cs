@@ -31,9 +31,9 @@ namespace CSPN.assistcontrol
             PointToScreen(p);
             Location = p;
 
-            GetSMS.getSMSDelegate += new GetSMSDelegate(ShowAlarmMsg);
-            PendingMsgControl.refreshMessageDelegate += new RefreshMessageDelegate(ShowAlarmMsg);
-            RefreshWellInfoJob.refreshDelegate += new RefreshDelegate(RefreshInfo);
+            GetSMS.getSMSEvent += new GetSMSDelegate(ShowAlarmMsg);
+            PendingMsgControl.refreshMessageEvent += new RefreshMessageDelegate(ShowAlarmMsg);
+            RefreshWellInfoJob.refreshEvent += new RefreshDelegate(RefreshInfo);
         }
 
         public static MessageForm GetMessageForm()

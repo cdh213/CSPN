@@ -1,4 +1,4 @@
-﻿using CSPN.helper;
+﻿using System.Threading.Tasks;
 using Quartz;
 
 namespace CSPN.job
@@ -7,15 +7,15 @@ namespace CSPN.job
 
     public class RefreshWellInfoJob : IJob
     {
-        public static RefreshDelegate refreshDelegate;
+        public static event RefreshDelegate refreshEvent;
 
-        public void Execute(IJobExecutionContext context)
+        Task IJob.Execute(IJobExecutionContext context)
         {
-            if (refreshDelegate != null)
+            if (refreshEvent != null)
             {
-                refreshDelegate();
-                LogHelper.WriteQuartzLog("刷新信息列表。");
+                refreshEvent();
             }
+            return Task.FromResult(true);
         }
     }
 }

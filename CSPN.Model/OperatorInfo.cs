@@ -5,7 +5,6 @@
     /// </summary>
     public class OperatorInfo
     {
-        private int _ID;
         private string _work_ID;//工号
         private string _realName;//姓名
         private string _gender;//性别
@@ -14,12 +13,6 @@
         private string _receiveMsg;//是否接受消息
 
         #region 属性
-
-        public int ID
-        {
-            get { return _ID; }
-            set { _ID = value; }
-        }
 
         /// <summary>
         /// 工号
