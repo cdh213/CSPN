@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CSPN.Model</RootNamespace>
     <AssemblyName>CSPN.Model</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -52,6 +52,7 @@
     <Compile Include="UsersInfo.cs" />
     <Compile Include="WellCurrentStateInfo.cs" />
     <Compile Include="WellInfo.cs" />
+    <Compile Include="WellMaintainInfo.cs" />
     <Compile Include="WellStateInfo.cs" />
   </ItemGroup>
   <ItemGroup>

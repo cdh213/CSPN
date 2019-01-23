@@ -8,7 +8,6 @@ namespace CSPN.webbrower
     {
         public void OnDialogClosed(IWebBrowser browserControl, IBrowser browser)
         {
-
         }
 
         public bool OnJSBeforeUnload(IWebBrowser browserControl, IBrowser browser, string message, bool isReload, IJsDialogCallback callback)
@@ -32,7 +31,6 @@ namespace CSPN.webbrower
 
         public void OnResetDialogState(IWebBrowser browserControl, IBrowser browser)
         {
-            
         }
     }
 }

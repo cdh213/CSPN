@@ -13,19 +13,22 @@ namespace CSPN.assistcontrol
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
         }
+
         private delegate void SetTextDelegate(string msg);
+
         public void SetText(string msg)
         {
-            if (this.label1.InvokeRequired)
+            if (label1.InvokeRequired)
             {
-                this.Invoke(new SetTextDelegate(SetText), msg);
+                Invoke(new SetTextDelegate(SetText), msg);
             }
             else
             {
-                this.label1.Text = msg;
+                label1.Text = msg;
             }
         }
     }
+
     public class WaitWin
     {
         private static WaitWin instance = null;
@@ -35,9 +38,9 @@ namespace CSPN.assistcontrol
         private static string _msg = null;
         private static ContainerControl _control = null;
 
-        /// <summary>    
-        /// 单例模式    
-        /// </summary>    
+        /// <summary>
+        /// 单例模式
+        /// </summary>
         private static WaitWin Instance
         {
             get
@@ -55,32 +58,36 @@ namespace CSPN.assistcontrol
                 return instance;
             }
         }
-        /// <summary>    
-        /// 为了单例模式防止new 实例化..    
-        /// </summary>    
+
+        /// <summary>
+        /// 为了单例模式防止new 实例化..
+        /// </summary>
         private WaitWin()
         {
         }
-        /// <summary>    
-        /// 显示等待窗体    
-        /// </summary>    
+
+        /// <summary>
+        /// 显示等待窗体
+        /// </summary>
         public static void Show(ContainerControl control, string msg)
         {
             _control = control;
             _msg = msg;
             WaitWin.Instance.CreateForm();
         }
-        /// <summary>    
-        /// 关闭等待窗体    
-        /// </summary>    
+
+        /// <summary>
+        /// 关闭等待窗体
+        /// </summary>
         public static void Close()
         {
             Thread.Sleep(100);
             WaitWin.Instance.CloseForm();
         }
-        /// <summary>    
-        /// 创建等待窗体    
-        /// </summary>    
+
+        /// <summary>
+        /// 创建等待窗体
+        /// </summary>
         private void CreateForm()
         {
             waitForm = null;
@@ -88,6 +95,7 @@ namespace CSPN.assistcontrol
             waitThread.Start();
             Thread.Sleep(100);
         }
+
         private void ShowWaitForm()
         {
             try
@@ -115,9 +123,10 @@ namespace CSPN.assistcontrol
                 LogHelper.WriteLog(ex.Message, ex);
             }
         }
-        /// <summary>    
-        /// 关闭窗体    
-        /// </summary>    
+
+        /// <summary>
+        /// 关闭窗体
+        /// </summary>
         private void CloseForm()
         {
             if (waitThread != null)

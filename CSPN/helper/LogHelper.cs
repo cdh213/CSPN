@@ -1,20 +1,21 @@
 ﻿using log4net;
+using Quartz.Logging;
 using System;
 
 namespace CSPN.helper
 {
-    public class LogHelper
+    public class LogHelper : ILogProvider
     {
-        static readonly ILog logerror = LogManager.GetLogger("ApplicationLog");
-        static readonly ILog quartzLog = LogManager.GetLogger("QuartzLog");
+        private static readonly ILog logerror = LogManager.GetLogger("ApplicationLog");
 
         public static void WriteLog(string info)
         {
-            if (logerror.IsErrorEnabled)
+            if (logerror.IsInfoEnabled)
             {
                 logerror.Info(info);
             }
         }
+
         public static void WriteLog(string info, Exception ex)
         {
             if (logerror.IsErrorEnabled)
@@ -23,19 +24,29 @@ namespace CSPN.helper
             }
         }
 
-        public static void WriteQuartzLog(string info)
+        public Logger GetLogger(string name)
         {
-            if (quartzLog.IsErrorEnabled)
+            return (level, func, exception, parameters) =>
             {
-                quartzLog.Info(info);
-            }
+                if (level >= LogLevel.Info && func != null)
+                {
+                    if (logerror.IsInfoEnabled)
+                    {
+                        logerror.InfoFormat("[" + DateTime.Now.ToLongTimeString() + "] [" + level + "] " + func(), parameters);
+                    }
+                }
+                return true;
+            };
         }
-        public static void WriteQuartzLog(string info, Exception ex)
+
+        public IDisposable OpenMappedContext(string key, string value)
         {
-            if (quartzLog.IsErrorEnabled)
-            {
-                quartzLog.Error(info, ex);
-            }
+            throw new NotImplementedException();
+        }
+
+        public IDisposable OpenNestedContext(string message)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -11,12 +11,12 @@ namespace CSPN.assistcontrol
 {
     public partial class EditOperatorInfoForm : Form
     {
-        IUsersService userService = new UsersService();
-        OperatorInfo operatorInfo = null;
-        UserLogHelper userLogHelper = new UserLogHelper();
+        private IUsersService userService = new UsersService();
+        private OperatorInfo operatorInfo = null;
+        private UserLogHelper userLogHelper = new UserLogHelper();
 
-        bool _isInsert = false;
-        string _work_ID = null;
+        private bool _isInsert = false;
+        private string _work_ID = null;
 
         //编辑时将选中信息加载到窗体上
         public EditOperatorInfoForm(bool isInsert, string work_ID)
@@ -25,21 +25,22 @@ namespace CSPN.assistcontrol
             _isInsert = isInsert;
             _work_ID = work_ID;
         }
+
         private void EditUserInfoForm_Load(object sender, EventArgs e)
         {
             operatorInfo = new OperatorInfo();
             if (_isInsert == true)
             {
-                this.Text = "添加数据";
-                this.Icon = new Icon("resource/images/add.ico");
+                Text = "添加数据";
+                Icon = new Icon("resource/images/add.ico");
                 btnSure.Text = "确定添加";
                 cmbGender.SelectedIndex = 0;
                 cmbreceive.SelectedIndex = 0;
             }
             else
             {
-                this.Text = "更新数据";
-                this.Icon = new Icon("resource/images/update.ico");
+                Text = "更新数据";
+                Icon = new Icon("resource/images/update.ico");
                 btnSure.Text = "确定修改";
                 txtWorkID.Enabled = false;
 
@@ -66,12 +67,13 @@ namespace CSPN.assistcontrol
                 }
             }
         }
+
         //确定添加/更新
         private void btnSure_Click(object sender, EventArgs e)
         {
             operatorInfo = new OperatorInfo()
             {
-                Area = txtArea.Text.Trim(),//区域    
+                Area = txtArea.Text.Trim(),//区域
                 Work_ID = txtWorkID.Text.Trim(),//工号
                 RealName = txtName.Text.Trim(),//姓名
                 Telephone = txtTelephone.Text.Trim(),//联系方式
@@ -100,16 +102,14 @@ namespace CSPN.assistcontrol
                 if (userService.GetOperatorByWork_ID(txtWorkID.Text.Trim()) != null)
                 {
                     UMessageBox.Show("该值班人员已存在，请勿重复添加！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
                 }
                 else
                 {
-                    int a = userService.InsertOperatorInfo(operatorInfo);
-                    if (a > 0)
+                    if (userService.InsertOperatorInfo(operatorInfo) > 0)
                     {
                         UMessageBox.Show("数据添加成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "添加值班人员。", CommonClass.UserName, null, null);
-                        this.Close();
+                        userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "添加值班人员。", CommonClass.UserName, null, null, null);
+                        Close();
                     }
                     else
                     {
@@ -120,12 +120,11 @@ namespace CSPN.assistcontrol
             //更新
             else
             {
-                int a = userService.UpdateOperatorInfo(operatorInfo);
-                if (a > 0)
+                if (userService.UpdateOperatorInfo(operatorInfo) > 0)
                 {
                     UMessageBox.Show("数据修改成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "更新值班人员信息。", CommonClass.UserName, null, null);
-                    this.Close();
+                    userLogHelper.InsertUserLog(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), "更新值班人员信息。", CommonClass.UserName, null, null, null);
+                    Close();
                 }
                 else
                 {

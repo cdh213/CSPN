@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSPN.Model
+﻿namespace CSPN.Model
 {
     /// <summary>
     /// 值班人员信息
     /// </summary>
     public class OperatorInfo
     {
-        private int _ID;
         private string _work_ID;//工号
         private string _realName;//姓名
         private string _gender;//性别
@@ -19,13 +12,8 @@ namespace CSPN.Model
         private string _area;//区域
         private string _receiveMsg;//是否接受消息
 
-        
         #region 属性
-        public int ID
-        {
-            get { return _ID; }
-            set { _ID = value; }
-        }
+
         /// <summary>
         /// 工号
         /// </summary>
@@ -34,6 +22,7 @@ namespace CSPN.Model
             get { return _work_ID; }
             set { _work_ID = value; }
         }
+
         /// <summary>
         /// 姓名
         /// </summary>
@@ -42,6 +31,7 @@ namespace CSPN.Model
             get { return _realName; }
             set { _realName = value; }
         }
+
         /// <summary>
         /// 性别
         /// </summary>
@@ -50,6 +40,7 @@ namespace CSPN.Model
             get { return _gender; }
             set { _gender = value; }
         }
+
         /// <summary>
         /// 电话
         /// </summary>
@@ -58,6 +49,7 @@ namespace CSPN.Model
             get { return _telephone; }
             set { _telephone = value; }
         }
+
         /// <summary>
         /// 区域
         /// </summary>
@@ -66,6 +58,7 @@ namespace CSPN.Model
             get { return _area; }
             set { _area = value; }
         }
+
         /// <summary>
         /// 是否接受消息
         /// </summary>
@@ -74,6 +67,7 @@ namespace CSPN.Model
             get { return _receiveMsg; }
             set { _receiveMsg = value; }
         }
-        #endregion
+
+        #endregion 属性
     }
 }

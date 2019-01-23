@@ -35,6 +35,7 @@
             this.cbRemember = new System.Windows.Forms.CheckBox();
             this.cbUserName = new CSPN.assistcontrol.UserComboBox();
             this.txtPWD = new CSPN.assistcontrol.WaterTextBox();
+            this.lbForgotPWD = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -75,7 +76,7 @@
             this.btnLogin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(86, 26);
-            this.btnLogin.TabIndex = 4;
+            this.btnLogin.TabIndex = 1;
             this.btnLogin.Text = "登录";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -83,14 +84,15 @@
             // cbRemember
             // 
             this.cbRemember.AutoSize = true;
+            this.cbRemember.BackColor = System.Drawing.Color.Transparent;
             this.cbRemember.Checked = true;
             this.cbRemember.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbRemember.Location = new System.Drawing.Point(436, 189);
+            this.cbRemember.Location = new System.Drawing.Point(294, 188);
             this.cbRemember.Name = "cbRemember";
             this.cbRemember.Size = new System.Drawing.Size(75, 21);
-            this.cbRemember.TabIndex = 3;
+            this.cbRemember.TabIndex = 4;
             this.cbRemember.Text = "记住密码";
-            this.cbRemember.UseVisualStyleBackColor = true;
+            this.cbRemember.UseVisualStyleBackColor = false;
             // 
             // cbUserName
             // 
@@ -99,7 +101,7 @@
             this.cbUserName.Location = new System.Drawing.Point(347, 67);
             this.cbUserName.Name = "cbUserName";
             this.cbUserName.Size = new System.Drawing.Size(164, 28);
-            this.cbUserName.TabIndex = 1;
+            this.cbUserName.TabIndex = 2;
             this.cbUserName.WaterText = "请输入用户名";
             this.cbUserName.DropDownClosed += new System.EventHandler(this.cbUserName_DropDownClosed);
             // 
@@ -111,10 +113,22 @@
             this.txtPWD.Name = "txtPWD";
             this.txtPWD.PasswordChar = '*';
             this.txtPWD.Size = new System.Drawing.Size(164, 26);
-            this.txtPWD.TabIndex = 2;
+            this.txtPWD.TabIndex = 3;
             this.txtPWD.UseSystemPasswordChar = true;
             this.txtPWD.WaterText = "请输入密码";
             this.txtPWD.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPWD_KeyUp);
+            // 
+            // lbForgotPWD
+            // 
+            this.lbForgotPWD.AutoSize = true;
+            this.lbForgotPWD.BackColor = System.Drawing.Color.Transparent;
+            this.lbForgotPWD.ForeColor = System.Drawing.Color.Blue;
+            this.lbForgotPWD.Location = new System.Drawing.Point(443, 189);
+            this.lbForgotPWD.Name = "lbForgotPWD";
+            this.lbForgotPWD.Size = new System.Drawing.Size(68, 17);
+            this.lbForgotPWD.TabIndex = 5;
+            this.lbForgotPWD.Text = "忘记密码？";
+            this.lbForgotPWD.Click += new System.EventHandler(this.lbForgotPWD_Click);
             // 
             // LoginForm
             // 
@@ -123,6 +137,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(547, 299);
+            this.Controls.Add(this.lbForgotPWD);
             this.Controls.Add(this.cbUserName);
             this.Controls.Add(this.cbRemember);
             this.Controls.Add(this.btnLogin);
@@ -134,6 +149,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "人井监控管理系统";
@@ -152,5 +168,6 @@
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.CheckBox cbRemember;
         private assistcontrol.UserComboBox cbUserName;
+        private System.Windows.Forms.Label lbForgotPWD;
     }
 }

@@ -12,15 +12,15 @@ using System.Windows.Forms;
 
 namespace CSPN
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
-            Mutex instance = new Mutex(true, "CSPN", out bool createdNew); //同步基元变量   
+            Mutex instance = new Mutex(true, "CSPN", out bool createdNew); //同步基元变量
             if (createdNew)
             {
                 try
@@ -29,7 +29,7 @@ namespace CSPN
                     //设置应用程序处理异常方式：ThreadException处理
                     Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
                     //处理UI线程异常
-                    Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
+                    Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
                     //处理非UI线程异常
                     AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
@@ -51,12 +51,15 @@ namespace CSPN
                                 new WebBrower().Init();
                                 Application.Run(new MainForm(true));
                                 break;
+
                             case DialogResult.No:
                                 Application.Run(new MainForm(false));
                                 break;
+
                             case DialogResult.Abort:
                                 Application.Run(new MainForm(null));
                                 break;
+
                             default:
                                 Environment.Exit(0);
                                 break;
@@ -72,9 +75,9 @@ namespace CSPN
                 finally
                 {
                     instance.ReleaseMutex();
+                    instance.Dispose();
                     Environment.Exit(0);
                 }
-                
             }
             else
             {
@@ -83,14 +86,14 @@ namespace CSPN
             }
         }
 
-        static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
             LogHelper.WriteLog(e.ToString(), e.Exception);
             UMessageBox.Show("系统错误。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             WaitWin.Close();
         }
 
-        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             LogHelper.WriteLog(e.ToString(), e.ExceptionObject as Exception);
             UMessageBox.Show("系统错误。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);

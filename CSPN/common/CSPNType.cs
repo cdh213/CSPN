@@ -5,42 +5,51 @@
         /// <summary>
         /// 人井信息
         /// </summary>
-        WellInfo,
+        WellInfo = 0,
+
         /// <summary>
         /// 系统日志
         /// </summary>
-        SysLogInfo,
+        SysLogInfo = 1,
+
         /// <summary>
-        /// 用户日志_人井日志
+        /// 用户日志_人井处理日志
         /// </summary>
-        UserLogInfo_WellInfo,
+        UserLogInfo_WellInfo = 2,
+
         /// <summary>
-        /// 用户日志_一般
+        /// 用户日志
         /// </summary>
-        UserLogInfo_GeneralInfo,
+        UserLogInfo_GeneralInfo = 3,
+
         /// <summary>
         /// 预约维护
         /// </summary>
-        MaintainInfo,
+        MaintainInfo = 4,
+
         /// <summary>
         /// 报警信息
         /// </summary>
-        AlarmInfo,
+        AlarmInfo = 5,
+
         /// <summary>
         /// 已处理信息
         /// </summary>
-        DisposeInfo,
+        DisposeInfo = 6,
+
         /// <summary>
         /// 未上报信息
         /// </summary>
-        NotReportInfo,
+        NotReportInfo = 7,
+
         /// <summary>
         /// 值班人员信息
         /// </summary>
-        OperatorInfo,
+        OperatorInfo = 8,
+
         /// <summary>
         /// 用户信息
         /// </summary>
-        UserInfo
+        UserInfo = 9
     }
 }

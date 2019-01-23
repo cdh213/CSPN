@@ -19,7 +19,7 @@ namespace CSPN.common
             {
                 if (key == null)
                 {
-                    using (RegistryKey software = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\CSPN",RegistryKeyPermissionCheck.ReadWriteSubTree))
+                    using (RegistryKey software = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\CSPN", RegistryKeyPermissionCheck.ReadWriteSubTree))
                     {
                         software.SetValue(name, value);
                     }
@@ -30,6 +30,7 @@ namespace CSPN.common
                 }
             }
         }
+
         /// <summary>
         /// 读取注册表
         /// </summary>

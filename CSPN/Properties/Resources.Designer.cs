@@ -80,18 +80,7 @@ namespace CSPN.Properties {
         }
         
         /// <summary>
-        ///   查找类似 &lt;!DOCTYPE html&gt;
-        ///&lt;html&gt;
-        ///&lt;head&gt;
-        ///    &lt;meta charset=&quot;utf-8&quot; /&gt;
-        ///    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;
-        ///    &lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1.0, user-scalable=no, width=device-width&quot; /&gt;
-        ///    &lt;title&gt;地图&lt;/title&gt;
-        ///    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://cache.amap.com/lbs/static/main1119.css&quot; /&gt;
-        ///    &lt;script src=&quot;http://webapi.amap.com/maps?v=1.4.3&amp;key=f30294b3e24d47a6986cabdb002d043d&quot;&gt;&lt;/script&gt;
-        ///    &lt;script type=&quot;text/javascript&quot;&gt;
-        ///        var mapdata = eval(&apos;{0}&apos;);
-        ///        va [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///   查找类似 &lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;&lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1.0, user-scalable=no, width=device-width&quot; /&gt;&lt;title&gt;地图&lt;/title&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;http://cache.amap.com/lbs/static/main1119.css&quot; /&gt;&lt;script src=&quot;http://webapi.amap.com/maps?v=1.4.5&amp;key=f30294b3e24d47a6986cabdb002d043d&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;var mapdata = eval(&apos;{0}&apos;);var locationInfo = &apos;{1}&apos;; 的本地化字符串。
         /// </summary>
         internal static string mapHeader {
             get {

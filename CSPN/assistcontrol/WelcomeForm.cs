@@ -15,8 +15,8 @@ namespace CSPN.assistcontrol
             InitializeComponent();
         }
 
-        FileHelper file = new FileHelper();
-        string tsx= ConfigurationManager.AppSettings["TSX"];
+        private FileHelper file = new FileHelper();
+        private string tsx = ConfigurationManager.AppSettings["TSX"];
 
         private void WelcomeForm_Load(object sender, EventArgs e)
         {
@@ -25,13 +25,13 @@ namespace CSPN.assistcontrol
                 file.DeleteDir("cache");
             }
             //设置启动窗体
-            this.timer1.Start();
-            this.timer1.Interval = 2000;
+            timer1.Start();
+            timer1.Interval = 2000;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            this.timer1.Stop();
+            timer1.Stop();
             if (SerialPort.GetPortNames().Length != 0)
             {
                 //读取配置文件
@@ -56,55 +56,55 @@ namespace CSPN.assistcontrol
                                 }
                                 if (ReadWriteRegistry.ReadRegistry("isInvalid") == "true")
                                 {
-                                    this.DialogResult = DialogResult.Abort;
+                                    DialogResult = DialogResult.Abort;
                                 }
                                 else
                                 {
                                     CDMASMS.DeviceInitialize();
-                                    this.DialogResult = DialogResult.OK;
+                                    DialogResult = DialogResult.OK;
                                 }
-                                this.Close();
+                                Close();
                             }
                             else
                             {
-                                UMessageBox.Show("未注册到本地网络！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                UMessageBox.Show("未注册到本地网络，请确认硬件设备连接正确。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 CDMASMS.Close();
-                                this.Close();
+                                Close();
                             }
                         }
                         else
                         {
                             UMessageBox.Show("硬件不匹配！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             CDMASMS.Close();
-                            this.Close();
+                            Close();
                         }
                     }
                     else
                     {
                         UMessageBox.Show("串口打开失败，请在系统设置中重新配置串口数据。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        this.DialogResult = DialogResult.No;
-                        this.Close();
+                        DialogResult = DialogResult.No;
+                        Close();
                     }
                 }
                 else
                 {
                     UMessageBox.Show("串口打开失败，请在系统设置中重新配置串口数据。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.DialogResult = DialogResult.No;
-                    this.Close();
+                    DialogResult = DialogResult.No;
+                    Close();
                 }
             }
             else
             {
-                UMessageBox.Show("读取硬件信息失败！请确认硬件设备连接正确。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                UMessageBox.Show("读取硬件信息失败，请确认硬件设备连接正确。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 CDMASMS.Close();
-                this.Close();
+                Close();
             }
         }
 
         private void WelcomeForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             //关闭定时器
-            this.timer1.Dispose();
+            timer1.Dispose();
         }
     }
 }

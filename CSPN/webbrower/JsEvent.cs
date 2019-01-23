@@ -15,14 +15,15 @@ namespace CSPN.webbrower
 
     public class JsEvent
     {
-        public static DisposeMsgDelegate disposeMsgDelegate;
-        IWellInfoService wellInfoService = new WellInfoService();
-        IWellStateService wellStateService = new WellStateService();
-        WellInfo well = new WellInfo();
-        WellStateInfo stateInfo = new WellStateInfo();
+        public static event DisposeMsgDelegate disposeMsgEvent;
 
-        List<WellInfo> list = null;
-        string json = null;
+        private IWellInfoService wellInfoService = new WellInfoService();
+        private IWellStateService wellStateService = new WellStateService();
+        private WellInfo well = new WellInfo();
+        private WellStateInfo stateInfo = new WellStateInfo();
+
+        private List<WellInfo> list = null;
+        private string json = null;
         public string inputvalue { get; set; }
         public string terminal_ID { get; set; }
         public int well_State_ID { get; set; }
@@ -34,19 +35,21 @@ namespace CSPN.webbrower
             if (inputvalue == "")
             {
                 UMessageBox.Show("请输入内容！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
             }
-            Task.Run(async () =>
-           {
-
-               using (javascriptCallback)
-               {
-                   list = wellInfoService.GetWellInfo_List(inputvalue);
-                   json = JsonConvert.SerializeObject(list);
-                   await javascriptCallback.ExecuteAsync(json);
-               }
-           });
+            else
+            {
+                Task.Run(async () =>
+                {
+                    using (javascriptCallback)
+                    {
+                        list = wellInfoService.GetWellInfo_List(inputvalue);
+                        json = JsonConvert.SerializeObject(list);
+                        await javascriptCallback.ExecuteAsync(json);
+                    }
+                });
+            }
         }
+
         public void AddMaker(IJavascriptCallback javascriptCallback)
         {
             EditWellInfoForm ef = new EditWellInfoForm(null, true, true, menuPositon);
@@ -65,6 +68,7 @@ namespace CSPN.webbrower
                 });
             }
         }
+
         public void UpdateContent(IJavascriptCallback javascriptCallback)
         {
             EditWellInfoForm ef = new EditWellInfoForm(terminal_ID, false, false, null);
@@ -82,11 +86,12 @@ namespace CSPN.webbrower
                 });
             }
         }
+
         public void DeleteContent()
         {
             if (UMessageBox.Show("是否删除？", "人井监控管理系统", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                if (wellInfoService.DeleteWellInfo(terminal_ID) > 0 && wellStateService.DeleteWellCurrentStateInfo(terminal_ID) > 0 && wellInfoService.DeleteReportInfo(terminal_ID) > 0)
+                if (wellInfoService.DeleteWellInfo(terminal_ID) > 0 && wellStateService.DeleteWellCurrentStateInfo(terminal_ID) > 0 && wellInfoService.DeleteReportInfo(terminal_ID) > 0 && wellStateService.DeleteWellMaintainInfo(terminal_ID) > 0)
                 {
                     UMessageBox.Show("数据删除成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     WebBrower.webBrower.ExecuteScriptAsync("deleteMarker", terminal_ID);
@@ -97,25 +102,29 @@ namespace CSPN.webbrower
                 }
             }
         }
+
         public void DisposeAlarmMsg()
         {
-            if (disposeMsgDelegate != null)
+            if (disposeMsgEvent != null)
             {
-                disposeMsgDelegate(well_State_ID, terminal_ID, CSPNType.AlarmInfo);
+                disposeMsgEvent(well_State_ID, terminal_ID, CSPNType.AlarmInfo);
             }
         }
+
         public void DisposeMsgFinish()
         {
-            if (disposeMsgDelegate != null)
+            if (disposeMsgEvent != null)
             {
-                disposeMsgDelegate(well_State_ID, terminal_ID, CSPNType.DisposeInfo);
+                disposeMsgEvent(well_State_ID, terminal_ID, CSPNType.DisposeInfo);
             }
         }
+
         public void SaveLocationInfo()
         {
             ReadWriteXml.WriteXml("DefaultLocation", locationInfo);
             UMessageBox.Show("设置成功！", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
         public void Reload(IJavascriptCallback javascriptCallback)
         {
             Task.Run(async () =>

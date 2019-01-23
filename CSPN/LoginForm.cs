@@ -11,10 +11,10 @@ namespace CSPN
 {
     public partial class LoginForm : Form
     {
-        IUsersService userService = new UsersService();
-        UsersInfo usersInfo = new UsersInfo();
-        ReadWriteData readWriteData = new ReadWriteData();
-        Dictionary<string, UsersInfo> users = new Dictionary<string, UsersInfo>();
+        private IUsersService userService = new UsersService();
+        private UsersInfo usersInfo = new UsersInfo();
+        private ReadWriteData readWriteData = new ReadWriteData();
+        private Dictionary<string, UsersInfo> users = new Dictionary<string, UsersInfo>();
 
         public string userName { get; set; }
 
@@ -22,6 +22,7 @@ namespace CSPN
         {
             InitializeComponent();
         }
+
         private void LoginForm_Load(object sender, EventArgs e)
         {
             if (ReadWriteRegistry.ReadRegistry("isInvalid") == null)
@@ -41,6 +42,7 @@ namespace CSPN
                 txtPWD.Text = users[cbUserName.SelectedItem.ToString().Trim()].PassWord;
             }
         }
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if (cbUserName.Text.Trim() != null && txtPWD.Text.Trim() != "")
@@ -48,7 +50,7 @@ namespace CSPN
                 usersInfo = userService.GetUsersByUserName(cbUserName.Text.Trim());
                 if (usersInfo != null)
                 {
-                    if (usersInfo.PassWord.Trim() == txtPWD.Text.Trim())
+                    if (usersInfo.PassWord.Trim() == txtPWD.Text.Trim() || usersInfo.PassWord.Trim() == SysFunction.GetSecurit(txtPWD.Text.Trim() + "CSPN" + cbUserName.Text.Trim()))
                     {
                         UMessageBox.Show("登录成功。", "人井监控管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         if (cbRemember.Checked)
@@ -62,8 +64,8 @@ namespace CSPN
                         }
                         userName = usersInfo.UserName;
                         userService.UpdateLoginTimeByWork_ID(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), usersInfo.Work_ID);
-                        this.Close();
-                        this.DialogResult = DialogResult.OK;
+                        Close();
+                        DialogResult = DialogResult.OK;
                     }
                     else
                     {
@@ -81,11 +83,15 @@ namespace CSPN
             }
         }
 
+        private void lbLostPWD_Click(object sender, EventArgs e)
+        {
+        }
+
         private void txtPWD_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)//如果输入的是回车键  
+            if (e.KeyCode == Keys.Enter)//如果输入的是回车键
             {
-                this.btnLogin_Click(sender, e);//触发button事件  
+                btnLogin_Click(sender, e);//触发button事件
             }
         }
 
@@ -95,6 +101,11 @@ namespace CSPN
             {
                 txtPWD.Text = users[cbUserName.SelectedItem.ToString().Trim()].PassWord;
             }
+        }
+
+        private void lbForgotPWD_Click(object sender, EventArgs e)
+        {
+            new ForgotPWD("").ShowDialog(this);
         }
     }
 }

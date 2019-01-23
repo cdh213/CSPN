@@ -56,7 +56,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(230, 30);
+            this.panel1.Size = new System.Drawing.Size(246, 30);
             this.panel1.TabIndex = 0;
             // 
             // btnAlarm
@@ -71,7 +71,7 @@
             this.btnAlarm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAlarm.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnAlarm.ForeColor = System.Drawing.Color.White;
-            this.btnAlarm.Location = new System.Drawing.Point(95, 0);
+            this.btnAlarm.Location = new System.Drawing.Point(103, 0);
             this.btnAlarm.Name = "btnAlarm";
             this.btnAlarm.Size = new System.Drawing.Size(69, 30);
             this.btnAlarm.TabIndex = 5;
@@ -98,7 +98,7 @@
             this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClose.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
-            this.btnClose.Location = new System.Drawing.Point(183, 0);
+            this.btnClose.Location = new System.Drawing.Point(199, 0);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(47, 30);
@@ -116,7 +116,7 @@
             this.dgvAlarm.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.dgvAlarm.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvAlarm.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAlarm.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvAlarm.BackgroundColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
@@ -143,7 +143,7 @@
             this.dgvAlarm.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.dgvAlarm.RowTemplate.Height = 30;
             this.dgvAlarm.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAlarm.Size = new System.Drawing.Size(230, 320);
+            this.dgvAlarm.Size = new System.Drawing.Size(246, 320);
             this.dgvAlarm.TabIndex = 1;
             this.dgvAlarm.TabStop = false;
             this.dgvAlarm.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAlarm_CellFormatting);
@@ -159,6 +159,7 @@
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
             this.dataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn7.Width = 90;
             // 
             // dataGridViewTextBoxColumn10
             // 
@@ -167,6 +168,7 @@
             this.dataGridViewTextBoxColumn10.HeaderText = "人井编号";
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            this.dataGridViewTextBoxColumn10.Width = 90;
             // 
             // Icon
             // 
@@ -176,13 +178,14 @@
             this.Icon.Name = "Icon";
             this.Icon.ReadOnly = true;
             this.Icon.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Icon.Width = 62;
             // 
             // MessageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.ClientSize = new System.Drawing.Size(230, 350);
+            this.ClientSize = new System.Drawing.Size(246, 350);
             this.Controls.Add(this.dgvAlarm);
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;

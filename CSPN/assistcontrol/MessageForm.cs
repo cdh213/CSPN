@@ -1,49 +1,46 @@
-﻿using CSPN.BLL;
+﻿using CefSharp;
+using CSPN.BLL;
 using CSPN.control;
 using CSPN.helper;
 using CSPN.IBLL;
+using CSPN.job;
 using CSPN.Model;
 using CSPN.sms;
 using CSPN.webbrower;
-using CefSharp;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Threading.Tasks;
-using CSPN.job;
 
 namespace CSPN.assistcontrol
 {
     public partial class MessageForm : Form
     {
-        private static MessageForm messageForm;
-        private static object obj = new object();
-        IWellInfoService wellInfoService = new WellInfoService();
-        string terminal_ID = null;
-        List<WellInfo> list = null;
-        string json = null;
+        private static MessageForm messageForm = null;
+        private IWellInfoService wellInfoService = new WellInfoService();
+        private IWellStateService wellStateService = new WellStateService();
+        private string terminal_ID = null;
+        private List<WellInfo> list = null;
+        private string json = null;
 
         private MessageForm()
         {
             InitializeComponent();
-            GetSMS.getSMSDelegate += new GetSMSDelegate(ShowAlarmMsg);
-            PendingMsgControl.refreshMessageDelegate += new RefreshMessageDelegate(ShowAlarmMsg);
-            RefreshWellInfoJob.refreshDelegate += new RefreshDelegate(RefreshInfo);
+            Point p = new Point(Screen.PrimaryScreen.WorkingArea.Width - Width, Screen.PrimaryScreen.WorkingArea.Height - Height);
+            PointToScreen(p);
+            Location = p;
+
+            GetSMS.getSMSEvent += new GetSMSDelegate(ShowAlarmMsg);
+            PendingMsgControl.refreshMessageEvent += new RefreshMessageDelegate(ShowAlarmMsg);
+            RefreshWellInfoJob.refreshEvent += new RefreshDelegate(RefreshInfo);
         }
 
         public static MessageForm GetMessageForm()
         {
-            if (messageForm == null)
+            if (messageForm == null || messageForm.IsDisposed)
             {
-                lock (obj)
-                {
-                    if (messageForm == null)
-                    {
-                        messageForm = new MessageForm();
-                    }
-                }
+                messageForm = new MessageForm();
             }
             return messageForm;
         }
@@ -60,9 +57,10 @@ namespace CSPN.assistcontrol
             json = JsonConvert.SerializeObject(list);
             WebBrower.webBrower.ExecuteScriptAsync("searchData", json);
         }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Visible = false;
         }
 
         private void btnClose_MouseEnter(object sender, EventArgs e)
@@ -74,6 +72,7 @@ namespace CSPN.assistcontrol
         {
             btnClose.BackColor = Color.FromArgb(83, 143, 198);
         }
+
         //显示信息
         private void ShowAlarmMsg()
         {
@@ -86,22 +85,35 @@ namespace CSPN.assistcontrol
                 AlarmDataLoade();
             }
         }
+
         //自动刷新
         private void RefreshInfo()
         {
             if (dgvAlarm.InvokeRequired)
             {
-                dgvAlarm.Invoke(new job.RefreshDelegate(RefreshInfo));
+                dgvAlarm.Invoke(new RefreshDelegate(RefreshInfo));
             }
             else
             {
                 AlarmDataLoade();
             }
         }
+
         private void AlarmDataLoade()
         {
             dgvAlarm.AutoGenerateColumns = false;
-            dgvAlarm.DataSource = wellInfoService.GetReportInfo_Pending();
+            dgvAlarm.DataSource = wellStateService.GetAlarmInfo();
+            if (dgvAlarm.Rows.Count == 0)
+            {
+                if (GetMessageForm().InvokeRequired)
+                {
+                    GetMessageForm().Invoke(new Action(() => { GetMessageForm().Visible = false; }));
+                }
+                else
+                {
+                    GetMessageForm().Visible = false;
+                }
+            }
         }
 
         private void dgvAlarm_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -110,19 +122,6 @@ namespace CSPN.assistcontrol
             {
                 e.Value = ImageHelper.ToImage(e.Value.ToString());
             }
-        }
-    }
-    public class ShowMessageForm
-    {
-        public static void ShowForm()
-        {
-            Task.Run(()=> {
-                MessageForm messageForm = MessageForm.GetMessageForm();
-                Point p = new Point(Screen.PrimaryScreen.WorkingArea.Width - messageForm.Width, Screen.PrimaryScreen.WorkingArea.Height - messageForm.Height);
-                messageForm.PointToScreen(p);
-                messageForm.Location = p;
-                Application.Run(messageForm);
-            });
         }
     }
 }

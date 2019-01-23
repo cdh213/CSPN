@@ -30,6 +30,7 @@ namespace CSPN.helper
             }
             return temp;
         }
+
         /// <summary>
         /// 删除文件夹内的内容
         /// </summary>

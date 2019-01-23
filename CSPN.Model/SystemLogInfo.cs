@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSPN.Model
+﻿namespace CSPN.Model
 {
     /// <summary>
     /// 系统日志信息
@@ -13,7 +7,7 @@ namespace CSPN.Model
     {
         private string _happen_Time;//发生时间
         private string _terminal_ID;//人井ID
-        private string _well_State;//人井状态信息
+        private int _well_State_ID;//人井状态ID
         private string _electricity;//终端电量
         private string _temperature;//温度
         private string _humidity;//湿度
@@ -22,6 +16,7 @@ namespace CSPN.Model
         private string _signal_Strength;//信号强度
 
         #region 属性
+
         /// <summary>
         /// 信号强度
         /// </summary>
@@ -30,6 +25,7 @@ namespace CSPN.Model
             get { return _signal_Strength; }
             set { _signal_Strength = value; }
         }
+
         /// <summary>
         /// 烟感电量
         /// </summary>
@@ -38,6 +34,7 @@ namespace CSPN.Model
             get { return _smoke_Power; }
             set { _smoke_Power = value; }
         }
+
         /// <summary>
         /// 烟感
         /// </summary>
@@ -46,6 +43,7 @@ namespace CSPN.Model
             get { return _smoke_Detector; }
             set { _smoke_Detector = value; }
         }
+
         /// <summary>
         /// 湿度
         /// </summary>
@@ -54,6 +52,7 @@ namespace CSPN.Model
             get { return _humidity; }
             set { _humidity = value; }
         }
+
         /// <summary>
         /// 温度
         /// </summary>
@@ -62,6 +61,7 @@ namespace CSPN.Model
             get { return _temperature; }
             set { _temperature = value; }
         }
+
         /// <summary>
         /// 终端电量
         /// </summary>
@@ -70,14 +70,16 @@ namespace CSPN.Model
             get { return _electricity; }
             set { _electricity = value; }
         }
+
         /// <summary>
         /// 人井状态信息ID
         /// </summary>
-        public string Well_State
+        public int Well_State_ID
         {
-            get { return _well_State; }
-            set { _well_State = value; }
+            get { return _well_State_ID; }
+            set { _well_State_ID = value; }
         }
+
         /// <summary>
         /// 人井ID
         /// </summary>
@@ -86,6 +88,7 @@ namespace CSPN.Model
             get { return _terminal_ID; }
             set { _terminal_ID = value; }
         }
+
         /// <summary>
         /// 发生时间
         /// </summary>
@@ -94,6 +97,7 @@ namespace CSPN.Model
             get { return _happen_Time; }
             set { _happen_Time = value; }
         }
-        #endregion
+
+        #endregion 属性
     }
 }

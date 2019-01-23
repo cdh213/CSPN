@@ -30,14 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SystemSettingsControl));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.SysSetTab = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
@@ -79,6 +79,7 @@
             this.Signal = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.CardNo = new System.Windows.Forms.TextBox();
+            this.btnDeleteAllMsg = new System.Windows.Forms.Button();
             this.UserSet = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAddUser = new System.Windows.Forms.Button();
@@ -109,6 +110,7 @@
             this.pageOperator = new CSPN.assistcontrol.DataGridPage();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnForgotPWD = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.SysSetTab.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
@@ -141,7 +143,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1159, 553);
+            this.tabControl1.Size = new System.Drawing.Size(1159, 613);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 1;
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
@@ -151,7 +153,7 @@
             this.SysSetTab.Controls.Add(this.tableLayoutPanel7);
             this.SysSetTab.Location = new System.Drawing.Point(4, 29);
             this.SysSetTab.Name = "SysSetTab";
-            this.SysSetTab.Size = new System.Drawing.Size(1151, 520);
+            this.SysSetTab.Size = new System.Drawing.Size(1151, 580);
             this.SysSetTab.TabIndex = 3;
             this.SysSetTab.Text = "系统设置";
             this.SysSetTab.UseVisualStyleBackColor = true;
@@ -173,7 +175,7 @@
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.90909F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.545455F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(1151, 520);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(1151, 580);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
             // groupBox2
@@ -181,10 +183,10 @@
             this.tableLayoutPanel7.SetColumnSpan(this.groupBox2, 2);
             this.groupBox2.Controls.Add(this.tableLayoutPanel8);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(125, 33);
+            this.groupBox2.Location = new System.Drawing.Point(125, 36);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(10);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(900, 452);
+            this.groupBox2.Size = new System.Drawing.Size(900, 507);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "系统设置";
@@ -220,7 +222,7 @@
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(894, 427);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(894, 482);
             this.tableLayoutPanel8.TabIndex = 0;
             // 
             // label9
@@ -228,7 +230,7 @@
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label9.Location = new System.Drawing.Point(95, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(214, 106);
+            this.label9.Size = new System.Drawing.Size(214, 120);
             this.label9.TabIndex = 15;
             this.label9.Text = "系统日志保存时间（天）";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -237,9 +239,9 @@
             // label5
             // 
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(95, 106);
+            this.label5.Location = new System.Drawing.Point(95, 120);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(214, 106);
+            this.label5.Size = new System.Drawing.Size(214, 120);
             this.label5.TabIndex = 12;
             this.label5.Text = "通讯故障次数";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -249,7 +251,7 @@
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label10.Location = new System.Drawing.Point(485, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(214, 106);
+            this.label10.Size = new System.Drawing.Size(214, 120);
             this.label10.TabIndex = 17;
             this.label10.Text = "用户日志保存时间（天）";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -258,9 +260,9 @@
             // label11
             // 
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(485, 106);
+            this.label11.Location = new System.Drawing.Point(485, 120);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(214, 106);
+            this.label11.Size = new System.Drawing.Size(214, 120);
             this.label11.TabIndex = 19;
             this.label11.Text = "人井信息列表刷新时间（分钟）";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -269,7 +271,7 @@
             // tbNotReportTimes
             // 
             this.tbNotReportTimes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbNotReportTimes.Location = new System.Drawing.Point(315, 146);
+            this.tbNotReportTimes.Location = new System.Drawing.Point(315, 167);
             this.tbNotReportTimes.Name = "tbNotReportTimes";
             this.tbNotReportTimes.Size = new System.Drawing.Size(94, 26);
             this.tbNotReportTimes.TabIndex = 23;
@@ -278,7 +280,7 @@
             // tbRefreshTime
             // 
             this.tbRefreshTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbRefreshTime.Location = new System.Drawing.Point(705, 146);
+            this.tbRefreshTime.Location = new System.Drawing.Point(705, 167);
             this.tbRefreshTime.Name = "tbRefreshTime";
             this.tbRefreshTime.Size = new System.Drawing.Size(94, 26);
             this.tbRefreshTime.TabIndex = 24;
@@ -288,7 +290,7 @@
             // tbSysLogTime
             // 
             this.tbSysLogTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbSysLogTime.Location = new System.Drawing.Point(315, 40);
+            this.tbSysLogTime.Location = new System.Drawing.Point(315, 47);
             this.tbSysLogTime.Name = "tbSysLogTime";
             this.tbSysLogTime.Size = new System.Drawing.Size(94, 26);
             this.tbSysLogTime.TabIndex = 21;
@@ -298,7 +300,7 @@
             // tbUserLogTime
             // 
             this.tbUserLogTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbUserLogTime.Location = new System.Drawing.Point(705, 40);
+            this.tbUserLogTime.Location = new System.Drawing.Point(705, 47);
             this.tbUserLogTime.Name = "tbUserLogTime";
             this.tbUserLogTime.Size = new System.Drawing.Size(94, 26);
             this.tbUserLogTime.TabIndex = 22;
@@ -317,7 +319,7 @@
             this.btnSysSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSysSet.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnSysSet.ForeColor = System.Drawing.Color.White;
-            this.btnSysSet.Location = new System.Drawing.Point(415, 359);
+            this.btnSysSet.Location = new System.Drawing.Point(415, 408);
             this.btnSysSet.Name = "btnSysSet";
             this.btnSysSet.Size = new System.Drawing.Size(64, 26);
             this.btnSysSet.TabIndex = 25;
@@ -329,9 +331,9 @@
             // 
             this.lbReportInterval.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbReportInterval.Enabled = false;
-            this.lbReportInterval.Location = new System.Drawing.Point(95, 212);
+            this.lbReportInterval.Location = new System.Drawing.Point(95, 240);
             this.lbReportInterval.Name = "lbReportInterval";
-            this.lbReportInterval.Size = new System.Drawing.Size(214, 106);
+            this.lbReportInterval.Size = new System.Drawing.Size(214, 120);
             this.lbReportInterval.TabIndex = 26;
             this.lbReportInterval.Text = "人井统一上报时间间隔（小时）";
             this.lbReportInterval.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -341,7 +343,7 @@
             // 
             this.tbReportInterval.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbReportInterval.Enabled = false;
-            this.tbReportInterval.Location = new System.Drawing.Point(315, 252);
+            this.tbReportInterval.Location = new System.Drawing.Point(315, 287);
             this.tbReportInterval.Name = "tbReportInterval";
             this.tbReportInterval.Size = new System.Drawing.Size(94, 26);
             this.tbReportInterval.TabIndex = 27;
@@ -352,7 +354,7 @@
             // 
             this.cbEnabled.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cbEnabled.AutoSize = true;
-            this.cbEnabled.Location = new System.Drawing.Point(419, 253);
+            this.cbEnabled.Location = new System.Drawing.Point(419, 288);
             this.cbEnabled.Name = "cbEnabled";
             this.cbEnabled.Size = new System.Drawing.Size(56, 24);
             this.cbEnabled.TabIndex = 28;
@@ -367,7 +369,7 @@
             this.SMSSettings.Controls.Add(this.tableLayoutPanel1);
             this.SMSSettings.Location = new System.Drawing.Point(4, 29);
             this.SMSSettings.Name = "SMSSettings";
-            this.SMSSettings.Size = new System.Drawing.Size(1151, 520);
+            this.SMSSettings.Size = new System.Drawing.Size(1151, 580);
             this.SMSSettings.TabIndex = 0;
             this.SMSSettings.Text = "短信猫设置";
             this.SMSSettings.UseVisualStyleBackColor = true;
@@ -386,10 +388,10 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 250F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1151, 520);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1151, 580);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // myGroupBox1
@@ -399,7 +401,7 @@
             this.myGroupBox1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.myGroupBox1.Location = new System.Drawing.Point(103, 33);
             this.myGroupBox1.Name = "myGroupBox1";
-            this.myGroupBox1.Size = new System.Drawing.Size(945, 244);
+            this.myGroupBox1.Size = new System.Drawing.Size(945, 194);
             this.myGroupBox1.TabIndex = 0;
             this.myGroupBox1.TabStop = false;
             this.myGroupBox1.Text = "设备设置";
@@ -429,7 +431,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(939, 219);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(939, 169);
             this.tableLayoutPanel3.TabIndex = 7;
             // 
             // btnTest
@@ -444,7 +446,7 @@
             this.btnTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTest.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnTest.ForeColor = System.Drawing.Color.White;
-            this.btnTest.Location = new System.Drawing.Point(536, 146);
+            this.btnTest.Location = new System.Drawing.Point(536, 121);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(71, 26);
             this.btnTest.TabIndex = 6;
@@ -455,7 +457,7 @@
             // label1
             // 
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Location = new System.Drawing.Point(331, 34);
+            this.label1.Location = new System.Drawing.Point(331, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(94, 28);
             this.label1.TabIndex = 0;
@@ -470,7 +472,7 @@
             this.BaudRate.Items.AddRange(new object[] {
             "9600",
             "115200"});
-            this.BaudRate.Location = new System.Drawing.Point(463, 87);
+            this.BaudRate.Location = new System.Drawing.Point(463, 62);
             this.BaudRate.Name = "BaudRate";
             this.BaudRate.Size = new System.Drawing.Size(144, 28);
             this.BaudRate.TabIndex = 3;
@@ -479,7 +481,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label2.Location = new System.Drawing.Point(331, 84);
+            this.label2.Location = new System.Drawing.Point(331, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 20);
             this.label2.TabIndex = 2;
@@ -491,7 +493,7 @@
             this.PortName.Dock = System.Windows.Forms.DockStyle.Top;
             this.PortName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.PortName.FormattingEnabled = true;
-            this.PortName.Location = new System.Drawing.Point(463, 37);
+            this.PortName.Location = new System.Drawing.Point(463, 12);
             this.PortName.Name = "PortName";
             this.PortName.Size = new System.Drawing.Size(144, 28);
             this.PortName.TabIndex = 4;
@@ -508,7 +510,7 @@
             this.btnSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSet.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnSet.ForeColor = System.Drawing.Color.White;
-            this.btnSet.Location = new System.Drawing.Point(354, 146);
+            this.btnSet.Location = new System.Drawing.Point(354, 121);
             this.btnSet.Name = "btnSet";
             this.btnSet.Size = new System.Drawing.Size(71, 26);
             this.btnSet.TabIndex = 5;
@@ -521,9 +523,9 @@
             this.myGroupBox2.Controls.Add(this.tableLayoutPanel2);
             this.myGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.myGroupBox2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.myGroupBox2.Location = new System.Drawing.Point(103, 283);
+            this.myGroupBox2.Location = new System.Drawing.Point(103, 233);
             this.myGroupBox2.Name = "myGroupBox2";
-            this.myGroupBox2.Size = new System.Drawing.Size(945, 204);
+            this.myGroupBox2.Size = new System.Drawing.Size(945, 314);
             this.myGroupBox2.TabIndex = 1;
             this.myGroupBox2.TabStop = false;
             this.myGroupBox2.Text = "设备信息";
@@ -532,13 +534,13 @@
             // 
             this.tableLayoutPanel2.AutoScroll = true;
             this.tableLayoutPanel2.ColumnCount = 7;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.45455F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.45454F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.09091F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.45455F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.45454F));
             this.tableLayoutPanel2.Controls.Add(this.label4, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.DeviceName, 2, 1);
             this.tableLayoutPanel2.Controls.Add(this.label3, 4, 1);
@@ -551,23 +553,24 @@
             this.tableLayoutPanel2.Controls.Add(this.Signal, 2, 3);
             this.tableLayoutPanel2.Controls.Add(this.label8, 4, 3);
             this.tableLayoutPanel2.Controls.Add(this.CardNo, 5, 3);
+            this.tableLayoutPanel2.Controls.Add(this.btnDeleteAllMsg, 5, 4);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 22);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 5;
+            this.tableLayoutPanel2.RowCount = 6;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(939, 179);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(939, 289);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // label4
             // 
             this.label4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label4.Location = new System.Drawing.Point(93, 14);
+            this.label4.Location = new System.Drawing.Point(93, 44);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(114, 29);
             this.label4.TabIndex = 0;
@@ -577,7 +580,7 @@
             // DeviceName
             // 
             this.DeviceName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DeviceName.Location = new System.Drawing.Point(213, 17);
+            this.DeviceName.Location = new System.Drawing.Point(213, 47);
             this.DeviceName.Name = "DeviceName";
             this.DeviceName.ReadOnly = true;
             this.DeviceName.Size = new System.Drawing.Size(244, 26);
@@ -586,7 +589,7 @@
             // label3
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label3.Location = new System.Drawing.Point(481, 14);
+            this.label3.Location = new System.Drawing.Point(481, 44);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(114, 29);
             this.label3.TabIndex = 2;
@@ -596,7 +599,7 @@
             // DeviceModel
             // 
             this.DeviceModel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DeviceModel.Location = new System.Drawing.Point(601, 17);
+            this.DeviceModel.Location = new System.Drawing.Point(601, 47);
             this.DeviceModel.Name = "DeviceModel";
             this.DeviceModel.ReadOnly = true;
             this.DeviceModel.Size = new System.Drawing.Size(244, 26);
@@ -605,7 +608,7 @@
             // HardwareVersion
             // 
             this.HardwareVersion.Dock = System.Windows.Forms.DockStyle.Top;
-            this.HardwareVersion.Location = new System.Drawing.Point(213, 67);
+            this.HardwareVersion.Location = new System.Drawing.Point(213, 97);
             this.HardwareVersion.Name = "HardwareVersion";
             this.HardwareVersion.ReadOnly = true;
             this.HardwareVersion.Size = new System.Drawing.Size(244, 26);
@@ -614,7 +617,7 @@
             // SoftwareVersion
             // 
             this.SoftwareVersion.Dock = System.Windows.Forms.DockStyle.Top;
-            this.SoftwareVersion.Location = new System.Drawing.Point(601, 67);
+            this.SoftwareVersion.Location = new System.Drawing.Point(601, 97);
             this.SoftwareVersion.Name = "SoftwareVersion";
             this.SoftwareVersion.ReadOnly = true;
             this.SoftwareVersion.Size = new System.Drawing.Size(244, 26);
@@ -623,7 +626,7 @@
             // label6
             // 
             this.label6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label6.Location = new System.Drawing.Point(93, 64);
+            this.label6.Location = new System.Drawing.Point(93, 94);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(114, 29);
             this.label6.TabIndex = 16;
@@ -633,7 +636,7 @@
             // label7
             // 
             this.label7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label7.Location = new System.Drawing.Point(481, 64);
+            this.label7.Location = new System.Drawing.Point(481, 94);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(114, 29);
             this.label7.TabIndex = 17;
@@ -643,7 +646,7 @@
             // lb
             // 
             this.lb.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lb.Location = new System.Drawing.Point(93, 114);
+            this.lb.Location = new System.Drawing.Point(93, 144);
             this.lb.Name = "lb";
             this.lb.Size = new System.Drawing.Size(114, 29);
             this.lb.TabIndex = 10;
@@ -653,7 +656,7 @@
             // Signal
             // 
             this.Signal.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Signal.Location = new System.Drawing.Point(213, 117);
+            this.Signal.Location = new System.Drawing.Point(213, 147);
             this.Signal.Name = "Signal";
             this.Signal.ReadOnly = true;
             this.Signal.Size = new System.Drawing.Size(244, 26);
@@ -662,7 +665,7 @@
             // label8
             // 
             this.label8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label8.Location = new System.Drawing.Point(481, 114);
+            this.label8.Location = new System.Drawing.Point(481, 144);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(114, 29);
             this.label8.TabIndex = 18;
@@ -672,18 +675,38 @@
             // CardNo
             // 
             this.CardNo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.CardNo.Location = new System.Drawing.Point(601, 117);
+            this.CardNo.Location = new System.Drawing.Point(601, 147);
             this.CardNo.Name = "CardNo";
             this.CardNo.ReadOnly = true;
             this.CardNo.Size = new System.Drawing.Size(244, 26);
             this.CardNo.TabIndex = 19;
+            // 
+            // btnDeleteAllMsg
+            // 
+            this.btnDeleteAllMsg.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnDeleteAllMsg.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDeleteAllMsg.BackgroundImage")));
+            this.btnDeleteAllMsg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDeleteAllMsg.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDeleteAllMsg.FlatAppearance.BorderSize = 0;
+            this.btnDeleteAllMsg.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnDeleteAllMsg.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnDeleteAllMsg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteAllMsg.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnDeleteAllMsg.ForeColor = System.Drawing.Color.White;
+            this.btnDeleteAllMsg.Location = new System.Drawing.Point(725, 206);
+            this.btnDeleteAllMsg.Name = "btnDeleteAllMsg";
+            this.btnDeleteAllMsg.Size = new System.Drawing.Size(120, 26);
+            this.btnDeleteAllMsg.TabIndex = 7;
+            this.btnDeleteAllMsg.Text = "清空短信猫短信";
+            this.btnDeleteAllMsg.UseVisualStyleBackColor = true;
+            this.btnDeleteAllMsg.Click += new System.EventHandler(this.btnDeleteAllMsg_Click);
             // 
             // UserSet
             // 
             this.UserSet.Controls.Add(this.tableLayoutPanel4);
             this.UserSet.Location = new System.Drawing.Point(4, 29);
             this.UserSet.Name = "UserSet";
-            this.UserSet.Size = new System.Drawing.Size(1151, 520);
+            this.UserSet.Size = new System.Drawing.Size(1151, 580);
             this.UserSet.TabIndex = 1;
             this.UserSet.Text = "系统用户管理";
             this.UserSet.UseVisualStyleBackColor = true;
@@ -702,12 +725,13 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Controls.Add(this.btnAddUser, 5, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnRefreshUser, 8, 0);
             this.tableLayoutPanel4.Controls.Add(this.pageUser, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.userGrid, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.btnUpdateUser, 6, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnDeleteUser, 7, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnAddUser, 4, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnUpdateUser, 5, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnDeleteUser, 6, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnRefreshUser, 7, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnForgotPWD, 8, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -715,7 +739,8 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(1151, 520);
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(1151, 580);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // btnAddUser
@@ -730,7 +755,7 @@
             this.btnAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddUser.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnAddUser.ForeColor = System.Drawing.Color.White;
-            this.btnAddUser.Location = new System.Drawing.Point(702, 7);
+            this.btnAddUser.Location = new System.Drawing.Point(602, 7);
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(70, 26);
             this.btnAddUser.TabIndex = 21;
@@ -750,7 +775,7 @@
             this.btnRefreshUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefreshUser.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnRefreshUser.ForeColor = System.Drawing.Color.White;
-            this.btnRefreshUser.Location = new System.Drawing.Point(1002, 7);
+            this.btnRefreshUser.Location = new System.Drawing.Point(902, 7);
             this.btnRefreshUser.Name = "btnRefreshUser";
             this.btnRefreshUser.Size = new System.Drawing.Size(70, 26);
             this.btnRefreshUser.TabIndex = 17;
@@ -763,7 +788,7 @@
             this.tableLayoutPanel4.SetColumnSpan(this.pageUser, 10);
             this.pageUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageUser.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.pageUser.Location = new System.Drawing.Point(3, 483);
+            this.pageUser.Location = new System.Drawing.Point(3, 583);
             this.pageUser.Name = "pageUser";
             this.pageUser.PageSize = 50;
             this.pageUser.Size = new System.Drawing.Size(1145, 34);
@@ -774,20 +799,20 @@
             this.userGrid.AllowUserToAddRows = false;
             this.userGrid.AllowUserToDeleteRows = false;
             this.userGrid.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.userGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.userGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.userGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.userGrid.BackgroundColor = System.Drawing.SystemColors.Window;
             this.userGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.userGrid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.userGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.userGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.userGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.userGrid.ColumnHeadersHeight = 30;
             this.userGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -801,22 +826,22 @@
             this.userGrid.Location = new System.Drawing.Point(3, 43);
             this.userGrid.MultiSelect = false;
             this.userGrid.Name = "userGrid";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.userGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.userGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.userGrid.RowHeadersVisible = false;
             this.userGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.userGrid.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.userGrid.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.userGrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.userGrid.RowTemplate.Height = 35;
             this.userGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.userGrid.Size = new System.Drawing.Size(1145, 434);
+            this.userGrid.Size = new System.Drawing.Size(1145, 534);
             this.userGrid.TabIndex = 15;
             // 
             // dataGridViewTextBoxColumn1
@@ -866,7 +891,7 @@
             this.btnUpdateUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdateUser.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnUpdateUser.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateUser.Location = new System.Drawing.Point(802, 7);
+            this.btnUpdateUser.Location = new System.Drawing.Point(702, 7);
             this.btnUpdateUser.Name = "btnUpdateUser";
             this.btnUpdateUser.Size = new System.Drawing.Size(70, 26);
             this.btnUpdateUser.TabIndex = 20;
@@ -886,7 +911,7 @@
             this.btnDeleteUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteUser.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnDeleteUser.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteUser.Location = new System.Drawing.Point(902, 7);
+            this.btnDeleteUser.Location = new System.Drawing.Point(802, 7);
             this.btnDeleteUser.Name = "btnDeleteUser";
             this.btnDeleteUser.Size = new System.Drawing.Size(70, 26);
             this.btnDeleteUser.TabIndex = 19;
@@ -899,7 +924,7 @@
             this.OperatorSet.Controls.Add(this.tableLayoutPanel5);
             this.OperatorSet.Location = new System.Drawing.Point(4, 29);
             this.OperatorSet.Name = "OperatorSet";
-            this.OperatorSet.Size = new System.Drawing.Size(1151, 520);
+            this.OperatorSet.Size = new System.Drawing.Size(1151, 580);
             this.OperatorSet.TabIndex = 2;
             this.OperatorSet.Text = "值班人员管理";
             this.OperatorSet.UseVisualStyleBackColor = true;
@@ -933,7 +958,7 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(1151, 520);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(1151, 580);
             this.tableLayoutPanel5.TabIndex = 3;
             // 
             // operatorGrid
@@ -941,20 +966,20 @@
             this.operatorGrid.AllowUserToAddRows = false;
             this.operatorGrid.AllowUserToDeleteRows = false;
             this.operatorGrid.AllowUserToResizeRows = false;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.operatorGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.operatorGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.operatorGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.operatorGrid.BackgroundColor = System.Drawing.SystemColors.Window;
             this.operatorGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.operatorGrid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.operatorGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.operatorGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.operatorGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.operatorGrid.ColumnHeadersHeight = 30;
             this.operatorGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -969,22 +994,22 @@
             this.operatorGrid.Location = new System.Drawing.Point(3, 43);
             this.operatorGrid.MultiSelect = false;
             this.operatorGrid.Name = "operatorGrid";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.operatorGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.operatorGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.operatorGrid.RowHeadersVisible = false;
             this.operatorGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.operatorGrid.RowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.operatorGrid.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.operatorGrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.operatorGrid.RowTemplate.Height = 35;
             this.operatorGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.operatorGrid.Size = new System.Drawing.Size(1145, 434);
+            this.operatorGrid.Size = new System.Drawing.Size(1145, 494);
             this.operatorGrid.TabIndex = 14;
             // 
             // ID
@@ -1134,7 +1159,7 @@
             this.tableLayoutPanel5.SetColumnSpan(this.pageOperator, 10);
             this.pageOperator.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageOperator.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.pageOperator.Location = new System.Drawing.Point(3, 483);
+            this.pageOperator.Location = new System.Drawing.Point(3, 543);
             this.pageOperator.Name = "pageOperator";
             this.pageOperator.PageSize = 50;
             this.pageOperator.Size = new System.Drawing.Size(1145, 34);
@@ -1153,6 +1178,26 @@
             this.toolTip1.InitialDelay = 50;
             this.toolTip1.ReshowDelay = 100;
             // 
+            // btnForgotPWD
+            // 
+            this.btnForgotPWD.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnForgotPWD.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnForgotPWD.BackgroundImage")));
+            this.btnForgotPWD.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnForgotPWD.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnForgotPWD.FlatAppearance.BorderSize = 0;
+            this.btnForgotPWD.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnForgotPWD.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnForgotPWD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnForgotPWD.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnForgotPWD.ForeColor = System.Drawing.Color.White;
+            this.btnForgotPWD.Location = new System.Drawing.Point(1002, 7);
+            this.btnForgotPWD.Name = "btnForgotPWD";
+            this.btnForgotPWD.Size = new System.Drawing.Size(70, 26);
+            this.btnForgotPWD.TabIndex = 22;
+            this.btnForgotPWD.Text = "修改密码";
+            this.btnForgotPWD.UseVisualStyleBackColor = true;
+            this.btnForgotPWD.Click += new System.EventHandler(this.btnForgotPWD_Click);
+            // 
             // SystemSettingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -1161,7 +1206,7 @@
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Name = "SystemSettingsControl";
-            this.Size = new System.Drawing.Size(1159, 553);
+            this.Size = new System.Drawing.Size(1159, 613);
             this.Load += new System.EventHandler(this.SystemSettingsControl_Load);
             this.tabControl1.ResumeLayout(false);
             this.SysSetTab.ResumeLayout(false);
@@ -1194,7 +1239,6 @@
         private System.Windows.Forms.TabPage UserSet;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox myGroupBox1;
-        private System.Windows.Forms.ComboBox BaudRate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox myGroupBox2;
         private System.Windows.Forms.TextBox Signal;
@@ -1210,8 +1254,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox PortName;
-        private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.Button btnSet;
         private System.Windows.Forms.TextBox CardNo;
         private System.Windows.Forms.Label label8;
@@ -1260,5 +1302,10 @@
         private System.Windows.Forms.Label lbReportInterval;
         private System.Windows.Forms.TextBox tbReportInterval;
         private System.Windows.Forms.CheckBox cbEnabled;
+        private System.Windows.Forms.Button btnDeleteAllMsg;
+        private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.ComboBox BaudRate;
+        private System.Windows.Forms.ComboBox PortName;
+        private System.Windows.Forms.Button btnForgotPWD;
     }
 }
